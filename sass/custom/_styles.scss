@@ -1,0 +1,43 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+
+header hgroup{
+	text-align: center;
+}
+
+body > header {
+	h1 a, h1 a:visited, h1 a:hover {
+		color: #222;
+	}
+	background: image-url('/images/content.png');
+	h1 {
+		float: left;
+		margin-left: 320px;
+	}
+	h2 {
+		float: left;
+		margin-left: 20px;
+		padding-left: 20px;
+		margin-top: 20px;
+		border-left: 1px solid #222;
+		color: #555;
+	}
+}
+
+
+body > nav {
+
+	li a {
+		color: #fff !important;
+	}
+	li a:visited {
+		color: #fff;
+	}
+	li a:hover {
+		color: #ccc;
+	}
+}
+
+ul, ol {
+	margin-left: 2em;
+}
