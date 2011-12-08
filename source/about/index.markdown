@@ -2,8 +2,8 @@
 layout: page
 title: "About"
 date: 2011-12-07 21:30
-comments: true
-sharing: true
+comments: false 
+sharing: false
 footer: true
 ---
 Oh hai there! This is me:
@@ -22,3 +22,4 @@ I founded [Comal Productions](http://comalproductions.com), and spent two years 
 I spend an awful lot of time on Stack Overflow ([I'm kind of a big deal](http://stackoverflow.com/users/363881/jesse-wolgamott)).
 
 I speak at the Houston Ruby Group, and Lone Star Ruby Conference for the last two years. 
+
