@@ -19,6 +19,7 @@ Things that are true:
 * Theora
 
 The [Voyeur gem](https://github.com/devthenet/voyeur) looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What's a mac fanboy to do?
+<!--more-->
 
 [ZenCoder](https://app.zencoder.com) is pretty dern cool as well -- pay as you go, no monthly fees, and it's who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.
 
