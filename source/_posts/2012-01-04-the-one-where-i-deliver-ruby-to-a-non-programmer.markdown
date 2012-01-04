@@ -30,6 +30,8 @@ Steps:
 
 See anything I left off?
 
-Tangent: You should be using GLI for command line apps. I have slides on [ZOMG Command Line](https://github.com/jwo/Slides/tree/master/ZOMG-command-line), and you should also read Dave3000's [slides on the subject](http://awesome-cli-ruby.heroku.com/). And read his book: [Build Awesome Command-Line Applications in Ruby](http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby).
+Tangent: You should be using GLI for command line apps. I have slides on [ZOMG Command Line](https://github.com/jwo/Slides/tree/master/ZOMG-command-line), and you should also read davetron5000's [slides on the subject](http://awesome-cli-ruby.heroku.com/). And read his book: [Build Awesome Command-Line Applications in Ruby](http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby).
 
 ###### Version Disclosure: This stuff was accurate with OSX Lion, as of January 4, 2012. It installs ruby 1.9.2, homebrew 0.8, nokogiri 1.5.0, and GLI 1.4.0
+
+###### Update: This post originally mentioned Dave Copeland's handle as dave3000, and corrected it to [Davetron5000](https://twitter.com/#!/davetron5000). I regret the missing Tron and 2000.
