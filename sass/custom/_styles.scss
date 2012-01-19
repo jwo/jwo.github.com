@@ -24,6 +24,21 @@ body > header {
 	}
 }
 
+@media screen and (max-device-width: 480px) {
+	body > header {
+		h1 {
+			margin: 0 auto;
+			float: none !important;
+		}
+		h2 {
+			float: none !important;
+			border: none;
+			margin: 0 auto;
+			padding: 10px;
+		}
+	}
+}
+
 
 body > nav {
 
