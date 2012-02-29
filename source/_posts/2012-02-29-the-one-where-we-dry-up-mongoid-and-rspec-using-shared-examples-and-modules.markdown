@@ -25,7 +25,9 @@ Some Assumptions Before We Begin
 
 OK, so we would normally have a model for the Doctor like so:
 
-```
+
+``` ruby
+
 class Doctor
 	include Mongoid::Document
 	include Mongoid::Timestamps
@@ -45,7 +47,7 @@ end
 
 ### Step 1: Write those tests first
 
-```
+``` ruby 
 require 'spec_helper'
 
 describe Doctor do
@@ -61,7 +63,7 @@ Note: If this doesn't pass, you may need to add  configuration.include Mongoid::
 
 ### Step The Second: Extract the mongoid definitions
 
-```
+``` ruby 
 require 'spec_helper'
 
 module Contactable
@@ -91,7 +93,7 @@ end
 
 And run those tests!
 
-```
+``` ruby
 ....
 
 Finished in 0.11461 seconds
@@ -102,7 +104,7 @@ Finished in 0.11461 seconds
 
 We'll extract the tests out into a shared_examples file in the support folder, and then tell the Doctor class that it should behave like a Contact. 
 
-```
+``` ruby 
 #spec/support/shared_examples.rb
 shared_examples_for Contactable do
 	it { should have_fields(:first_name, :last_name) }
@@ -120,7 +122,7 @@ end
 ```
 
 Run those tests!
-```
+``` ruby tests. Could be faster
 ....
 
 Finished in 0.13347 seconds
@@ -129,7 +131,7 @@ Finished in 0.13347 seconds
 
 All is going awesome! So we can now easily add contact information (and validations), to say users:
 
-```
+``` ruby
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -147,7 +149,7 @@ Now your Users have first_name, last_name, address, and more!
 
 Now we can very, very easily isolate the Doctor out for very fast tests.
 
-```
+``` ruby 
 module Mongoid
 	module Document; end
   module Timestamps; end
