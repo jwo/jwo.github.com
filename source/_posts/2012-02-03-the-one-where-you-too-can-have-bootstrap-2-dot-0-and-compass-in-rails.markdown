@@ -28,22 +28,24 @@ Here's what the site looks like:
 How to do these things?
 ----
 
-It's fairly simple to do thanks to the awesomeness that is Chris Epstein. Props also to Thomas McDonald for bootstrap-sass.
+It's fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.
 
 In your gem file, do these things:
 
 ```
 gem "compass-rails", ">= 0.12"
-gem "bootstrap-sass", :git => "git://github.com/thomas-mcdonald/bootstrap-sass.git", :branch => "2.0" 
+gem "bootstrap-sass", ">= 2.0"
 ```
 
 In your application.scss import bootstrap using sass, not sprockets. 
 
 ```
 @import "bootstrap";
-@import "bootstrap/responsive";
+@import "bootstrap-responsive";
 ```
 
-I wish it were more interesting, but Chris Epstein made compass drop dead simple to integrate.
+I wish it were more interesting, but Chris Eppstein made compass drop dead simple to integrate.
 
-######Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and a brand off bootstrap-sass.
+######Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.
+
+####UPDATE: updated the command to include bootstrap-responsive. Thanks [@rubysolo](http://twitter.com/rubysolo)
