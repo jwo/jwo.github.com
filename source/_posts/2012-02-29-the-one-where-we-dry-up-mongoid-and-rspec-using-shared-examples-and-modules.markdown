@@ -6,7 +6,7 @@ comments: true
 categories: mongoid rspec
 ---
 
-The Situation: You're adding Addreses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man -- everybody has a contact.
+The Situation: You're adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man -- everybody has a contact.
 
 The Problem: You're tempted to copy/paste the field and validations, but your spidy-senses tell you not to.
 
@@ -14,8 +14,9 @@ Let's DRY this up using modules and rspec shared examples. We'll end up with a w
 
 <!-- more -->
 
-### tl;dr
-[Gist for the impatient](https://gist.github.com/1942427)
+<div class="tldr">
+	<span class="heading">tl;dr</span> Shared examples describing a module. Include module in a mongoid class: <a href="https://gist.github.com/1942427">The Gist</a>.
+</div>
 
 Some Assumptions Before We Begin
 --------------------------------

@@ -11,9 +11,9 @@ The situation: You need to add an iOS app to your Rails application. Users can l
 The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you're using a JSON API?
 
 <!-- more -->
-## tl;dr
-
-Use this gist for an [API JSON Devise Sessions Controller](https://gist.github.com/1255275) that does not redirect.
+<div class="tldr">
+	<span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
+</div>
 
 ## Background
 Devise provides an awesome :token_authenticatable setup where you can login a user using an "auth_token" query_string. 

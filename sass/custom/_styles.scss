@@ -56,3 +56,16 @@ body > nav {
 ul, ol {
 	margin-left: 2em;
 }
+
+.tldr {
+	background: #D9EDF7;
+	border: 1px solid #BCE8F1;
+	padding: 8px 35px 8px 14px;
+	margin-bottom: 18px;
+	@include border-radius(4px);
+	.heading {
+		font-weight: bold;
+	}
+	font-size: 0.8em;
+	color: #3A87AD;
+}

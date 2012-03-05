@@ -10,10 +10,13 @@ The situation: You've used compass in the past (even when it was hard to setup w
 
 <!-- more -->
 
-tldr;
-
-* Demo Site: [http://compass-bootstrap2-rails.heroku.com/](http://compass-bootstrap2-rails.heroku.com/)
-* Githubs: [https://github.com/jwo/compass-bootstrap2.0-rails](https://github.com/jwo/compass-bootstrap2.0-rails)
+<div class="tldr">
+	<span class="heading">tl;dr</span> 
+	<ul>
+		<li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
+		<li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
+	</ul>
+</div>
 
 Here's what the site looks like:
 ###### Full Resolution
