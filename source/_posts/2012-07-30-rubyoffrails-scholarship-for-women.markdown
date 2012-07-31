@@ -14,7 +14,7 @@ I have an opportunity to do something, and I want to do it. Ruby is awesome, and
 I am offering a 100% scholarship to the 6 week RubyOffRails class for up to 5 women software developers. <a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>
 </div>
 
-The [Ruby online training course](http://rubyoffrails.com) starts July 31, and I'll keep applications open through August 3rd. It's a self-paced course, so if you start this week you won't be behind. I'll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!
+The [Ruby online training course](http://rubyoffrails.com) starts July 31, and I'll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It's a self-paced course, so if you start this week you won't be behind. I'll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!
 
 So...
 
