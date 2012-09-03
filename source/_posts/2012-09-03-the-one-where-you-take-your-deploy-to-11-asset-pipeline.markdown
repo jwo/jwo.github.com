@@ -14,8 +14,9 @@ Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused
 Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
 </div>
 
-Background:  
-* The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file
+### Background
+
+* The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file  
 * Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.
 
 So... Here's a solution to fast-compile your assets by only checking if the changeset includes changes under:
@@ -67,8 +68,6 @@ namespace :deploy do
   end 
 end
 {% endcodeblock %}
-
-### config/deploy.rb
 
 {% codeblock config/deploy.rb lang:ruby %}
 load "config/recipes/assets"
