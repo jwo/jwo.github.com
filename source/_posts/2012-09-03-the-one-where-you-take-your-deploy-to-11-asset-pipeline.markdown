@@ -6,7 +6,7 @@ comments: true
 categories:  rails
 ---
 
-Things I Love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when _I KNOW NOTHING HAS CHANGED_. Makes it hard to deploy constantly if each takes 2 minutes.
+Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when _I KNOW NOTHING HAS CHANGED_. It makes it hard to deploy constantly if each takes 2 minutes.
 
 <!-- more -->
 <div class="tldr">
@@ -16,7 +16,7 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
 
 Background:  
 * The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file
-* Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time
+* Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.
 
 So... Here's a solution to fast-compile your assets by only checking if the changeset includes changes under:
 
