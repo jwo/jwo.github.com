@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About"
+title: "About JWo"
 date: 2011-12-07 21:30
 comments: false 
 sharing: false
