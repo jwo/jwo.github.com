@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where You Run Rake Commands with Capistrano]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
+    <updated>2012-09-10T13:38:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
+    <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it'd be built in, but nope. Drink some sake and let capistrano do the work!</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> 
+Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
+</div>
+
+
+<h3>First Off, Sake is not <code>sake</code></h3>
+
+<p><a href="https://github.com/defunkt">Defunkt</a> wrote <a href="http://rubygems.org/gems/sake">sake</a> in ought-eight (2008) for system wide rake tasks. This isn't it; this is just a file, name it what you want.</p>
+
+<h3>Background</h3>
+
+<p>I'll use rake tasks to do data-migrations that I don't want to stick around in db/migrations. Or to do one-off things like re-process images.</p>
+
+<p>But it's not all that awesome to actually run those things in production when you need to. Here's a way!</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/recipes/sake.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task&lt;br/&gt;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;run(&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="sr">/</span><span class="n">current</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="c1">#{ENV[&#39;task&#39;]} RAILS_ENV=#{rails_env}&quot;)  </span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then, make sure you require it
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/deploy.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>And that's it! Now, when you want to run that code, say to migrate a database:</p>
+
+<p><code>ruby
+cap sake:invoke task="db:migrate"
+</code></p>
+
+<p>This is not mind-blowing, but it's not very obvious for new deployers, so I wanted to add it here for the googlers.</p>
+
+<h2>Naming Notes</h2>
+
+<p>Don't name your task rake -- newer versions of rake (0.9.2) are not pleased with that. That's how I ended on sake. (rake => sake).</p>
+
+<h2>Credit</h2>
+
+<p>This <a href="http://stackoverflow.com/questions/312214/how-do-i-run-a-rake-task-from-capistrano">answer on Stack Overflow</a> had some good stuffs. I modified from there.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where You Take Your Deploy to 11: Asset Pipeline]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/"/>
+    <updated>2012-09-03T14:56:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline</id>
+    <content type="html"><![CDATA[<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> 
+Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
+</div>
+
+
+<h3>Background</h3>
+
+<ul>
+<li>The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file</li>
+<li>Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.</li>
+</ul>
+
+
+<p>So... Here's a solution to fast-compile your assets by only checking if the changeset includes changes under:</p>
+
+<ul>
+<li>app/assets</li>
+<li>lib/assets</li>
+<li>vendor/assets</li>
+<li>Gemfile.lock</li>
+<li>config/routes.rb</li>
+</ul>
+
+
+<p>The assets is pretty self-explanatory. We compile if the Gemfile.lock changed to catch if something like twitter-bootstrap-rails was added or updated. At first the config/routes.rb seems out of place, but it's in case you load an engine (or remove one).</p>
+
+<h2>The code!</h2>
+
+<p>Make sure you're loading deploy/assets</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Capfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/recipes/assets.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- encoding : utf-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;set :assets_dependencies, %w(app/</span><span class="n">assets</span> <span class="n">lib</span><span class="o">/</span><span class="n">assets</span> <span class="n">vendor</span><span class="o">/</span><span class="n">assets</span> <span class="no">Gemfile</span><span class="o">.</span><span class="n">lock</span> <span class="n">config</span><span class="o">/</span><span class="n">routes</span><span class="o">.</span><span class="n">rb</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;namespace :deploy do</span>
+</span><span class='line'><span class="sr">  namespace :assets do&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">desc</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">-</span><span class="no">DESC</span>
+</span><span class='line'>  <span class="no">Run</span> <span class="n">the</span> <span class="n">asset</span> <span class="n">precompilation</span> <span class="n">rake</span> <span class="n">task</span><span class="o">.</span> <span class="no">You</span> <span class="n">can</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">full</span> <span class="n">path</span> <span class="p">\</span>
+</span><span class='line'>  <span class="n">to</span> <span class="n">the</span> <span class="n">rake</span> <span class="n">executable</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">the</span> <span class="n">rake</span> <span class="n">variable</span><span class="o">.</span> <span class="no">You</span> <span class="n">can</span> <span class="n">also</span> <span class="p">\</span>
+</span><span class='line'>  <span class="n">specify</span> <span class="n">additional</span> <span class="n">environment</span> <span class="n">variables</span> <span class="n">to</span> <span class="n">pass</span> <span class="n">to</span> <span class="n">rake</span> <span class="n">via</span> <span class="n">the</span> <span class="p">\</span>
+</span><span class='line'>  <span class="n">asset_env</span> <span class="n">variable</span><span class="o">.</span> <span class="no">The</span> <span class="n">defaults</span> <span class="n">are</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">set</span> <span class="ss">:rake</span><span class="p">,</span>      <span class="s2">&quot;rake&quot;</span>
+</span><span class='line'>    <span class="n">set</span> <span class="ss">:rails_env</span><span class="p">,</span> <span class="s2">&quot;production&quot;</span>
+</span><span class='line'>    <span class="n">set</span> <span class="ss">:asset_env</span><span class="p">,</span> <span class="s2">&quot;RAILS_GROUPS=assets&quot;</span>
+</span><span class='line'>    <span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="n">fetch</span><span class="p">(</span><span class="ss">:assets_dependencies</span><span class="p">)</span> <span class="o">+</span> <span class="sx">%w(config/locales/js)</span>
+</span><span class='line'><span class="no">DESC</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;amp;&amp;amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;amp;&amp;amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>config/deploy.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>How does it know?</h2>
+
+<p>The regular assets:precompile task is getting overridden by our custom task. We then:</p>
+
+<ol>
+<li>get the FROM git revision</li>
+<li>get the git log of changes from the FROM to the TO that include our paths we care about</li>
+<li>Pipe that into wc to see if there's anything there</li>
+</ol>
+
+
+<p>If there is, then we call the rake assets:precompile (like calling <code>super</code>)</p>
+
+<h2>Output</h2>
+
+<p>```</p>
+
+<pre><code>triggering after callbacks for `deploy:update_code'
+</code></pre>
+
+<ul>
+<li>executing `deploy:assets:precompile'</li>
+<li>executing "cat /home/deployer/apps/yourapp/current/REVISION"
+servers: ["yourapp.comalproductions.com"]
+[yourapp.comalproductions.com] executing command
+command finished in 921ms</li>
+<li>executing "cd /home/deployer/apps/yourapp/releases/20120903203634 &amp;&amp; git log 2e03e2b18530c86a69ba8a2c2d75909142767f5b.. app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb | wc -l"
+servers: ["yourapp.comalproductions.com"]
+[yourapp.comalproductions.com] executing command
+command finished in 400ms
+** Skipping asset pre-compilation because there were no asset changes
+```</li>
+</ul>
+
+
+<p>PROOF: 400ms &lt; 2.5 minutes</p>
+
+<h2>Credit</h2>
+
+<p>This <a href="https://gist.github.com/3072362">Gist</a> by <a href="https://github.com/xdite">@xdite</a> is the direct source for the code. I've used this in several projects and think it's awesome-sauce.</p>
+]]></content>
+  </entry>
+  
+</feed>

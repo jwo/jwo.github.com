@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: unicorn | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/unicorn/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where Unicorn Doesn't Update on Deploy]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
+    <updated>2012-01-02T13:27:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
+    <content type="html"><![CDATA[<p>Things that are true:</p>
+
+<ul>
+<li>We love Github</li>
+<li>Github uses Unicorns</li>
+<li>Github deploys all.the.time</li>
+</ul>
+
+
+<p>Therefor: We should be using Unicorn instead of Passenger.</p>
+
+<p>However, my recent switch to unicorn wasn't all Unicorns and Rainbows! (pun definitely intended). For me, here's what I saw:</p>
+
+<!-- more -->
+
+
+<h2>tl;dr</h2>
+
+<p>Make sure you uncomment your unicorn.rb code that's checking for .oldbin. You can use these three configs to get a working capistrano with nginx and unicorn.</p>
+
+<ul>
+<li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
+<li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
+<li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
+</ul>
+
+
+<h2>Symptoms</h2>
+
+<ul>
+<li>Once I'd deploy, I'd refresh the page and see my new app version</li>
+<li>I'd refresh and see my old version</li>
+<li>Refresh again: new. repeat.</li>
+</ul>
+
+
+<p>Once I deployed, I'd see something like this:
+<code>
+$ pgrep -lf unicorn_rails
+5877 unicorn_rails master (old) -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30123 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30126 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30129 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30132 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30410 unicorn_rails master -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30429 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30432 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30435 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30438 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+</code></p>
+
+<p>I kept expecting the master (old) to someday go away, but it wouldn't unless I manually killed it. Capistrano was spinning up my new instance, but not shutting it down.</p>
+
+<h2>Solution</h2>
+
+<p>When I got started with unicorn, I had grabbed a unicorn config from the github blogpost, and the following was commented out. Uncomment it so that it'll kill old processed where the PID does not match the current PID and BAM, you're golden.</p>
+
+<p>```
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if old_pid != server.pid</p>
+
+<pre><code>begin
+  sig = (worker.nr + 1) &gt;= server.worker_processes ? :QUIT : :TTOU
+  Process.kill(sig, File.read(old_pid).to_i)
+rescue Errno::ENOENT, Errno::ESRCH
+end
+</code></pre>
+
+<p>  end
+```</p>
+
+<h2>The Config Files</h2>
+
+<ul>
+<li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
+<li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
+<li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
+</ul>
+
+
+<h3>Stupidity Disclosure</h3>
+
+<p>After re-examining the <a href="https://github.com/blog/517-unicorn">github unicorn</a> blogpost, I see the .oldbin check was definitely NOT commented out. So don't blame the github, but if you're seeing unicorn not refresh your app, this is probably why.</p>
+
+<h3>Copyright on the Gists</h3>
+
+<p>The three config files are not copyrighted in any way (as I mostly copied them and edited them anyway). Use and be happy.</p>
+]]></content>
+  </entry>
+  
+</feed>

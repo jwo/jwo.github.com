@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The One with HTML5 Videos Using Zencoder for VideoJS.com - J.Wo</title>
+  <meta name="author" content="Jesse Wolgamott">
+
+  
+  <meta name="description" content="Things that are true: HTML5 is cool
+HTML5 Videos are Cool
+Getting HTML5 Video formats OMG all of them created &#8230; NOT cool VideoJS.com will &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/jwo" rel="alternate" title="J.Wo" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2397417-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">J.Wo</a></h1>
+  
+    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/jwo" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jessewolgamott.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The One With HTML5 Videos Using Zencoder for VideoJS.com</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-07T20:31:00-06:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Things that are true:</p>
+
+<ul>
+<li>HTML5 is cool</li>
+<li>HTML5 Videos are Cool</li>
+<li>Getting HTML5 Video formats OMG all of them created &#8230; <em>NOT</em> cool</li>
+</ul>
+
+
+<p><a href="http://videojs.com">VideoJS.com</a> will create an HTML5 embed for you that will render in iOS devices, all the modern browsers, and will fallback to flash for IE 6/7/8 types. However, to get all this goodness, you have to create your video file in 3 different formats:</p>
+
+<ul>
+<li>h.264</li>
+<li>web-m</li>
+<li>Theora</li>
+</ul>
+
+
+<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What&#8217;s a mac fanboy to do?</p>
+
+<!--more-->
+
+
+<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well &#8211; pay as you go, no monthly fees, and it&#8217;s who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
+
+<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam.</p>
+
+<div><script src='https://gist.github.com/1440139.js'></script>
+<noscript><pre><code>POST https://app.zencoder.com/api/v2/jobs HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+  &quot;api_key&quot;: &quot;API_KEY_HERE&quot;,
+  &quot;input&quot;: &quot;PUBLIC_FILE_URL_HERE&quot;,
+  &quot;private&quot;: true,
+  &quot;output&quot;: [
+    {
+      &quot;video_codec&quot;: &quot;theora&quot;,
+      &quot;width&quot;: 450,
+      &quot;height&quot;: 320,
+      &quot;upscale&quot;: true,
+      &quot;quality&quot;: 3,
+      &quot;audio_quality&quot;: 4
+    },
+    {
+      &quot;video_codec&quot;: &quot;h264&quot;,
+      &quot;width&quot;: 450,
+      &quot;height&quot;: 320,
+      &quot;upscale&quot;: true,
+      &quot;quality&quot;: 3,
+      &quot;audio_quality&quot;: 4
+    },
+    {
+      &quot;video_codec&quot;: &quot;vp8&quot;,
+      &quot;width&quot;: 450,
+      &quot;height&quot;: 320,
+      &quot;upscale&quot;: true,
+      &quot;quality&quot;: 3,
+      &quot;audio_quality&quot;: 4
+    }
+  ]
+}   </code></pre></noscript></div>
+
+
+<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I&#8217;ve had bad luck converting to HAML for an as-yet undiscovered reason.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jesse Wolgamott</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-07T20:31:00-06:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/html5/'>HTML5</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/08/the-one-where-devise-validations-are-customized/" title="Next Post: The One Where Devise Validations are Customized">The One Where Devise Validations are Customized &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
+	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/">The One Where You Run Rake Commands with Capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/">The One Where You Take Your Deploy to 11: Asset Pipeline</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/">RubyOffRails Scholarship for Women</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jwo">@jwo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jwo',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("jwo", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/jwo" class="twitter-follow-button" data-show-count="false">Follow @jwo</a>
+  
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jesse Wolgamott -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jwo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

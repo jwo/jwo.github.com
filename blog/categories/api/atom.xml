@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: api | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/api/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The One With a JSON API Login Using Devise]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
+    <updated>2012-01-19T07:28:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
+    <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you're using Devise for authentication.</p>
+
+<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you're using a JSON API?</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
+</div>
+
+
+<h2>Background</h2>
+
+<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an "auth_token" query_string.</p>
+
+<p><code>ruby
+/api/recipes?qs=sweet&amp;auth_token=[@user.auth_token]
+</code></p>
+
+<p>Then, in your Api::RecipesController, you'd do something like:</p>
+
+<p>```ruby
+class Api::RecipesController &lt; Api::BaseApiController
+  before_filter :authenticate_user!</p>
+
+<p>  respond_to :json
+  def index</p>
+
+<pre><code>@recipes = Recipe.search(params.fetch(:qs, ""))
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>The above will authenticate the user by cookies/session/token, and return recipes in JSON.</p>
+
+<p>But, <em>How do you get the token?</em></p>
+
+<h2>Authentication and Login</h2>
+
+<p>We'll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We'll want an HTTP Status code of 401 if it's invalid.</p>
+
+<p>We'll have a Base API Controller from which we inherit
+<code>ruby
+class Api::BaseApiController &lt; ApplicationController
+  respond_to :json
+end
+</code></p>
+
+<p>First, you'll create an api endpoint for your session:</p>
+
+<p>```ruby [/api/sessions/]
+class Api::SessionsController &lt; Api::BaseController
+  prepend_before_filter :require_no_authentication, :only => [:create ]
+  include Devise::Controllers::InternalHelpers</p>
+
+<p>  def create</p>
+
+<pre><code>build_resource
+resource = User.find_for_database_authentication(:login=&gt;params[:user_login][:login])
+if resource.nil?
+  render :json=&gt; {:success=&gt;false, :message=&gt;"Error with your login or password"}, :status=&gt;401
+end
+
+if resource.valid_password?(params[:user_login][:password])
+  sign_in("user", resource)
+  render :json=&gt; {:success=&gt;true, :auth_token=&gt;resource.authentication_token, :login=&gt;resource.login, :email=&gt;resource.email}
+else
+  render :json=&gt; {:success=&gt;false, :message=&gt;"Error with your login or password"}, :status=&gt;401
+</code></pre>
+
+<p>  end
+```</p>
+
+<p>The problem is that you don't get the 401 Status code. You get a 302 redirect to the user login page. And that dog won't hunt on an iPhone app.</p>
+
+<h2>WTH Devise?</h2>
+
+<p>Devise is relying on Warden, and warden is doing what it's told. If not a valid login, it'll redirect away. So, we need to tell Warden we're going to have a custom failure like so:</p>
+
+<p><code>ruby
+warden.custom_failure!
+</code></p>
+
+<p>Refactored down slightly, we get:</p>
+
+<h2>The Solution</h2>
+
+<p><div><script src='https://gist.github.com/1255275.js'></script>
+<noscript><pre><code>class Api::V1::SessionsController &lt; Api::V1::BaseController
+  prepend_before_filter :require_no_authentication, :only =&gt; [:create ]
+  include Devise::Controllers::InternalHelpers
+  
+  before_filter :ensure_params_exist
+
+  respond_to :json
+  
+  def create
+    build_resource
+    resource = User.find_for_database_authentication(:login=&gt;params[:user_login][:login])
+    return invalid_login_attempt unless resource
+
+    if resource.valid_password?(params[:user_login][:password])
+      sign_in(&quot;user&quot;, resource)
+      render :json=&gt; {:success=&gt;true, :auth_token=&gt;resource.authentication_token, :login=&gt;resource.login, :email=&gt;resource.email}
+      return
+    end
+    invalid_login_attempt
+  end
+  
+  # GET /resource/sign_out
+  def destroy
+    set_flash_message :notice, :signed_out if signed_in?(resource_name)
+    sign_out_and_redirect(resource_name)
+  end
+
+  protected
+  def ensure_params_exist
+    return unless params[:user_login].blank?
+    render :json=&gt;{:success=&gt;false, :message=&gt;&quot;missing user_login parameter&quot;}, :status=&gt;422
+  end
+
+  def invalid_login_attempt
+    warden.custom_failure!
+    render :json=&gt; {:success=&gt;false, :message=&gt;&quot;Error with your login or password&quot;}, :status=&gt;401
+  end
+end
+</code></pre></noscript></div>
+</p>
+
+<p>```javascript Your users will receive something this this on success:
+{</p>
+
+<pre><code>"success": true,
+"auth_token": "dfc7ad3884e7",
+"login": "emailexample",
+"email": "email@example.com"
+</code></pre>
+
+<p>}
+```</p>
+
+<p>```javascript And this on failure (with a status code of 401).
+{</p>
+
+<pre><code>"success": false,
+"message": "Error with your login or password"
+</code></pre>
+
+<p>}
+```</p>
+
+<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
+]]></content>
+  </entry>
+  
+</feed>

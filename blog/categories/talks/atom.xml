@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: talks | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/talks/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
+    <updated>2012-06-06T09:46:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
+    <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online.</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn't know you're consuming it when you consume it.
+</div>
+
+
+
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen></iframe>
+
+
+<p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
+]]></content>
+  </entry>
+  
+</feed>

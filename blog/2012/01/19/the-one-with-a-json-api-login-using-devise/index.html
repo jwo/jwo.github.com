@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The One With a JSON API Login Using Devise - J.Wo</title>
+  <meta name="author" content="Jesse Wolgamott">
+
+  
+  <meta name="description" content="The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you&#8217;re using Devise for &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/jwo" rel="alternate" title="J.Wo" type="application/atom+xml">
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-2397417-5']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">J.Wo</a></h1>
+  
+    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/jwo" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jessewolgamott.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul role=main-navigation>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The One With a JSON API Login Using Devise</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-19T07:28:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you&#8217;re using Devise for authentication.</p>
+
+<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you&#8217;re using a JSON API?</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
+</div>
+
+
+<h2>Background</h2>
+
+<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an &#8220;auth_token&#8221; query_string.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/api/</span><span class="n">recipes?qs</span><span class="o">=</span><span class="n">sweet</span><span class="o">&amp;</span><span class="n">auth_token</span><span class="o">=[</span><span class="vi">@user</span><span class="o">.</span><span class="n">auth_token</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, in your Api::RecipesController, you&#8217;d do something like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">RecipesController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">BaseApiController</span>
+</span><span class='line'>  <span class="n">before_filter</span> <span class="ss">:authenticate_user!</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">respond_to</span> <span class="ss">:json</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>    <span class="vi">@recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:qs</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The above will authenticate the user by cookies/session/token, and return recipes in JSON.</p>
+
+<p>But, <em>How do you get the token?</em></p>
+
+<h2>Authentication and Login</h2>
+
+<p>We&#8217;ll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We&#8217;ll want an HTTP Status code of 401 if it&#8217;s invalid.</p>
+
+<p>We&#8217;ll have a Base API Controller from which we inherit</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">BaseApiController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="n">respond_to</span> <span class="ss">:json</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>First, you&#8217;ll create an api endpoint for your session:</p>
+
+<figure class='code'><figcaption><span>[/api/sessions/]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">SessionsController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">BaseController</span>
+</span><span class='line'>  <span class="n">prepend_before_filter</span> <span class="ss">:require_no_authentication</span><span class="p">,</span> <span class="ss">:only</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:create</span> <span class="o">]</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Devise</span><span class="o">::</span><span class="no">Controllers</span><span class="o">::</span><span class="no">InternalHelpers</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="n">build_resource</span>
+</span><span class='line'>    <span class="n">resource</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_for_database_authentication</span><span class="p">(</span><span class="ss">:login</span><span class="o">=&gt;</span><span class="n">params</span><span class="o">[</span><span class="ss">:user_login</span><span class="o">][</span><span class="ss">:login</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">nil?</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">false</span><span class="p">,</span> <span class="ss">:message</span><span class="o">=&gt;</span><span class="s2">&quot;Error with your login or password&quot;</span><span class="p">},</span> <span class="ss">:status</span><span class="o">=&gt;</span><span class="mi">401</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">valid_password?</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:user_login</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">sign_in</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">resource</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">true</span><span class="p">,</span> <span class="ss">:auth_token</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span> <span class="ss">:login</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">login</span><span class="p">,</span> <span class="ss">:email</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">email</span><span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">false</span><span class="p">,</span> <span class="ss">:message</span><span class="o">=&gt;</span><span class="s2">&quot;Error with your login or password&quot;</span><span class="p">},</span> <span class="ss">:status</span><span class="o">=&gt;</span><span class="mi">401</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem is that you don&#8217;t get the 401 Status code. You get a 302 redirect to the user login page. And that dog won&#8217;t hunt on an iPhone app.</p>
+
+<h2>WTH Devise?</h2>
+
+<p>Devise is relying on Warden, and warden is doing what it&#8217;s told. If not a valid login, it&#8217;ll redirect away. So, we need to tell Warden we&#8217;re going to have a custom failure like so:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">warden</span><span class="o">.</span><span class="n">custom_failure!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Refactored down slightly, we get:</p>
+
+<h2>The Solution</h2>
+
+<div><script src='https://gist.github.com/1255275.js'></script>
+<noscript><pre><code>class Api::V1::SessionsController &lt; Api::V1::BaseController
+  prepend_before_filter :require_no_authentication, :only =&gt; [:create ]
+  include Devise::Controllers::InternalHelpers
+  
+  before_filter :ensure_params_exist
+
+  respond_to :json
+  
+  def create
+    build_resource
+    resource = User.find_for_database_authentication(:login=&gt;params[:user_login][:login])
+    return invalid_login_attempt unless resource
+
+    if resource.valid_password?(params[:user_login][:password])
+      sign_in(&quot;user&quot;, resource)
+      render :json=&gt; {:success=&gt;true, :auth_token=&gt;resource.authentication_token, :login=&gt;resource.login, :email=&gt;resource.email}
+      return
+    end
+    invalid_login_attempt
+  end
+  
+  # GET /resource/sign_out
+  def destroy
+    set_flash_message :notice, :signed_out if signed_in?(resource_name)
+    sign_out_and_redirect(resource_name)
+  end
+
+  protected
+  def ensure_params_exist
+    return unless params[:user_login].blank?
+    render :json=&gt;{:success=&gt;false, :message=&gt;&quot;missing user_login parameter&quot;}, :status=&gt;422
+  end
+
+  def invalid_login_attempt
+    warden.custom_failure!
+    render :json=&gt; {:success=&gt;false, :message=&gt;&quot;Error with your login or password&quot;}, :status=&gt;401
+  end
+end
+</code></pre></noscript></div>
+
+
+
+
+<figure class='code'><figcaption><span>Your users will receive something this this on success:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;auth_token&quot;</span><span class="o">:</span> <span class="s2">&quot;dfc7ad3884e7&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;login&quot;</span><span class="o">:</span> <span class="s2">&quot;emailexample&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;email@example.com&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>And this on failure (with a status code of 401). </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Error with your login or password&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jesse Wolgamott</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-19T07:28:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/api/'>api</a>, <a class='category' href='/blog/categories/devise/'>devise</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/" title="Previous Post: The One Where I Deliver Ruby to a Non Programmer">&laquo; The One Where I Deliver Ruby to a Non Programmer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/" title="Next Post: The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails">The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
+	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/">The One Where You Run Rake Commands with Capistrano</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/">The One Where You Take Your Deploy to 11: Asset Pipeline</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/">RubyOffRails Scholarship for Women</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/jwo">@jwo</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'jwo',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("jwo", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/jwo" class="twitter-follow-button" data-show-count="false">Follow @jwo</a>
+  
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jesse Wolgamott -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jwo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

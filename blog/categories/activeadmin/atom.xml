@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: activeadmin | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/activeadmin/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
+    <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
+    <updated>2011-12-19T09:18:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
+    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What's a Mongoid to do? Develop your own admin system? As If!</p>
+
+<!-- more -->
+
+
+<h2>First, Watch this Issue</h2>
+
+<p>There's already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
+
+<h2>Then, Monkey Patch!</h2>
+
+<p>Add this code to your config/initializers/active_active_for_mongoid.rb</p>
+
+<p><div><script src='https://gist.github.com/1497688.js'></script>
+<noscript><pre><code>require &quot;active_admin&quot;
+require &quot;active_admin/resource_controller&quot;
+
+module ActiveAdmin
+  class Namespace
+    # Disable comments
+    def comments?
+      false
+    end
+  end
+
+  class Resource
+    def resource_table_name
+      resource.collection_name
+    end
+
+    # Disable filters
+    def add_default_sidebar_sections
+    end
+  end
+
+  class ResourceController &lt; ::InheritedResources::Base
+    # Use #desc and #asc for sorting.
+    def sort_order(chain)
+      params[:order] ||= active_admin_config.sort_order
+      table_name = active_admin_config.resource_table_name
+      if params[:order] &amp;&amp; params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
+        chain.send($2, $1)
+      else
+        chain # just return the chain
+      end
+    end
+
+    # Disable filters
+    def search(chain)
+      chain
+    end
+  end
+end</code></pre></noscript></div>
+</p>
+
+<p>It's easy to tell what's going on with the code -- ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example,</p>
+
+<p>```</p>
+
+<h1>ActiveRecord</h1>
+
+<p>Product.order("published_at DESC").all</p>
+
+<h1>Mongoid</h1>
+
+<p>Product.all(sort: [[ :published_at, :desc ]])
+```</p>
+
+<p>The mongo queries that get executed look like:</p>
+
+<p><code>
+MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :desc]])
+MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :asc]])
+</code></p>
+
+<p>Props to <a href="https://github.com/ebeigarts">https://github.com/ebeigarts</a> for the patch. It gets you to at least run with the ball for now.</p>
+
+<h2>Downsides</h2>
+
+<ul>
+<li>Filters are disabled</li>
+<li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
+<li>You'll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
+</ul>
+
+
+<h6>Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
+]]></content>
+  </entry>
+  
+</feed>

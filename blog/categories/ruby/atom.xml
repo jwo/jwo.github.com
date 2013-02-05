@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
+    <updated>2012-04-03T12:23:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
+    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don't realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.</p>
+
+<h3>Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></h3>
+
+<p>That means, they pick up on concepts about instance variables, validations, how to create non-ActiveRecord classes, and most importantly: testing.</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
+</div>
+
+
+<p>So I floated an idea, should we learn Ruby before we learn Rails? The answer from nearly everyone I spoke to was YES.</p>
+
+<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> -- a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
+
+<ul>
+<li>It means there's not going to be a class on "Arrays" followed by one on "Syntax". -- We'll build stuff together and learn by doing.</li>
+<li>It means that each class much have actionable code that someone could actually use in their life</li>
+<li>It means that you can watch the class live, or watch later. Much later.</li>
+<li>It means that students talk to each other, learn from each other, and see each other's code through pull-requests on assignments</li>
+</ul>
+
+
+<p>And most importantly, it means that we all code.</p>
+
+<p>It's a six week course designed for people who have programmed before. If you haven't developed software, it'll be ambitious, but watch the episodes a couple of times and you'll get the hang of it. And you'll learn TDD first! (you won't be able to imagine a different way).</p>
+
+<p>My true hope is this brings more people into the software development community and fosters coders teaching coders in a constructive and generally nice way.</p>
+
+<ol>
+<li>Watch someone code</li>
+<li>Code</li>
+<li>Teach someone how to code</li>
+</ol>
+
+
+<h3>To Get Started</h3>
+
+<ol>
+<li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
+<li>Read through and sign up</li>
+<li>We'll being the Thursday after RailsConf (April 26, 2012)</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

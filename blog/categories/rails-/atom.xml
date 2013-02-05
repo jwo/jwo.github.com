@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails, | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/rails-/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-02-05T09:58:33-06:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where Devise Validations are Customized]]></title>
+    <link href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
+    <updated>2011-12-08T20:41:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
+    <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
+
+<p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
+
+<p>Your problem: Devise validatable hates on this and laughs are your attempts.</p>
+
+<!-- more -->
+
+
+<h2>Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
+
+<p>First, remove the :validatable argument from the devise method</p>
+
+<p><code>
+devise :database_authenticatable, :token_authenticatable
+</code></p>
+
+<p>Then, you'll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
+
+<p><code>
+  validates_uniqueness_of   :email,     :case_sensitive =&gt; false, :allow_blank =&gt; true, :if =&gt; :email_changed?
+  validates_format_of   :email, :with  =&gt; Devise.email_regexp, :allow_blank =&gt; true, :if =&gt; :email_changed?
+  validates_presence_of :password, :on=&gt;:create
+  validates_confirmation_of :password, :on=&gt;:create
+  validates_length_of   :password, :within =&gt; Devise.password_length, :allow_blank =&gt; true
+</code></p>
+
+<p>I know the above looks vaguely familiar... say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> -- this is all it's doing anyway.</p>
+
+<p>To allow email re-use across accounts, add <code>:scope=&gt;:accont_id</code> on the uniqueness validation.</p>
+
+<p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
+
+<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
+]]></content>
+  </entry>
+  
+</feed>
