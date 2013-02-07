@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[J.Wo]]></title>
-  <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
-  <link href="http://jessewolgamott.com/"/>
-  <updated>2013-02-05T09:58:33-06:00</updated>
-  <id>http://jessewolgamott.com/</id>
+  <link href="http://jwo.github.com/atom.xml" rel="self"/>
+  <link href="http://jwo.github.com/"/>
+  <updated>2013-02-07T11:26:45-06:00</updated>
+  <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -14,10 +14,142 @@
 
   
   <entry>
+    <title type="html"><![CDATA[The One Where I Introduce Celluloid-Pmap]]></title>
+    <link href="http://jwo.github.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
+    <updated>2013-02-07T11:18:00-06:00</updated>
+    <id>http://jwo.github.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
+    <content type="html"><![CDATA[<div class="tldr">
+    <span class="heading">tl;dr</span>
+    <a href="https://github.com/jwo/celluloid-pmap">celluloid-pmap</a> is a way to easily execute tasks in parallel.  
+</div>
+
+
+<h2>Ever had a set of tasks in Ruby take too long?</h2>
+
+<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm or you don&#8217;t have control over Google&#8217;s response time. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+
+<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+
+<p>But fare not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
+
+<!-- more -->
+
+
+<p>Let&#8217;s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">servers</span> <span class="o">=</span> <span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">server</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">check_status</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1"># do something with the non-responsive servers</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So this would map over all servers, and make a network call to check if it&#8217;s alive.</p>
+
+<p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 1000 servers would take 1000 seconds. Sub-optimal.</p>
+
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap users Celluloid::Future&#8217;s for each element in the array. The pmap will wait until the value is complete before returning, and we&#8217;ll wait for them all to finish before continuing.</p>
+
+<p>That same example in parallel would look:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+</span><span class='line'>   <span class="c1">#… same code here</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Parallelization cuts processing time to your slowest item</h2>
+
+<p>Let&#8217;s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it&#8217;s complete. This is a great case for parallel processing since you&#8217;ll be waiting on:</p>
+
+<ul>
+<li>wkhtmlpdf to convert HTML to PDF</li>
+<li>fog to upload PDF to S3</li>
+<li>curl to download PDF from S3 for you</li>
+</ul>
+
+
+<p>With the example below, your total processing time gets cut to the slowest report generated/uploaded/downloaded.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;email1@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;email2@example.com&quot;</span><span class="o">].</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">email</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email!</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">CreatesReports</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">generate_reports</span>
+</span><span class='line'>  <span class="n">user</span><span class="o">.</span><span class="n">reports</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">report</span><span class="o">|</span> <span class="sb">`curl -o </span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="sb"> </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">pdf</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\&quot;</span><span class="sb">`</span><span class="p">}</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;reports ready for </span><span class="si">#{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Everybody&#39;s done!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Other examples of usages:</p>
+
+<ul>
+<li>Searching Google and Amazon and What</li>
+<li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
+<li>Deleting of files at once</li>
+<li>Making database calls in parallel</li>
+</ul>
+
+
+<h2>Make sure to obey your database connection maximums</h2>
+
+<p>If you are iterating over a set of documents and calling any resource that has a limited connection set, or a rate limit, you might run into a Connection Pool problem. That is, you might try connect with 20 connections and your default pool size is 5. What can be done?</p>
+
+<p>celluloid-pmap uses a Celluoid Supervisor to set a maximum number of actors working at the same time. So if you can only connect to 5 postgres users at the same time, you can set that like so:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">users</span><span class="o">.</span><span class="n">pmap</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="o">.</span><span class="n">say_anything!</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The (5) argument will say it&#8217;s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
+
+<h2>Also check out Celluloid</h2>
+
+<p>I started adding code into a Rails initializer from <a href="https://github.com/celluloid/celluloid/blob/master/examples/simple_pmap.rb">Celluloid Simple Pmap</a> example. It went like this:</p>
+
+<p>config/initializers/celluloid-pmap.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Enumerable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">pmap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">futures</span> <span class="o">=</span> <span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="ss">Celluloid</span><span class="p">:</span><span class="ss">:Future</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">futures</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">future</span><span class="o">|</span> <span class="n">future</span><span class="o">.</span><span class="n">value</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
+
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[The One Where I Have to Explain Why I Want Diversity in our Field]]></title>
-    <link href="http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
+    <link href="http://jwo.github.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
     <updated>2013-02-05T09:09:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
+    <id>http://jwo.github.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
 
@@ -96,9 +228,9 @@ or better yet, write a blog post in response and/or in agreement.</p>
   
   <entry>
     <title type="html"><![CDATA[The One Where You Run Rake Commands with Capistrano]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
+    <link href="http://jwo.github.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
     <updated>2012-09-10T13:38:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
+    <id>http://jwo.github.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
     <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it&#8217;d be built in, but nope. Drink some sake and let capistrano do the work!</p>
 
 <!-- more -->
@@ -167,9 +299,9 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   
   <entry>
     <title type="html"><![CDATA[The One Where You Take Your Deploy to 11: Asset Pipeline]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/"/>
+    <link href="http://jwo.github.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/"/>
     <updated>2012-09-03T14:56:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline</id>
+    <id>http://jwo.github.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline</id>
     <content type="html"><![CDATA[<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
 
 <!-- more -->
@@ -333,9 +465,9 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   
   <entry>
     <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
+    <link href="http://jwo.github.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
     <updated>2012-07-30T10:35:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
+    <id>http://jwo.github.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
     <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I&#8217;ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
 <!-- more -->
@@ -388,9 +520,9 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   
   <entry>
     <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
+    <link href="http://jwo.github.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
     <updated>2012-06-06T09:46:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
+    <id>http://jwo.github.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
     <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online.</p>
 
 <!-- more -->
@@ -412,9 +544,9 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
+    <link href="http://jwo.github.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
     <updated>2012-04-03T12:23:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
+    <id>http://jwo.github.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
     <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don&#8217;t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.</p>
 
 <h3>Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></h3>
@@ -467,9 +599,9 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   
   <entry>
     <title type="html"><![CDATA[The one where we DRY up Mongoid and Rspec using Shared Examples and Modules]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
+    <link href="http://jwo.github.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
     <updated>2012-02-29T10:19:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
+    <id>http://jwo.github.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
     <content type="html"><![CDATA[<p>The Situation: You&#8217;re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man &#8211; everybody has a contact.</p>
 
 <p>The Problem: You&#8217;re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
@@ -751,9 +883,9 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   
   <entry>
     <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
+    <link href="http://jwo.github.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
     <updated>2012-02-03T11:11:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
+    <id>http://jwo.github.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
     <content type="html"><![CDATA[<p>The situation: You&#8217;ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don&#8217;t use LESS (because obvs). What do you do? Let&#8217;s make this happen</p>
 
 <!-- more -->
@@ -814,9 +946,9 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   
   <entry>
     <title type="html"><![CDATA[The One With a JSON API Login Using Devise]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
+    <link href="http://jwo.github.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
     <updated>2012-01-19T07:28:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
+    <id>http://jwo.github.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
     <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you&#8217;re using Devise for authentication.</p>
 
 <p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you&#8217;re using a JSON API?</p>
@@ -1012,9 +1144,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[The One Where I Deliver Ruby to a Non Programmer]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/"/>
+    <link href="http://jwo.github.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/"/>
     <updated>2012-01-04T13:09:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer</id>
+    <id>http://jwo.github.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer</id>
     <content type="html"><![CDATA[<p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
 
 <p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he&#8217;s ecstatic. Now to deliver the command line app to him.</p>
@@ -1053,9 +1185,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[The One Where Unicorn Doesn't Update on Deploy]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
+    <link href="http://jwo.github.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
     <updated>2012-01-02T13:27:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
+    <id>http://jwo.github.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>
@@ -1163,9 +1295,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
+    <link href="http://jwo.github.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
     <updated>2011-12-19T09:18:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
+    <id>http://jwo.github.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
     <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What&#8217;s a Mongoid to do? Develop your own admin system? As If!</p>
 
 <!-- more -->
@@ -1258,9 +1390,9 @@ end</code></pre></noscript></div>
   
   <entry>
     <title type="html"><![CDATA[The One Where Devise Validations are Customized]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
+    <link href="http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
     <updated>2011-12-08T20:41:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
+    <id>http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
     <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
 
 <p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
@@ -1304,9 +1436,9 @@ end</code></pre></noscript></div>
   
   <entry>
     <title type="html"><![CDATA[The One with HTML5 Videos Using Zencoder for VideoJS.com]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/"/>
+    <link href="http://jwo.github.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/"/>
     <updated>2011-12-07T20:31:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com</id>
+    <id>http://jwo.github.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com</id>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>

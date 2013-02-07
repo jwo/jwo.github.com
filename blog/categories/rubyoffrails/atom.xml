@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: rubyoffrails | J.Wo]]></title>
-  <link href="http://jessewolgamott.com/blog/categories/rubyoffrails/atom.xml" rel="self"/>
-  <link href="http://jessewolgamott.com/"/>
-  <updated>2013-02-05T09:58:33-06:00</updated>
-  <id>http://jessewolgamott.com/</id>
+  <link href="http://jwo.github.com/blog/categories/rubyoffrails/atom.xml" rel="self"/>
+  <link href="http://jwo.github.com/"/>
+  <updated>2013-02-07T11:26:45-06:00</updated>
+  <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
+    <link href="http://jwo.github.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
     <updated>2012-07-30T10:35:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
+    <id>http://jwo.github.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
     <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I've been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
 <!-- more -->

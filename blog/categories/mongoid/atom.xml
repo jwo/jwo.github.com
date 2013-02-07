@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mongoid | J.Wo]]></title>
-  <link href="http://jessewolgamott.com/blog/categories/mongoid/atom.xml" rel="self"/>
-  <link href="http://jessewolgamott.com/"/>
-  <updated>2013-02-05T09:58:33-06:00</updated>
-  <id>http://jessewolgamott.com/</id>
+  <link href="http://jwo.github.com/blog/categories/mongoid/atom.xml" rel="self"/>
+  <link href="http://jwo.github.com/"/>
+  <updated>2013-02-07T11:26:45-06:00</updated>
+  <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The one where we DRY up Mongoid and Rspec using Shared Examples and Modules]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
+    <link href="http://jwo.github.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
     <updated>2012-02-29T10:19:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
+    <id>http://jwo.github.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
     <content type="html"><![CDATA[<p>The Situation: You're adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man -- everybody has a contact.</p>
 
 <p>The Problem: You're tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>

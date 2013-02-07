@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://jessewolgamott.com/sitemap.xml 
+Sitemap: http://jwo.github.com/sitemap.xml 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mongoid, | J.Wo]]></title>
-  <link href="http://jessewolgamott.com/blog/categories/mongoid-/atom.xml" rel="self"/>
-  <link href="http://jessewolgamott.com/"/>
-  <updated>2013-02-05T09:58:33-06:00</updated>
-  <id>http://jessewolgamott.com/</id>
+  <link href="http://jwo.github.com/blog/categories/mongoid-/atom.xml" rel="self"/>
+  <link href="http://jwo.github.com/"/>
+  <updated>2013-02-07T11:26:45-06:00</updated>
+  <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
+    <link href="http://jwo.github.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
     <updated>2011-12-19T09:18:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
+    <id>http://jwo.github.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
     <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What's a Mongoid to do? Develop your own admin system? As If!</p>
 
 <!-- more -->

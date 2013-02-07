@@ -9,8 +9,7 @@
   <meta name="author" content="Jesse Wolgamott">
 
   
-  <meta name="description" content="@RellyAB
-tweeted: If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of &hellip;">
+  <meta name="description" content="tl;dr celluloid-pmap is a way to easily execute tasks in parallel. Ever had a set of tasks in Ruby take too long? We&#8217;ve all been there &#8211 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jessewolgamott.com/">
+  <link rel="canonical" href="http://jwo.github.com/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -62,7 +61,7 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:jessewolgamott.com" />
+    <input type="hidden" name="q" value="site:jwo.github.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -79,6 +78,59 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">The One Where I Introduce Celluloid-Pmap</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-07T11:18:00-06:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="tldr">
+    <span class="heading">tl;dr</span>
+    <a href="https://github.com/jwo/celluloid-pmap">celluloid-pmap</a> is a way to easily execute tasks in parallel.  
+</div>
+
+
+<h2>Ever had a set of tasks in Ruby take too long?</h2>
+
+<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm or you don&#8217;t have control over Google&#8217;s response time. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+
+<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+
+<p>But fare not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -474,53 +526,6 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/">The One Where I Deliver Ruby to a Non Programmer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-04T13:09:00-06:00" pubdate data-updated="true">Jan 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
-
-<p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he&#8217;s ecstatic. Now to deliver the command line app to him.</p>
-
-<p>Except&#8230; Client does not program ruby. Client has the standard Mac setup with ruby 1.8.7 installed with no GCC compiler.</p>
-
-<p>So. I created a <a href="https://github.com/jwo/jwo.github.com/wiki/Ruby-1.9.2-install-for-Clients-on-OSX">wiki cheat sheet</a> for client to view (using this blog Github pages). With no xCode setup!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -541,6 +546,10 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">The One Where I Introduce Celluloid-Pmap</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
       </li>
     
@@ -554,10 +563,6 @@ tweeted: If you are a guy and you want to help fight the good fight, tell people
     
       <li class="post">
         <a href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/">RubyOffRails Scholarship for Women</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta</a>
       </li>
     
   </ul>
