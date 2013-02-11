@@ -1,25 +1,19 @@
 ---
 layout: post
-title: "The One Where I Introduce Celluloid-Pmap"
+title: "Easy, Light Weight, and Magical Parallel Processing in Ruby"
 date: 2013-02-07 11:18
 comments: true
 categories: 
 ---
 
-<div class="tldr">
-	<span class="heading">tl;dr</span>
-    <a href="https://github.com/jwo/celluloid-pmap">celluloid-pmap</a> is a way to easily execute tasks in parallel.  
-</div>
-
-
 Ever had a set of tasks in Ruby take too long?
 ------------------------------
 
-We've all been there -- you have code that needs to be run, and it's taking forever. You wish there was a way to speed things along, but you can't tweak the algorithm or you don't have control over Google's response time. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.
+We've all been there -- you have code that needs to be run, and it's taking forever. You wish there was a way to speed things along, but you can't tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.
 
 Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)
 ------------------------------
-But fare not! [Celluloid](http://celluloid.io) exists, and is awesome. It's an actor based implementation, but all you _need_ to know is that it's awesome. You can process an array of things in parallel, and continue when it's complete.
+But fear not! [Celluloid](http://celluloid.io) exists, and is awesome. It's an actor based implementation, but all you _need_ to know is that it's awesome. You can process an array of things in parallel, and continue when it's complete.
 
 <!-- more -->
 
@@ -34,9 +28,9 @@ end
 
 So this would map over all servers, and make a network call to check if it's alive.
 
-In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 1000 servers would take 1000 seconds. Sub-optimal.
+In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.
 
-If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap users Celluloid::Future's for each element in the array. The pmap will wait until the value is complete before returning, and we'll wait for them all to finish before continuing.
+If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future's for each element in the array. The pmap will wait until the value is complete before returning, and we'll wait for them all to finish before continuing.
 
 That same example in parallel would look:
 
@@ -105,4 +99,30 @@ end
 
 This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.
 
-Installation and configuration is over at [https://github.com/jwo/celluloid-pmap](https://github.com/jwo/celluloid-pmap)
+
+
+Installation and configuration is over at [https://github.com/jwo/celluloid-pmap](https://github.com/jwo/celluloid-pmap). But it's as simple as you'd think:
+
+```
+gem install celluloid-pmap
+```
+
+Want more Ruby?
+---------------
+
+<!-- Begin MailChimp Signup Form -->
+<link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="http://rubyoffrails.us6.list-manage.com/subscribe/post?u=aebdb7c9619330f7cc1bfcdf9&amp;id=8310b1a92e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <label for="mce-EMAIL">Subscribe for updates about RubyOffRails</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+
+<!--End mc_embed_signup-->
