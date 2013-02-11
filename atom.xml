@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jwo.github.com/atom.xml" rel="self"/>
   <link href="http://jwo.github.com/"/>
-  <updated>2013-02-07T11:38:06-06:00</updated>
+  <updated>2013-02-11T11:09:51-06:00</updated>
   <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -14,23 +14,17 @@
 
   
   <entry>
-    <title type="html"><![CDATA[The One Where I Introduce Celluloid-Pmap]]></title>
+    <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>
     <link href="http://jwo.github.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
     <updated>2013-02-07T11:18:00-06:00</updated>
     <id>http://jwo.github.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
-    <content type="html"><![CDATA[<div class="tldr">
-    <span class="heading">tl;dr</span>
-    <a href="https://github.com/jwo/celluloid-pmap">celluloid-pmap</a> is a way to easily execute tasks in parallel.  
-</div>
+    <content type="html"><![CDATA[<h2>Ever had a set of tasks in Ruby take too long?</h2>
 
-
-<h2>Ever had a set of tasks in Ruby take too long?</h2>
-
-<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm or you don&#8217;t have control over Google&#8217;s response time. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
 
 <h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
 
-<p>But fare not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
+<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
 
 <!-- more -->
 
@@ -50,9 +44,9 @@
 
 <p>So this would map over all servers, and make a network call to check if it&#8217;s alive.</p>
 
-<p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 1000 servers would take 1000 seconds. Sub-optimal.</p>
+<p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.</p>
 
-<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap users Celluloid::Future&#8217;s for each element in the array. The pmap will wait until the value is complete before returning, and we&#8217;ll wait for them all to finish before continuing.</p>
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future&#8217;s for each element in the array. The pmap will wait until the value is complete before returning, and we&#8217;ll wait for them all to finish before continuing.</p>
 
 <p>That same example in parallel would look:</p>
 
@@ -141,7 +135,35 @@
 
 <p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
 
-<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a></p>
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it&#8217;s as simple as you&#8217;d think:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="n">install</span> <span class="n">celluloid</span><span class="o">-</span><span class="n">pmap</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Want more Ruby?</h2>
+
+<!-- Begin MailChimp Signup Form -->
+
+
+<p><link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css"></p>
+
+
+
+<div id="mc_embed_signup">
+<form action="http://rubyoffrails.us6.list-manage.com/subscribe/post?u=aebdb7c9619330f7cc1bfcdf9&amp;id=8310b1a92e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <label for="mce-EMAIL">Subscribe for updates about RubyOffRails</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+
+
+
+
+<!--End mc_embed_signup-->
+
 ]]></content>
   </entry>
   
