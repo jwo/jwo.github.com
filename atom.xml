@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jwo.github.com/atom.xml" rel="self"/>
   <link href="http://jwo.github.com/"/>
-  <updated>2013-02-11T11:09:51-06:00</updated>
+  <updated>2013-03-04T13:40:08-06:00</updated>
   <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RailsBerry rejected my talk and I am happy about it]]></title>
+    <link href="http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/"/>
+    <updated>2013-03-04T13:12:00-06:00</updated>
+    <id>http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it</id>
+    <content type="html"><![CDATA[<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
+their 2013 conference. Normally: another &#8220;oh well, they must have found really
+great talks to reject mine&#8221; and a sigh. Why did I like this rejection email?</p>
+
+<h3>RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
+
+<!-- more -->
+
+
+<p>First, the details about my talk. I&#8217;ve been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
+for a year now. I heart Ruby like a hundred &lt;3s
+and think we can show off Ruby more than just showing Rails APIs to developers.</p>
+
+<p>My description of <em>Teaching Ruby without Rails</em></p>
+
+<blockquote><p>What are the essential elements of Ruby that an artisan developer ninja
+developer needs to understand before they can see the beauty of Ruby? After all:
+there was Ruby before there was Rails; There is Ruby outside of Rails.</p>
+
+<p>Let&#8217;s cover examples of how to teach Blocks, Send, Class Eval, and Modules to
+developers who can develop, but not in Ruby land (yet). And, how these 4
+features of Ruby can enlighten Rails and DSLs.</p></blockquote>
+
+<p>In the &#8216;Why should we choose you&#8217; section, I added:</p>
+
+<blockquote><p>Honestly? I don&#8217;t know if you should&#8230; I&#8217;m a pretty good speaker and people
+have been way supportive of my teaching Ruby without the Rails.</p>
+
+<p>How about why you SHOULDN&#8217;T choose me, eh?</p>
+
+<ul>
+<li>I&#8217;m a white male from the US.</li>
+<li>I&#8217;m not an A-list Ruby developer</li>
+<li>I probably won&#8217;t get someone to buy tickets that wouldn&#8217;t buy it already</li>
+</ul>
+
+
+<p>However, some things that MAY tip the scales in my favor:</p>
+
+<ul>
+<li>I don&#8217;t use like a billionty meme&#8217;s in my talks</li>
+<li>I&#8217;m decently funny and hopefully inspiring</li>
+<li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
+</ul>
+</blockquote>
+
+<p>I also included a link to my <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Ucma74yqH6w">Rails Ignite 2012 talk</a>.
+I submitted and waited. In late January, I received an email letting me know I
+wasn&#8217;t selected. It was your standard rejection letter.</p>
+
+<p>OK, I thought &#8211; and didn&#8217;t buy my plane ticket.  I was pretty surprised when
+I received the explanation letter on March 3rd. Here
+it is:</p>
+
+<h3>The Letter from Michael @ RailsBerry</h3>
+
+<blockquote><p>First of all thank you for taking your time and submitting proposal.
+We have received more than 90 and had to select only 7 of them.
+It wasn&#8217;t an easy task and I&#8217;d like to give you a little feedback
+on why we didn&#8217;t choose ones that you had submitted.</p>
+
+<p>You&#8217;ve submitted :
+  - Teaching Ruby without Rails</p>
+
+<p>  Hmm tough call. You&#8217;ve convinced us that you are a good speaker.
+  However the talk proposal lacked the &#8220;wow&#8221; factor and might not fit into 20
+  minutes.</p>
+
+<p>  The talk sounds kind of interesting and I&#8217;m sure it can get accepted by plenty
+  of conferences.</p></blockquote>
+
+<h3>What I like about the rejection email</h3>
+
+<h5>My talk would be too long</h5>
+
+<p>I missed this completely, 20 minutes is a good speech length, not enough time
+to go over what I said I would).</p>
+
+<h4>My talk wouldn&#8217;t <em>wow</em> people</h4>
+
+<p>True enough, reading back over it. I should have submitted something like
+&#8216;A Lambda, a Proc, and a Block walk into a bar&#8217;&#8230; and talk about how their
+similarities and differences).</p>
+
+<h4>My speaking qualifications are there</h4>
+
+<p>I&#8217;m sending enough information in my submissions to convey I&#8217;m decent on stage)</p>
+
+<h3>Suggestions for Conference Organizers</h3>
+
+<p>Feedback like this would be very very awesome to send out to people who asked
+to speak at your conferences. Brutal honesty is best: otherwise the speakers
+won&#8217;t know what to change to get better.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>

@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The One Where Devise Validations are Customized - J.Wo</title>
+  <title>RailsBerry rejected my talk and I am happy about it - J.Wo</title>
   <meta name="author" content="Jesse Wolgamott">
 
   
-  <meta name="description" content="The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails? Or maybe you want to be &hellip;">
+  <meta name="description" content="I received the greatest email this weekend: RailsBerry had rejected my talk for
+their 2013 conference. Normally: another &#8220;oh well, they must &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/">
+  <link rel="canonical" href="http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">The One Where Devise Validations Are Customized</h1>
+      <h1 class="entry-title">RailsBerry Rejected My Talk and I Am Happy About It</h1>
     
     
       <p class="meta">
@@ -97,51 +98,106 @@
   
 
 
-<time datetime="2011-12-08T20:41:00-06:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+<time datetime="2013-03-04T13:12:00-06:00" pubdate data-updated="true">Mar 4<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
+<div class="entry-content"><p>I received the greatest email this weekend: RailsBerry had rejected my talk for
+their 2013 conference. Normally: another &#8220;oh well, they must have found really
+great talks to reject mine&#8221; and a sigh. Why did I like this rejection email?</p>
 
-<p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
-
-<p>Your problem: Devise validatable hates on this and laughs are your attempts.</p>
+<h3>RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
 
 <!-- more -->
 
 
-<h2>Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
+<p>First, the details about my talk. I&#8217;ve been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
+for a year now. I heart Ruby like a hundred &lt;3s
+and think we can show off Ruby more than just showing Rails APIs to developers.</p>
 
-<p>First, remove the :validatable argument from the devise method</p>
+<p>My description of <em>Teaching Ruby without Rails</em></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>devise :database_authenticatable, :token_authenticatable </span></code></pre></td></tr></table></div></figure>
+<blockquote><p>What are the essential elements of Ruby that an artisan developer ninja
+developer needs to understand before they can see the beauty of Ruby? After all:
+there was Ruby before there was Rails; There is Ruby outside of Rails.</p>
+
+<p>Let&#8217;s cover examples of how to teach Blocks, Send, Class Eval, and Modules to
+developers who can develop, but not in Ruby land (yet). And, how these 4
+features of Ruby can enlighten Rails and DSLs.</p></blockquote>
+
+<p>In the &#8216;Why should we choose you&#8217; section, I added:</p>
+
+<blockquote><p>Honestly? I don&#8217;t know if you should&#8230; I&#8217;m a pretty good speaker and people
+have been way supportive of my teaching Ruby without the Rails.</p>
+
+<p>How about why you SHOULDN&#8217;T choose me, eh?</p>
+
+<ul>
+<li>I&#8217;m a white male from the US.</li>
+<li>I&#8217;m not an A-list Ruby developer</li>
+<li>I probably won&#8217;t get someone to buy tickets that wouldn&#8217;t buy it already</li>
+</ul>
 
 
-<p>Then, you&#8217;ll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
+<p>However, some things that MAY tip the scales in my favor:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  validates_uniqueness_of    :email,     :case_sensitive =&gt; false, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_format_of :email, :with  =&gt; Devise.email_regexp, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_presence_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_confirmation_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_length_of :password, :within =&gt; Devise.password_length, :allow_blank =&gt; true</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>I don&#8217;t use like a billionty meme&#8217;s in my talks</li>
+<li>I&#8217;m decently funny and hopefully inspiring</li>
+<li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
+</ul>
+</blockquote>
 
+<p>I also included a link to my <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Ucma74yqH6w">Rails Ignite 2012 talk</a>.
+I submitted and waited. In late January, I received an email letting me know I
+wasn&#8217;t selected. It was your standard rejection letter.</p>
 
-<p>I know the above looks vaguely familiar&#8230; say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> &#8211; this is all it&#8217;s doing anyway.</p>
+<p>OK, I thought &#8211; and didn&#8217;t buy my plane ticket.  I was pretty surprised when
+I received the explanation letter on March 3rd. Here
+it is:</p>
 
-<p>To allow email re-use across accounts, add <code>:scope=&gt;:accont_id</code> on the uniqueness validation.</p>
+<h3>The Letter from Michael @ RailsBerry</h3>
 
-<p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
+<blockquote><p>First of all thank you for taking your time and submitting proposal.
+We have received more than 90 and had to select only 7 of them.
+It wasn&#8217;t an easy task and I&#8217;d like to give you a little feedback
+on why we didn&#8217;t choose ones that you had submitted.</p>
 
-<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
+<p>You&#8217;ve submitted :
+  - Teaching Ruby without Rails</p>
+
+<p>  Hmm tough call. You&#8217;ve convinced us that you are a good speaker.
+  However the talk proposal lacked the &#8220;wow&#8221; factor and might not fit into 20
+  minutes.</p>
+
+<p>  The talk sounds kind of interesting and I&#8217;m sure it can get accepted by plenty
+  of conferences.</p></blockquote>
+
+<h3>What I like about the rejection email</h3>
+
+<h5>My talk would be too long</h5>
+
+<p>I missed this completely, 20 minutes is a good speech length, not enough time
+to go over what I said I would).</p>
+
+<h4>My talk wouldn&#8217;t <em>wow</em> people</h4>
+
+<p>True enough, reading back over it. I should have submitted something like
+&#8216;A Lambda, a Proc, and a Block walk into a bar&#8217;&#8230; and talk about how their
+similarities and differences).</p>
+
+<h4>My speaking qualifications are there</h4>
+
+<p>I&#8217;m sending enough information in my submissions to convey I&#8217;m decent on stage)</p>
+
+<h3>Suggestions for Conference Organizers</h3>
+
+<p>Feedback like this would be very very awesome to send out to people who asked
+to speak at your conferences. Brutal honesty is best: otherwise the speakers
+won&#8217;t know what to change to get better.</p>
 </div>
 
 
@@ -164,21 +220,15 @@
   
 
 
-<time datetime="2011-12-08T20:41:00-06:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+<time datetime="2013-03-04T13:12:00-06:00" pubdate data-updated="true">Mar 4<span>th</span>, 2013</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/devise/'>Devise</a>, <a class='category' href='/blog/categories/rails-/'>Rails,</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/" data-via="jwo" data-counturl="http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/" data-via="jwo" data-counturl="http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -191,10 +241,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/" title="Previous Post: The One with HTML5 Videos Using Zencoder for VideoJS.com">&laquo; The One with HTML5 Videos Using Zencoder for VideoJS.com</a>
+        <a class="basic-alignment left" href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" title="Previous Post: Easy, Light Weight, and Magical Parallel Processing in Ruby">&laquo; Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/" title="Next Post: The One Where ActiveAdmin and Mongoid Get Along">The One Where ActiveAdmin and Mongoid Get Along &raquo;</a>
       
     </p>
   </footer>
@@ -319,8 +367,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/';
-        var disqus_url = 'http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/';
+        var disqus_identifier = 'http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/';
+        var disqus_url = 'http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/';
         var disqus_script = 'embed.js';
       
     (function () {

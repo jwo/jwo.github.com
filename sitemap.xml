@@ -83,12 +83,18 @@
         <lastmod>2013-02-11T11:06:36-06:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/
+        </loc>
+        <lastmod>2013-03-04T13:39:45-06:00</lastmod>
+    </url>
+    <url>
         <loc>http://jwo.github.com/about/</loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/blog/archives/</loc>
-        <lastmod>2013-02-11T11:06:36-06:00</lastmod>
+        <lastmod>2013-03-04T13:39:45-06:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/contact/</loc>
@@ -96,7 +102,7 @@
     </url>
     <url>
         <loc>http://jwo.github.com/</loc>
-        <lastmod>2013-02-11T11:06:36-06:00</lastmod>
+        <lastmod>2013-03-04T13:39:45-06:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/robots.txt</loc>
