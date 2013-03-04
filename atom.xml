@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jwo.github.com/atom.xml" rel="self"/>
   <link href="http://jwo.github.com/"/>
-  <updated>2013-03-04T13:40:08-06:00</updated>
+  <updated>2013-03-04T13:46:45-06:00</updated>
   <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -111,6 +111,29 @@ similarities and differences).</p>
 <p>Feedback like this would be very very awesome to send out to people who asked
 to speak at your conferences. Brutal honesty is best: otherwise the speakers
 won&#8217;t know what to change to get better.</p>
+
+<h2>Want more Ruby?</h2>
+
+<!-- Begin MailChimp Signup Form -->
+
+
+<p><link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css"></p>
+
+
+
+<div id="mc_embed_signup">
+<form action="http://rubyoffrails.us6.list-manage.com/subscribe/post?u=aebdb7c9619330f7cc1bfcdf9&amp;id=8310b1a92e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <label for="mce-EMAIL">Subscribe for updates about RubyOffRails</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required style="padding: 15px; width: 80%">
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+
+
+
+
+<!--End mc_embed_signup-->
+
 ]]></content>
   </entry>
   
