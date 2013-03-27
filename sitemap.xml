@@ -2,116 +2,120 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>
-            http://jwo.github.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/
+            http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/
+            http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/
-        </loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jwo.github.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/</loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jwo.github.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/
+            http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/
+            http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/
+            http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/
-        </loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jwo.github.com/blog/2012/04/03/why-i-built-ruby-off-rails/</loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jwo.github.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/
-        </loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://jwo.github.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/</loc>
-        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jwo.github.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/
+            http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/
+            http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/
+            http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/
         </loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/</loc>
+        <loc>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/</loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/
+        </loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/</loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/
+        </loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/
+        </loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/
+        </loc>
+        <lastmod>2013-02-05T09:59:41-06:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/
+        </loc>
         <lastmod>2013-02-11T11:06:36-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/
+            http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/
         </loc>
         <lastmod>2013-03-04T13:46:06-06:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jwo.github.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/
+            http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/
         </loc>
         <lastmod>2013-03-27T15:05:29-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/about/</loc>
+        <loc>http://jessewolgamott.com/about/</loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/blog/archives/</loc>
+        <loc>http://jessewolgamott.com/blog/archives/</loc>
         <lastmod>2013-03-27T15:05:29-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/contact/</loc>
+        <loc>http://jessewolgamott.com/contact/</loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/</loc>
+        <loc>http://jessewolgamott.com/</loc>
         <lastmod>2013-03-27T15:05:29-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jwo.github.com/robots.txt</loc>
+        <loc>http://jessewolgamott.com/robots.txt</loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
 </urlset>

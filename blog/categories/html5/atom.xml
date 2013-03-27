@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: HTML5 | J.Wo]]></title>
-  <link href="http://jwo.github.com/blog/categories/html5/atom.xml" rel="self"/>
-  <link href="http://jwo.github.com/"/>
-  <updated>2013-03-27T15:10:42-05:00</updated>
-  <id>http://jwo.github.com/</id>
+  <link href="http://jessewolgamott.com/blog/categories/html5/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-03-27T15:15:56-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The One with HTML5 Videos Using Zencoder for VideoJS.com]]></title>
-    <link href="http://jwo.github.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/"/>
+    <link href="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/"/>
     <updated>2011-12-07T20:31:00-06:00</updated>
-    <id>http://jwo.github.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com</id>
+    <id>http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com</id>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>

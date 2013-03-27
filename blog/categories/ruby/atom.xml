@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ruby | J.Wo]]></title>
-  <link href="http://jwo.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://jwo.github.com/"/>
-  <updated>2013-03-27T15:10:42-05:00</updated>
-  <id>http://jwo.github.com/</id>
+  <link href="http://jessewolgamott.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-03-27T15:15:56-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
-    <link href="http://jwo.github.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
+    <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
     <updated>2012-04-03T12:23:00-05:00</updated>
-    <id>http://jwo.github.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
+    <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
     <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don't realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.</p>
 
 <h3>Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></h3>

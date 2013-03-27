@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: bootstrap | J.Wo]]></title>
-  <link href="http://jwo.github.com/blog/categories/bootstrap/atom.xml" rel="self"/>
-  <link href="http://jwo.github.com/"/>
-  <updated>2013-03-27T15:10:42-05:00</updated>
-  <id>http://jwo.github.com/</id>
+  <link href="http://jessewolgamott.com/blog/categories/bootstrap/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-03-27T15:15:56-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
-    <link href="http://jwo.github.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
+    <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
     <updated>2012-02-03T11:11:00-06:00</updated>
-    <id>http://jwo.github.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
+    <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
     <content type="html"><![CDATA[<p>The situation: You've used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don't use LESS (because obvs). What do you do? Let's make this happen</p>
 
 <!-- more -->

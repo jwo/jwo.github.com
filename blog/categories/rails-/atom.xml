@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails, | J.Wo]]></title>
-  <link href="http://jwo.github.com/blog/categories/rails-/atom.xml" rel="self"/>
-  <link href="http://jwo.github.com/"/>
-  <updated>2013-03-27T15:10:42-05:00</updated>
-  <id>http://jwo.github.com/</id>
+  <link href="http://jessewolgamott.com/blog/categories/rails-/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2013-03-27T15:15:56-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The One Where Devise Validations are Customized]]></title>
-    <link href="http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
+    <link href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
     <updated>2011-12-08T20:41:00-06:00</updated>
-    <id>http://jwo.github.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
+    <id>http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
     <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
 
 <p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
