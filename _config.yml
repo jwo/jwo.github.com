@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://jwo.github.com
+url: http://jessewolgamott.com
 title: J.Wo
 subtitle: Ruby DevBlog by Jesse Wolgamott
 author: Jesse Wolgamott
 simple_search: http://google.com/search
-description:
+description: Hand Crafted Tex Mex Software bloggings
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -16,8 +16,8 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: http://feeds.feedburner.com/jwo
-subscribe_email:
+subscribe_rss: "/atom.xml"
+#subscribe_email:
 # RSS feeds can list your email address if you like
 email:
 

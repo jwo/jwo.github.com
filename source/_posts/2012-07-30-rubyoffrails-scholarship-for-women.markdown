@@ -45,3 +45,4 @@ You can learn more about the course at [http://rubyoffrails.com](http://rubyoffr
 UPDATE:  
 I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.
 
+{% render_partial _includes/custom/mailchimp.html %}

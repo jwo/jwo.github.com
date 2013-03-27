@@ -73,3 +73,5 @@ I have disabled comments; To continue the discussion, let's talk on twitter --
 or better yet, write a blog post in response and/or in agreement.
 
 [1] In fact, with the advancements that young girls have over young boys in math and science, one could conclude that we are losing our best developers before they get started. [Debunking Myths about Gender and Mathematics Performance](http://www.ams.org/notices/201201/rtx120100010p.pdf)
+
+{% render_partial _includes/custom/mailchimp.html %}

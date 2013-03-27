@@ -105,3 +105,5 @@ Refactored down slightly, we get:
 }
 ```
 ######Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.
+
+{% render_partial _includes/custom/mailchimp.html %}

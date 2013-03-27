@@ -38,3 +38,5 @@ My true hope is this brings more people into the software development community 
 1. Visit [RubyOffRails.com](http://rubyoffrails.com)
 2. Read through and sign up
 3. We'll being the Thursday after RailsConf (April 26, 2012)
+
+{% render_partial _includes/custom/mailchimp.html %}
