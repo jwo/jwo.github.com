@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2013-03-27T15:57:22-05:00</updated>
+  <updated>2013-03-27T16:12:59-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,372 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
+    <link href="http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/"/>
+    <updated>2013-03-27T14:39:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files</id>
+    <content type="html"><![CDATA[<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
+Rackspace that the server had exceeded its memory allocation and was thrashing
+too hard; it rebooted our server for us.</p>
+
+<p>My initial reaction: Increase the memories!</p>
+
+<p>I looked deeper into the problem, and along with some colleagues, discovered
+that at midnight our server was kicking off 9 different processes at the same
+time. 9x Rails is just about 8x too many.</p>
+
+<!-- more -->
+
+
+<p>My whenever schedule (names changed to reflect tex-mex dishes)</p>
+
+<p>```ruby
+set :output, 'log/cron.log'</p>
+
+<p>job_type :rake, "cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output"</p>
+
+<p>every 1.day, :at => '12am' do
+  rake 'margarita:enchiladas'
+  rake 'margarita:fajitas'
+end</p>
+
+<p>every 1.minute do
+  rake 'guacamole:soft_tacos'
+end</p>
+
+<p>every 12.hours do
+  rake 'guacamole:tortilla_soup'
+  rake 'guacamole:grande_combo_de_tejas'
+end
+```</p>
+
+<p>Seems pretty standard for how I organize and schedule tasks. But each of these
+would be (and were) running at midnight, since they all intersected that particular
+intersection of space and time.</p>
+
+<p>Instead, if we spread this around a bit, we could still get the business
+requirements accomplished:</p>
+
+<ol>
+<li>Order soft tacos pretty often</li>
+<li>Get the other dishes one or twice a day</li>
+</ol>
+
+
+<p>The timing, other than that, didn't matter. And in your apps, it probably
+doesn't matter that often either.</p>
+
+<p>An updated "Hand Crafted, Artisan Tex Mex Whenever File"</p>
+
+<p>```
+set :output, 'log/cron.log'</p>
+
+<p>job_type :rake, "cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output"</p>
+
+<p>every 1.day, :at => '12am' do
+  rake 'margarita:enchiladas'
+  rake 'margarita:fajitas'
+end</p>
+
+<h1>skip the top of the hour. Every 5 minutes</h1>
+
+<p>every '5,10,15,20,25,30,35,40,45,50,55 * * * *' do
+  rake 'guacamole:soft_tacos'
+end</p>
+
+<p>every 1.day, :at => ['3am', '3pm'] do
+  rake 'guacamole:tortilla_soup guacamole:grande_combo_de_tejas'
+end
+```</p>
+
+<p>What did this gain us?</p>
+
+<ul>
+<li>At midnight, only 2 tasks will run.</li>
+<li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they'll now run sequentially (saves on the RAM)</li>
+<li><code>soft_tacos</code> skips the midnight run</li>
+</ul>
+
+
+<p>Reminder: Hand craft your whenever cron jobs. And to test the output: <code>whenever</code></p>
+
+<p>```
+0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas >> log/cron.log 2>&amp;1'</p>
+
+<p>0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas >> log/cron.log 2>&amp;1'</p>
+
+<p>5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole >> log/cron.log 2>&amp;1'</p>
+
+<p>0 3,15 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas >> log/cron.log 2>&amp;1'
+```</p>
+
+<p>More on Cron and whenever:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
+<li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
+<li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>
+    <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
+    <updated>2013-02-07T11:18:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
+    <content type="html"><![CDATA[<h2>Ever had a set of tasks in Ruby take too long?</h2>
+
+<p>We've all been there -- you have code that needs to be run, and it's taking forever. You wish there was a way to speed things along, but you can't tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+
+<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+
+<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It's an actor based implementation, but all you <em>need</em> to know is that it's awesome. You can process an array of things in parallel, and continue when it's complete.</p>
+
+<!-- more -->
+
+
+<p>Let's say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
+
+<p>```ruby
+servers = Server.all.map do |server|
+  server.status = check_status(server)
+end</p>
+
+<h1>do something with the non-responsive servers</h1>
+
+<p>```</p>
+
+<p>So this would map over all servers, and make a network call to check if it's alive.</p>
+
+<p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.</p>
+
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future's for each element in the array. The pmap will wait until the value is complete before returning, and we'll wait for them all to finish before continuing.</p>
+
+<p>That same example in parallel would look:</p>
+
+<p><code>ruby
+Server.all.pmap do |user|
+   #… same code here
+end
+</code></p>
+
+<h2>Parallelization cuts processing time to your slowest item</h2>
+
+<p>Let's say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it's complete. This is a great case for parallel processing since you'll be waiting on:</p>
+
+<ul>
+<li>wkhtmlpdf to convert HTML to PDF</li>
+<li>fog to upload PDF to S3</li>
+<li>curl to download PDF from S3 for you</li>
+</ul>
+
+
+<p>With the example below, your total processing time gets cut to the slowest report generated/uploaded/downloaded.</p>
+
+<p>```ruby</p>
+
+<pre><code>["email1@example.com", "email2@example.com"].pmap do |email|
+  user = User.find_by_email!(email)
+  CreatesReports.new(user).generate_reports
+  user.reports.each{|report| `curl -o #{report.filename} \"#{report.pdf.url}\"`}
+  puts "reports ready for #{email}"
+end
+puts "Everybody's done!"
+</code></pre>
+
+<p>```</p>
+
+<p>Other examples of usages:</p>
+
+<ul>
+<li>Searching Google and Amazon and What</li>
+<li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
+<li>Deleting of files at once</li>
+<li>Making database calls in parallel</li>
+</ul>
+
+
+<h2>Make sure to obey your database connection maximums</h2>
+
+<p>If you are iterating over a set of documents and calling any resource that has a limited connection set, or a rate limit, you might run into a Connection Pool problem. That is, you might try connect with 20 connections and your default pool size is 5. What can be done?</p>
+
+<p>celluloid-pmap uses a Celluoid Supervisor to set a maximum number of actors working at the same time. So if you can only connect to 5 postgres users at the same time, you can set that like so:</p>
+
+<p><code>ruby
+users.pmap(5) {|user| user.say_anything! }
+</code></p>
+
+<p>The (5) argument will say it's OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
+
+<h2>Also check out Celluloid</h2>
+
+<p>I started adding code into a Rails initializer from <a href="https://github.com/celluloid/celluloid/blob/master/examples/simple_pmap.rb">Celluloid Simple Pmap</a> example. It went like this:</p>
+
+<p>config/initializers/celluloid-pmap.rb</p>
+
+<p>```ruby
+module Enumerable
+  def pmap(&amp;block)</p>
+
+<pre><code>futures = map { |elem| Celluloid::Future.new(elem, &amp;block) }
+futures.map { |future| future.value }
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
+
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it's as simple as you'd think:</p>
+
+<p><code>
+gem install celluloid-pmap
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The One Where I Have to Explain Why I Want Diversity in our Field]]></title>
+    <link href="http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
+    <updated>2013-02-05T09:09:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
+    <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
+<a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
+
+<blockquote><p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p></blockquote>
+
+<p>This comes after:</p>
+
+<ul>
+<li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a></li>
+<li>Sarah Parmenter (whom I've never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
+</ul>
+
+
+<p>And this is in the last week.</p>
+
+<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn't going to help, and c) it's the human thing to do.</p>
+
+<!-- more -->
+
+
+<h2>It Makes Economic Sense</h2>
+
+<p>Software Development pays very well, and is in desperate need of qualified developers. The more highly paying jobs that exist increase the amount of money available to be spent on subscription codecasts, ebooks, and training materials. If there's more money in the system, there's more opportunities for <em>everyone</em> to take home more money. <a href="http://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats">A rising tide lifts all boats</a>.</p>
+
+<p>Given that rather simple assertion, it does not make economic sense to drive people out of our industry. We should be welcoming people and making changes to our processes to become happier and more productive. We should be going out of our way to have a society that anyone can join if it interests them. We do not do this as an industry, and that does not make macro or micro-economic sense.</p>
+
+<p>Given the extraordinary and unsatiable appetite our industry has for developers, it makes sense to teach people with an aptitude and interest for programming to do so. It is a way for low income families to have a better life. We should encourage this.</p>
+
+<p><a href="http://www.thegcircle.com/blog/2012/when-women-make-money-it-helps-everyone/">When Women Make More Money, Everybody Wins</a></p>
+
+<h2>It Will Result in Better Software</h2>
+
+<p>Software gets better when we can break outside of our mental models and solve problems using a different mindset. What a fully functioning group needs is not 10 "rockstars" who think the same -- that tends to lead to group think and programs that solve the wrong problems.</p>
+
+<p>What groups need is diversity in world views, shared experiences, and cultural references. If you want to build an app that only people in your specific niche in the world truly get, you should eschew diversity. If you want to have as many people in the world use your software, you should embrace diversity.</p>
+
+<p><a href="http://www.fastcodesign.com/1665597/how-women-are-leading-the-effort-to-make-robots-more-humane">Women are making robots more humane</a></p>
+
+<h2>It's the human thing to do</h2>
+
+<p>Things I believe in, an incomplete list:</p>
+
+<ul>
+<li>It is wrong to treat someone differently because of {skin-color|gender|sexuality|anything}.</li>
+<li>Gender, skin-color, and sexuality has no impact on the creative or analytical skillset</li>
+<li>There is no basis that men are better at software development than women (see the <a href="http://en.wikipedia.org/wiki/Grace_Hopper">inventor of the compiler</a>) [1]]</li>
+</ul>
+
+
+<p>I believe it is no longer acceptable to sit back and say the status quo is good enough. Because it is not good enough. From healthcare to income inequality to a growing police state -- the status quo is not good enough and we should not be defending it.</p>
+
+<p>Think of how people were treated fifty years ago --- we've changed since then --- but think about how you consider people who defended the status quo in the 1960s (my assumption here is that you do not think fondly of them).</p>
+
+<p>Be the person you want 2063-you to be proud of. I do not see any possible way that includes treating women as if they don't belong in any profession.</p>
+
+<h2>In Conclusion</h2>
+
+<p>Don't we (collectively) believe that happier developers make for more productive developers? Don't we want our software to make the world a better place? That starts with treating all people as human. Next, go out of your way to help.</p>
+
+<p>Ways to help:</p>
+
+<ul>
+<li>Call people out for being sexist</li>
+<li>Lower prices and other barriers to entry for women to learn our craft</li>
+<li>Don't be awful to anyone</li>
+<li>Mentor and teach <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://workshops.railsbridge.org/">RailsBridge</a> both target women developers.</li>
+</ul>
+
+
+<p>I have disabled comments; To continue the discussion, let's talk on twitter --
+or better yet, write a blog post in response and/or in agreement.</p>
+
+<p>[1] In fact, with the advancements that young girls have over young boys in math and science, one could conclude that we are losing our best developers before they get started. <a href="http://www.ams.org/notices/201201/rtx120100010p.pdf">Debunking Myths about Gender and Mathematics Performance</a></p>
+
+<p>File /Users/jwo/Projects/octopress/source/_includes/custom/mailchimp.html could not be found</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
+    <updated>2012-07-30T10:35:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
+    <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I've been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> 
+I am offering a 100% scholarship to the 6 week RubyOffRails class for up to 5 women software developers. <a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>
+</div>
+
+
+<p>The <a href="http://rubyoffrails.com">Ruby online training course</a> starts July 31, and I'll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It's a self-paced course, so if you start this week you won't be behind. I'll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!</p>
+
+<p>So...</p>
+
+<h2>What do you Have to do?</h2>
+
+<ol>
+<li>Tell me why you want to learn Ruby?</li>
+<li>Tell me how learning Ruby can improve your life</li>
+</ol>
+
+
+<h2>What will you get?</h2>
+
+<ol>
+<li>Free access to the Summer RubyOffRails course</li>
+<li>Full access to code reviews and office hours. It's a full ticket!</li>
+<li>Happiness because you're loving Ruby</li>
+</ol>
+
+
+<h2>Who is this course for?</h2>
+
+<ol>
+<li>Developers who have programming experience in a C based language</li>
+<li>Ideally programmers who want to learn the fundamentals of Ruby for a career in Rails</li>
+<li>Awesome people.</li>
+</ol>
+
+
+<p>You can learn more about the course at <a href="http://rubyoffrails.com">http://rubyoffrails.com</a></p>
+
+<p><a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>.</p>
+
+<p>UPDATE:<br/>
+I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
@@ -65,208 +431,6 @@
 <li>We'll being the Thursday after RailsConf (April 26, 2012)</li>
 </ol>
 
-
-<p><!-- Begin MailChimp Signup Form -->
-<link href="http://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style>
-<div id="mc_embed_signup">
-<form action="http://rubyoffrails.us6.list-manage1.com/subscribe/post?u=aebdb7c9619330f7cc1bfcdf9&amp;id=8310b1a92e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-  <h2>Want More Ruby off Rails? <a href="http://eepurl.com/vePKn">Subscribe to our mailing list</a></h2>
-<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-<div class="mc-field-group">
-    <label for="mce-FNAME">First Name  <span class="asterisk">*</span>
-</label>
-    <input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
-</div>
-<div class="mc-field-group">
-    <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
-</label>
-    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-</div>
-    <div id="mce-responses" class="clear">
-        <div class="response" id="mce-error-response" style="display:none"></div>
-        <div class="response" id="mce-success-response" style="display:none"></div>
-    </div>  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-</form>
-</div>
-<script type="text/javascript">
-var fnames = new Array();var ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';
-try {
-    var jqueryLoaded=jQuery;
-    jqueryLoaded=true;
-} catch(err) {
-    var jqueryLoaded=false;
-}
-var head= document.getElementsByTagName('head')[0];
-if (!jqueryLoaded) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
-    head.appendChild(script);
-    if (script.readyState && script.onload!==null){
-        script.onreadystatechange= function () {
-              if (this.readyState == 'complete') mce_preload_check();
-        }    
-    }
-}
-var script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
-head.appendChild(script);
-var err_style = '';
-try{
-    err_style = mc_custom_error_style;
-} catch(e){
-    err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
-}
-var head= document.getElementsByTagName('head')[0];
-var style= document.createElement('style');
-style.type= 'text/css';
-if (style.styleSheet) {
-  style.styleSheet.cssText = err_style;
-} else {
-  style.appendChild(document.createTextNode(err_style));
-}
-head.appendChild(style);
-setTimeout('mce_preload_check();', 250);
-
-var mce_preload_checks = 0;
-function mce_preload_check(){
-    if (mce_preload_checks>40) return;
-    mce_preload_checks++;
-    try {
-        var jqueryLoaded=jQuery;
-    } catch(err) {
-        setTimeout('mce_preload_check();', 250);
-        return;
-    }
-    try {
-        var validatorLoaded=jQuery("#fake-form").validate({});
-    } catch(err) {
-        setTimeout('mce_preload_check();', 250);
-        return;
-    }
-    mce_init_form();
-}
-function mce_init_form(){
-    jQuery(document).ready( function($) {
-      var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
-      var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
-      $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
-      options = { url: 'http://rubyoffrails.us6.list-manage2.com/subscribe/post-json?u=aebdb7c9619330f7cc1bfcdf9&id=8310b1a92e&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
-                    beforeSubmit: function(){
-                        $('#mce_tmp_error_msg').remove();
-                        $('.datefield','#mc_embed_signup').each(
-                            function(){
-                                var txt = 'filled';
-                                var fields = new Array();
-                                var i = 0;
-                                $(':text', this).each(
-                                    function(){
-                                        fields[i] = this;
-                                        i++;
-                                    });
-                                $(':hidden', this).each(
-                                    function(){
-                                        var bday = false;
-                                        if (fields.length == 2){
-                                            bday = true;
-                                            fields[2] = {'value':1970};//trick birthdays into having years
-                                        }
-                                        if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
-                                            this.value = '';
-                                        } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
-                                            this.value = '';
-                                        } else {
-                                            if (/\[day\]/.test(fields[0].name)){
-                                                this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;                                           
-                                            } else {
-                                                this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
-                                            }
-                                        }
-                                    });
-                            });
-                        return mce_validator.form();
-                    }, 
-                    success: mce_success_cb
-                };
-      $('#mc-embedded-subscribe-form').ajaxForm(options);
-      
-      
-    });
-}
-function mce_success_cb(resp){
-    $('#mce-success-response').hide();
-    $('#mce-error-response').hide();
-    if (resp.result=="success"){
-        $('#mce-'+resp.result+'-response').show();
-        $('#mce-'+resp.result+'-response').html(resp.msg);
-        $('#mc-embedded-subscribe-form').each(function(){
-            this.reset();
-        });
-    } else {
-        var index = -1;
-        var msg;
-        try {
-            var parts = resp.msg.split(' - ',2);
-            if (parts[1]==undefined){
-                msg = resp.msg;
-            } else {
-                i = parseInt(parts[0]);
-                if (i.toString() == parts[0]){
-                    index = parts[0];
-                    msg = parts[1];
-                } else {
-                    index = -1;
-                    msg = resp.msg;
-                }
-            }
-        } catch(e){
-            index = -1;
-            msg = resp.msg;
-        }
-        try{
-            if (index== -1){
-                $('#mce-'+resp.result+'-response').show();
-                $('#mce-'+resp.result+'-response').html(msg);            
-            } else {
-                err_id = 'mce_tmp_error_msg';
-                html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
-                
-                var input_id = '#mc_embed_signup';
-                var f = $(input_id);
-                if (ftypes[index]=='address'){
-                    input_id = '#mce-'+fnames[index]+'-addr1';
-                    f = $(input_id).parent().parent().get(0);
-                } else if (ftypes[index]=='date'){
-                    input_id = '#mce-'+fnames[index]+'-month';
-                    f = $(input_id).parent().parent().get(0);
-                } else {
-                    input_id = '#mce-'+fnames[index];
-                    f = $().parent(input_id).get(0);
-                }
-                if (f){
-                    $(f).append(html);
-                    $(input_id).focus();
-                } else {
-                    $('#mce-'+resp.result+'-response').show();
-                    $('#mce-'+resp.result+'-response').html(msg);
-                }
-            }
-        } catch(e){
-            $('#mce-'+resp.result+'-response').show();
-            $('#mce-'+resp.result+'-response').html(msg);
-        }
-    }
-}
-
-</script>
-<!--End mc_embed_signup-->
-</p>
 ]]></content>
   </entry>
   

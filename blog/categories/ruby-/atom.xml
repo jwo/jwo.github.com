@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: rails, | J.Wo]]></title>
-  <link href="http://jessewolgamott.com/blog/categories/rails-/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ruby, | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/ruby-/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
   <updated>2013-03-27T16:12:59-05:00</updated>
   <id>http://jessewolgamott.com/</id>
@@ -111,6 +111,30 @@ similarities and differences).</p>
 <p>Feedback like this would be very very awesome to send out to people who asked
 to speak at your conferences. Brutal honesty is best: otherwise the speakers
 won't know what to change to get better.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
+    <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
+    <updated>2012-06-06T09:46:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
+    <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online.</p>
+
+<!-- more -->
+
+
+<div class="tldr">
+    <span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn't know you're consuming it when you consume it.
+</div>
+
+
+
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen></iframe>
+
+
+<p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
 ]]></content>
   </entry>
   
