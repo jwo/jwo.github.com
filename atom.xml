@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jwo.github.com/atom.xml" rel="self"/>
   <link href="http://jwo.github.com/"/>
-  <updated>2013-03-04T13:46:45-06:00</updated>
+  <updated>2013-03-27T15:06:32-05:00</updated>
   <id>http://jwo.github.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
+    <link href="http://jwo.github.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/"/>
+    <updated>2013-03-27T14:39:00-05:00</updated>
+    <id>http://jwo.github.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files</id>
+    <content type="html"><![CDATA[<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
+Rackspace that the server had exceeded its memory allocation and was thrashing
+too hard; it rebooted our server for us.</p>
+
+<p>My initial reaction: Increase the memories!</p>
+
+<p>I looked deeper into the problem, and along with some colleagues, discovered
+that at midnight our server was kicking off 9 different processes at the same
+time. 9x Rails is just about 8x too many.</p>
+
+<!-- more -->
+
+
+<p>My whenever schedule (names changed to reflect tex-mex dishes)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:output</span><span class="p">,</span> <span class="s1">&#39;log/cron.log&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">job_type</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;12am&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:enchiladas&#39;</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:fajitas&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">minute</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:soft_tacos&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">every</span> <span class="mi">12</span><span class="o">.</span><span class="n">hours</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:tortilla_soup&#39;</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:grande_combo_de_tejas&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seems pretty standard for how I organize and schedule tasks. But each of these
+would be (and were) running at midnight, since they all intersected that particular
+intersection of space and time.</p>
+
+<p>Instead, if we spread this around a bit, we could still get the business
+requirements accomplished:</p>
+
+<ol>
+<li>Order soft tacos pretty often</li>
+<li>Get the other dishes one or twice a day</li>
+</ol>
+
+
+<p>The timing, other than that, didn&#8217;t matter. And in your apps, it probably
+doesn&#8217;t matter that often either.</p>
+
+<p>An updated &#8220;Hand Crafted, Artisan Tex Mex Whenever File&#8221;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:output</span><span class="p">,</span> <span class="s1">&#39;log/cron.log&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">job_type</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;12am&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:enchiladas&#39;</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:fajitas&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># skip the top of the hour. Every 5 minutes</span>
+</span><span class='line'><span class="n">every</span> <span class="s1">&#39;5,10,15,20,25,30,35,40,45,50,55 * * * *&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:soft_tacos&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;3am&#39;</span><span class="p">,</span> <span class="s1">&#39;3pm&#39;</span><span class="o">]</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:tortilla_soup guacamole:grande_combo_de_tejas&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What did this gain us?</p>
+
+<ul>
+<li>At midnight, only 2 tasks will run.</li>
+<li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they&#8217;ll now run sequentially (saves on the RAM)</li>
+<li><code>soft_tacos</code> skips the midnight run</li>
+</ul>
+
+
+<p>Reminder: Hand craft your whenever cron jobs. And to test the output: <code>whenever</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">0</span> <span class="mi">0</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">0</span> <span class="mi">0</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">55</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">0</span> <span class="mi">3</span><span class="p">,</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>More on Cron and whenever:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
+<li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
+<li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
+</ul>
+
+
+<h2>Want more Ruby?</h2>
+
+<!-- Begin MailChimp Signup Form -->
+
+
+<p><link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css"></p>
+
+
+
+<div id="mc_embed_signup">
+<form action="http://rubyoffrails.us6.list-manage.com/subscribe/post?u=aebdb7c9619330f7cc1bfcdf9&amp;id=8310b1a92e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <label for="mce-EMAIL">Subscribe for updates about RubyOffRails</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required style="padding: 15px; width: 80%">
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+</form>
+</div>
+
+
+
+
+<!--End mc_embed_signup-->
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RailsBerry rejected my talk and I am happy about it]]></title>

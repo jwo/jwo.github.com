@@ -89,12 +89,18 @@
         <lastmod>2013-03-04T13:46:06-06:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jwo.github.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/
+        </loc>
+        <lastmod>2013-03-27T15:05:29-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://jwo.github.com/about/</loc>
         <lastmod>2013-02-05T09:59:41-06:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/blog/archives/</loc>
-        <lastmod>2013-03-04T13:46:06-06:00</lastmod>
+        <lastmod>2013-03-27T15:05:29-05:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/contact/</loc>
@@ -102,7 +108,7 @@
     </url>
     <url>
         <loc>http://jwo.github.com/</loc>
-        <lastmod>2013-03-04T13:46:06-06:00</lastmod>
+        <lastmod>2013-03-27T15:05:29-05:00</lastmod>
     </url>
     <url>
         <loc>http://jwo.github.com/robots.txt</loc>
