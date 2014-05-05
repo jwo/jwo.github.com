@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The One Where Devise Validations are Customized - J.Wo</title>
+  <title>Excitement! I'm teaching Rails at The IronYard Houston - J.Wo</title>
   <meta name="author" content="Jesse Wolgamott">
 
   
-  <meta name="description" content="The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails? Or maybe you want to be &hellip;">
+  <meta name="description" content="Teaching Ruby has been awesome. It&#8217;s been so awesome that I want more. I want to
+meet the students face to face, and help change their lives &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/">
+  <link rel="canonical" href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">The One Where Devise Validations Are Customized</h1>
+      <h1 class="entry-title">Excitement! I'm Teaching Rails at the IronYard Houston</h1>
     
     
       <p class="meta">
@@ -97,51 +98,68 @@
   
 
 
-<time datetime="2011-12-08T20:41:00-06:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+<time datetime="2014-05-05T10:28:00-05:00" pubdate data-updated="true">May 5<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
+<div class="entry-content"><p>Teaching Ruby has been awesome. It&#8217;s been so awesome that I want more. I want to
+meet the students face to face, and help change their lives for the better.  To
+make that happen, I&#8217;m going to teach Rails at Houston&#8217;s first open-source stack code school.
+The Iron Yard Houston. Classes start June 2nd.</p>
 
-<p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
-
-<p>Your problem: Devise validatable hates on this and laughs are your attempts.</p>
+<p>In March, I flew to Greenville, South Carolina, to experience a course first
+hand. The cohorts were 8 weeks into their JavaScript course, and amazed me with
+their abilities. This was the real deal (discussing how to make
+Backbone models more maintainable). The Iron Yard came to Houston, and asked me
+to teach the Rails Engineering course. I kept looking for a reason to say no
+&#8230;</p>
 
 <!-- more -->
 
 
-<h2>Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
+<p>The Iron Yard&#8217;s is student focused to its core.  Their formula is not only badass
+but is also designed for optimal awesome for the students. Reasonable rates, fostering community
+involvement, mock interviews, and a 100% guarantee. I had no more &#8220;no&#8217;s&#8221; to give.</p>
 
-<p>First, remove the :validatable argument from the devise method</p>
+<p>I&#8217;m teaching a Ruby heavy Rails Engineering course. <a href="http://mkeas.org/#/">Matt Keas</a> is leading
+the front end course (JavaScripts).</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>devise :database_authenticatable, :token_authenticatable </span></code></pre></td></tr></table></div></figure>
+<p>My goal? Give people the opportunity to learn how to have a much happier
+career. All while using he happiest stack I&#8217;ve encountered yet: Rails+. (Rails+:
+Rails as the API backend or Rails as the prototype. We&#8217;ll focus heavily on Ruby,
+only getting into Rails after we&#8217;ve created console and sinatra apps.
+Stretch goal: EmberJS.</p>
+
+<p>And the coolest thing? Instructors send a weekly recap of what their cohorts
+are doing. Awesomely, the other instructors believe as I do students should learn Ruby.
+After all, Rails isn&#8217;t magic, it&#8217;s Ruby.</p>
+
+<ul>
+<li><a href="http://theironyard.com/academy/rails-engineering/">About the Rails Curriculum</a></li>
+<li><a href="http://theironyard.com/academy/rails-engineering/faq/">FAQ</a></li>
+<li><a href="https://theironyard.typeform.com/to/BYIK2p">Sign Up</a></li>
+<li><a href="https://www.hipchat.com/gVQZ3qwbv">Join the chatroom</a></li>
+</ul>
 
 
-<p>Then, you&#8217;ll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
+<h3>TechSas: Free Coding Event (Houston, May 10th, 2014)</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  validates_uniqueness_of    :email,     :case_sensitive =&gt; false, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_format_of :email, :with  =&gt; Devise.email_regexp, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_presence_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_confirmation_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_length_of :password, :within =&gt; Devise.password_length, :allow_blank =&gt; true</span></code></pre></td></tr></table></div></figure>
+<p>Since everything is bigger in Texas, we&#8217;re hosting a free coding event,
+<a href="http://techsas.co/">Tech-sas</a>. We&#8217;ve sold out our venue, which is pretty
+freaking awesome. Over 200 people, both with some coding experience and total
+beginners, will learn how to build awesome things. (Free). (Soldout). ( :O )</p>
 
+<h3>Final Slug of Awesomeness? Free Coding for Kids (Scratch)</h3>
 
-<p>I know the above looks vaguely familiar&#8230; say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> &#8211; this is all it&#8217;s doing anyway.</p>
+<p>Volunteering at the Austin KidsCodeCamp at RailsConf (Austin) was a changing
+experience. From 8-15 years old, kids were learning to program using Scratch,
+blew their minds wide open. Especially Robots &#8211;  So much excitement, very potential.</p>
 
-<p>To allow email re-use across accounts, add <code>:scope=&gt;:accont_id</code> on the uniqueness validation.</p>
-
-<p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
-
-<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
+<p>The Iron Yard has (free) code schools for kids all over the
+<a href="http://theironyard.com/academy/scratch">south and southeast</a>.</p>
 </div>
 
 
@@ -164,21 +182,15 @@
   
 
 
-<time datetime="2011-12-08T20:41:00-06:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
+<time datetime="2014-05-05T10:28:00-05:00" pubdate data-updated="true">May 5<span>th</span>, 2014</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/devise/'>Devise</a>, <a class='category' href='/blog/categories/rails-/'>Rails,</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -192,20 +204,12 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/" title="Previous Post: The One with HTML5 Videos Using Zencoder for VideoJS.com">&laquo; The One with HTML5 Videos Using Zencoder for VideoJS.com</a>
+        <a class="basic-alignment left" href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/" title="Previous Post: Reminder to hand-craft your whenever files">&laquo; Reminder to hand-craft your whenever files</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/" title="Next Post: The One Where ActiveAdmin and Mongoid Get Along">The One Where ActiveAdmin and Mongoid Get Along &raquo;</a>
       
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -292,22 +296,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'jwo';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/';
-        var disqus_url = 'http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

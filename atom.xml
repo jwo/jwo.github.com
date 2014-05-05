@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2013-06-21T13:31:23-05:00</updated>
+  <updated>2014-05-05T11:45:37-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Excitement! I'm teaching Rails at The IronYard Houston]]></title>
+    <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston/"/>
+    <updated>2014-05-05T10:28:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston</id>
+    <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It&#8217;s been so awesome that I want more. I want to
+meet the students face to face, and help change their lives for the better.  To
+make that happen, I&#8217;m going to teach Rails at Houston&#8217;s first open-source stack code school.
+The Iron Yard Houston. Classes start June 2nd.</p>
+
+<p>In March, I flew to Greenville, South Carolina, to experience a course first
+hand. The cohorts were 8 weeks into their JavaScript course, and amazed me with
+their abilities. This was the real deal (discussing how to make
+Backbone models more maintainable). The Iron Yard came to Houston, and asked me
+to teach the Rails Engineering course. I kept looking for a reason to say no
+&#8230;</p>
+
+<!-- more -->
+
+
+<p>The Iron Yard&#8217;s is student focused to its core.  Their formula is not only badass
+but is also designed for optimal awesome for the students. Reasonable rates, fostering community
+involvement, mock interviews, and a 100% guarantee. I had no more &#8220;no&#8217;s&#8221; to give.</p>
+
+<p>I&#8217;m teaching a Ruby heavy Rails Engineering course. <a href="http://mkeas.org/#/">Matt Keas</a> is leading
+the front end course (JavaScripts).</p>
+
+<p>My goal? Give people the opportunity to learn how to have a much happier
+career. All while using he happiest stack I&#8217;ve encountered yet: Rails+. (Rails+:
+Rails as the API backend or Rails as the prototype. We&#8217;ll focus heavily on Ruby,
+only getting into Rails after we&#8217;ve created console and sinatra apps.
+Stretch goal: EmberJS.</p>
+
+<p>And the coolest thing? Instructors send a weekly recap of what their cohorts
+are doing. Awesomely, the other instructors believe as I do students should learn Ruby.
+After all, Rails isn&#8217;t magic, it&#8217;s Ruby.</p>
+
+<ul>
+<li><a href="http://theironyard.com/academy/rails-engineering/">About the Rails Curriculum</a></li>
+<li><a href="http://theironyard.com/academy/rails-engineering/faq/">FAQ</a></li>
+<li><a href="https://theironyard.typeform.com/to/BYIK2p">Sign Up</a></li>
+<li><a href="https://www.hipchat.com/gVQZ3qwbv">Join the chatroom</a></li>
+</ul>
+
+
+<h3>TechSas: Free Coding Event (Houston, May 10th, 2014)</h3>
+
+<p>Since everything is bigger in Texas, we&#8217;re hosting a free coding event,
+<a href="http://techsas.co/">Tech-sas</a>. We&#8217;ve sold out our venue, which is pretty
+freaking awesome. Over 200 people, both with some coding experience and total
+beginners, will learn how to build awesome things. (Free). (Soldout). ( :O )</p>
+
+<h3>Final Slug of Awesomeness? Free Coding for Kids (Scratch)</h3>
+
+<p>Volunteering at the Austin KidsCodeCamp at RailsConf (Austin) was a changing
+experience. From 8-15 years old, kids were learning to program using Scratch,
+blew their minds wide open. Especially Robots &#8211;  So much excitement, very potential.</p>
+
+<p>The Iron Yard has (free) code schools for kids all over the
+<a href="http://theironyard.com/academy/scratch">south and southeast</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
@@ -475,7 +538,7 @@ or better yet, write a blog post in response and/or in agreement.</p>
 
 <p>[1] In fact, with the advancements that young girls have over young boys in math and science, one could conclude that we are losing our best developers before they get started. <a href="http://www.ams.org/notices/201201/rtx120100010p.pdf">Debunking Myths about Gender and Mathematics Performance</a></p>
 
-<p>File /Users/jwo/Projects/octopress/source/_includes/custom/mailchimp.html could not be found</p>
+<p>File /Users/jwo/Projects/jessewolgamott.com/source/_includes/custom/mailchimp.html could not be found</p>
 ]]></content>
   </entry>
   
