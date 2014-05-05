@@ -3,7 +3,7 @@ layout: post
 title: "The One Where I Have to Explain Why I Want Diversity in our Field"
 date: 2013-02-05 09:09
 comments: false
-categories: diversity
+categories: diversity, ruby
 ---
 
 [@RellyAB](https://twitter.com/RellyAB)

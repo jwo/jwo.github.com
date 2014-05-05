@@ -3,7 +3,7 @@ layout: post
 title: "Easy, Light Weight, and Magical Parallel Processing in Ruby"
 date: 2013-02-07 11:18
 comments: true
-categories: 
+categories: ruby
 ---
 
 Ever had a set of tasks in Ruby take too long?
@@ -106,5 +106,3 @@ Installation and configuration is over at [https://github.com/jwo/celluloid-pmap
 ```
 gem install celluloid-pmap
 ```
-
-{% render_partial _includes/custom/mailchimp.html %}

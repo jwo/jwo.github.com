@@ -3,7 +3,7 @@ layout: post
 title: "The One With a JSON API Login Using Devise"
 date: 2012-01-19 07:28
 comments: true
-categories: devise api
+categories: devise api ruby
 ---
 
 The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you're using Devise for authentication.
@@ -106,4 +106,3 @@ Refactored down slightly, we get:
 ```
 ######Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.
 
-{% render_partial _includes/custom/mailchimp.html %}

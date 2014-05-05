@@ -3,7 +3,7 @@ layout: post
 title: "Reminder to hand-craft your whenever files"
 date: 2013-03-27 14:39
 comments: true
-categories: 
+categories: ruby
 ---
 
 Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
@@ -99,5 +99,4 @@ More on Cron and whenever:
 * [Cron in Ruby](http://railscasts.com/episodes/164-cron-in-ruby)
 * [Whenever gem](https://github.com/javan/whenever)
 
-{% render_partial _includes/custom/mailchimp.html %}
 

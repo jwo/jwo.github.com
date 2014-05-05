@@ -3,7 +3,7 @@ layout: post
 title: "RubyOffRails Scholarship for Women"
 date: 2012-07-30 10:35
 comments: true
-categories:  rubyoffrails
+categories: ruby
 ---
 
 I have an opportunity to do something, and I want to do it. Ruby is awesome, and I've been inspired by [RailsGirls](http://railsgirls.com/) and [Kids Code Camp](http://kidscodecamp.com/). I want to bridge the gender gap in software development, and this is an initial step for me to do something.
@@ -44,5 +44,3 @@ You can learn more about the course at [http://rubyoffrails.com](http://rubyoffr
 
 UPDATE:  
 I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.
-
-{% render_partial _includes/custom/mailchimp.html %}

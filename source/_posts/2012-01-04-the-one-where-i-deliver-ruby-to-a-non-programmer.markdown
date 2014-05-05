@@ -3,7 +3,7 @@ layout: post
 title: "The One Where I Deliver Ruby to a Non Programmer"
 date: 2012-01-04 13:09
 comments: true
-categories: 
+categories:  ruby
 ---
 
 The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.

@@ -3,7 +3,7 @@ layout: post
 title: "RailsBerry rejected my talk and I am happy about it"
 date: 2013-03-04 13:12
 comments: true
-categories:
+categories: rails, ruby, speaking
 ---
 
 I received the greatest email this weekend: RailsBerry had rejected my talk for
@@ -90,5 +90,3 @@ Feedback like this would be very very awesome to send out to people who asked
 to speak at your conferences. Brutal honesty is best: otherwise the speakers 
 won't know what to change to get better.
 
-
-{% render_partial _includes/custom/mailchimp.html %}
