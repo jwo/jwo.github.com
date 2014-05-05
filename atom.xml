@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-05T11:51:41-05:00</updated>
+  <updated>2014-05-05T11:52:34-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Excitement! I'm teaching Rails at The IronYard Houston]]></title>
-    <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston/"/>
+    <title type="html"><![CDATA[Excitement! I'm teaching Rails at The Iron Yard Houston]]></title>
+    <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/"/>
     <updated>2014-05-05T10:28:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-ironyard-houston</id>
+    <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston</id>
     <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It&#8217;s been so awesome that I want more. I want to
 meet the students face to face, and help change their lives for the better.  To
 make that happen, I&#8217;m going to teach Rails at Houston&#8217;s first open-source stack code school.
