@@ -9,7 +9,7 @@ footer: true
 Oh hai there! This is me:
 -------------
 
-![JWo](http://comalproductions.com/assets/jessewolgamott.jpg)
+![JWo](/images/jesse_wolgamott.jpg)
 
 I'm a ruby developer. 
 
