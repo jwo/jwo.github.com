@@ -1,275 +1,121 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta - J.Wo</title>
-  <meta name="author" content="Jesse Wolgamott">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
 
-  
-  <meta name="description" content="My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. tl;dr ActiveRecord is like Velveeta; you shouldn&#8217;t know &hellip;">
-  
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
-  <link rel="canonical" href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
-  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
-<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2397417-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">J.Wo</a></h1>
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
   
-    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
-  
-</hgroup>
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">06 Jun 2012</span>
+	<h1 class="post-title">RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta</h1>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jessewolgamott.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul role=main-navigation>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-06T09:46:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online.</p>
+	<section class="post-content">
+		<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn&#8217;t know you&#8217;re consuming it when you consume it.
+	<span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn&#8217;t know you&#8217;re consuming it when you consume it.
 </div>
 
-
-
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen=""></iframe>
 
 <p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
+
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is an independent Consultant at <a
+      href="http://comal.io">Comal Productions</a>, <a href="/books">author</a>, <a
+      href="/talks">speaker</a>, and
+    instructor (at <a href="http://theironyard.com/locations/houston">The Iron
+      Yard</a>). He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta&amp;url=http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Jesse Wolgamott</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-06T09:46:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby-/'>ruby,</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/" >Tweet</a>
   
   
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450"
-      data-show-faces="false" style="top: -8px"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/04/03/why-i-built-ruby-off-rails/" title="Previous Post: Why I Built Ruby Off Rails">&laquo; Why I Built Ruby Off Rails</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/" title="Next Post: RubyOffRails Scholarship for Women">RubyOffRails Scholarship for Women &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
+  <section id="comment">
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2014 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Ruby off Rails</h1>
-  <p>Online Ruby Course with mentoring, coaching, and collaboration.</p>
-  <a href="https://rubyoffrails.com"><img src="/images/ruby-off-rails.png"/></a>
-  <p>Available now: <a href="https://rubyoffrails.com/">RubyOffRails.com</a></p>
-</section>
-<section>
-  <h1>About Me</h1>
-  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
-	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/">Excitement! I'm teaching Rails at The Iron Yard Houston</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">Reminder to hand-craft your whenever files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">RailsBerry rejected my talk and I am happy about it</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/jwo">@jwo</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'jwo',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jesse Wolgamott -
-</p>
-
 </footer>
-  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'jwo';
@@ -282,46 +128,24 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 </body>

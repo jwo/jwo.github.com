@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -18,95 +18,96 @@
     <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
     <updated>2012-01-19T07:28:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
-    <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you're using Devise for authentication.</p>
+    <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
 
-<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you're using a JSON API?</p>
+<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you’re using a JSON API?</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
+	<span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
 </div>
 
+<h2 id="background">Background</h2>
+<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an “auth_token” query_string. </p>
 
-<h2>Background</h2>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="regexp"><span class="delimiter">/</span><span class="content">api</span><span class="delimiter">/</span></span>recipes?qs=sweet&amp;auth_token=[<span class="instance-variable">@user</span>.auth_token]
+</pre></div>
+</div>
+</div>
 
-<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an "auth_token" query_string.</p>
+<p>Then, in your Api::RecipesController, you’d do something like:</p>
 
-<p><code>ruby
-/api/recipes?qs=sweet&amp;auth_token=[@user.auth_token]
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::RecipesController</span> &lt; <span class="constant">Api</span>::<span class="constant">BaseApiController</span>
+  before_filter <span class="symbol">:authenticate_user!</span>
 
-<p>Then, in your Api::RecipesController, you'd do something like:</p>
-
-<p>```ruby
-class Api::RecipesController &lt; Api::BaseApiController
-  before_filter :authenticate_user!</p>
-
-<p>  respond_to :json
-  def index</p>
-
-<pre><code>@recipes = Recipe.search(params.fetch(:qs, ""))
-</code></pre>
-
-<p>  end
-end
-```</p>
+  respond_to <span class="symbol">:json</span>
+  <span class="keyword">def</span> <span class="function">index</span>
+    <span class="instance-variable">@recipes</span> = <span class="constant">Recipe</span>.search(params.fetch(<span class="symbol">:qs</span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>))
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>The above will authenticate the user by cookies/session/token, and return recipes in JSON.</p>
 
 <p>But, <em>How do you get the token?</em></p>
 
-<h2>Authentication and Login</h2>
+<h2 id="authentication-and-login">Authentication and Login</h2>
 
-<p>We'll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We'll want an HTTP Status code of 401 if it's invalid.</p>
+<p>We’ll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We’ll want an HTTP Status code of 401 if it’s invalid.</p>
 
-<p>We'll have a Base API Controller from which we inherit
-<code>ruby
-class Api::BaseApiController &lt; ApplicationController
-  respond_to :json
-end
-</code></p>
+<p>We’ll have a Base API Controller from which we inherit</p>
 
-<p>First, you'll create an api endpoint for your session:</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::BaseApiController</span> &lt; <span class="constant">ApplicationController</span>
+  respond_to <span class="symbol">:json</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<p>```ruby [/api/sessions/]
-class Api::SessionsController &lt; Api::BaseController
-  prepend_before_filter :require_no_authentication, :only => [:create ]
-  include Devise::Controllers::InternalHelpers</p>
+<p>First, you’ll create an api endpoint for your session:</p>
 
-<p>  def create</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::SessionsController</span> &lt; <span class="constant">Api</span>::<span class="constant">BaseController</span>
+  prepend_before_filter <span class="symbol">:require_no_authentication</span>, <span class="symbol">:only</span> =&gt; [<span class="symbol">:create</span> ]
+  include <span class="constant">Devise</span>::<span class="constant">Controllers</span>::<span class="constant">InternalHelpers</span>
 
-<pre><code>build_resource
-resource = User.find_for_database_authentication(:login=&gt;params[:user_login][:login])
-if resource.nil?
-  render :json=&gt; {:success=&gt;false, :message=&gt;"Error with your login or password"}, :status=&gt;401
-end
+  <span class="keyword">def</span> <span class="function">create</span>
+    build_resource
+    resource = <span class="constant">User</span>.find_for_database_authentication(<span class="symbol">:login</span>=&gt;params[<span class="symbol">:user_login</span>][<span class="symbol">:login</span>])
+    <span class="keyword">if</span> resource.nil?
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">false</span>, <span class="symbol">:message</span>=&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">Error with your login or password</span><span class="delimiter">&quot;</span></span>}, <span class="symbol">:status</span>=&gt;<span class="integer">401</span>
+    <span class="keyword">end</span>
 
-if resource.valid_password?(params[:user_login][:password])
-  sign_in("user", resource)
-  render :json=&gt; {:success=&gt;true, :auth_token=&gt;resource.authentication_token, :login=&gt;resource.login, :email=&gt;resource.email}
-else
-  render :json=&gt; {:success=&gt;false, :message=&gt;"Error with your login or password"}, :status=&gt;401
-</code></pre>
+    <span class="keyword">if</span> resource.valid_password?(params[<span class="symbol">:user_login</span>][<span class="symbol">:password</span>])
+      sign_in(<span class="string"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span>, resource)
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">true</span>, <span class="symbol">:auth_token</span>=&gt;resource.authentication_token, <span class="symbol">:login</span>=&gt;resource.login, <span class="symbol">:email</span>=&gt;resource.email}
+    <span class="keyword">else</span>
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">false</span>, <span class="symbol">:message</span>=&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">Error with your login or password</span><span class="delimiter">&quot;</span></span>}, <span class="symbol">:status</span>=&gt;<span class="integer">401</span>
+  <span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<p>  end
-```</p>
+<p>The problem is that you don’t get the 401 Status code. You get a 302 redirect to the user login page. And that dog won’t hunt on an iPhone app.</p>
 
-<p>The problem is that you don't get the 401 Status code. You get a 302 redirect to the user login page. And that dog won't hunt on an iPhone app.</p>
+<h2 id="wth-devise">WTH Devise?</h2>
 
-<h2>WTH Devise?</h2>
+<p>Devise is relying on Warden, and warden is doing what it’s told. If not a valid login, it’ll redirect away. So, we need to tell Warden we’re going to have a custom failure like so:</p>
 
-<p>Devise is relying on Warden, and warden is doing what it's told. If not a valid login, it'll redirect away. So, we need to tell Warden we're going to have a custom failure like so:</p>
-
-<p><code>ruby
-warden.custom_failure!
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre>warden.custom_failure!
+</pre></div>
+</div>
+</div>
 
 <p>Refactored down slightly, we get:</p>
 
-<h2>The Solution</h2>
+<h2 id="the-solution">The Solution</h2>
 
 <p><div><script src='https://gist.github.com/1255275.js'></script>
 <noscript><pre><code>class Api::V1::SessionsController &lt; Api::V1::BaseController
@@ -150,29 +151,26 @@ end
 </code></pre></noscript></div>
 </p>
 
-<p>```javascript Your users will receive something this this on success:
-{</p>
+<p>Your users will receive something this this on success:
+~~~
+{
+    “success”: true,
+    “auth_token”: “dfc7ad3884e7”,
+    “login”: “emailexample”,
+    “email”: “email@example.com”
+}
+~~~</p>
 
-<pre><code>"success": true,
-"auth_token": "dfc7ad3884e7",
-"login": "emailexample",
-"email": "email@example.com"
-</code></pre>
+<p>And this on failure (with a status code of 401). 
+~~~
+{
+    “success”: false,
+    “message”: “Error with your login or password”
+}
+~~~</p>
 
-<p>}
-```</p>
+<h6 id="version-disclosure-this-post-was-valid-with-devise-146-and-rails-3031">Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
 
-<p>```javascript And this on failure (with a status code of 401).
-{</p>
-
-<pre><code>"success": false,
-"message": "Error with your login or password"
-</code></pre>
-
-<p>}
-```</p>
-
-<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
 ]]></content>
   </entry>
   

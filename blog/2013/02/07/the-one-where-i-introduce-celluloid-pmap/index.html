@@ -1,382 +1,217 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Easy, Light Weight, and Magical Parallel Processing in Ruby - J.Wo</title>
-  <meta name="author" content="Jesse Wolgamott">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>Easy, Light Weight, and Magical Parallel Processing in Ruby | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
 
-  
-  <meta name="description" content="Ever had a set of tasks in Ruby take too long? We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. &hellip;">
-  
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
-  <link rel="canonical" href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
-  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
-<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2397417-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">J.Wo</a></h1>
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
   
-    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
-  
-</hgroup>
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">07 Feb 2013</span>
+	<h1 class="post-title">Easy, Light Weight, and Magical Parallel Processing in Ruby</h1>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jessewolgamott.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul role=main-navigation>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
+	<section class="post-content">
+		<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">Easy, Light Weight, and Magical Parallel Processing in Ruby</h1>
-    
-    
-      <p class="meta">
-        
+<p>We’ve all been there – you have code that needs to be run, and it’s taking forever. You wish there was a way to speed things along, but you can’t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-07T11:18:00-06:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><h2>Ever had a set of tasks in Ruby take too long?</h2>
-
-<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
-
-<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
-
-<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
+<h2 id="worry-not-celluloid-is-here-and-celluloid-pmap-is-an-easy-way-to-get-started">Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It’s an actor based implementation, but all you <em>need</em> to know is that it’s awesome. You can process an array of things in parallel, and continue when it’s complete.</p>
 
 <!-- more -->
 
+<p>Let’s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
 
-<p>Let&#8217;s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>servers = <span class="constant">Server</span>.all.map <span class="keyword">do</span> |server|
+  server.status = check_status(server) 
+<span class="keyword">end</span>
+<span class="comment"># do something with the non-responsive servers</span>
+</pre></div>
+</div>
+</div>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">servers</span> <span class="o">=</span> <span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">server</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">check_status</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c1"># do something with the non-responsive servers</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So this would map over all servers, and make a network call to check if it&#8217;s alive.</p>
+<p>So this would map over all servers, and make a network call to check if it’s alive.</p>
 
 <p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.</p>
 
-<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future&#8217;s for each element in the array. The pmap will wait until the value is complete before returning, and we&#8217;ll wait for them all to finish before continuing.</p>
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future’s for each element in the array. The pmap will wait until the value is complete before returning, and we’ll wait for them all to finish before continuing.</p>
 
 <p>That same example in parallel would look:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
-</span><span class='line'>   <span class="c1">#… same code here</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="constant">Server</span>.all.pmap <span class="keyword">do</span> |user|
+   <span class="comment">#… same code here</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
+<h2 id="parallelization-cuts-processing-time-to-your-slowest-item">Parallelization cuts processing time to your slowest item</h2>
 
-<h2>Parallelization cuts processing time to your slowest item</h2>
-
-<p>Let&#8217;s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it&#8217;s complete. This is a great case for parallel processing since you&#8217;ll be waiting on:</p>
+<p>Let’s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it’s complete. This is a great case for parallel processing since you’ll be waiting on:</p>
 
 <ul>
-<li>wkhtmlpdf to convert HTML to PDF</li>
-<li>fog to upload PDF to S3</li>
-<li>curl to download PDF from S3 for you</li>
+  <li>wkhtmlpdf to convert HTML to PDF</li>
+  <li>fog to upload PDF to S3</li>
+  <li>curl to download PDF from S3 for you</li>
 </ul>
-
 
 <p>With the example below, your total processing time gets cut to the slowest report generated/uploaded/downloaded.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;email1@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;email2@example.com&quot;</span><span class="o">].</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">email</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email!</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">CreatesReports</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">generate_reports</span>
-</span><span class='line'>  <span class="n">user</span><span class="o">.</span><span class="n">reports</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">report</span><span class="o">|</span> <span class="sb">`curl -o </span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="sb"> </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">pdf</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\&quot;</span><span class="sb">`</span><span class="p">}</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;reports ready for </span><span class="si">#{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Everybody&#39;s done!&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre>    [<span class="string"><span class="delimiter">&quot;</span><span class="content">email1@example.com</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">email2@example.com</span><span class="delimiter">&quot;</span></span>].pmap <span class="keyword">do</span> |email|
+      user = <span class="constant">User</span>.find_by_email!(email)
+      <span class="constant">CreatesReports</span>.new(user).generate_reports
+      user.reports.each{|report| <span class="shell"><span class="delimiter">`</span><span class="content">curl -o </span><span class="inline"><span class="inline-delimiter">#{</span>report.filename<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report.pdf.url<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="delimiter">`</span></span>}
+      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">reports ready for </span><span class="inline"><span class="inline-delimiter">#{</span>email<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+    <span class="keyword">end</span>
+    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Everybody's done!</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
 <p>Other examples of usages:</p>
 
 <ul>
-<li>Searching Google and Amazon and What</li>
-<li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
-<li>Deleting of files at once</li>
-<li>Making database calls in parallel</li>
+  <li>Searching Google and Amazon and What</li>
+  <li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
+  <li>Deleting of files at once</li>
+  <li>Making database calls in parallel</li>
 </ul>
 
-
-<h2>Make sure to obey your database connection maximums</h2>
+<h2 id="make-sure-to-obey-your-database-connection-maximums">Make sure to obey your database connection maximums</h2>
 
 <p>If you are iterating over a set of documents and calling any resource that has a limited connection set, or a rate limit, you might run into a Connection Pool problem. That is, you might try connect with 20 connections and your default pool size is 5. What can be done?</p>
 
 <p>celluloid-pmap uses a Celluoid Supervisor to set a maximum number of actors working at the same time. So if you can only connect to 5 postgres users at the same time, you can set that like so:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">users</span><span class="o">.</span><span class="n">pmap</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="o">.</span><span class="n">say_anything!</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>users.pmap(<span class="integer">5</span>) {|user| user.say_anything! }
+</pre></div>
+</div>
+</div>
 
+<p>The (5) argument will say it’s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
 
-<p>The (5) argument will say it&#8217;s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
-
-<h2>Also check out Celluloid</h2>
+<h2 id="also-check-out-celluloid">Also check out Celluloid</h2>
 
 <p>I started adding code into a Rails initializer from <a href="https://github.com/celluloid/celluloid/blob/master/examples/simple_pmap.rb">Celluloid Simple Pmap</a> example. It went like this:</p>
 
 <p>config/initializers/celluloid-pmap.rb</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Enumerable</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">pmap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">futures</span> <span class="o">=</span> <span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="ss">Celluloid</span><span class="p">:</span><span class="ss">:Future</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>    <span class="n">futures</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">future</span><span class="o">|</span> <span class="n">future</span><span class="o">.</span><span class="n">value</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">module</span> <span class="class">Enumerable</span>
+  <span class="keyword">def</span> <span class="function">pmap</span>(&amp;block)
+    futures = map { |elem| <span class="constant">Celluloid</span>::<span class="constant">Future</span>.new(elem, &amp;block) }
+    futures.map { |future| future.value }
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
 
-<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it&#8217;s as simple as you&#8217;d think:</p>
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it’s as simple as you’d think:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="n">install</span> <span class="n">celluloid</span><span class="o">-</span><span class="n">pmap</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>gem install celluloid-pmap
+</code></pre>
 
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is an independent Consultant at <a
+      href="http://comal.io">Comal Productions</a>, <a href="/books">author</a>, <a
+      href="/talks">speaker</a>, and
+    instructor (at <a href="http://theironyard.com/locations/houston">The Iron
+      Yard</a>). He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=Easy, Light Weight, and Magical Parallel Processing in Ruby&amp;url=http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Jesse Wolgamott</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-07T11:18:00-06:00" pubdate data-updated="true">Feb 7<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/" >Tweet</a>
   
   
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450"
-      data-show-faces="false" style="top: -8px"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/" title="Previous Post: The One Where I Have to Explain Why I Want Diversity in our Field">&laquo; The One Where I Have to Explain Why I Want Diversity in our Field</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/" title="Next Post: RailsBerry rejected my talk and I am happy about it">RailsBerry rejected my talk and I am happy about it &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
+  <section id="comment">
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2014 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Ruby off Rails</h1>
-  <p>Online Ruby Course with mentoring, coaching, and collaboration.</p>
-  <a href="https://rubyoffrails.com"><img src="/images/ruby-off-rails.png"/></a>
-  <p>Available now: <a href="https://rubyoffrails.com/">RubyOffRails.com</a></p>
-</section>
-<section>
-  <h1>About Me</h1>
-  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
-	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/">Excitement! I'm teaching Rails at The Iron Yard Houston</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">Reminder to hand-craft your whenever files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">RailsBerry rejected my talk and I am happy about it</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/jwo">@jwo</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'jwo',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jesse Wolgamott -
-</p>
-
 </footer>
-  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'jwo';
@@ -389,46 +224,24 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 </body>

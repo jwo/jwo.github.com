@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -25,33 +25,34 @@ too hard; it rebooted our server for us.</p>
 <p>My initial reaction: Increase the memories!</p>
 
 <p>I looked deeper into the problem, and along with some colleagues, discovered
-that at midnight our server was kicking off 9 different processes at the same
+that at midnight our server was kicking off 9 different processes at the same 
 time. 9x Rails is just about 8x too many.</p>
 
 <!-- more -->
 
-
 <p>My whenever schedule (names changed to reflect tex-mex dishes)</p>
 
-<p>```ruby
-set :output, 'log/cron.log'</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>set <span class="symbol">:output</span>, <span class="string"><span class="delimiter">'</span><span class="content">log/cron.log</span><span class="delimiter">'</span></span>
 
-<p>job_type :rake, "cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output"</p>
+job_type <span class="symbol">:rake</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output</span><span class="delimiter">&quot;</span></span>
 
-<p>every 1.day, :at => '12am' do
-  rake 'margarita:enchiladas'
-  rake 'margarita:fajitas'
-end</p>
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">12am</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:enchiladas</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:fajitas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
 
-<p>every 1.minute do
-  rake 'guacamole:soft_tacos'
-end</p>
+every <span class="integer">1</span>.minute <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:soft_tacos</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
 
-<p>every 12.hours do
-  rake 'guacamole:tortilla_soup'
-  rake 'guacamole:grande_combo_de_tejas'
-end
-```</p>
+every <span class="integer">12</span>.hours <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:tortilla_soup</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:grande_combo_de_tejas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>Seems pretty standard for how I organize and schedule tasks. But each of these
 would be (and were) running at midnight, since they all intersected that particular
@@ -61,64 +62,65 @@ intersection of space and time.</p>
 requirements accomplished:</p>
 
 <ol>
-<li>Order soft tacos pretty often</li>
-<li>Get the other dishes one or twice a day</li>
+  <li>Order soft tacos pretty often</li>
+  <li>Get the other dishes one or twice a day</li>
 </ol>
 
+<p>The timing, other than that, didn’t matter. And in your apps, it probably
+doesn’t matter that often either.</p>
 
-<p>The timing, other than that, didn't matter. And in your apps, it probably
-doesn't matter that often either.</p>
+<p>An updated “Hand Crafted, Artisan Tex Mex Whenever File”</p>
 
-<p>An updated "Hand Crafted, Artisan Tex Mex Whenever File"</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>set <span class="symbol">:output</span>, <span class="string"><span class="delimiter">'</span><span class="content">log/cron.log</span><span class="delimiter">'</span></span>
 
-<p>```
-set :output, 'log/cron.log'</p>
+job_type <span class="symbol">:rake</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output</span><span class="delimiter">&quot;</span></span>
 
-<p>job_type :rake, "cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output"</p>
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">12am</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:enchiladas</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:fajitas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
 
-<p>every 1.day, :at => '12am' do
-  rake 'margarita:enchiladas'
-  rake 'margarita:fajitas'
-end</p>
+<span class="comment"># skip the top of the hour. Every 5 minutes</span>
+every <span class="string"><span class="delimiter">'</span><span class="content">5,10,15,20,25,30,35,40,45,50,55 * * * *</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:soft_tacos</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
 
-<h1>skip the top of the hour. Every 5 minutes</h1>
-
-<p>every '5,10,15,20,25,30,35,40,45,50,55 * * * *' do
-  rake 'guacamole:soft_tacos'
-end</p>
-
-<p>every 1.day, :at => ['3am', '3pm'] do
-  rake 'guacamole:tortilla_soup guacamole:grande_combo_de_tejas'
-end
-```</p>
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; [<span class="string"><span class="delimiter">'</span><span class="content">3am</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">3pm</span><span class="delimiter">'</span></span>] <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:tortilla_soup guacamole:grande_combo_de_tejas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>What did this gain us?</p>
 
 <ul>
-<li>At midnight, only 2 tasks will run.</li>
-<li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they'll now run sequentially (saves on the RAM)</li>
-<li><code>soft_tacos</code> skips the midnight run</li>
+  <li>At midnight, only 2 tasks will run.</li>
+  <li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they’ll now run sequentially (saves on the RAM) </li>
+  <li><code>soft_tacos</code> skips the midnight run</li>
 </ul>
-
 
 <p>Reminder: Hand craft your whenever cron jobs. And to test the output: <code>whenever</code></p>
 
-<p>```
-0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas >> log/cron.log 2>&amp;1'</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="integer">0</span> <span class="integer">0</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
 
-<p>0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas >> log/cron.log 2>&amp;1'</p>
+<span class="integer">0</span> <span class="integer">0</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
 
-<p>5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole >> log/cron.log 2>&amp;1'</p>
+<span class="integer">5</span>,<span class="integer">10</span>,<span class="integer">15</span>,<span class="integer">20</span>,<span class="integer">25</span>,<span class="integer">30</span>,<span class="integer">35</span>,<span class="integer">40</span>,<span class="integer">45</span>,<span class="integer">50</span>,<span class="integer">55</span> * * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
 
-<p>0 3,15 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas >> log/cron.log 2>&amp;1'
-```</p>
+<span class="integer">0</span> <span class="integer">3</span>,<span class="integer">15</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
+</pre></div>
+</div>
+</div>
 
 <p>More on Cron and whenever:</p>
 
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
-<li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
-<li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
+  <li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
+  <li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
 </ul>
 
 ]]></content>
@@ -129,115 +131,112 @@ end
     <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
     <updated>2013-02-07T11:18:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
-    <content type="html"><![CDATA[<h2>Ever had a set of tasks in Ruby take too long?</h2>
+    <content type="html"><![CDATA[<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
-<p>We've all been there -- you have code that needs to be run, and it's taking forever. You wish there was a way to speed things along, but you can't tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+<p>We’ve all been there – you have code that needs to be run, and it’s taking forever. You wish there was a way to speed things along, but you can’t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
 
-<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
-
-<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It's an actor based implementation, but all you <em>need</em> to know is that it's awesome. You can process an array of things in parallel, and continue when it's complete.</p>
+<h2 id="worry-not-celluloid-is-here-and-celluloid-pmap-is-an-easy-way-to-get-started">Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It’s an actor based implementation, but all you <em>need</em> to know is that it’s awesome. You can process an array of things in parallel, and continue when it’s complete.</p>
 
 <!-- more -->
 
+<p>Let’s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
 
-<p>Let's say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>servers = <span class="constant">Server</span>.all.map <span class="keyword">do</span> |server|
+  server.status = check_status(server) 
+<span class="keyword">end</span>
+<span class="comment"># do something with the non-responsive servers</span>
+</pre></div>
+</div>
+</div>
 
-<p>```ruby
-servers = Server.all.map do |server|
-  server.status = check_status(server)
-end</p>
-
-<h1>do something with the non-responsive servers</h1>
-
-<p>```</p>
-
-<p>So this would map over all servers, and make a network call to check if it's alive.</p>
+<p>So this would map over all servers, and make a network call to check if it’s alive.</p>
 
 <p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.</p>
 
-<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future's for each element in the array. The pmap will wait until the value is complete before returning, and we'll wait for them all to finish before continuing.</p>
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future’s for each element in the array. The pmap will wait until the value is complete before returning, and we’ll wait for them all to finish before continuing.</p>
 
 <p>That same example in parallel would look:</p>
 
-<p><code>ruby
-Server.all.pmap do |user|
-   #… same code here
-end
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="constant">Server</span>.all.pmap <span class="keyword">do</span> |user|
+   <span class="comment">#… same code here</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<h2>Parallelization cuts processing time to your slowest item</h2>
+<h2 id="parallelization-cuts-processing-time-to-your-slowest-item">Parallelization cuts processing time to your slowest item</h2>
 
-<p>Let's say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it's complete. This is a great case for parallel processing since you'll be waiting on:</p>
+<p>Let’s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it’s complete. This is a great case for parallel processing since you’ll be waiting on:</p>
 
 <ul>
-<li>wkhtmlpdf to convert HTML to PDF</li>
-<li>fog to upload PDF to S3</li>
-<li>curl to download PDF from S3 for you</li>
+  <li>wkhtmlpdf to convert HTML to PDF</li>
+  <li>fog to upload PDF to S3</li>
+  <li>curl to download PDF from S3 for you</li>
 </ul>
-
 
 <p>With the example below, your total processing time gets cut to the slowest report generated/uploaded/downloaded.</p>
 
-<p>```ruby</p>
-
-<pre><code>["email1@example.com", "email2@example.com"].pmap do |email|
-  user = User.find_by_email!(email)
-  CreatesReports.new(user).generate_reports
-  user.reports.each{|report| `curl -o #{report.filename} \"#{report.pdf.url}\"`}
-  puts "reports ready for #{email}"
-end
-puts "Everybody's done!"
-</code></pre>
-
-<p>```</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>    [<span class="string"><span class="delimiter">&quot;</span><span class="content">email1@example.com</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">email2@example.com</span><span class="delimiter">&quot;</span></span>].pmap <span class="keyword">do</span> |email|
+      user = <span class="constant">User</span>.find_by_email!(email)
+      <span class="constant">CreatesReports</span>.new(user).generate_reports
+      user.reports.each{|report| <span class="shell"><span class="delimiter">`</span><span class="content">curl -o </span><span class="inline"><span class="inline-delimiter">#{</span>report.filename<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report.pdf.url<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="delimiter">`</span></span>}
+      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">reports ready for </span><span class="inline"><span class="inline-delimiter">#{</span>email<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+    <span class="keyword">end</span>
+    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Everybody's done!</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
 <p>Other examples of usages:</p>
 
 <ul>
-<li>Searching Google and Amazon and What</li>
-<li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
-<li>Deleting of files at once</li>
-<li>Making database calls in parallel</li>
+  <li>Searching Google and Amazon and What</li>
+  <li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
+  <li>Deleting of files at once</li>
+  <li>Making database calls in parallel</li>
 </ul>
 
-
-<h2>Make sure to obey your database connection maximums</h2>
+<h2 id="make-sure-to-obey-your-database-connection-maximums">Make sure to obey your database connection maximums</h2>
 
 <p>If you are iterating over a set of documents and calling any resource that has a limited connection set, or a rate limit, you might run into a Connection Pool problem. That is, you might try connect with 20 connections and your default pool size is 5. What can be done?</p>
 
 <p>celluloid-pmap uses a Celluoid Supervisor to set a maximum number of actors working at the same time. So if you can only connect to 5 postgres users at the same time, you can set that like so:</p>
 
-<p><code>ruby
-users.pmap(5) {|user| user.say_anything! }
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre>users.pmap(<span class="integer">5</span>) {|user| user.say_anything! }
+</pre></div>
+</div>
+</div>
 
-<p>The (5) argument will say it's OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
+<p>The (5) argument will say it’s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
 
-<h2>Also check out Celluloid</h2>
+<h2 id="also-check-out-celluloid">Also check out Celluloid</h2>
 
 <p>I started adding code into a Rails initializer from <a href="https://github.com/celluloid/celluloid/blob/master/examples/simple_pmap.rb">Celluloid Simple Pmap</a> example. It went like this:</p>
 
 <p>config/initializers/celluloid-pmap.rb</p>
 
-<p>```ruby
-module Enumerable
-  def pmap(&amp;block)</p>
-
-<pre><code>futures = map { |elem| Celluloid::Future.new(elem, &amp;block) }
-futures.map { |future| future.value }
-</code></pre>
-
-<p>  end
-end
-```</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">module</span> <span class="class">Enumerable</span>
+  <span class="keyword">def</span> <span class="function">pmap</span>(&amp;block)
+    futures = map { |elem| <span class="constant">Celluloid</span>::<span class="constant">Future</span>.new(elem, &amp;block) }
+    futures.map { |future| future.value }
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
 
-<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it's as simple as you'd think:</p>
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it’s as simple as you’d think:</p>
 
-<p><code>
-gem install celluloid-pmap
-</code></p>
+<pre><code>gem install celluloid-pmap
+</code></pre>
 ]]></content>
   </entry>
   
@@ -249,26 +248,26 @@ gem install celluloid-pmap
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
 
-<blockquote><p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p></blockquote>
+<blockquote>
+  <p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p>
+</blockquote>
 
 <p>This comes after:</p>
 
 <ul>
-<li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a></li>
-<li>Sarah Parmenter (whom I've never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
+  <li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a>  </li>
+  <li>Sarah Parmenter (whom I’ve never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
 </ul>
 
+<p>And this is in the last week. </p>
 
-<p>And this is in the last week.</p>
-
-<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn't going to help, and c) it's the human thing to do.</p>
+<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn’t going to help, and c) it’s the human thing to do.</p>
 
 <!-- more -->
 
+<h2 id="it-makes-economic-sense">It Makes Economic Sense</h2>
 
-<h2>It Makes Economic Sense</h2>
-
-<p>Software Development pays very well, and is in desperate need of qualified developers. The more highly paying jobs that exist increase the amount of money available to be spent on subscription codecasts, ebooks, and training materials. If there's more money in the system, there's more opportunities for <em>everyone</em> to take home more money. <a href="http://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats">A rising tide lifts all boats</a>.</p>
+<p>Software Development pays very well, and is in desperate need of qualified developers. The more highly paying jobs that exist increase the amount of money available to be spent on subscription codecasts, ebooks, and training materials. If there’s more money in the system, there’s more opportunities for <em>everyone</em> to take home more money. <a href="http://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats">A rising tide lifts all boats</a>.</p>
 
 <p>Given that rather simple assertion, it does not make economic sense to drive people out of our industry. We should be welcoming people and making changes to our processes to become happier and more productive. We should be going out of our way to have a society that anyone can join if it interests them. We do not do this as an industry, and that does not make macro or micro-economic sense.</p>
 
@@ -276,46 +275,54 @@ gem install celluloid-pmap
 
 <p><a href="http://www.thegcircle.com/blog/2012/when-women-make-money-it-helps-everyone/">When Women Make More Money, Everybody Wins</a></p>
 
-<h2>It Will Result in Better Software</h2>
+<h2 id="it-will-result-in-better-software">It Will Result in Better Software</h2>
 
-<p>Software gets better when we can break outside of our mental models and solve problems using a different mindset. What a fully functioning group needs is not 10 "rockstars" who think the same -- that tends to lead to group think and programs that solve the wrong problems.</p>
+<p>Software gets better when we can break outside of our mental models and solve problems using a different mindset. What a fully functioning group needs is not 10 “rockstars” who think the same – that tends to lead to group think and programs that solve the wrong problems.</p>
 
 <p>What groups need is diversity in world views, shared experiences, and cultural references. If you want to build an app that only people in your specific niche in the world truly get, you should eschew diversity. If you want to have as many people in the world use your software, you should embrace diversity.</p>
 
 <p><a href="http://www.fastcodesign.com/1665597/how-women-are-leading-the-effort-to-make-robots-more-humane">Women are making robots more humane</a></p>
 
-<h2>It's the human thing to do</h2>
+<h2 id="its-the-human-thing-to-do">It’s the human thing to do</h2>
 
 <p>Things I believe in, an incomplete list:</p>
 
 <ul>
-<li>It is wrong to treat someone differently because of {skin-color|gender|sexuality|anything}.</li>
-<li>Gender, skin-color, and sexuality has no impact on the creative or analytical skillset</li>
-<li>There is no basis that men are better at software development than women (see the <a href="http://en.wikipedia.org/wiki/Grace_Hopper">inventor of the compiler</a>) [1]]</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>It is wrong to treat someone differently because of {skin-color</td>
+          <td>gender</td>
+          <td>sexuality</td>
+          <td>anything}.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Gender, skin-color, and sexuality has no impact on the creative or analytical skillset</li>
+  <li>There is no basis that men are better at software development than women (see the <a href="http://en.wikipedia.org/wiki/Grace_Hopper">inventor of the compiler</a>) [1]]</li>
 </ul>
 
+<p>I believe it is no longer acceptable to sit back and say the status quo is good enough. Because it is not good enough. From healthcare to income inequality to a growing police state – the status quo is not good enough and we should not be defending it.</p>
 
-<p>I believe it is no longer acceptable to sit back and say the status quo is good enough. Because it is not good enough. From healthcare to income inequality to a growing police state -- the status quo is not good enough and we should not be defending it.</p>
+<p>Think of how people were treated fifty years ago — we’ve changed since then — but think about how you consider people who defended the status quo in the 1960s (my assumption here is that you do not think fondly of them).  </p>
 
-<p>Think of how people were treated fifty years ago --- we've changed since then --- but think about how you consider people who defended the status quo in the 1960s (my assumption here is that you do not think fondly of them).</p>
+<p>Be the person you want 2063-you to be proud of. I do not see any possible way that includes treating women as if they don’t belong in any profession.</p>
 
-<p>Be the person you want 2063-you to be proud of. I do not see any possible way that includes treating women as if they don't belong in any profession.</p>
-
-<h2>In Conclusion</h2>
-
-<p>Don't we (collectively) believe that happier developers make for more productive developers? Don't we want our software to make the world a better place? That starts with treating all people as human. Next, go out of your way to help.</p>
+<h2 id="in-conclusion">In Conclusion</h2>
+<p>Don’t we (collectively) believe that happier developers make for more productive developers? Don’t we want our software to make the world a better place? That starts with treating all people as human. Next, go out of your way to help.</p>
 
 <p>Ways to help:</p>
 
 <ul>
-<li>Call people out for being sexist</li>
-<li>Lower prices and other barriers to entry for women to learn our craft</li>
-<li>Don't be awful to anyone</li>
-<li>Mentor and teach <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://workshops.railsbridge.org/">RailsBridge</a> both target women developers.</li>
+  <li>Call people out for being sexist</li>
+  <li>Lower prices and other barriers to entry for women to learn our craft</li>
+  <li>Don’t be awful to anyone</li>
+  <li>Mentor and teach <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://workshops.railsbridge.org/">RailsBridge</a> both target women developers.</li>
 </ul>
 
-
-<p>I have disabled comments; To continue the discussion, let's talk on twitter --
+<p>I have disabled comments; To continue the discussion, let’s talk on twitter –
 or better yet, write a blog post in response and/or in agreement.</p>
 
 <p>[1] In fact, with the advancements that young girls have over young boys in math and science, one could conclude that we are losing our best developers before they get started. <a href="http://www.ams.org/notices/201201/rtx120100010p.pdf">Debunking Myths about Gender and Mathematics Performance</a></p>
@@ -329,52 +336,46 @@ or better yet, write a blog post in response and/or in agreement.</p>
     <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
     <updated>2012-07-30T10:35:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
-    <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I've been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
+    <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
+	<span class="heading">tl;dr</span> 
 I am offering a 100% scholarship to the 6 week RubyOffRails class for up to 5 women software developers. <a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>
 </div>
 
+<p>The <a href="http://rubyoffrails.com">Ruby online training course</a> starts July 31, and I’ll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It’s a self-paced course, so if you start this week you won’t be behind. I’ll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!</p>
 
-<p>The <a href="http://rubyoffrails.com">Ruby online training course</a> starts July 31, and I'll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It's a self-paced course, so if you start this week you won't be behind. I'll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!</p>
+<p>So…</p>
 
-<p>So...</p>
-
-<h2>What do you Have to do?</h2>
-
-<ol>
-<li>Tell me why you want to learn Ruby?</li>
-<li>Tell me how learning Ruby can improve your life</li>
-</ol>
-
-
-<h2>What will you get?</h2>
+<h2 id="what-do-you-have-to-do">What do you Have to do?</h2>
 
 <ol>
-<li>Free access to the Summer RubyOffRails course</li>
-<li>Full access to code reviews and office hours. It's a full ticket!</li>
-<li>Happiness because you're loving Ruby</li>
+  <li>Tell me why you want to learn Ruby?</li>
+  <li>Tell me how learning Ruby can improve your life</li>
 </ol>
 
-
-<h2>Who is this course for?</h2>
+<h2 id="what-will-you-get">What will you get?</h2>
 
 <ol>
-<li>Developers who have programming experience in a C based language</li>
-<li>Ideally programmers who want to learn the fundamentals of Ruby for a career in Rails</li>
-<li>Awesome people.</li>
+  <li>Free access to the Summer RubyOffRails course</li>
+  <li>Full access to code reviews and office hours. It’s a full ticket!</li>
+  <li>Happiness because you’re loving Ruby</li>
 </ol>
 
+<h2 id="who-is-this-course-for">Who is this course for?</h2>
+
+<ol>
+  <li>Developers who have programming experience in a C based language</li>
+  <li>Ideally programmers who want to learn the fundamentals of Ruby for a career in Rails</li>
+  <li>Awesome people.</li>
+</ol>
 
 <p>You can learn more about the course at <a href="http://rubyoffrails.com">http://rubyoffrails.com</a></p>
 
 <p><a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>.</p>
 
-<p>UPDATE:<br/>
+<p>UPDATE:<br />
 I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.</p>
 ]]></content>
   </entry>
@@ -384,53 +385,45 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
     <updated>2012-04-03T12:23:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
-    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don't realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.</p>
-
-<h3>Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></h3>
+    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
+###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
 
 <p>That means, they pick up on concepts about instance variables, validations, how to create non-ActiveRecord classes, and most importantly: testing.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
+	<span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
 </div>
-
-
 <p>So I floated an idea, should we learn Ruby before we learn Rails? The answer from nearly everyone I spoke to was YES.</p>
 
-<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> -- a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
+<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> – a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
 
 <ul>
-<li>It means there's not going to be a class on "Arrays" followed by one on "Syntax". -- We'll build stuff together and learn by doing.</li>
-<li>It means that each class much have actionable code that someone could actually use in their life</li>
-<li>It means that you can watch the class live, or watch later. Much later.</li>
-<li>It means that students talk to each other, learn from each other, and see each other's code through pull-requests on assignments</li>
+  <li>It means there’s not going to be a class on “Arrays” followed by one on “Syntax”. – We’ll build stuff together and learn by doing. </li>
+  <li>It means that each class much have actionable code that someone could actually use in their life</li>
+  <li>It means that you can watch the class live, or watch later. Much later.</li>
+  <li>It means that students talk to each other, learn from each other, and see each other’s code through pull-requests on assignments</li>
 </ul>
-
 
 <p>And most importantly, it means that we all code.</p>
 
-<p>It's a six week course designed for people who have programmed before. If you haven't developed software, it'll be ambitious, but watch the episodes a couple of times and you'll get the hang of it. And you'll learn TDD first! (you won't be able to imagine a different way).</p>
+<p>It’s a six week course designed for people who have programmed before. If you haven’t developed software, it’ll be ambitious, but watch the episodes a couple of times and you’ll get the hang of it. And you’ll learn TDD first! (you won’t be able to imagine a different way).</p>
 
 <p>My true hope is this brings more people into the software development community and fosters coders teaching coders in a constructive and generally nice way.</p>
 
 <ol>
-<li>Watch someone code</li>
-<li>Code</li>
-<li>Teach someone how to code</li>
+  <li>Watch someone code</li>
+  <li>Code</li>
+  <li>Teach someone how to code</li>
 </ol>
 
-
-<h3>To Get Started</h3>
+<h3 id="to-get-started">To Get Started</h3>
 
 <ol>
-<li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
-<li>Read through and sign up</li>
-<li>We'll being the Thursday after RailsConf (April 26, 2012)</li>
+  <li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
+  <li>Read through and sign up</li>
+  <li>We’ll being the Thursday after RailsConf (April 26, 2012)</li>
 </ol>
-
 ]]></content>
   </entry>
   

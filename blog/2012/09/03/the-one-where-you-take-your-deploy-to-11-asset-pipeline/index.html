@@ -1,417 +1,248 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>The One Where You Take Your Deploy to 11: Asset Pipeline - J.Wo</title>
-  <meta name="author" content="Jesse Wolgamott">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>The One Where You Take Your Deploy to 11: Asset Pipeline | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
 
-  
-  <meta name="description" content="Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when I KNOW NOTHING HAS CHANGED. &hellip;">
-  
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
-  <link rel="canonical" href="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
-  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
-<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2397417-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">J.Wo</a></h1>
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
   
-    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
-  
-</hgroup>
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">03 Sep 2012</span>
+	<h1 class="post-title">The One Where You Take Your Deploy to 11: Asset Pipeline</h1>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jessewolgamott.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul role=main-navigation>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
-    
-      <h1 class="entry-title">The One Where You Take Your Deploy to 11: Asset Pipeline</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-03T14:56:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
+	<section class="post-content">
+		<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
+	<span class="heading">tl;dr</span> 
 Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
 </div>
 
-
-<h3>Background</h3>
-
-<ul>
-<li>The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file</li>
-<li>Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.</li>
-</ul>
-
-
-<p>So&#8230; Here&#8217;s a solution to fast-compile your assets by only checking if the changeset includes changes under:</p>
+<h3 id="background">Background</h3>
 
 <ul>
-<li>app/assets</li>
-<li>lib/assets</li>
-<li>vendor/assets</li>
-<li>Gemfile.lock</li>
-<li>config/routes.rb</li>
+  <li>The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file  </li>
+  <li>Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.</li>
 </ul>
 
+<p>So… Here’s a solution to fast-compile your assets by only checking if the changeset includes changes under:</p>
 
-<p>The assets is pretty self-explanatory. We compile if the Gemfile.lock changed to catch if something like twitter-bootstrap-rails was added or updated. At first the config/routes.rb seems out of place, but it&#8217;s in case you load an engine (or remove one).</p>
+<ul>
+  <li>app/assets </li>
+  <li>lib/assets </li>
+  <li>vendor/assets </li>
+  <li>Gemfile.lock </li>
+  <li>config/routes.rb</li>
+</ul>
 
-<h2>The code!</h2>
+<p>The assets is pretty self-explanatory. We compile if the Gemfile.lock changed to catch if something like twitter-bootstrap-rails was added or updated. At first the config/routes.rb seems out of place, but it’s in case you load an engine (or remove one).</p>
 
-<p>Make sure you&#8217;re loading deploy/assets</p>
+<h2 id="the-code">The code!</h2>
 
-<figure class='code'><figcaption><span>Capfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Make sure you’re loading deploy/assets</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Capfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/assets.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
+</span><span class="line">
+</span><span class="line"><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class="line">  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
+</span><span class="line"><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
+</span><span class="line"><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
+</span><span class="line"><span class="sh">      specify additional environment variables to pass to rake via the \</span>
+</span><span class="line"><span class="sh">      asset_env variable. The defaults are:</span>
+</span><span class="line">
+</span><span class="line"><span class="sh">        set :rake,      &quot;rake&quot;</span>
+</span><span class="line"><span class="sh">        set :rails_env, &quot;production&quot;</span>
+</span><span class="line"><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
+</span><span class="line"><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
+</span><span class="line"><span class="no">    DESC</span>
+</span><span class="line">    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+</span><span class="line">      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
+</span><span class="line">      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class="line">        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
+</span><span class="line">      <span class="k">else</span>
+</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
+</span><span class="line">      <span class="k">end</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<figure class='code'><figcaption><span>config/recipes/assets.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
-</span><span class='line'>
-</span><span class='line'><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
-</span><span class='line'><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
-</span><span class='line'><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
-</span><span class='line'><span class="sh">      specify additional environment variables to pass to rake via the \</span>
-</span><span class='line'><span class="sh">      asset_env variable. The defaults are:</span>
-</span><span class='line'>
-</span><span class='line'><span class="sh">        set :rake,      &quot;rake&quot;</span>
-</span><span class='line'><span class="sh">        set :rails_env, &quot;production&quot;</span>
-</span><span class='line'><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
-</span><span class='line'><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
-</span><span class='line'><span class="no">    DESC</span>
-</span><span class='line'>    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>How does it know?</h2>
+<h2 id="how-does-it-know">How does it know?</h2>
 
 <p>The regular assets:precompile task is getting overridden by our custom task. We then:</p>
 
 <ol>
-<li>get the FROM git revision</li>
-<li>get the git log of changes from the FROM to the TO that include our paths we care about</li>
-<li>Pipe that into wc to see if there&#8217;s anything there</li>
+  <li>get the FROM git revision</li>
+  <li>get the git log of changes from the FROM to the TO that include our paths we care about</li>
+  <li>Pipe that into wc to see if there’s anything there</li>
 </ol>
-
 
 <p>If there is, then we call the rake assets:precompile (like calling <code>super</code>)</p>
 
-<h2>Output</h2>
+<h2 id="output">Output</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>triggering after callbacks for `deploy:update_code'
-</span><span class='line'>  * executing `deploy:assets:precompile'
-</span><span class='line'>  * executing "cat /home/deployer/apps/yourapp/current/REVISION"
-</span><span class='line'>servers: ["yourapp.comalproductions.com"]
-</span><span class='line'>[yourapp.comalproductions.com] executing command
-</span><span class='line'>command finished in 921ms
-</span><span class='line'>  * executing "cd /home/deployer/apps/yourapp/releases/20120903203634 && git log 2e03e2b18530c86a69ba8a2c2d75909142767f5b.. app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb | wc -l"
-</span><span class='line'>servers: ["yourapp.comalproductions.com"]
-</span><span class='line'>[yourapp.comalproductions.com] executing command
-</span><span class='line'>command finished in 400ms
-</span><span class='line'> ** Skipping asset pre-compilation because there were no asset changes</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre>    triggering after callbacks <span class="keyword">for</span> <span class="shell"><span class="delimiter">`</span><span class="content">deploy:update_code'
+  * executing </span><span class="delimiter">`</span></span><span class="key">deploy</span>:<span class="key">assets</span>:precompile<span class="string"><span class="delimiter">'</span><span class="content">
+  * executing &quot;cat /home/deployer/apps/yourapp/current/REVISION&quot;
+    servers: [&quot;yourapp.comalproductions.com&quot;]
+    [yourapp.comalproductions.com] executing command
+    command finished in 921ms
+  * executing &quot;cd /home/deployer/apps/yourapp/releases/20120903203634 &amp;&amp; git log 2e03e2b18530c86a69ba8a2c2d75909142767f5b.. app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb | wc -l&quot;
+    servers: [&quot;yourapp.comalproductions.com&quot;]
+    [yourapp.comalproductions.com] executing command
+    command finished in 400ms
+ ** Skipping asset pre-compilation because there were no asset changes
+</span></span></pre></div>
+</div>
+</div>
 
 <p>PROOF: 400ms &lt; 2.5 minutes</p>
 
-<h2>Credit</h2>
+<h2 id="credit">Credit</h2>
 
-<p>This <a href="https://gist.github.com/3072362">Gist</a> by <a href="https://github.com/xdite">@xdite</a> is the direct source for the code. I&#8217;ve used this in several projects and think it&#8217;s awesome-sauce.</p>
+<p>This <a href="https://gist.github.com/3072362">Gist</a> by <a href="https://github.com/xdite">@xdite</a> is the direct source for the code. I’ve used this in several projects and think it’s awesome-sauce.</p>
+
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is an independent Consultant at <a
+      href="http://comal.io">Comal Productions</a>, <a href="/books">author</a>, <a
+      href="/talks">speaker</a>, and
+    instructor (at <a href="http://theironyard.com/locations/houston">The Iron
+      Yard</a>). He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=The One Where You Take Your Deploy to 11: Asset Pipeline&amp;url=http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">Jesse Wolgamott</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-03T14:56:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>rails</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/" data-via="jwo" data-counturl="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/" >Tweet</a>
   
   
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450"
-      data-show-faces="false" style="top: -8px"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/" title="Previous Post: RubyOffRails Scholarship for Women">&laquo; RubyOffRails Scholarship for Women</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/" title="Next Post: The One Where You Run Rake Commands with Capistrano">The One Where You Run Rake Commands with Capistrano &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
+  <section id="comment">
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2014 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Ruby off Rails</h1>
-  <p>Online Ruby Course with mentoring, coaching, and collaboration.</p>
-  <a href="https://rubyoffrails.com"><img src="/images/ruby-off-rails.png"/></a>
-  <p>Available now: <a href="https://rubyoffrails.com/">RubyOffRails.com</a></p>
-</section>
-<section>
-  <h1>About Me</h1>
-  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
-	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/">Excitement! I'm teaching Rails at The Iron Yard Houston</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">Reminder to hand-craft your whenever files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">RailsBerry rejected my talk and I am happy about it</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/jwo">@jwo</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'jwo',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jesse Wolgamott -
-</p>
-
 </footer>
-  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'jwo';
@@ -424,46 +255,24 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 </body>

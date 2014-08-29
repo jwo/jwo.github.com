@@ -1,547 +1,278 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>J.Wo</title>
-  <meta name="author" content="Jesse Wolgamott">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
 
-  
-  <meta name="description" content="The Situation: You&#8217;re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man &#8211 &hellip;">
-  
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
-  <link rel="canonical" href="http://jessewolgamott.com/blog/page/2/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
-  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
-<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-2397417-5']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">J.Wo</a></h1>
-  
-    <h2>Ruby DevBlog by Jesse Wolgamott</h2>
-  
-</hgroup>
 
+<body class="home-template">
+  <header id="site-head">
+  <div class="vertical">
+    <div id="site-head-content" class="inner">
+      <h1 class="blog-title"><a class="no-rollover" href="/">Jesse</br>Wolgamott</a></h1>
+      <h2 class="blog-description">TexMex Software Consulting</h2>
+      <p><a href="/contact">Contact</a> | <a href="/books">Books</a> <br/>  <a
+        href="/talks">Talks</a> | <a href="/start">Start Here</a></p>
+    </div>
+  </div>
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:jessewolgamott.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul role=main-navigation>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="/contact">Contact</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <main class="content" role="main">
     
-      <h1 class="entry-title"><a href="/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/">The One Where We DRY Up Mongoid and Rspec Using Shared Examples and Modules</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
+    <article class="post">
+	
+		
+	
+	<header class="post-header">
+		<span class="post-meta">29 Feb 2012</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/">
+			
+				The One Where We DRY Up Mongoid and Rspec Using Shared Examples and Modules</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>The Situation: You’re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man – everybody has a contact.</p>
+
+<p>The Problem: You’re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
+
+<p>Let’s DRY this up using modules and rspec shared examples. We’ll end up with a way you <em>could</em> enable fast rails tests on your Mongoid models.</p>
 
 
+	</section>
+</article>
 
 
-
-  
-
-
-<time datetime="2012-02-29T10:19:00-06:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Situation: You&#8217;re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man &#8211; everybody has a contact.</p>
-
-<p>The Problem: You&#8217;re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
-
-<p>Let&#8217;s DRY this up using modules and rspec shared examples. We&#8217;ll end up with a way you <em>could</em> enable fast rails tests on your Mongoid models.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/">Read on &rarr;</a>
-    </footer>
-  
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">03 Feb 2012</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/">
+			
+				The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/">The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails</a></h1>
-    
-    
-      <p class="meta">
-        
+	</section>
+</article>
 
 
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">19 Jan 2012</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/">
+			
+				The One With a JSON API Login Using Devise</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
+
+<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you’re using a JSON API?</p>
 
 
+	</section>
+</article>
 
 
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">04 Jan 2012</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/">
+			
+				The One Where I Deliver Ruby to a Non Programmer</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
 
+<p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he’s ecstatic. Now to deliver the command line app to him.</p>
 
-  
-
-
-<time datetime="2012-02-03T11:11:00-06:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The situation: You&#8217;ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don&#8217;t use LESS (because obvs). What do you do? Let&#8217;s make this happen</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/">The One With a JSON API Login Using Devise</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-19T07:28:00-06:00" pubdate data-updated="true">Jan 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you&#8217;re using Devise for authentication.</p>
-
-<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you&#8217;re using a JSON API?</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/">The One Where I Deliver Ruby to a Non Programmer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-04T13:09:00-06:00" pubdate data-updated="true">Jan 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
-
-<p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he&#8217;s ecstatic. Now to deliver the command line app to him.</p>
-
-<p>Except&#8230; Client does not program ruby. Client has the standard Mac setup with ruby 1.8.7 installed with no GCC compiler.</p>
+<p>Except… Client does not program ruby. Client has the standard Mac setup with ruby 1.8.7 installed with no GCC compiler.</p>
 
 <p>So. I created a <a href="https://github.com/jwo/jwo.github.com/wiki/Ruby-1.9.2-install-for-Clients-on-OSX">wiki cheat sheet</a> for client to view (using this blog Github pages). With no xCode setup!</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/">Read on &rarr;</a>
-    </footer>
-  
+
+	</section>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/02/the-one-where-unicorn-does-not-update/">The One Where Unicorn Doesn&#8217;t Update on Deploy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-02T13:27:00-06:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Things that are true:</p>
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">02 Jan 2012</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2012/01/02/the-one-where-unicorn-does-not-update/">
+			
+				The One Where Unicorn Doesn&#8217;t Update on Deploy</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>Things that are true:</p>
 
 <ul>
-<li>We love Github</li>
-<li>Github uses Unicorns</li>
-<li>Github deploys all.the.time</li>
+  <li>We love Github</li>
+  <li>Github uses Unicorns</li>
+  <li>Github deploys all.the.time</li>
 </ul>
-
 
 <p>Therefor: We should be using Unicorn instead of Passenger.</p>
 
-<p>However, my recent switch to unicorn wasn&#8217;t all Unicorns and Rainbows! (pun definitely intended). For me, here&#8217;s what I saw:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/01/02/the-one-where-unicorn-does-not-update/">Read on &rarr;</a>
-    </footer>
-  
+<p>However, my recent switch to unicorn wasn’t all Unicorns and Rainbows! (pun definitely intended). For me, here’s what I saw:</p>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/">The One Where ActiveAdmin and Mongoid Get Along</a></h1>
-    
-    
-      <p class="meta">
-        
+	</section>
+</article>
 
 
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">19 Dec 2011</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/">
+			
+				The One Where ActiveAdmin and Mongoid Get Along</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
+
+	</section>
+</article>
 
 
-
-
-
-
-  
-
-
-<time datetime="2011-12-19T09:18:00-06:00" pubdate data-updated="true">Dec 19<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What&#8217;s a Mongoid to do? Develop your own admin system? As If!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/08/the-one-where-devise-validations-are-customized/">The One Where Devise Validations Are Customized</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-08T20:41:00-06:00" pubdate data-updated="true">Dec 8<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">08 Dec 2011</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2011/12/08/the-one-where-devise-validations-are-customized/">
+			
+				The One Where Devise Validations Are Customized</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails? </p>
 
 <p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
 
-<p>Your problem: Devise validatable hates on this and laughs are your attempts.</p>
+<p>Your problem: Devise validatable hates on this and laughs are your attempts.
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/12/08/the-one-where-devise-validations-are-customized/">Read on &rarr;</a>
-    </footer>
-  
+	</section>
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/">The One With HTML5 Videos Using Zencoder for VideoJS.com</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-07T20:31:00-06:00" pubdate data-updated="true">Dec 7<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Things that are true:</p>
+    <article class="post">
+	
+	<header class="post-header">
+		<span class="post-meta">07 Dec 2011</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/">
+			
+				The One With HTML5 Videos Using Zencoder for VideoJS.com</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>Things that are true:</p>
 
 <ul>
-<li>HTML5 is cool</li>
-<li>HTML5 Videos are Cool</li>
-<li>Getting HTML5 Video formats OMG all of them created &#8230; <em>NOT</em> cool</li>
+  <li>HTML5 is cool</li>
+  <li>HTML5 Videos are Cool</li>
+  <li>Getting HTML5 Video formats OMG all of them created … <em>NOT</em> cool</li>
 </ul>
-
 
 <p><a href="http://videojs.com">VideoJS.com</a> will create an HTML5 embed for you that will render in iOS devices, all the modern browsers, and will fallback to flash for IE 6/7/8 types. However, to get all this goodness, you have to create your video file in 3 different formats:</p>
 
 <ul>
-<li>h.264</li>
-<li>web-m</li>
-<li>Theora</li>
+  <li>h.264</li>
+  <li>web-m</li>
+  <li>Theora</li>
 </ul>
 
+<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What’s a mac fanboy to do?
 
-<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What&#8217;s a mac fanboy to do?</p>
+	</section>
+</article>
+
+<nav class="pagination" role="pagination">
+    
+        <a class="newer-posts" href="/">← Newer Posts</a>
+    
+    <span class="page-number">Page 2 of 2</span>
+    
+</nav>
+  </main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2014 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/">Newer &rarr;</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Ruby off Rails</h1>
-  <p>Online Ruby Course with mentoring, coaching, and collaboration.</p>
-  <a href="https://rubyoffrails.com"><img src="/images/ruby-off-rails.png"/></a>
-  <p>Available now: <a href="https://rubyoffrails.com/">RubyOffRails.com</a></p>
-</section>
-<section>
-  <h1>About Me</h1>
-  <p>I had a BBS in 1990 and created menu systems on my 8088 DOS.</p>
-	<p>I create at <a href="http://comalproductions.com">Comal Productions</a>. <a href="/contact">Contact Me</a>. <a href="https://github.com/jwo/feedback">Ask Me Stuff</a></p>
-</section>
-<section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/">Excitement! I&#8217;m teaching Rails at The Iron Yard Houston</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">Reminder to hand-craft your whenever files</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">RailsBerry rejected my talk and I am happy about it</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">The One Where I Have to Explain Why I Want Diversity in our Field</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/jwo">@jwo</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'jwo',
-            count: 3,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jesse Wolgamott -
-</p>
-
 </footer>
-  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
 
 <script type="text/javascript">
       var disqus_shortname = 'jwo';
@@ -551,46 +282,24 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
 
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
 
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 </body>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: activeadmin | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/activeadmin/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -18,16 +18,14 @@
     <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
     <updated>2011-12-19T09:18:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
-    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What's a Mongoid to do? Develop your own admin system? As If!</p>
+    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
+<!-- more --></p>
 
-<!-- more -->
+<h2 id="first-watch-this-issue">First, Watch this Issue</h2>
 
+<p>There’s already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
 
-<h2>First, Watch this Issue</h2>
-
-<p>There's already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
-
-<h2>Then, Monkey Patch!</h2>
+<h2 id="then-monkey-patch">Then, Monkey Patch!</h2>
 
 <p>Add this code to your config/initializers/active_active_for_mongoid.rb</p>
 
@@ -73,38 +71,37 @@ module ActiveAdmin
 end</code></pre></noscript></div>
 </p>
 
-<p>It's easy to tell what's going on with the code -- ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example,</p>
+<p>It’s easy to tell what’s going on with the code – ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example, </p>
 
-<p>```</p>
-
-<h1>ActiveRecord</h1>
-
-<p>Product.order("published_at DESC").all</p>
-
-<h1>Mongoid</h1>
-
-<p>Product.all(sort: [[ :published_at, :desc ]])
-```</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="comment">#ActiveRecord</span>
+<span class="constant">Product</span>.order(<span class="string"><span class="delimiter">&quot;</span><span class="content">published_at DESC</span><span class="delimiter">&quot;</span></span>).all
+<span class="comment">#Mongoid</span>
+<span class="constant">Product</span>.all(<span class="key">sort</span>: [[ <span class="symbol">:published_at</span>, <span class="symbol">:desc</span> ]])
+</pre></div>
+</div>
+</div>
 
 <p>The mongo queries that get executed look like:</p>
 
-<p><code>
-MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :desc]])
-MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :asc]])
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:desc</span>]])
+<span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:asc</span>]])
+</pre></div>
+</div>
+</div>
 
 <p>Props to <a href="https://github.com/ebeigarts">https://github.com/ebeigarts</a> for the patch. It gets you to at least run with the ball for now.</p>
 
-<h2>Downsides</h2>
+<h2 id="downsides">Downsides</h2>
 
 <ul>
-<li>Filters are disabled</li>
-<li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
-<li>You'll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
+  <li>Filters are disabled</li>
+  <li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
+  <li>You’ll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
 </ul>
 
-
-<h6>Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
+<h6 id="version-disclosure-this-post-was-valid-with-activeadmin-034-mongoid-234-and-rails-3031">Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
 ]]></content>
   </entry>
   

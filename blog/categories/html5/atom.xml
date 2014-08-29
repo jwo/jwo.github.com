@@ -4,7 +4,7 @@
   <title><![CDATA[Category: HTML5 | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/html5/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -21,29 +21,25 @@
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>
-<li>HTML5 is cool</li>
-<li>HTML5 Videos are Cool</li>
-<li>Getting HTML5 Video formats OMG all of them created ... <em>NOT</em> cool</li>
+  <li>HTML5 is cool</li>
+  <li>HTML5 Videos are Cool</li>
+  <li>Getting HTML5 Video formats OMG all of them created … <em>NOT</em> cool</li>
 </ul>
-
 
 <p><a href="http://videojs.com">VideoJS.com</a> will create an HTML5 embed for you that will render in iOS devices, all the modern browsers, and will fallback to flash for IE 6/7/8 types. However, to get all this goodness, you have to create your video file in 3 different formats:</p>
 
 <ul>
-<li>h.264</li>
-<li>web-m</li>
-<li>Theora</li>
+  <li>h.264</li>
+  <li>web-m</li>
+  <li>Theora</li>
 </ul>
 
+<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What’s a mac fanboy to do?
+<!--more--></p>
 
-<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What's a mac fanboy to do?</p>
+<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well – pay as you go, no monthly fees, and it’s who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
 
-<!--more-->
-
-
-<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well -- pay as you go, no monthly fees, and it's who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
-
-<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam.</p>
+<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam. </p>
 
 <p><div><script src='https://gist.github.com/1440139.js'></script>
 <noscript><pre><code>POST https://app.zencoder.com/api/v2/jobs HTTP/1.1
@@ -83,7 +79,7 @@ Content-Type: application/json
 }	</code></pre></noscript></div>
 </p>
 
-<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I've had bad luck converting to HAML for an as-yet undiscovered reason.</p>
+<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I’ve had bad luck converting to HAML for an as-yet undiscovered reason.</p>
 ]]></content>
   </entry>
   

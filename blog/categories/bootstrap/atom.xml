@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bootstrap | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/bootstrap/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -18,59 +18,52 @@
     <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
     <updated>2012-02-03T11:11:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
-    <content type="html"><![CDATA[<p>The situation: You've used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don't use LESS (because obvs). What do you do? Let's make this happen</p>
+    <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 
 <!-- more -->
 
-
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
-    <ul>
-        <li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
-        <li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
-    </ul>
+	<span class="heading">tl;dr</span> 
+	<ul>
+		<li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
+		<li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
+	</ul>
 </div>
 
+<p>Here’s what the site looks like:
+###### Full Resolution
+<img src="https://img.skitch.com/20120203-8745c3xwt1y7d7ccb761rw5xh8.png" alt="Full Resolution" /></p>
 
-<p>Here's what the site looks like:</p>
-
-<h6>Full Resolution</h6>
-
-<p><img src="https://img.skitch.com/20120203-8745c3xwt1y7d7ccb761rw5xh8.png" alt="Full Resolution" /></p>
-
-<h6>Smaller Screen Size (tablet'ish)</h6>
-
+<h6 id="smaller-screen-size-tabletish">Smaller Screen Size (tablet’ish)</h6>
 <p><img src="https://img.skitch.com/20120203-rjfh38jhj2u582ai32gmxnnp7g.png" alt="Tablet Size" /></p>
 
-<h6>iPhone / Mobile size</h6>
-
+<h6 id="iphone--mobile-size">iPhone / Mobile size</h6>
 <p><img src="https://img.skitch.com/20120203-kagxp99s948wc4fphbbypdgrer.png" alt="iPhone Size" /></p>
 
-<h2>How to do these things?</h2>
+<h2 id="how-to-do-these-things">How to do these things?</h2>
 
-<p>It's fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.</p>
+<p>It’s fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.</p>
 
 <p>In your gem file, do these things:</p>
 
-<p><code>
-gem "compass-rails", "&gt;= 0.12"
-gem "bootstrap-sass", "&gt;= 2.0"
-</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre>gem <span class="string"><span class="delimiter">&quot;</span><span class="content">compass-rails</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 0.12</span><span class="delimiter">&quot;</span></span>
+gem <span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap-sass</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 2.0</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
-<p>In your application.scss import bootstrap using sass, not sprockets.</p>
+<p>In your application.scss import bootstrap using sass, not sprockets. </p>
 
-<p><code>
-@import "bootstrap";
+<pre><code>@import "bootstrap";
 @import "bootstrap-responsive";
-</code></p>
+</code></pre>
 
 <p>I wish it were more interesting, but Chris Eppstein made compass drop dead simple to integrate.</p>
 
-<h6>Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.</h6>
+<h6 id="version-disclosure-this-post-worked-with-compass-rails-012-bootstrap-css-20-rails-32-and-bootstrap-sass">Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.</h6>
 
-<h4>UPDATE: updated the command to include bootstrap-responsive. Thanks <a href="http://twitter.com/rubysolo">@rubysolo</a></h4>
+<h4 id="update-updated-the-command-to-include-bootstrap-responsive-thanks-rubysolohttptwittercomrubysolo">UPDATE: updated the command to include bootstrap-responsive. Thanks <a href="http://twitter.com/rubysolo">@rubysolo</a></h4>
 ]]></content>
   </entry>
   

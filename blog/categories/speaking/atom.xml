@@ -4,7 +4,7 @@
   <title><![CDATA[Category: speaking | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/speaking/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -19,98 +19,99 @@
     <updated>2013-03-04T13:12:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it</id>
     <content type="html"><![CDATA[<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
-their 2013 conference. Normally: another "oh well, they must have found really
-great talks to reject mine" and a sigh. Why did I like this rejection email?</p>
+their 2013 conference. Normally: another “oh well, they must have found really
+great talks to reject mine” and a sigh. Why did I like this rejection email?</p>
 
-<h3>RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
+<h3 id="railsberry-gave-me-personalized-actionable-feedback-on-making-my-future-submissions-better">RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
 
 <!-- more -->
 
-
-<p>First, the details about my talk. I've been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
+<p>First, the details about my talk. I’ve been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
 for a year now. I heart Ruby like a hundred &lt;3s
 and think we can show off Ruby more than just showing Rails APIs to developers.</p>
 
 <p>My description of <em>Teaching Ruby without Rails</em></p>
 
-<blockquote><p>What are the essential elements of Ruby that an artisan developer ninja
+<blockquote>
+  <p>What are the essential elements of Ruby that an artisan developer ninja
 developer needs to understand before they can see the beauty of Ruby? After all:
 there was Ruby before there was Rails; There is Ruby outside of Rails.</p>
 
-<p>Let's cover examples of how to teach Blocks, Send, Class Eval, and Modules to
+  <p>Let’s cover examples of how to teach Blocks, Send, Class Eval, and Modules to
 developers who can develop, but not in Ruby land (yet). And, how these 4
-features of Ruby can enlighten Rails and DSLs.</p></blockquote>
+features of Ruby can enlighten Rails and DSLs.</p>
+</blockquote>
 
-<p>In the 'Why should we choose you' section, I added:</p>
+<p>In the ‘Why should we choose you’ section, I added:</p>
 
-<blockquote><p>Honestly? I don't know if you should... I'm a pretty good speaker and people
+<blockquote>
+  <p>Honestly? I don’t know if you should… I’m a pretty good speaker and people
 have been way supportive of my teaching Ruby without the Rails.</p>
 
-<p>How about why you SHOULDN'T choose me, eh?</p>
+  <p>How about why you SHOULDN’T choose me, eh?</p>
 
-<ul>
-<li>I'm a white male from the US.</li>
-<li>I'm not an A-list Ruby developer</li>
-<li>I probably won't get someone to buy tickets that wouldn't buy it already</li>
-</ul>
+  <ul>
+    <li>I’m a white male from the US.</li>
+    <li>I’m not an A-list Ruby developer</li>
+    <li>I probably won’t get someone to buy tickets that wouldn’t buy it already</li>
+  </ul>
 
+  <p>However, some things that MAY tip the scales in my favor:</p>
 
-<p>However, some things that MAY tip the scales in my favor:</p>
-
-<ul>
-<li>I don't use like a billionty meme's in my talks</li>
-<li>I'm decently funny and hopefully inspiring</li>
-<li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
-</ul>
+  <ul>
+    <li>I don’t use like a billionty meme’s in my talks</li>
+    <li>I’m decently funny and hopefully inspiring</li>
+    <li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
+  </ul>
 </blockquote>
 
 <p>I also included a link to my <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Ucma74yqH6w">Rails Ignite 2012 talk</a>.
 I submitted and waited. In late January, I received an email letting me know I
-wasn't selected. It was your standard rejection letter.</p>
+wasn’t selected. It was your standard rejection letter.</p>
 
-<p>OK, I thought -- and didn't buy my plane ticket.  I was pretty surprised when
+<p>OK, I thought – and didn’t buy my plane ticket.  I was pretty surprised when
 I received the explanation letter on March 3rd. Here
 it is:</p>
 
-<h3>The Letter from Michael @ RailsBerry</h3>
+<h3 id="the-letter-from-michael--railsberry">The Letter from Michael @ RailsBerry</h3>
 
-<blockquote><p>First of all thank you for taking your time and submitting proposal.
+<blockquote>
+  <p>First of all thank you for taking your time and submitting proposal.
 We have received more than 90 and had to select only 7 of them.
-It wasn't an easy task and I'd like to give you a little feedback
-on why we didn't choose ones that you had submitted.</p>
+It wasn’t an easy task and I’d like to give you a little feedback
+on why we didn’t choose ones that you had submitted.</p>
 
-<p>You've submitted :
+  <p>You’ve submitted :
   - Teaching Ruby without Rails</p>
 
-<p>  Hmm tough call. You've convinced us that you are a good speaker.
-  However the talk proposal lacked the "wow" factor and might not fit into 20
+  <p>Hmm tough call. You’ve convinced us that you are a good speaker.
+  However the talk proposal lacked the “wow” factor and might not fit into 20
   minutes.</p>
 
-<p>  The talk sounds kind of interesting and I'm sure it can get accepted by plenty
-  of conferences.</p></blockquote>
+  <p>The talk sounds kind of interesting and I’m sure it can get accepted by plenty
+  of conferences.</p>
+</blockquote>
 
-<h3>What I like about the rejection email</h3>
+<h3 id="what-i-like-about-the-rejection-email">What I like about the rejection email</h3>
 
-<h5>My talk would be too long</h5>
-
-<p>I missed this completely, 20 minutes is a good speech length, not enough time
+<h5 id="my-talk-would-be-too-long">My talk would be too long</h5>
+<p>I missed this completely, 20 minutes is a good speech length, not enough time 
 to go over what I said I would).</p>
 
-<h4>My talk wouldn't <em>wow</em> people</h4>
-
-<p>True enough, reading back over it. I should have submitted something like
-'A Lambda, a Proc, and a Block walk into a bar'... and talk about how their
+<h4 id="my-talk-wouldnt-wow-people">My talk wouldn’t <em>wow</em> people</h4>
+<p>True enough, reading back over it. I should have submitted something like 
+‘A Lambda, a Proc, and a Block walk into a bar’… and talk about how their 
 similarities and differences).</p>
 
-<h4>My speaking qualifications are there</h4>
+<h4 id="my-speaking-qualifications-are-there">My speaking qualifications are there</h4>
+<p>I’m sending enough information in my submissions to convey I’m decent on stage)</p>
 
-<p>I'm sending enough information in my submissions to convey I'm decent on stage)</p>
+<h3 id="suggestions-for-conference-organizers">Suggestions for Conference Organizers</h3>
 
-<h3>Suggestions for Conference Organizers</h3>
+<p>Feedback like this would be very very awesome to send out to people who asked 
+to speak at your conferences. Brutal honesty is best: otherwise the speakers 
+won’t know what to change to get better.</p>
 
-<p>Feedback like this would be very very awesome to send out to people who asked
-to speak at your conferences. Brutal honesty is best: otherwise the speakers
-won't know what to change to get better.</p>
 ]]></content>
   </entry>
   

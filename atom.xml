@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-05-22T10:47:21-05:00</updated>
+  <updated>2014-08-29T09:47:27-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -18,61 +18,60 @@
     <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/"/>
     <updated>2014-05-05T10:28:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston</id>
-    <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It&#8217;s been so awesome that I want more. I want to
+    <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It’s been so awesome that I want more. I want to 
 meet the students face to face, and help change their lives for the better.  To
-make that happen, I&#8217;m going to teach Rails at Houston&#8217;s first open-source stack code school.
+make that happen, I’m going to teach Rails at Houston’s first open-source stack code school.
 The Iron Yard Houston. Classes start June 2nd.</p>
 
 <p>In March, I flew to Greenville, South Carolina, to experience a course first
-hand. The cohorts were 8 weeks into their JavaScript course, and amazed me with
+hand. The cohorts were 8 weeks into their JavaScript course, and amazed me with 
 their abilities. This was the real deal (discussing how to make
 Backbone models more maintainable). The Iron Yard came to Houston, and asked me
 to teach the Rails Engineering course. I kept looking for a reason to say no
-&#8230;</p>
+… </p>
 
 <!-- more -->
 
-
-<p>The Iron Yard&#8217;s is student focused to its core.  Their formula is not only badass
+<p>The Iron Yard’s is student focused to its core.  Their formula is not only badass 
 but is also designed for optimal awesome for the students. Reasonable rates, fostering community
-involvement, mock interviews, and a 100% guarantee. I had no more &#8220;no&#8217;s&#8221; to give.</p>
+involvement, mock interviews, and a 100% guarantee. I had no more “no’s” to give.</p>
 
-<p>I&#8217;m teaching a Ruby heavy Rails Engineering course. <a href="http://mkeas.org/#/">Matt Keas</a> is leading
+<p>I’m teaching a Ruby heavy Rails Engineering course. <a href="http://mkeas.org/#/">Matt Keas</a> is leading
 the front end course (JavaScripts).</p>
 
 <p>My goal? Give people the opportunity to learn how to have a much happier
-career. All while using he happiest stack I&#8217;ve encountered yet: Rails+. Rails+:
-Rails as the API backend or Rails as the prototype. We&#8217;ll focus heavily on Ruby,
-only getting into Rails after we&#8217;ve created console and sinatra apps.
+career. All while using he happiest stack I’ve encountered yet: Rails+. Rails+: 
+Rails as the API backend or Rails as the prototype. We’ll focus heavily on Ruby,
+only getting into Rails after we’ve created console and sinatra apps. 
 Stretch goal: EmberJS.</p>
 
 <p>And the coolest thing? Instructors send a weekly recap of what their cohorts
 are doing. Awesomely, the other instructors believe as I do students should learn Ruby.
-After all, Rails isn&#8217;t magic, it&#8217;s Ruby.</p>
+After all, Rails isn’t magic, it’s Ruby.</p>
 
 <ul>
-<li><a href="http://theironyard.com/academy/rails-engineering/">About the Rails Curriculum</a></li>
-<li><a href="http://theironyard.com/academy/rails-engineering/faq/">FAQ</a></li>
-<li><a href="https://theironyard.typeform.com/to/BYIK2p">Sign Up</a></li>
-<li><a href="https://www.hipchat.com/gVQZ3qwbv">Join the chatroom</a></li>
+  <li><a href="http://theironyard.com/academy/rails-engineering/">About the Rails Curriculum</a></li>
+  <li><a href="http://theironyard.com/academy/rails-engineering/faq/">FAQ</a></li>
+  <li><a href="https://theironyard.typeform.com/to/BYIK2p">Sign Up</a></li>
+  <li><a href="https://www.hipchat.com/gVQZ3qwbv">Join the chatroom</a></li>
 </ul>
 
+<h3 id="techsas-free-coding-event-houston-may-10th-2014">TechSas: Free Coding Event (Houston, May 10th, 2014)</h3>
 
-<h3>TechSas: Free Coding Event (Houston, May 10th, 2014)</h3>
-
-<p>Since everything is bigger in Texas, we&#8217;re hosting a free coding event,
-<a href="http://techsas.co/">Tech-sas</a>. We&#8217;ve sold out our venue, which is pretty
+<p>Since everything is bigger in Texas, we’re hosting a free coding event, 
+<a href="http://techsas.co/">Tech-sas</a>. We’ve sold out our venue, which is pretty
 freaking awesome. Over 200 people, both with some coding experience and total
 beginners, will learn how to build awesome things. (Free). (Soldout). ( :O )</p>
 
-<h3>Final Slug of Awesomeness? Free Coding for Kids (Scratch)</h3>
+<h3 id="final-slug-of-awesomeness-free-coding-for-kids-scratch">Final Slug of Awesomeness? Free Coding for Kids (Scratch)</h3>
 
-<p>Volunteering at the Austin KidsCodeCamp at RailsConf (Austin) was a changing
+<p>Volunteering at the Austin KidsCodeCamp at RailsConf (Austin) was a changing 
 experience. From 8-15 years old, kids were learning to program using Scratch,
-blew their minds wide open. Especially Robots &#8211;  So much excitement, very potential.</p>
+blew their minds wide open. Especially Robots –  So much excitement, very potential.</p>
 
 <p>The Iron Yard has (free) code schools for kids all over the
 <a href="http://theironyard.com/academy/scratch">south and southeast</a>.</p>
+
 ]]></content>
   </entry>
   
@@ -88,50 +87,34 @@ too hard; it rebooted our server for us.</p>
 <p>My initial reaction: Increase the memories!</p>
 
 <p>I looked deeper into the problem, and along with some colleagues, discovered
-that at midnight our server was kicking off 9 different processes at the same
+that at midnight our server was kicking off 9 different processes at the same 
 time. 9x Rails is just about 8x too many.</p>
 
 <!-- more -->
 
-
 <p>My whenever schedule (names changed to reflect tex-mex dishes)</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:output</span><span class="p">,</span> <span class="s1">&#39;log/cron.log&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">job_type</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;12am&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:enchiladas&#39;</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:fajitas&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">minute</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:soft_tacos&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">every</span> <span class="mi">12</span><span class="o">.</span><span class="n">hours</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:tortilla_soup&#39;</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:grande_combo_de_tejas&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>set <span class="symbol">:output</span>, <span class="string"><span class="delimiter">'</span><span class="content">log/cron.log</span><span class="delimiter">'</span></span>
 
+job_type <span class="symbol">:rake</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output</span><span class="delimiter">&quot;</span></span>
+
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">12am</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:enchiladas</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:fajitas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+
+every <span class="integer">1</span>.minute <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:soft_tacos</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+
+every <span class="integer">12</span>.hours <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:tortilla_soup</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:grande_combo_de_tejas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>Seems pretty standard for how I organize and schedule tasks. But each of these
 would be (and were) running at midnight, since they all intersected that particular
@@ -141,87 +124,65 @@ intersection of space and time.</p>
 requirements accomplished:</p>
 
 <ol>
-<li>Order soft tacos pretty often</li>
-<li>Get the other dishes one or twice a day</li>
+  <li>Order soft tacos pretty often</li>
+  <li>Get the other dishes one or twice a day</li>
 </ol>
 
+<p>The timing, other than that, didn’t matter. And in your apps, it probably
+doesn’t matter that often either.</p>
 
-<p>The timing, other than that, didn&#8217;t matter. And in your apps, it probably
-doesn&#8217;t matter that often either.</p>
+<p>An updated “Hand Crafted, Artisan Tex Mex Whenever File”</p>
 
-<p>An updated &#8220;Hand Crafted, Artisan Tex Mex Whenever File&#8221;</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>set <span class="symbol">:output</span>, <span class="string"><span class="delimiter">'</span><span class="content">log/cron.log</span><span class="delimiter">'</span></span>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">set</span> <span class="ss">:output</span><span class="p">,</span> <span class="s1">&#39;log/cron.log&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">job_type</span> <span class="ss">:rake</span><span class="p">,</span> <span class="s2">&quot;cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="s1">&#39;12am&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:enchiladas&#39;</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;margarita:fajitas&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># skip the top of the hour. Every 5 minutes</span>
-</span><span class='line'><span class="n">every</span> <span class="s1">&#39;5,10,15,20,25,30,35,40,45,50,55 * * * *&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:soft_tacos&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">every</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="ss">:at</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;3am&#39;</span><span class="p">,</span> <span class="s1">&#39;3pm&#39;</span><span class="o">]</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">rake</span> <span class="s1">&#39;guacamole:tortilla_soup guacamole:grande_combo_de_tejas&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+job_type <span class="symbol">:rake</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">cd :path &amp;&amp; RAILS_ENV=:environment bundle exec rake :task :output</span><span class="delimiter">&quot;</span></span>
 
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">12am</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:enchiladas</span><span class="delimiter">'</span></span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">margarita:fajitas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+
+<span class="comment"># skip the top of the hour. Every 5 minutes</span>
+every <span class="string"><span class="delimiter">'</span><span class="content">5,10,15,20,25,30,35,40,45,50,55 * * * *</span><span class="delimiter">'</span></span> <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:soft_tacos</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+
+every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; [<span class="string"><span class="delimiter">'</span><span class="content">3am</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">3pm</span><span class="delimiter">'</span></span>] <span class="keyword">do</span>
+  rake <span class="string"><span class="delimiter">'</span><span class="content">guacamole:tortilla_soup guacamole:grande_combo_de_tejas</span><span class="delimiter">'</span></span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>What did this gain us?</p>
 
 <ul>
-<li>At midnight, only 2 tasks will run.</li>
-<li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they&#8217;ll now run sequentially (saves on the RAM)</li>
-<li><code>soft_tacos</code> skips the midnight run</li>
+  <li>At midnight, only 2 tasks will run.</li>
+  <li>Instead of <code>tortilla_soup</code> and <code>grande_combo_de_tejas</code> running at the same time, they’ll now run sequentially (saves on the RAM) </li>
+  <li><code>soft_tacos</code> skips the midnight run</li>
 </ul>
-
 
 <p>Reminder: Hand craft your whenever cron jobs. And to test the output: <code>whenever</code></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">0</span> <span class="mi">0</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="mi">0</span> <span class="mi">0</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">55</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="mi">0</span> <span class="mi">3</span><span class="p">,</span><span class="mi">15</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="sr">/bin/</span><span class="n">bash</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas &gt;&gt; log/cron.log 2&gt;&amp;1&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="integer">0</span> <span class="integer">0</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:enchiladas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
 
+<span class="integer">0</span> <span class="integer">0</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake margarita:fajitas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
+
+<span class="integer">5</span>,<span class="integer">10</span>,<span class="integer">15</span>,<span class="integer">20</span>,<span class="integer">25</span>,<span class="integer">30</span>,<span class="integer">35</span>,<span class="integer">40</span>,<span class="integer">45</span>,<span class="integer">50</span>,<span class="integer">55</span> * * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:start_guacamole &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
+
+<span class="integer">0</span> <span class="integer">3</span>,<span class="integer">15</span> * * * <span class="regexp"><span class="delimiter">/</span><span class="content">bin</span><span class="delimiter">/</span></span>bash -l -c <span class="string"><span class="delimiter">'</span><span class="content">cd /Users/jwo/Projects/texmex &amp;&amp; RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas &gt;&gt; log/cron.log 2&gt;&amp;1</span><span class="delimiter">'</span></span>
+</pre></div>
+</div>
+</div>
 
 <p>More on Cron and whenever:</p>
 
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
-<li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
-<li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Cron">Cron</a></li>
+  <li><a href="http://railscasts.com/episodes/164-cron-in-ruby">Cron in Ruby</a></li>
+  <li><a href="https://github.com/javan/whenever">Whenever gem</a></li>
 </ul>
 
 ]]></content>
@@ -233,98 +194,99 @@ doesn&#8217;t matter that often either.</p>
     <updated>2013-03-04T13:12:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it</id>
     <content type="html"><![CDATA[<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
-their 2013 conference. Normally: another &#8220;oh well, they must have found really
-great talks to reject mine&#8221; and a sigh. Why did I like this rejection email?</p>
+their 2013 conference. Normally: another “oh well, they must have found really
+great talks to reject mine” and a sigh. Why did I like this rejection email?</p>
 
-<h3>RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
+<h3 id="railsberry-gave-me-personalized-actionable-feedback-on-making-my-future-submissions-better">RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
 
 <!-- more -->
 
-
-<p>First, the details about my talk. I&#8217;ve been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
+<p>First, the details about my talk. I’ve been teaching <a href="http://rubyoffrails">Ruby off Rails</a>
 for a year now. I heart Ruby like a hundred &lt;3s
 and think we can show off Ruby more than just showing Rails APIs to developers.</p>
 
 <p>My description of <em>Teaching Ruby without Rails</em></p>
 
-<blockquote><p>What are the essential elements of Ruby that an artisan developer ninja
+<blockquote>
+  <p>What are the essential elements of Ruby that an artisan developer ninja
 developer needs to understand before they can see the beauty of Ruby? After all:
 there was Ruby before there was Rails; There is Ruby outside of Rails.</p>
 
-<p>Let&#8217;s cover examples of how to teach Blocks, Send, Class Eval, and Modules to
+  <p>Let’s cover examples of how to teach Blocks, Send, Class Eval, and Modules to
 developers who can develop, but not in Ruby land (yet). And, how these 4
-features of Ruby can enlighten Rails and DSLs.</p></blockquote>
+features of Ruby can enlighten Rails and DSLs.</p>
+</blockquote>
 
-<p>In the &#8216;Why should we choose you&#8217; section, I added:</p>
+<p>In the ‘Why should we choose you’ section, I added:</p>
 
-<blockquote><p>Honestly? I don&#8217;t know if you should&#8230; I&#8217;m a pretty good speaker and people
+<blockquote>
+  <p>Honestly? I don’t know if you should… I’m a pretty good speaker and people
 have been way supportive of my teaching Ruby without the Rails.</p>
 
-<p>How about why you SHOULDN&#8217;T choose me, eh?</p>
+  <p>How about why you SHOULDN’T choose me, eh?</p>
 
-<ul>
-<li>I&#8217;m a white male from the US.</li>
-<li>I&#8217;m not an A-list Ruby developer</li>
-<li>I probably won&#8217;t get someone to buy tickets that wouldn&#8217;t buy it already</li>
-</ul>
+  <ul>
+    <li>I’m a white male from the US.</li>
+    <li>I’m not an A-list Ruby developer</li>
+    <li>I probably won’t get someone to buy tickets that wouldn’t buy it already</li>
+  </ul>
 
+  <p>However, some things that MAY tip the scales in my favor:</p>
 
-<p>However, some things that MAY tip the scales in my favor:</p>
-
-<ul>
-<li>I don&#8217;t use like a billionty meme&#8217;s in my talks</li>
-<li>I&#8217;m decently funny and hopefully inspiring</li>
-<li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
-</ul>
+  <ul>
+    <li>I don’t use like a billionty meme’s in my talks</li>
+    <li>I’m decently funny and hopefully inspiring</li>
+    <li>I like &lt;3 tacos, Ruby, and Whiskey.</li>
+  </ul>
 </blockquote>
 
 <p>I also included a link to my <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Ucma74yqH6w">Rails Ignite 2012 talk</a>.
 I submitted and waited. In late January, I received an email letting me know I
-wasn&#8217;t selected. It was your standard rejection letter.</p>
+wasn’t selected. It was your standard rejection letter.</p>
 
-<p>OK, I thought &#8211; and didn&#8217;t buy my plane ticket.  I was pretty surprised when
+<p>OK, I thought – and didn’t buy my plane ticket.  I was pretty surprised when
 I received the explanation letter on March 3rd. Here
 it is:</p>
 
-<h3>The Letter from Michael @ RailsBerry</h3>
+<h3 id="the-letter-from-michael--railsberry">The Letter from Michael @ RailsBerry</h3>
 
-<blockquote><p>First of all thank you for taking your time and submitting proposal.
+<blockquote>
+  <p>First of all thank you for taking your time and submitting proposal.
 We have received more than 90 and had to select only 7 of them.
-It wasn&#8217;t an easy task and I&#8217;d like to give you a little feedback
-on why we didn&#8217;t choose ones that you had submitted.</p>
+It wasn’t an easy task and I’d like to give you a little feedback
+on why we didn’t choose ones that you had submitted.</p>
 
-<p>You&#8217;ve submitted :
+  <p>You’ve submitted :
   - Teaching Ruby without Rails</p>
 
-<p>  Hmm tough call. You&#8217;ve convinced us that you are a good speaker.
-  However the talk proposal lacked the &#8220;wow&#8221; factor and might not fit into 20
+  <p>Hmm tough call. You’ve convinced us that you are a good speaker.
+  However the talk proposal lacked the “wow” factor and might not fit into 20
   minutes.</p>
 
-<p>  The talk sounds kind of interesting and I&#8217;m sure it can get accepted by plenty
-  of conferences.</p></blockquote>
+  <p>The talk sounds kind of interesting and I’m sure it can get accepted by plenty
+  of conferences.</p>
+</blockquote>
 
-<h3>What I like about the rejection email</h3>
+<h3 id="what-i-like-about-the-rejection-email">What I like about the rejection email</h3>
 
-<h5>My talk would be too long</h5>
-
-<p>I missed this completely, 20 minutes is a good speech length, not enough time
+<h5 id="my-talk-would-be-too-long">My talk would be too long</h5>
+<p>I missed this completely, 20 minutes is a good speech length, not enough time 
 to go over what I said I would).</p>
 
-<h4>My talk wouldn&#8217;t <em>wow</em> people</h4>
-
-<p>True enough, reading back over it. I should have submitted something like
-&#8216;A Lambda, a Proc, and a Block walk into a bar&#8217;&#8230; and talk about how their
+<h4 id="my-talk-wouldnt-wow-people">My talk wouldn’t <em>wow</em> people</h4>
+<p>True enough, reading back over it. I should have submitted something like 
+‘A Lambda, a Proc, and a Block walk into a bar’… and talk about how their 
 similarities and differences).</p>
 
-<h4>My speaking qualifications are there</h4>
+<h4 id="my-speaking-qualifications-are-there">My speaking qualifications are there</h4>
+<p>I’m sending enough information in my submissions to convey I’m decent on stage)</p>
 
-<p>I&#8217;m sending enough information in my submissions to convey I&#8217;m decent on stage)</p>
+<h3 id="suggestions-for-conference-organizers">Suggestions for Conference Organizers</h3>
 
-<h3>Suggestions for Conference Organizers</h3>
+<p>Feedback like this would be very very awesome to send out to people who asked 
+to speak at your conferences. Brutal honesty is best: otherwise the speakers 
+won’t know what to change to get better.</p>
 
-<p>Feedback like this would be very very awesome to send out to people who asked
-to speak at your conferences. Brutal honesty is best: otherwise the speakers
-won&#8217;t know what to change to get better.</p>
 ]]></content>
   </entry>
   
@@ -333,129 +295,112 @@ won&#8217;t know what to change to get better.</p>
     <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
     <updated>2013-02-07T11:18:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
-    <content type="html"><![CDATA[<h2>Ever had a set of tasks in Ruby take too long?</h2>
+    <content type="html"><![CDATA[<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
-<p>We&#8217;ve all been there &#8211; you have code that needs to be run, and it&#8217;s taking forever. You wish there was a way to speed things along, but you can&#8217;t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
+<p>We’ve all been there – you have code that needs to be run, and it’s taking forever. You wish there was a way to speed things along, but you can’t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
 
-<h2>Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
-
-<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It&#8217;s an actor based implementation, but all you <em>need</em> to know is that it&#8217;s awesome. You can process an array of things in parallel, and continue when it&#8217;s complete.</p>
+<h2 id="worry-not-celluloid-is-here-and-celluloid-pmap-is-an-easy-way-to-get-started">Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
+<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It’s an actor based implementation, but all you <em>need</em> to know is that it’s awesome. You can process an array of things in parallel, and continue when it’s complete.</p>
 
 <!-- more -->
 
+<p>Let’s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
 
-<p>Let&#8217;s say you started with the task to see which servers are alive and which are not-so-much-alive:</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>servers = <span class="constant">Server</span>.all.map <span class="keyword">do</span> |server|
+  server.status = check_status(server) 
+<span class="keyword">end</span>
+<span class="comment"># do something with the non-responsive servers</span>
+</pre></div>
+</div>
+</div>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">servers</span> <span class="o">=</span> <span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">server</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">check_status</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c1"># do something with the non-responsive servers</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So this would map over all servers, and make a network call to check if it&#8217;s alive.</p>
+<p>So this would map over all servers, and make a network call to check if it’s alive.</p>
 
 <p>In a normal non-parallel world, if each status call would take 0.1 seconds, then 10 servers would take 1 second, and 10000 servers would take 1000 seconds. Sub-optimal.</p>
 
-<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future&#8217;s for each element in the array. The pmap will wait until the value is complete before returning, and we&#8217;ll wait for them all to finish before continuing.</p>
+<p>If you execute them in parallel, then goodness happens. Under the hood, celluloid-pmap uses Celluloid::Future’s for each element in the array. The pmap will wait until the value is complete before returning, and we’ll wait for them all to finish before continuing.</p>
 
 <p>That same example in parallel would look:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Server</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
-</span><span class='line'>   <span class="c1">#… same code here</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="constant">Server</span>.all.pmap <span class="keyword">do</span> |user|
+   <span class="comment">#… same code here</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
+<h2 id="parallelization-cuts-processing-time-to-your-slowest-item">Parallelization cuts processing time to your slowest item</h2>
 
-<h2>Parallelization cuts processing time to your slowest item</h2>
-
-<p>Let&#8217;s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it&#8217;s complete. This is a great case for parallel processing since you&#8217;ll be waiting on:</p>
+<p>Let’s say you need to create a PDF report for a set of users, store them at S3, and download them for you to give to your users when it’s complete. This is a great case for parallel processing since you’ll be waiting on:</p>
 
 <ul>
-<li>wkhtmlpdf to convert HTML to PDF</li>
-<li>fog to upload PDF to S3</li>
-<li>curl to download PDF from S3 for you</li>
+  <li>wkhtmlpdf to convert HTML to PDF</li>
+  <li>fog to upload PDF to S3</li>
+  <li>curl to download PDF from S3 for you</li>
 </ul>
-
 
 <p>With the example below, your total processing time gets cut to the slowest report generated/uploaded/downloaded.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;email1@example.com&quot;</span><span class="p">,</span> <span class="s2">&quot;email2@example.com&quot;</span><span class="o">].</span><span class="n">pmap</span> <span class="k">do</span> <span class="o">|</span><span class="n">email</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email!</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">CreatesReports</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">generate_reports</span>
-</span><span class='line'>  <span class="n">user</span><span class="o">.</span><span class="n">reports</span><span class="o">.</span><span class="n">each</span><span class="p">{</span><span class="o">|</span><span class="n">report</span><span class="o">|</span> <span class="sb">`curl -o </span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="sb"> </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">report</span><span class="o">.</span><span class="n">pdf</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="se">\&quot;</span><span class="sb">`</span><span class="p">}</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;reports ready for </span><span class="si">#{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Everybody&#39;s done!&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre>    [<span class="string"><span class="delimiter">&quot;</span><span class="content">email1@example.com</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">email2@example.com</span><span class="delimiter">&quot;</span></span>].pmap <span class="keyword">do</span> |email|
+      user = <span class="constant">User</span>.find_by_email!(email)
+      <span class="constant">CreatesReports</span>.new(user).generate_reports
+      user.reports.each{|report| <span class="shell"><span class="delimiter">`</span><span class="content">curl -o </span><span class="inline"><span class="inline-delimiter">#{</span>report.filename<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="char">\&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report.pdf.url<span class="inline-delimiter">}</span></span><span class="char">\&quot;</span><span class="delimiter">`</span></span>}
+      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">reports ready for </span><span class="inline"><span class="inline-delimiter">#{</span>email<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+    <span class="keyword">end</span>
+    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Everybody's done!</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
 <p>Other examples of usages:</p>
 
 <ul>
-<li>Searching Google and Amazon and What</li>
-<li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
-<li>Deleting of files at once</li>
-<li>Making database calls in parallel</li>
+  <li>Searching Google and Amazon and What</li>
+  <li>Scheduling of Sidekiq jobs in parallel to speed things up</li>
+  <li>Deleting of files at once</li>
+  <li>Making database calls in parallel</li>
 </ul>
 
-
-<h2>Make sure to obey your database connection maximums</h2>
+<h2 id="make-sure-to-obey-your-database-connection-maximums">Make sure to obey your database connection maximums</h2>
 
 <p>If you are iterating over a set of documents and calling any resource that has a limited connection set, or a rate limit, you might run into a Connection Pool problem. That is, you might try connect with 20 connections and your default pool size is 5. What can be done?</p>
 
 <p>celluloid-pmap uses a Celluoid Supervisor to set a maximum number of actors working at the same time. So if you can only connect to 5 postgres users at the same time, you can set that like so:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">users</span><span class="o">.</span><span class="n">pmap</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="o">.</span><span class="n">say_anything!</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>users.pmap(<span class="integer">5</span>) {|user| user.say_anything! }
+</pre></div>
+</div>
+</div>
 
+<p>The (5) argument will say it’s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
 
-<p>The (5) argument will say it&#8217;s OK to use as many as 5 actors at once. By default, celluloid-pmap will default to the number of cores your machine has.</p>
-
-<h2>Also check out Celluloid</h2>
+<h2 id="also-check-out-celluloid">Also check out Celluloid</h2>
 
 <p>I started adding code into a Rails initializer from <a href="https://github.com/celluloid/celluloid/blob/master/examples/simple_pmap.rb">Celluloid Simple Pmap</a> example. It went like this:</p>
 
 <p>config/initializers/celluloid-pmap.rb</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Enumerable</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">pmap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">futures</span> <span class="o">=</span> <span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="ss">Celluloid</span><span class="p">:</span><span class="ss">:Future</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>    <span class="n">futures</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">future</span><span class="o">|</span> <span class="n">future</span><span class="o">.</span><span class="n">value</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">module</span> <span class="class">Enumerable</span>
+  <span class="keyword">def</span> <span class="function">pmap</span>(&amp;block)
+    futures = map { |elem| <span class="constant">Celluloid</span>::<span class="constant">Future</span>.new(elem, &amp;block) }
+    futures.map { |future| future.value }
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>This worked very well, but I found I was adding it to every.single.project. So I worked up an example to have a Supervisor to help with connection pooling and rate limiting, and bam… a gem was born.</p>
 
-<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it&#8217;s as simple as you&#8217;d think:</p>
+<p>Installation and configuration is over at <a href="https://github.com/jwo/celluloid-pmap">https://github.com/jwo/celluloid-pmap</a>. But it’s as simple as you’d think:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="n">install</span> <span class="n">celluloid</span><span class="o">-</span><span class="n">pmap</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>gem install celluloid-pmap
+</code></pre>
 ]]></content>
   </entry>
   
@@ -467,26 +412,26 @@ won&#8217;t know what to change to get better.</p>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
 
-<blockquote><p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p></blockquote>
+<blockquote>
+  <p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p>
+</blockquote>
 
 <p>This comes after:</p>
 
 <ul>
-<li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a></li>
-<li>Sarah Parmenter (whom I&#8217;ve never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
+  <li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a>  </li>
+  <li>Sarah Parmenter (whom I’ve never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
 </ul>
 
+<p>And this is in the last week. </p>
 
-<p>And this is in the last week.</p>
-
-<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn&#8217;t going to help, and c) it&#8217;s the human thing to do.</p>
+<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn’t going to help, and c) it’s the human thing to do.</p>
 
 <!-- more -->
 
+<h2 id="it-makes-economic-sense">It Makes Economic Sense</h2>
 
-<h2>It Makes Economic Sense</h2>
-
-<p>Software Development pays very well, and is in desperate need of qualified developers. The more highly paying jobs that exist increase the amount of money available to be spent on subscription codecasts, ebooks, and training materials. If there&#8217;s more money in the system, there&#8217;s more opportunities for <em>everyone</em> to take home more money. <a href="http://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats">A rising tide lifts all boats</a>.</p>
+<p>Software Development pays very well, and is in desperate need of qualified developers. The more highly paying jobs that exist increase the amount of money available to be spent on subscription codecasts, ebooks, and training materials. If there’s more money in the system, there’s more opportunities for <em>everyone</em> to take home more money. <a href="http://en.wikipedia.org/wiki/A_rising_tide_lifts_all_boats">A rising tide lifts all boats</a>.</p>
 
 <p>Given that rather simple assertion, it does not make economic sense to drive people out of our industry. We should be welcoming people and making changes to our processes to become happier and more productive. We should be going out of our way to have a society that anyone can join if it interests them. We do not do this as an industry, and that does not make macro or micro-economic sense.</p>
 
@@ -494,46 +439,54 @@ won&#8217;t know what to change to get better.</p>
 
 <p><a href="http://www.thegcircle.com/blog/2012/when-women-make-money-it-helps-everyone/">When Women Make More Money, Everybody Wins</a></p>
 
-<h2>It Will Result in Better Software</h2>
+<h2 id="it-will-result-in-better-software">It Will Result in Better Software</h2>
 
-<p>Software gets better when we can break outside of our mental models and solve problems using a different mindset. What a fully functioning group needs is not 10 &#8220;rockstars&#8221; who think the same &#8211; that tends to lead to group think and programs that solve the wrong problems.</p>
+<p>Software gets better when we can break outside of our mental models and solve problems using a different mindset. What a fully functioning group needs is not 10 “rockstars” who think the same – that tends to lead to group think and programs that solve the wrong problems.</p>
 
 <p>What groups need is diversity in world views, shared experiences, and cultural references. If you want to build an app that only people in your specific niche in the world truly get, you should eschew diversity. If you want to have as many people in the world use your software, you should embrace diversity.</p>
 
 <p><a href="http://www.fastcodesign.com/1665597/how-women-are-leading-the-effort-to-make-robots-more-humane">Women are making robots more humane</a></p>
 
-<h2>It&#8217;s the human thing to do</h2>
+<h2 id="its-the-human-thing-to-do">It’s the human thing to do</h2>
 
 <p>Things I believe in, an incomplete list:</p>
 
 <ul>
-<li>It is wrong to treat someone differently because of {skin-color|gender|sexuality|anything}.</li>
-<li>Gender, skin-color, and sexuality has no impact on the creative or analytical skillset</li>
-<li>There is no basis that men are better at software development than women (see the <a href="http://en.wikipedia.org/wiki/Grace_Hopper">inventor of the compiler</a>) [1]]</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>It is wrong to treat someone differently because of {skin-color</td>
+          <td>gender</td>
+          <td>sexuality</td>
+          <td>anything}.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Gender, skin-color, and sexuality has no impact on the creative or analytical skillset</li>
+  <li>There is no basis that men are better at software development than women (see the <a href="http://en.wikipedia.org/wiki/Grace_Hopper">inventor of the compiler</a>) [1]]</li>
 </ul>
 
+<p>I believe it is no longer acceptable to sit back and say the status quo is good enough. Because it is not good enough. From healthcare to income inequality to a growing police state – the status quo is not good enough and we should not be defending it.</p>
 
-<p>I believe it is no longer acceptable to sit back and say the status quo is good enough. Because it is not good enough. From healthcare to income inequality to a growing police state &#8211; the status quo is not good enough and we should not be defending it.</p>
+<p>Think of how people were treated fifty years ago — we’ve changed since then — but think about how you consider people who defended the status quo in the 1960s (my assumption here is that you do not think fondly of them).  </p>
 
-<p>Think of how people were treated fifty years ago &#8212; we&#8217;ve changed since then &#8212; but think about how you consider people who defended the status quo in the 1960s (my assumption here is that you do not think fondly of them).</p>
+<p>Be the person you want 2063-you to be proud of. I do not see any possible way that includes treating women as if they don’t belong in any profession.</p>
 
-<p>Be the person you want 2063-you to be proud of. I do not see any possible way that includes treating women as if they don&#8217;t belong in any profession.</p>
-
-<h2>In Conclusion</h2>
-
-<p>Don&#8217;t we (collectively) believe that happier developers make for more productive developers? Don&#8217;t we want our software to make the world a better place? That starts with treating all people as human. Next, go out of your way to help.</p>
+<h2 id="in-conclusion">In Conclusion</h2>
+<p>Don’t we (collectively) believe that happier developers make for more productive developers? Don’t we want our software to make the world a better place? That starts with treating all people as human. Next, go out of your way to help.</p>
 
 <p>Ways to help:</p>
 
 <ul>
-<li>Call people out for being sexist</li>
-<li>Lower prices and other barriers to entry for women to learn our craft</li>
-<li>Don&#8217;t be awful to anyone</li>
-<li>Mentor and teach <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://workshops.railsbridge.org/">RailsBridge</a> both target women developers.</li>
+  <li>Call people out for being sexist</li>
+  <li>Lower prices and other barriers to entry for women to learn our craft</li>
+  <li>Don’t be awful to anyone</li>
+  <li>Mentor and teach <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://workshops.railsbridge.org/">RailsBridge</a> both target women developers.</li>
 </ul>
 
-
-<p>I have disabled comments; To continue the discussion, let&#8217;s talk on twitter &#8211;
+<p>I have disabled comments; To continue the discussion, let’s talk on twitter –
 or better yet, write a blog post in response and/or in agreement.</p>
 
 <p>[1] In fact, with the advancements that young girls have over young boys in math and science, one could conclude that we are losing our best developers before they get started. <a href="http://www.ams.org/notices/201201/rtx120100010p.pdf">Debunking Myths about Gender and Mathematics Performance</a></p>
@@ -547,67 +500,63 @@ or better yet, write a blog post in response and/or in agreement.</p>
     <link href="http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
     <updated>2012-09-10T13:38:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
-    <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it&#8217;d be built in, but nope. Drink some sake and let capistrano do the work!</p>
+    <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it’d be built in, but nope. Drink some sake and let capistrano do the work!</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
+	<span class="heading">tl;dr</span> 
 Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
 </div>
 
+<h3 id="first-off-sake-is-not-sake">First Off, Sake is not <code>sake</code></h3>
 
-<h3>First Off, Sake is not <code>sake</code></h3>
+<p><a href="https://github.com/defunkt">Defunkt</a> wrote <a href="http://rubygems.org/gems/sake">sake</a> in ought-eight (2008) for system wide rake tasks. This isn’t it; this is just a file, name it what you want.</p>
 
-<p><a href="https://github.com/defunkt">Defunkt</a> wrote <a href="http://rubygems.org/gems/sake">sake</a> in ought-eight (2008) for system wide rake tasks. This isn&#8217;t it; this is just a file, name it what you want.</p>
+<h3 id="background">Background</h3>
 
-<h3>Background</h3>
+<p>I’ll use rake tasks to do data-migrations that I don’t want to stick around in db/migrations. Or to do one-off things like re-process images.</p>
 
-<p>I&#8217;ll use rake tasks to do data-migrations that I don&#8217;t want to stick around in db/migrations. Or to do one-off things like re-process images.</p>
+<p>But it’s not all that awesome to actually run those things in production when you need to. Here’s a way!</p>
 
-<p>But it&#8217;s not all that awesome to actually run those things in production when you need to. Here&#8217;s a way!</p>
-
-<figure class='code'><figcaption><span>config/recipes/sake.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
-</span><span class='line'>  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
-</span><span class='line'>  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/sake.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
+</span><span class="line">  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
+</span><span class="line">  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
+</span><span class="line">  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
+</span><span class="line">    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Then, make sure you require it</p>
 
-<figure class='code'><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>And that’s it! Now, when you want to run that code, say to migrate a database:</p>
 
-<p>And that&#8217;s it! Now, when you want to run that code, say to migrate a database:</p>
+<div><div class="CodeRay">
+  <div class="code"><pre>cap <span class="key">sake</span>:invoke task=<span class="string"><span class="delimiter">&quot;</span><span class="content">db:migrate</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cap</span> <span class="n">sake</span><span class="ss">:invoke</span> <span class="n">task</span><span class="o">=</span><span class="s2">&quot;db:migrate&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>This is not mind-blowing, but it’s not very obvious for new deployers, so I wanted to add it here for the googlers.</p>
 
+<h2 id="naming-notes">Naming Notes</h2>
 
-<p>This is not mind-blowing, but it&#8217;s not very obvious for new deployers, so I wanted to add it here for the googlers.</p>
+<p>Don’t name your task rake – newer versions of rake (0.9.2) are not pleased with that. That’s how I ended on sake. (rake =&gt; sake).</p>
 
-<h2>Naming Notes</h2>
-
-<p>Don&#8217;t name your task rake &#8211; newer versions of rake (0.9.2) are not pleased with that. That&#8217;s how I ended on sake. (rake => sake).</p>
-
-<h2>Credit</h2>
+<h2 id="credit">Credit</h2>
 
 <p>This <a href="http://stackoverflow.com/questions/312214/how-do-i-run-a-rake-task-from-capistrano">answer on Stack Overflow</a> had some good stuffs. I modified from there.</p>
 ]]></content>
@@ -621,161 +570,140 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
     <content type="html"><![CDATA[<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
+	<span class="heading">tl;dr</span> 
 Use my codes to only precompile assets on cap:deploy when there is a change to assets or gems.
 </div>
 
-
-<h3>Background</h3>
-
-<ul>
-<li>The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file</li>
-<li>Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.</li>
-</ul>
-
-
-<p>So&#8230; Here&#8217;s a solution to fast-compile your assets by only checking if the changeset includes changes under:</p>
+<h3 id="background">Background</h3>
 
 <ul>
-<li>app/assets</li>
-<li>lib/assets</li>
-<li>vendor/assets</li>
-<li>Gemfile.lock</li>
-<li>config/routes.rb</li>
+  <li>The asset pipeline needs to be precompiled in order to serve one awesome application.js and application.css file  </li>
+  <li>Using a CSS library like Zurb or Bootstrap adds about 2 minutes to the asset pipeline compilation time.</li>
 </ul>
 
+<p>So… Here’s a solution to fast-compile your assets by only checking if the changeset includes changes under:</p>
 
-<p>The assets is pretty self-explanatory. We compile if the Gemfile.lock changed to catch if something like twitter-bootstrap-rails was added or updated. At first the config/routes.rb seems out of place, but it&#8217;s in case you load an engine (or remove one).</p>
+<ul>
+  <li>app/assets </li>
+  <li>lib/assets </li>
+  <li>vendor/assets </li>
+  <li>Gemfile.lock </li>
+  <li>config/routes.rb</li>
+</ul>
 
-<h2>The code!</h2>
+<p>The assets is pretty self-explanatory. We compile if the Gemfile.lock changed to catch if something like twitter-bootstrap-rails was added or updated. At first the config/routes.rb seems out of place, but it’s in case you load an engine (or remove one).</p>
 
-<p>Make sure you&#8217;re loading deploy/assets</p>
+<h2 id="the-code">The code!</h2>
 
-<figure class='code'><figcaption><span>Capfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Make sure you’re loading deploy/assets</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Capfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/assets.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
+</span><span class="line">
+</span><span class="line"><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+</span><span class="line">  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
+</span><span class="line"><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
+</span><span class="line"><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
+</span><span class="line"><span class="sh">      specify additional environment variables to pass to rake via the \</span>
+</span><span class="line"><span class="sh">      asset_env variable. The defaults are:</span>
+</span><span class="line">
+</span><span class="line"><span class="sh">        set :rake,      &quot;rake&quot;</span>
+</span><span class="line"><span class="sh">        set :rails_env, &quot;production&quot;</span>
+</span><span class="line"><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
+</span><span class="line"><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
+</span><span class="line"><span class="no">    DESC</span>
+</span><span class="line">    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+</span><span class="line">      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
+</span><span class="line">      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class="line">        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
+</span><span class="line">      <span class="k">else</span>
+</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
+</span><span class="line">      <span class="k">end</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<figure class='code'><figcaption><span>config/recipes/assets.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
-</span><span class='line'>
-</span><span class='line'><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
-</span><span class='line'><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
-</span><span class='line'><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
-</span><span class='line'><span class="sh">      specify additional environment variables to pass to rake via the \</span>
-</span><span class='line'><span class="sh">      asset_env variable. The defaults are:</span>
-</span><span class='line'>
-</span><span class='line'><span class="sh">        set :rake,      &quot;rake&quot;</span>
-</span><span class='line'><span class="sh">        set :rails_env, &quot;production&quot;</span>
-</span><span class='line'><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
-</span><span class='line'><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
-</span><span class='line'><span class="no">    DESC</span>
-</span><span class='line'>    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>How does it know?</h2>
+<h2 id="how-does-it-know">How does it know?</h2>
 
 <p>The regular assets:precompile task is getting overridden by our custom task. We then:</p>
 
 <ol>
-<li>get the FROM git revision</li>
-<li>get the git log of changes from the FROM to the TO that include our paths we care about</li>
-<li>Pipe that into wc to see if there&#8217;s anything there</li>
+  <li>get the FROM git revision</li>
+  <li>get the git log of changes from the FROM to the TO that include our paths we care about</li>
+  <li>Pipe that into wc to see if there’s anything there</li>
 </ol>
-
 
 <p>If there is, then we call the rake assets:precompile (like calling <code>super</code>)</p>
 
-<h2>Output</h2>
+<h2 id="output">Output</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>triggering after callbacks for `deploy:update_code'
-</span><span class='line'>  * executing `deploy:assets:precompile'
-</span><span class='line'>  * executing "cat /home/deployer/apps/yourapp/current/REVISION"
-</span><span class='line'>servers: ["yourapp.comalproductions.com"]
-</span><span class='line'>[yourapp.comalproductions.com] executing command
-</span><span class='line'>command finished in 921ms
-</span><span class='line'>  * executing "cd /home/deployer/apps/yourapp/releases/20120903203634 && git log 2e03e2b18530c86a69ba8a2c2d75909142767f5b.. app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb | wc -l"
-</span><span class='line'>servers: ["yourapp.comalproductions.com"]
-</span><span class='line'>[yourapp.comalproductions.com] executing command
-</span><span class='line'>command finished in 400ms
-</span><span class='line'> ** Skipping asset pre-compilation because there were no asset changes</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre>    triggering after callbacks <span class="keyword">for</span> <span class="shell"><span class="delimiter">`</span><span class="content">deploy:update_code'
+  * executing </span><span class="delimiter">`</span></span><span class="key">deploy</span>:<span class="key">assets</span>:precompile<span class="string"><span class="delimiter">'</span><span class="content">
+  * executing &quot;cat /home/deployer/apps/yourapp/current/REVISION&quot;
+    servers: [&quot;yourapp.comalproductions.com&quot;]
+    [yourapp.comalproductions.com] executing command
+    command finished in 921ms
+  * executing &quot;cd /home/deployer/apps/yourapp/releases/20120903203634 &amp;&amp; git log 2e03e2b18530c86a69ba8a2c2d75909142767f5b.. app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb | wc -l&quot;
+    servers: [&quot;yourapp.comalproductions.com&quot;]
+    [yourapp.comalproductions.com] executing command
+    command finished in 400ms
+ ** Skipping asset pre-compilation because there were no asset changes
+</span></span></pre></div>
+</div>
+</div>
 
 <p>PROOF: 400ms &lt; 2.5 minutes</p>
 
-<h2>Credit</h2>
+<h2 id="credit">Credit</h2>
 
-<p>This <a href="https://gist.github.com/3072362">Gist</a> by <a href="https://github.com/xdite">@xdite</a> is the direct source for the code. I&#8217;ve used this in several projects and think it&#8217;s awesome-sauce.</p>
+<p>This <a href="https://gist.github.com/3072362">Gist</a> by <a href="https://github.com/xdite">@xdite</a> is the direct source for the code. I’ve used this in several projects and think it’s awesome-sauce.</p>
 ]]></content>
   </entry>
   
@@ -784,52 +712,46 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
     <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
     <updated>2012-07-30T10:35:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
-    <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I&#8217;ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
+    <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
+	<span class="heading">tl;dr</span> 
 I am offering a 100% scholarship to the 6 week RubyOffRails class for up to 5 women software developers. <a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>
 </div>
 
+<p>The <a href="http://rubyoffrails.com">Ruby online training course</a> starts July 31, and I’ll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It’s a self-paced course, so if you start this week you won’t be behind. I’ll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!</p>
 
-<p>The <a href="http://rubyoffrails.com">Ruby online training course</a> starts July 31, and I&#8217;ll keep applications open through <del>August 3rd</del> Thursday Morning, August 2nd. It&#8217;s a self-paced course, so if you start this week you won&#8217;t be behind. I&#8217;ll be granting scholarships to the candidates I feel have the best chance to succeed and will have the most impact. Obviously subjective, but I think this will work. Apply and learn how to be a happy programmer!</p>
+<p>So…</p>
 
-<p>So&#8230;</p>
-
-<h2>What do you Have to do?</h2>
-
-<ol>
-<li>Tell me why you want to learn Ruby?</li>
-<li>Tell me how learning Ruby can improve your life</li>
-</ol>
-
-
-<h2>What will you get?</h2>
+<h2 id="what-do-you-have-to-do">What do you Have to do?</h2>
 
 <ol>
-<li>Free access to the Summer RubyOffRails course</li>
-<li>Full access to code reviews and office hours. It&#8217;s a full ticket!</li>
-<li>Happiness because you&#8217;re loving Ruby</li>
+  <li>Tell me why you want to learn Ruby?</li>
+  <li>Tell me how learning Ruby can improve your life</li>
 </ol>
 
-
-<h2>Who is this course for?</h2>
+<h2 id="what-will-you-get">What will you get?</h2>
 
 <ol>
-<li>Developers who have programming experience in a C based language</li>
-<li>Ideally programmers who want to learn the fundamentals of Ruby for a career in Rails</li>
-<li>Awesome people.</li>
+  <li>Free access to the Summer RubyOffRails course</li>
+  <li>Full access to code reviews and office hours. It’s a full ticket!</li>
+  <li>Happiness because you’re loving Ruby</li>
 </ol>
 
+<h2 id="who-is-this-course-for">Who is this course for?</h2>
+
+<ol>
+  <li>Developers who have programming experience in a C based language</li>
+  <li>Ideally programmers who want to learn the fundamentals of Ruby for a career in Rails</li>
+  <li>Awesome people.</li>
+</ol>
 
 <p>You can learn more about the course at <a href="http://rubyoffrails.com">http://rubyoffrails.com</a></p>
 
 <p><a href="http://comal.wufoo.com/forms/z7x3p9/">Apply Here</a>.</p>
 
-<p>UPDATE:<br/>
+<p>UPDATE:<br />
 I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.</p>
 ]]></content>
   </entry>
@@ -839,20 +761,14 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
     <updated>2012-06-06T09:46:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
-    <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online.</p>
+    <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn&#8217;t know you&#8217;re consuming it when you consume it.
+	<span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn&#8217;t know you&#8217;re consuming it when you consume it.
 </div>
 
-
-
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen=""></iframe>
 
 <p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
 ]]></content>
@@ -863,53 +779,45 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
     <updated>2012-04-03T12:23:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
-    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don&#8217;t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.</p>
-
-<h3>Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></h3>
+    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
+###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
 
 <p>That means, they pick up on concepts about instance variables, validations, how to create non-ActiveRecord classes, and most importantly: testing.</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
+	<span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
 </div>
-
-
 <p>So I floated an idea, should we learn Ruby before we learn Rails? The answer from nearly everyone I spoke to was YES.</p>
 
-<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> &#8211; a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
+<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> – a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
 
 <ul>
-<li>It means there&#8217;s not going to be a class on &#8220;Arrays&#8221; followed by one on &#8220;Syntax&#8221;. &#8211; We&#8217;ll build stuff together and learn by doing.</li>
-<li>It means that each class much have actionable code that someone could actually use in their life</li>
-<li>It means that you can watch the class live, or watch later. Much later.</li>
-<li>It means that students talk to each other, learn from each other, and see each other&#8217;s code through pull-requests on assignments</li>
+  <li>It means there’s not going to be a class on “Arrays” followed by one on “Syntax”. – We’ll build stuff together and learn by doing. </li>
+  <li>It means that each class much have actionable code that someone could actually use in their life</li>
+  <li>It means that you can watch the class live, or watch later. Much later.</li>
+  <li>It means that students talk to each other, learn from each other, and see each other’s code through pull-requests on assignments</li>
 </ul>
-
 
 <p>And most importantly, it means that we all code.</p>
 
-<p>It&#8217;s a six week course designed for people who have programmed before. If you haven&#8217;t developed software, it&#8217;ll be ambitious, but watch the episodes a couple of times and you&#8217;ll get the hang of it. And you&#8217;ll learn TDD first! (you won&#8217;t be able to imagine a different way).</p>
+<p>It’s a six week course designed for people who have programmed before. If you haven’t developed software, it’ll be ambitious, but watch the episodes a couple of times and you’ll get the hang of it. And you’ll learn TDD first! (you won’t be able to imagine a different way).</p>
 
 <p>My true hope is this brings more people into the software development community and fosters coders teaching coders in a constructive and generally nice way.</p>
 
 <ol>
-<li>Watch someone code</li>
-<li>Code</li>
-<li>Teach someone how to code</li>
+  <li>Watch someone code</li>
+  <li>Code</li>
+  <li>Teach someone how to code</li>
 </ol>
 
-
-<h3>To Get Started</h3>
+<h3 id="to-get-started">To Get Started</h3>
 
 <ol>
-<li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
-<li>Read through and sign up</li>
-<li>We&#8217;ll being the Thursday after RailsConf (April 26, 2012)</li>
+  <li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
+  <li>Read through and sign up</li>
+  <li>We’ll being the Thursday after RailsConf (April 26, 2012)</li>
 </ol>
-
 ]]></content>
   </entry>
   
@@ -918,282 +826,192 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
     <updated>2012-02-29T10:19:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
-    <content type="html"><![CDATA[<p>The Situation: You&#8217;re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man &#8211; everybody has a contact.</p>
+    <content type="html"><![CDATA[<p>The Situation: You’re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man – everybody has a contact.</p>
 
-<p>The Problem: You&#8217;re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
+<p>The Problem: You’re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
 
-<p>Let&#8217;s DRY this up using modules and rspec shared examples. We&#8217;ll end up with a way you <em>could</em> enable fast rails tests on your Mongoid models.</p>
+<p>Let’s DRY this up using modules and rspec shared examples. We’ll end up with a way you <em>could</em> enable fast rails tests on your Mongoid models.</p>
 
 <!-- more -->
 
-
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> Shared examples describing a module. Include module in a mongoid class: <a href="https://gist.github.com/1942427">The Gist</a>.
+	<span class="heading">tl;dr</span> Shared examples describing a module. Include module in a mongoid class: <a href="https://gist.github.com/1942427">The Gist</a>.
 </div>
 
-
-<h2>Some Assumptions Before We Begin</h2>
+<h2 id="some-assumptions-before-we-begin">Some Assumptions Before We Begin</h2>
 
 <ol>
-<li>You have a project setup with Mongoid (2.2+, Rspec 2.8+, and rspec-mongoid)</li>
-<li>You are awesome</li>
+  <li>You have a project setup with Mongoid (2.2+, Rspec 2.8+, and rspec-mongoid)</li>
+  <li>You are awesome</li>
 </ol>
-
 
 <p>OK, so we would normally have a model for the Doctor like so:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Doctor</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Timestamps</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:phone_number</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:address_line_1</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:city</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:state</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:postal_code</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="n">string</span>
-</span><span class='line'>  <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">type</span> <span class="ss">:String</span>
-</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:last_name</span>
-</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:first_name</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Doctor</span>
+    include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
+    include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
 
+    field <span class="symbol">:first_name</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:last_name</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:phone_number</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:address_line_1</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:city</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:state</span>, <span class="key">type</span>: <span class="constant">String</span>
+    field <span class="symbol">:postal_code</span>, <span class="key">type</span>: string
+    field <span class="symbol">:email</span>, type <span class="symbol">:String</span>
+    validates_presence_of <span class="symbol">:last_name</span>
+    validates_presence_of <span class="symbol">:first_name</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<h3>Step 1: Write those tests first</h3>
+<h3 id="step-1-write-those-tests-first">Step 1: Write those tests first</h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="no">Doctor</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_fields</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">,</span> <span class="ss">:last_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_fields</span><span class="p">(</span><span class="ss">:phone_number</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:address_line_1</span><span class="p">,</span> <span class="ss">:city</span><span class="p">,</span> <span class="ss">:state</span><span class="p">,</span> <span class="ss">:postal_code</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">validate_presence_of</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">validate_presence_of</span><span class="p">(</span><span class="ss">:last_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
 
+describe <span class="constant">Doctor</span> <span class="keyword">do</span>
+    it { should have_fields(<span class="symbol">:first_name</span>, <span class="symbol">:last_name</span>) }
+    it { should have_fields(<span class="symbol">:phone_number</span>, <span class="symbol">:email</span>, <span class="symbol">:address_line_1</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:postal_code</span>) }
+    it { should validate_presence_of(<span class="symbol">:first_name</span>) }
+    it { should validate_presence_of(<span class="symbol">:last_name</span>) }
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<p>Note: If this doesn&#8217;t pass, you may need to add  configuration.include Mongoid::Matchers in your rspec. See the <a href="https://github.com/evansagge/mongoid-rspec">mongoid-rspec gem</a> for use.</p>
+<p>Note: If this doesn’t pass, you may need to add  configuration.include Mongoid::Matchers in your rspec. See the <a href="https://github.com/evansagge/mongoid-rspec">mongoid-rspec gem</a> for use.</p>
 
-<h3>Step The Second: Extract the mongoid definitions</h3>
+<h3 id="step-the-second-extract-the-mongoid-definitions">Step The Second: Extract the mongoid definitions</h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">module</span> <span class="nn">Contactable</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">receiver</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:first_name</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:last_name</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:phone_number</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:address_line_1</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:city</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:state</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:postal_code</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="n">type</span><span class="p">:</span> <span class="nb">String</span>
-</span><span class='line'>      <span class="n">validates_presence_of</span> <span class="ss">:first_name</span>
-</span><span class='line'>      <span class="n">validates_presence_of</span> <span class="ss">:last_name</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Doctor</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Timestamps</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Contactable</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
 
+<span class="keyword">module</span> <span class="class">Contactable</span>
+
+  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">included</span>(receiver) 
+    receiver.class_eval <span class="keyword">do</span>
+      field <span class="symbol">:first_name</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:last_name</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:phone_number</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:address_line_1</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:city</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:state</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:postal_code</span>, <span class="key">type</span>: <span class="constant">String</span>
+      field <span class="symbol">:email</span>, <span class="key">type</span>: <span class="constant">String</span>
+      validates_presence_of <span class="symbol">:first_name</span>
+      validates_presence_of <span class="symbol">:last_name</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="keyword">class</span> <span class="class">Doctor</span>
+  include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
+  include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
+  include <span class="constant">Contactable</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>And run those tests!</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Finished</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mi">11461</span> <span class="n">seconds</span>
-</span><span class='line'><span class="mi">4</span> <span class="n">examples</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>....
 
+Finished in 0.11461 seconds
+4 examples, 0 failures
+</code></pre>
 
-<h3>Step 3: Extract the Tests!</h3>
+<h3 id="step-3-extract-the-tests">Step 3: Extract the Tests!</h3>
 
-<p>We&#8217;ll extract the tests out into a shared_examples file in the support folder, and then tell the Doctor class that it should behave like a Contact.</p>
+<p>We’ll extract the tests out into a shared_examples file in the support folder, and then tell the Doctor class that it should behave like a Contact. </p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#spec/support/shared_examples.rb</span>
-</span><span class='line'><span class="n">shared_examples_for</span> <span class="no">Contactable</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_fields</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">,</span> <span class="ss">:last_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_fields</span><span class="p">(</span><span class="ss">:phone_number</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:address_line_1</span><span class="p">,</span> <span class="ss">:city</span><span class="p">,</span> <span class="ss">:state</span><span class="p">,</span> <span class="ss">:postal_code</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">validate_presence_of</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">validate_presence_of</span><span class="p">(</span><span class="ss">:last_name</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#spec/models/doctor_spec.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
-</span><span class='line'><span class="n">describe</span> <span class="no">Doctor</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it_behaves_like</span> <span class="no">Contactable</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="comment">#spec/support/shared_examples.rb</span>
+shared_examples_for <span class="constant">Contactable</span> <span class="keyword">do</span>
+    it { should have_fields(<span class="symbol">:first_name</span>, <span class="symbol">:last_name</span>) }
+    it { should have_fields(<span class="symbol">:phone_number</span>, <span class="symbol">:email</span>, <span class="symbol">:address_line_1</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:postal_code</span>) }
+    it { should validate_presence_of(<span class="symbol">:first_name</span>) }
+    it { should validate_presence_of(<span class="symbol">:last_name</span>) }
+<span class="keyword">end</span>
 
+<span class="comment">#spec/models/doctor_spec.rb</span>
 
-<p>Run those tests!</p>
+require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
+describe <span class="constant">Doctor</span> <span class="keyword">do</span>
+    it_behaves_like <span class="constant">Contactable</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
-<figure class='code'><figcaption><span>tests. Could be faster</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="n">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Finished</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mi">13347</span> <span class="n">seconds</span>
-</span><span class='line'><span class="mi">4</span> <span class="n">examples</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Run those tests!  Could be faster</p>
 
+<pre><code>....
+
+Finished in 0.13347 seconds
+4 examples, 0 failures
+</code></pre>
 
 <p>All is going awesome! So we can now easily add contact information (and validations), to say users:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Document</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Mongoid</span><span class="o">::</span><span class="no">Timestamps</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Contactable</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it_behaves_like</span> <span class="no">Contactable</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">User</span>
+  include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
+  include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
+  include <span class="constant">Contactable</span>
+<span class="keyword">end</span>
 
+describe <span class="constant">User</span> <span class="keyword">do</span>
+  it_behaves_like <span class="constant">Contactable</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>Now your Users have first_name, last_name, address, and more!</p>
 
-<h3>Let&#8217;s Take this to 11</h3>
+<h3 id="lets-take-this-to-11">Let’s Take this to 11</h3>
 
 <p>Now we can very, very easily isolate the Doctor out for very fast tests.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Mongoid</span>
-</span><span class='line'>  <span class="k">module</span> <span class="nn">Document</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'>  <span class="k">module</span> <span class="nn">Timestamps</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Pharmacy</span><span class="p">;</span> <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">require_relative</span> <span class="s2">&quot;../../app/models/doctor&quot;</span>
-</span><span class='line'><span class="n">require_relative</span> <span class="s2">&quot;support/shared_examples&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="no">Doctor</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">it_behaves_like</span> <span class="no">Contactable</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;will tell the pharmacy to release the rx&#39;s&quot;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="no">Pharmacy</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:release_the_rx!</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">subject</span><span class="o">.</span><span class="n">gimme!</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">module</span> <span class="class">Mongoid</span>
+    <span class="keyword">module</span> <span class="class">Document</span>; <span class="keyword">end</span>
+  <span class="keyword">module</span> <span class="class">Timestamps</span>; <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="keyword">class</span> <span class="class">Pharmacy</span>; <span class="keyword">end</span>
 
+require_relative <span class="string"><span class="delimiter">&quot;</span><span class="content">../../app/models/doctor</span><span class="delimiter">&quot;</span></span>
+require_relative <span class="string"><span class="delimiter">&quot;</span><span class="content">support/shared_examples</span><span class="delimiter">&quot;</span></span>
 
-<p>The above would fail since #gimme! doesn&#8217;t exist, but it would be:</p>
+describe <span class="constant">Doctor</span> <span class="keyword">do</span>
+  it_behaves_like <span class="constant">Contactable</span>
+
+    it <span class="string"><span class="delimiter">&quot;</span><span class="content">will tell the pharmacy to release the rx's</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
+        <span class="constant">Pharmacy</span>.should_receive(<span class="symbol">:release_the_rx!</span>)
+        subject.gimme!
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+</pre></div>
+</div>
+</div>
+
+<p>The above would fail since #gimme! doesn’t exist, but it would be:</p>
 
 <ul>
-<li>In total isolation from Rails</li>
-<li>Total isolation from Mongo DB</li>
-<li>fast!</li>
+  <li>In total isolation from Rails</li>
+  <li>Total isolation from Mongo DB</li>
+  <li>fast!</li>
 </ul>
-
 
 <p>I created the following to easily add re-usable data-bags to documents in Mongoid, rather than copying and pasting. The same shared-example technique works well in ActiveRecord.</p>
 
-<h6>Version Disclosure: written against mongoid-rspec 1.4, mongoid 2.4, rspec 2.8.</h6>
+<h6 id="version-disclosure-written-against-mongoid-rspec-14-mongoid-24-rspec-28">Version Disclosure: written against mongoid-rspec 1.4, mongoid 2.4, rspec 2.8.</h6>
+
 ]]></content>
   </entry>
   
@@ -1202,61 +1020,52 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
     <updated>2012-02-03T11:11:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
-    <content type="html"><![CDATA[<p>The situation: You&#8217;ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don&#8217;t use LESS (because obvs). What do you do? Let&#8217;s make this happen</p>
+    <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 
 <!-- more -->
 
-
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> 
-    <ul>
-        <li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
-        <li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
-    </ul>
+	<span class="heading">tl;dr</span> 
+	<ul>
+		<li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
+		<li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
+	</ul>
 </div>
 
+<p>Here’s what the site looks like:
+###### Full Resolution
+<img src="https://img.skitch.com/20120203-8745c3xwt1y7d7ccb761rw5xh8.png" alt="Full Resolution" /></p>
 
-<p>Here&#8217;s what the site looks like:</p>
-
-<h6>Full Resolution</h6>
-
-<p><img src="https://img.skitch.com/20120203-8745c3xwt1y7d7ccb761rw5xh8.png" alt="Full Resolution" /></p>
-
-<h6>Smaller Screen Size (tablet&#8217;ish)</h6>
-
+<h6 id="smaller-screen-size-tabletish">Smaller Screen Size (tablet’ish)</h6>
 <p><img src="https://img.skitch.com/20120203-rjfh38jhj2u582ai32gmxnnp7g.png" alt="Tablet Size" /></p>
 
-<h6>iPhone / Mobile size</h6>
-
+<h6 id="iphone--mobile-size">iPhone / Mobile size</h6>
 <p><img src="https://img.skitch.com/20120203-kagxp99s948wc4fphbbypdgrer.png" alt="iPhone Size" /></p>
 
-<h2>How to do these things?</h2>
+<h2 id="how-to-do-these-things">How to do these things?</h2>
 
-<p>It&#8217;s fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.</p>
+<p>It’s fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.</p>
 
 <p>In your gem file, do these things:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem "compass-rails", "&gt;= 0.12"
-</span><span class='line'>gem "bootstrap-sass", "&gt;= 2.0"</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>gem <span class="string"><span class="delimiter">&quot;</span><span class="content">compass-rails</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 0.12</span><span class="delimiter">&quot;</span></span>
+gem <span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap-sass</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 2.0</span><span class="delimiter">&quot;</span></span>
+</pre></div>
+</div>
+</div>
 
+<p>In your application.scss import bootstrap using sass, not sprockets. </p>
 
-<p>In your application.scss import bootstrap using sass, not sprockets.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>@import "bootstrap";
-</span><span class='line'>@import "bootstrap-responsive";</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>@import "bootstrap";
+@import "bootstrap-responsive";
+</code></pre>
 
 <p>I wish it were more interesting, but Chris Eppstein made compass drop dead simple to integrate.</p>
 
-<h6>Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.</h6>
+<h6 id="version-disclosure-this-post-worked-with-compass-rails-012-bootstrap-css-20-rails-32-and-bootstrap-sass">Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.</h6>
 
-<h4>UPDATE: updated the command to include bootstrap-responsive. Thanks <a href="http://twitter.com/rubysolo">@rubysolo</a></h4>
+<h4 id="update-updated-the-command-to-include-bootstrap-responsive-thanks-rubysolohttptwittercomrubysolo">UPDATE: updated the command to include bootstrap-responsive. Thanks <a href="http://twitter.com/rubysolo">@rubysolo</a></h4>
 ]]></content>
   </entry>
   
@@ -1265,124 +1074,98 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
     <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
     <updated>2012-01-19T07:28:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
-    <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you&#8217;re using Devise for authentication.</p>
+    <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
 
-<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you&#8217;re using a JSON API?</p>
+<p>The problem: How do you authenticate users on the iPhone using an email/password created on the website? And how do you tell Devise not to redirect to a login page when you’re using a JSON API?</p>
 
 <!-- more -->
-
-
 <div class="tldr">
-    <span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
+	<span class="heading">tl;dr</span> Use this gist for an <a href="https://gist.github.com/1255275">API JSON Devise Sessions Controller</a> that does not redirect. 
 </div>
 
+<h2 id="background">Background</h2>
+<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an “auth_token” query_string. </p>
 
-<h2>Background</h2>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="regexp"><span class="delimiter">/</span><span class="content">api</span><span class="delimiter">/</span></span>recipes?qs=sweet&amp;auth_token=[<span class="instance-variable">@user</span>.auth_token]
+</pre></div>
+</div>
+</div>
 
-<p>Devise provides an awesome :token_authenticatable setup where you can login a user using an &#8220;auth_token&#8221; query_string.</p>
+<p>Then, in your Api::RecipesController, you’d do something like:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">/api/</span><span class="n">recipes?qs</span><span class="o">=</span><span class="n">sweet</span><span class="o">&amp;</span><span class="n">auth_token</span><span class="o">=[</span><span class="vi">@user</span><span class="o">.</span><span class="n">auth_token</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::RecipesController</span> &lt; <span class="constant">Api</span>::<span class="constant">BaseApiController</span>
+  before_filter <span class="symbol">:authenticate_user!</span>
 
-
-<p>Then, in your Api::RecipesController, you&#8217;d do something like:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">RecipesController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">BaseApiController</span>
-</span><span class='line'>  <span class="n">before_filter</span> <span class="ss">:authenticate_user!</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">respond_to</span> <span class="ss">:json</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>    <span class="vi">@recipes</span> <span class="o">=</span> <span class="no">Recipe</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:qs</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+  respond_to <span class="symbol">:json</span>
+  <span class="keyword">def</span> <span class="function">index</span>
+    <span class="instance-variable">@recipes</span> = <span class="constant">Recipe</span>.search(params.fetch(<span class="symbol">:qs</span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>))
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
 <p>The above will authenticate the user by cookies/session/token, and return recipes in JSON.</p>
 
 <p>But, <em>How do you get the token?</em></p>
 
-<h2>Authentication and Login</h2>
+<h2 id="authentication-and-login">Authentication and Login</h2>
 
-<p>We&#8217;ll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We&#8217;ll want an HTTP Status code of 401 if it&#8217;s invalid.</p>
+<p>We’ll let the user enter their email and password on the iPhone, and have the endpoint return the token in JSON if valid. We’ll want an HTTP Status code of 401 if it’s invalid.</p>
 
-<p>We&#8217;ll have a Base API Controller from which we inherit</p>
+<p>We’ll have a Base API Controller from which we inherit</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">BaseApiController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-</span><span class='line'>  <span class="n">respond_to</span> <span class="ss">:json</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::BaseApiController</span> &lt; <span class="constant">ApplicationController</span>
+  respond_to <span class="symbol">:json</span>
+<span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
+<p>First, you’ll create an api endpoint for your session:</p>
 
-<p></p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="keyword">class</span> <span class="class">Api::SessionsController</span> &lt; <span class="constant">Api</span>::<span class="constant">BaseController</span>
+  prepend_before_filter <span class="symbol">:require_no_authentication</span>, <span class="symbol">:only</span> =&gt; [<span class="symbol">:create</span> ]
+  include <span class="constant">Devise</span>::<span class="constant">Controllers</span>::<span class="constant">InternalHelpers</span>
 
-<p>First, you&#8217;ll create an api endpoint for your session:</p>
+  <span class="keyword">def</span> <span class="function">create</span>
+    build_resource
+    resource = <span class="constant">User</span>.find_for_database_authentication(<span class="symbol">:login</span>=&gt;params[<span class="symbol">:user_login</span>][<span class="symbol">:login</span>])
+    <span class="keyword">if</span> resource.nil?
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">false</span>, <span class="symbol">:message</span>=&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">Error with your login or password</span><span class="delimiter">&quot;</span></span>}, <span class="symbol">:status</span>=&gt;<span class="integer">401</span>
+    <span class="keyword">end</span>
 
-<figure class='code'><figcaption><span>[/api/sessions/]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Api</span><span class="o">::</span><span class="no">SessionsController</span> <span class="o">&lt;</span> <span class="no">Api</span><span class="o">::</span><span class="no">BaseController</span>
-</span><span class='line'>  <span class="n">prepend_before_filter</span> <span class="ss">:require_no_authentication</span><span class="p">,</span> <span class="ss">:only</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:create</span> <span class="o">]</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Devise</span><span class="o">::</span><span class="no">Controllers</span><span class="o">::</span><span class="no">InternalHelpers</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
-</span><span class='line'>    <span class="n">build_resource</span>
-</span><span class='line'>    <span class="n">resource</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_for_database_authentication</span><span class="p">(</span><span class="ss">:login</span><span class="o">=&gt;</span><span class="n">params</span><span class="o">[</span><span class="ss">:user_login</span><span class="o">][</span><span class="ss">:login</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">nil?</span>
-</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">false</span><span class="p">,</span> <span class="ss">:message</span><span class="o">=&gt;</span><span class="s2">&quot;Error with your login or password&quot;</span><span class="p">},</span> <span class="ss">:status</span><span class="o">=&gt;</span><span class="mi">401</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">valid_password?</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:user_login</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">sign_in</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">resource</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">true</span><span class="p">,</span> <span class="ss">:auth_token</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">authentication_token</span><span class="p">,</span> <span class="ss">:login</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">login</span><span class="p">,</span> <span class="ss">:email</span><span class="o">=&gt;</span><span class="n">resource</span><span class="o">.</span><span class="n">email</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">render</span> <span class="ss">:json</span><span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:success</span><span class="o">=&gt;</span><span class="kp">false</span><span class="p">,</span> <span class="ss">:message</span><span class="o">=&gt;</span><span class="s2">&quot;Error with your login or password&quot;</span><span class="p">},</span> <span class="ss">:status</span><span class="o">=&gt;</span><span class="mi">401</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+    <span class="keyword">if</span> resource.valid_password?(params[<span class="symbol">:user_login</span>][<span class="symbol">:password</span>])
+      sign_in(<span class="string"><span class="delimiter">&quot;</span><span class="content">user</span><span class="delimiter">&quot;</span></span>, resource)
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">true</span>, <span class="symbol">:auth_token</span>=&gt;resource.authentication_token, <span class="symbol">:login</span>=&gt;resource.login, <span class="symbol">:email</span>=&gt;resource.email}
+    <span class="keyword">else</span>
+      render <span class="symbol">:json</span>=&gt; {<span class="symbol">:success</span>=&gt;<span class="predefined-constant">false</span>, <span class="symbol">:message</span>=&gt;<span class="string"><span class="delimiter">&quot;</span><span class="content">Error with your login or password</span><span class="delimiter">&quot;</span></span>}, <span class="symbol">:status</span>=&gt;<span class="integer">401</span>
+  <span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
 
+<p>The problem is that you don’t get the 401 Status code. You get a 302 redirect to the user login page. And that dog won’t hunt on an iPhone app.</p>
 
-<p>The problem is that you don&#8217;t get the 401 Status code. You get a 302 redirect to the user login page. And that dog won&#8217;t hunt on an iPhone app.</p>
+<h2 id="wth-devise">WTH Devise?</h2>
 
-<h2>WTH Devise?</h2>
+<p>Devise is relying on Warden, and warden is doing what it’s told. If not a valid login, it’ll redirect away. So, we need to tell Warden we’re going to have a custom failure like so:</p>
 
-<p>Devise is relying on Warden, and warden is doing what it&#8217;s told. If not a valid login, it&#8217;ll redirect away. So, we need to tell Warden we&#8217;re going to have a custom failure like so:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">warden</span><span class="o">.</span><span class="n">custom_failure!</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre>warden.custom_failure!
+</pre></div>
+</div>
+</div>
 
 <p>Refactored down slightly, we get:</p>
 
-<h2>The Solution</h2>
+<h2 id="the-solution">The Solution</h2>
 
-<div><script src='https://gist.github.com/1255275.js'></script>
+<div><script src="https://gist.github.com/1255275.js"></script>
 <noscript><pre><code>class Api::V1::SessionsController &lt; Api::V1::BaseController
   prepend_before_filter :require_no_authentication, :only =&gt; [:create ]
   include Devise::Controllers::InternalHelpers
@@ -1423,38 +1206,26 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
 end
 </code></pre></noscript></div>
 
+<p>Your users will receive something this this on success:
+~~~
+{
+    “success”: true,
+    “auth_token”: “dfc7ad3884e7”,
+    “login”: “emailexample”,
+    “email”: “email@example.com”
+}
+~~~</p>
 
+<p>And this on failure (with a status code of 401). 
+~~~
+{
+    “success”: false,
+    “message”: “Error with your login or password”
+}
+~~~</p>
 
+<h6 id="version-disclosure-this-post-was-valid-with-devise-146-and-rails-3031">Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
 
-<figure class='code'><figcaption><span>Your users will receive something this this on success:</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;auth_token&quot;</span><span class="o">:</span> <span class="s2">&quot;dfc7ad3884e7&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;login&quot;</span><span class="o">:</span> <span class="s2">&quot;emailexample&quot;</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;email@example.com&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>And this on failure (with a status code of 401). </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="s2">&quot;success&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Error with your login or password&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 3.0/3.1.</h6>
 ]]></content>
   </entry>
   
@@ -1465,37 +1236,35 @@ end
     <id>http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer</id>
     <content type="html"><![CDATA[<p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
 
-<p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he&#8217;s ecstatic. Now to deliver the command line app to him.</p>
+<p>To test it against live data, I slap a ruby script on it that I can run from the command line, show it to the client and he’s ecstatic. Now to deliver the command line app to him.</p>
 
-<p>Except&#8230; Client does not program ruby. Client has the standard Mac setup with ruby 1.8.7 installed with no GCC compiler.</p>
+<p>Except… Client does not program ruby. Client has the standard Mac setup with ruby 1.8.7 installed with no GCC compiler.</p>
 
 <p>So. I created a <a href="https://github.com/jwo/jwo.github.com/wiki/Ruby-1.9.2-install-for-Clients-on-OSX">wiki cheat sheet</a> for client to view (using this blog Github pages). With no xCode setup!</p>
 
 <!-- more -->
-
 
 <p><a href="https://github.com/jwo/jwo.github.com/wiki/Ruby-1.9.2-install-for-Clients-on-OSX">Ruby OSX Install Cheat Sheet for Non Ruby Developers</a></p>
 
 <p>Steps:</p>
 
 <ol>
-<li>Install Compiler</li>
-<li>Install RVM</li>
-<li>Source the profile</li>
-<li>Install Homebrew</li>
-<li>Install nokogiri</li>
-<li>Install bundler</li>
-<li>run bundler</li>
+  <li>Install Compiler</li>
+  <li>Install RVM</li>
+  <li>Source the profile</li>
+  <li>Install Homebrew</li>
+  <li>Install nokogiri</li>
+  <li>Install bundler</li>
+  <li>run bundler</li>
 </ol>
-
 
 <p>See anything I left off?</p>
 
-<p>Tangent: You should be using GLI for command line apps. I have slides on <a href="https://github.com/jwo/Slides/tree/master/ZOMG-command-line">ZOMG Command Line</a>, and you should also read davetron5000&#8217;s <a href="http://awesome-cli-ruby.heroku.com/">slides on the subject</a>. And read his book: <a href="http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby">Build Awesome Command-Line Applications in Ruby</a>.</p>
+<p>Tangent: You should be using GLI for command line apps. I have slides on <a href="https://github.com/jwo/Slides/tree/master/ZOMG-command-line">ZOMG Command Line</a>, and you should also read davetron5000’s <a href="http://awesome-cli-ruby.heroku.com/">slides on the subject</a>. And read his book: <a href="http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby">Build Awesome Command-Line Applications in Ruby</a>.</p>
 
-<h6>Version Disclosure: This stuff was accurate with OSX Lion, as of January 4, 2012. It installs ruby 1.9.2, homebrew 0.8, nokogiri 1.5.0, and GLI 1.4.0</h6>
+<h6 id="version-disclosure-this-stuff-was-accurate-with-osx-lion-as-of-january-4-2012-it-installs-ruby-192-homebrew-08-nokogiri-150-and-gli-140">Version Disclosure: This stuff was accurate with OSX Lion, as of January 4, 2012. It installs ruby 1.9.2, homebrew 0.8, nokogiri 1.5.0, and GLI 1.4.0</h6>
 
-<h6>Update: This post originally mentioned Dave Copeland&#8217;s handle as dave3000, and corrected it to <a href="https://twitter.com/#!/davetron5000">Davetron5000</a>. I regret the missing Tron and 2000.</h6>
+<h6 id="update-this-post-originally-mentioned-dave-copelands-handle-as-dave3000-and-corrected-it-to-davetron5000httpstwittercomdavetron5000-i-regret-the-missing-tron-and-2000">Update: This post originally mentioned Dave Copeland’s handle as dave3000, and corrected it to <a href="https://twitter.com/#!/davetron5000">Davetron5000</a>. I regret the missing Tron and 2000.</h6>
 ]]></content>
   </entry>
   
@@ -1507,103 +1276,82 @@ end
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>
-<li>We love Github</li>
-<li>Github uses Unicorns</li>
-<li>Github deploys all.the.time</li>
+  <li>We love Github</li>
+  <li>Github uses Unicorns</li>
+  <li>Github deploys all.the.time</li>
 </ul>
-
 
 <p>Therefor: We should be using Unicorn instead of Passenger.</p>
 
-<p>However, my recent switch to unicorn wasn&#8217;t all Unicorns and Rainbows! (pun definitely intended). For me, here&#8217;s what I saw:</p>
+<p>However, my recent switch to unicorn wasn’t all Unicorns and Rainbows! (pun definitely intended). For me, here’s what I saw:</p>
 
 <!-- more -->
 
+<h2 id="tldr">tl;dr</h2>
 
-<h2>tl;dr</h2>
-
-<p>Make sure you uncomment your unicorn.rb code that&#8217;s checking for .oldbin. You can use these three configs to get a working capistrano with nginx and unicorn.</p>
-
-<ul>
-<li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
-<li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
-<li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
-</ul>
-
-
-<h2>Symptoms</h2>
+<p>Make sure you uncomment your unicorn.rb code that’s checking for .oldbin. You can use these three configs to get a working capistrano with nginx and unicorn.</p>
 
 <ul>
-<li>Once I&#8217;d deploy, I&#8217;d refresh the page and see my new app version</li>
-<li>I&#8217;d refresh and see my old version</li>
-<li>Refresh again: new. repeat.</li>
+  <li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
+  <li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
+  <li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
 </ul>
 
-
-<p>Once I deployed, I&#8217;d see something like this:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ pgrep -lf unicorn_rails
-</span><span class='line'>5877 unicorn_rails master (old) -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30123 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30126 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30129 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30132 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
-</span><span class='line'>30410 unicorn_rails master -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30429 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30432 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30435 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-</span><span class='line'>30438 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D </span></code></pre></td></tr></table></div></figure>
-
-
-<p>I kept expecting the master (old) to someday go away, but it wouldn&#8217;t unless I manually killed it. Capistrano was spinning up my new instance, but not shutting it down.</p>
-
-<h2>Solution</h2>
-
-<p>When I got started with unicorn, I had grabbed a unicorn config from the github blogpost, and the following was commented out. Uncomment it so that it&#8217;ll kill old processed where the PID does not match the current PID and BAM, you&#8217;re golden.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  old_pid = "#{server.config[:pid]}.oldbin"
-</span><span class='line'>  if old_pid != server.pid
-</span><span class='line'>    begin
-</span><span class='line'>      sig = (worker.nr + 1) &gt;= server.worker_processes ? :QUIT : :TTOU
-</span><span class='line'>      Process.kill(sig, File.read(old_pid).to_i)
-</span><span class='line'>    rescue Errno::ENOENT, Errno::ESRCH
-</span><span class='line'>    end
-</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>The Config Files</h2>
+<h2 id="symptoms">Symptoms</h2>
 
 <ul>
-<li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
-<li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
-<li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
+  <li>Once I’d deploy, I’d refresh the page and see my new app version</li>
+  <li>I’d refresh and see my old version</li>
+  <li>Refresh again: new. repeat.</li>
 </ul>
 
+<p>Once I deployed, I’d see something like this:</p>
 
-<h3>Stupidity Disclosure</h3>
+<pre><code>$ pgrep -lf unicorn_rails
+5877 unicorn_rails master (old) -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30123 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30126 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30129 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30132 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
+30410 unicorn_rails master -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30429 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30432 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30435 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
+30438 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
+</code></pre>
 
-<p>After re-examining the <a href="https://github.com/blog/517-unicorn">github unicorn</a> blogpost, I see the .oldbin check was definitely NOT commented out. So don&#8217;t blame the github, but if you&#8217;re seeing unicorn not refresh your app, this is probably why.</p>
+<p>I kept expecting the master (old) to someday go away, but it wouldn’t unless I manually killed it. Capistrano was spinning up my new instance, but not shutting it down.</p>
 
-<h3>Copyright on the Gists</h3>
+<h2 id="solution">Solution</h2>
+
+<p>When I got started with unicorn, I had grabbed a unicorn config from the github blogpost, and the following was commented out. Uncomment it so that it’ll kill old processed where the PID does not match the current PID and BAM, you’re golden.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>  old_pid = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>server.config[<span class="symbol">:pid</span>]<span class="inline-delimiter">}</span></span><span class="content">.oldbin</span><span class="delimiter">&quot;</span></span>
+  <span class="keyword">if</span> old_pid != server.pid
+    <span class="keyword">begin</span>
+      sig = (worker.nr + <span class="integer">1</span>) &gt;= server.worker_processes ? <span class="symbol">:QUIT</span> : <span class="symbol">:TTOU</span>
+      <span class="constant">Process</span>.kill(sig, <span class="constant">File</span>.read(old_pid).to_i)
+    <span class="keyword">rescue</span> <span class="constant">Errno</span>::<span class="constant">ENOENT</span>, <span class="constant">Errno</span>::<span class="constant">ESRCH</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+</pre></div>
+</div>
+</div>
+
+<h2 id="the-config-files">The Config Files</h2>
+
+<ul>
+  <li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
+  <li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
+  <li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
+</ul>
+
+<h3 id="stupidity-disclosure">Stupidity Disclosure</h3>
+
+<p>After re-examining the <a href="https://github.com/blog/517-unicorn">github unicorn</a> blogpost, I see the .oldbin check was definitely NOT commented out. So don’t blame the github, but if you’re seeing unicorn not refresh your app, this is probably why.</p>
+
+<h3 id="copyright-on-the-gists">Copyright on the Gists</h3>
 
 <p>The three config files are not copyrighted in any way (as I mostly copied them and edited them anyway). Use and be happy.</p>
 ]]></content>
@@ -1614,20 +1362,18 @@ end
     <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
     <updated>2011-12-19T09:18:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
-    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What&#8217;s a Mongoid to do? Develop your own admin system? As If!</p>
+    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
+<!-- more --></p>
 
-<!-- more -->
+<h2 id="first-watch-this-issue">First, Watch this Issue</h2>
 
+<p>There’s already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
 
-<h2>First, Watch this Issue</h2>
-
-<p>There&#8217;s already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
-
-<h2>Then, Monkey Patch!</h2>
+<h2 id="then-monkey-patch">Then, Monkey Patch!</h2>
 
 <p>Add this code to your config/initializers/active_active_for_mongoid.rb</p>
 
-<div><script src='https://gist.github.com/1497688.js'></script>
+<div><script src="https://gist.github.com/1497688.js"></script>
 <noscript><pre><code>require &quot;active_admin&quot;
 require &quot;active_admin/resource_controller&quot;
 
@@ -1668,39 +1414,37 @@ module ActiveAdmin
   end
 end</code></pre></noscript></div>
 
+<p>It’s easy to tell what’s going on with the code – ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example, </p>
 
-<p>It&#8217;s easy to tell what&#8217;s going on with the code &#8211; ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#ActiveRecord
-</span><span class='line'>Product.order("published_at DESC").all
-</span><span class='line'>#Mongoid
-</span><span class='line'>Product.all(sort: [[ :published_at, :desc ]])</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="comment">#ActiveRecord</span>
+<span class="constant">Product</span>.order(<span class="string"><span class="delimiter">&quot;</span><span class="content">published_at DESC</span><span class="delimiter">&quot;</span></span>).all
+<span class="comment">#Mongoid</span>
+<span class="constant">Product</span>.all(<span class="key">sort</span>: [[ <span class="symbol">:published_at</span>, <span class="symbol">:desc</span> ]])
+</pre></div>
+</div>
+</div>
 
 <p>The mongo queries that get executed look like:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :desc]])
-</span><span class='line'>MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :asc]])</span></code></pre></td></tr></table></div></figure>
-
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:desc</span>]])
+<span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:asc</span>]])
+</pre></div>
+</div>
+</div>
 
 <p>Props to <a href="https://github.com/ebeigarts">https://github.com/ebeigarts</a> for the patch. It gets you to at least run with the ball for now.</p>
 
-<h2>Downsides</h2>
+<h2 id="downsides">Downsides</h2>
 
 <ul>
-<li>Filters are disabled</li>
-<li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
-<li>You&#8217;ll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
+  <li>Filters are disabled</li>
+  <li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
+  <li>You’ll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
 </ul>
 
-
-<h6>Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
+<h6 id="version-disclosure-this-post-was-valid-with-activeadmin-034-mongoid-234-and-rails-3031">Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
 ]]></content>
   </entry>
   
@@ -1709,44 +1453,41 @@ end</code></pre></noscript></div>
     <link href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
     <updated>2011-12-08T20:41:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
-    <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails?</p>
+    <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails? </p>
 
 <p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
 
-<p>Your problem: Devise validatable hates on this and laughs are your attempts.</p>
+<p>Your problem: Devise validatable hates on this and laughs are your attempts.
+<!-- more --></p>
 
-<!-- more -->
-
-
-<h2>Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
-
+<h2 id="keep-the-sweet-devise-format-validations-and-customize-devise-validations-by-rolling-your-own">Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
 <p>First, remove the :validatable argument from the devise method</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>devise :database_authenticatable, :token_authenticatable </span></code></pre></td></tr></table></div></figure>
+<div><div class="CodeRay">
+  <div class="code"><pre>devise <span class="symbol">:database_authenticatable</span>, <span class="symbol">:token_authenticatable</span> 
+</pre></div>
+</div>
+</div>
 
+<p>Then, you’ll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
 
-<p>Then, you&#8217;ll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
+<div><div class="CodeRay">
+  <div class="code"><pre>  validates_uniqueness_of    <span class="symbol">:email</span>,     <span class="symbol">:case_sensitive</span> =&gt; <span class="predefined-constant">false</span>, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>, <span class="symbol">:if</span> =&gt; <span class="symbol">:email_changed?</span>
+  validates_format_of    <span class="symbol">:email</span>,    <span class="symbol">:with</span>  =&gt; <span class="constant">Devise</span>.email_regexp, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>, <span class="symbol">:if</span> =&gt; <span class="symbol">:email_changed?</span>
+  validates_presence_of    <span class="symbol">:password</span>, <span class="symbol">:on</span>=&gt;<span class="symbol">:create</span>
+  validates_confirmation_of    <span class="symbol">:password</span>, <span class="symbol">:on</span>=&gt;<span class="symbol">:create</span>
+  validates_length_of    <span class="symbol">:password</span>, <span class="symbol">:within</span> =&gt; <span class="constant">Devise</span>.password_length, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>
+</pre></div>
+</div>
+</div>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  validates_uniqueness_of    :email,     :case_sensitive =&gt; false, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_format_of :email, :with  =&gt; Devise.email_regexp, :allow_blank =&gt; true, :if =&gt; :email_changed?
-</span><span class='line'>  validates_presence_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_confirmation_of   :password, :on=&gt;:create
-</span><span class='line'>  validates_length_of :password, :within =&gt; Devise.password_length, :allow_blank =&gt; true</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I know the above looks vaguely familiar&#8230; say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> &#8211; this is all it&#8217;s doing anyway.</p>
+<p>I know the above looks vaguely familiar… say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> – this is all it’s doing anyway.</p>
 
 <p>To allow email re-use across accounts, add <code>:scope=&gt;:accont_id</code> on the uniqueness validation.</p>
 
 <p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
 
-<h6>Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
+<h6 id="version-disclosure-this-post-was-valid-with-devise-146-and-rails-233031">Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
 ]]></content>
   </entry>
   
@@ -1758,31 +1499,27 @@ end</code></pre></noscript></div>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
 <ul>
-<li>HTML5 is cool</li>
-<li>HTML5 Videos are Cool</li>
-<li>Getting HTML5 Video formats OMG all of them created &#8230; <em>NOT</em> cool</li>
+  <li>HTML5 is cool</li>
+  <li>HTML5 Videos are Cool</li>
+  <li>Getting HTML5 Video formats OMG all of them created … <em>NOT</em> cool</li>
 </ul>
-
 
 <p><a href="http://videojs.com">VideoJS.com</a> will create an HTML5 embed for you that will render in iOS devices, all the modern browsers, and will fallback to flash for IE 6/7/8 types. However, to get all this goodness, you have to create your video file in 3 different formats:</p>
 
 <ul>
-<li>h.264</li>
-<li>web-m</li>
-<li>Theora</li>
+  <li>h.264</li>
+  <li>web-m</li>
+  <li>Theora</li>
 </ul>
 
+<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What’s a mac fanboy to do?
+<!--more--></p>
 
-<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What&#8217;s a mac fanboy to do?</p>
+<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well – pay as you go, no monthly fees, and it’s who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
 
-<!--more-->
+<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam. </p>
 
-
-<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well &#8211; pay as you go, no monthly fees, and it&#8217;s who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
-
-<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam.</p>
-
-<div><script src='https://gist.github.com/1440139.js'></script>
+<div><script src="https://gist.github.com/1440139.js"></script>
 <noscript><pre><code>POST https://app.zencoder.com/api/v2/jobs HTTP/1.1
 Accept: application/json
 Content-Type: application/json
@@ -1817,10 +1554,9 @@ Content-Type: application/json
       &quot;audio_quality&quot;: 4
     }
   ]
-}   </code></pre></noscript></div>
+}	</code></pre></noscript></div>
 
-
-<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I&#8217;ve had bad luck converting to HAML for an as-yet undiscovered reason.</p>
+<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I’ve had bad luck converting to HAML for an as-yet undiscovered reason.</p>
 ]]></content>
   </entry>
   
