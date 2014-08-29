@@ -2,6 +2,18 @@
 @import "coderay-github";
 //@import "coderay-twilight";
 
+
+@mixin letterpress($opacity){
+  text-shadow:black($opacity) 0 1px 0;
+}
+@function black($opacity){
+  @return rgba(0,0,0,$opacity)
+}
+@function white($opacity){
+  @return rgba(255,255,255,$opacity)
+}
+
+
 #site-head {
   background-image: url(/images/cover.jpg);
 }
@@ -21,12 +33,22 @@
 
 #site-head-content {
   h1.blog-title, h2.blog-description, p{
-    text-align: right;
-    margin-right: 5rem; 
-    color: #222;
+    @include letterpress(0.5);
     a {
-      color: #222;
+      color: #ffffff;
       text-decoration: none;
+    }
+    @media only screen and (min-width: 480px) {
+    }
+    @media only screen and (min-width: 768px) {
+    }
+    @media only screen and (min-width: 992px) {
+      text-align: right;
+      margin-right: 5rem; 
+      color: #222;
+      a {
+        color: #222;
+      }
     }
   }
 }
