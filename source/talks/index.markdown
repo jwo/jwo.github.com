@@ -31,6 +31,6 @@ In addition to the talks below, slides may be viewed at [SpeakerDeck/JWo](https:
 
 [Battle of NoSQL stars: Amazon's SDB vs Mongoid vs CouchDB vs RavenDB, at Lone Star Ruby Conference 2010](http://www.confreaks.com/videos/291-lsrc2010-battle-of-nosql-stars-amazon-s-sdb-vs-mongoid-vs-couchdb-vs-ravendb)
 
-  <a href=http://www.confreaks.com/videos/291-lsrc2010-battle-of-nosql-stars-amazon-s-sdb-vs-mongoid-vs-couchdb-vs-ravendb">![Battle of NoSQL stars: Amazon's SDB vs Mongoid vs CouchDB vs RavenDB, at Lone Star Ruby Conference 2010](http://www.confreaks.com/system/videos/images/291/preview/vlcsnap-2010-09-11-00h40m12s85.png)</a>
+  <a href=http://www.confreaks.com/videos/291-lsrc2010-battle-of-nosql-stars-amazon-s-sdb-vs-mongoid-vs-couchdb-vs-ravendb"><img src="http://www.confreaks.com/system/videos/images/291/preview/vlcsnap-2010-09-11-00h40m12s85.png"></a>
 
 
