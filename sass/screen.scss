@@ -1,10 +1,48 @@
-@import "compass";
-@include global-reset;
-@include reset-html5;
-
-@import "custom/colors";
-@import "custom/fonts";
-@import "custom/layout";
 @import "base";
-@import "partials";
-@import "custom/styles";
+@import "coderay-github";
+//@import "coderay-twilight";
+
+#site-head {
+  background-image: url(/images/cover.jpg);
+}
+
+.footnotes {
+  font-size: 13px;
+  line-height: 16px;
+  color: #666;
+  a[rel=reference] { text-decoration: none; }
+  p { margin-bottom: 6px; }
+}
+
+.inner {
+  width: 100%;
+  max-width: inherit;
+}
+
+#site-head-content {
+  h1.blog-title, h2.blog-description, p{
+    text-align: right;
+    margin-right: 5rem; 
+    color: #222;
+    a {
+      color: #222;
+      text-decoration: none;
+    }
+  }
+}
+
+.post-header {
+  #blog-logo {
+    background: #222;
+    padding: 3rem;
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+
+.post-excerpt {
+  h2 {
+    font-size: 2rem;
+  }
+}

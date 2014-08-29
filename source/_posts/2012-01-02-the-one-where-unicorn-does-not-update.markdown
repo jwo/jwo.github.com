@@ -33,7 +33,8 @@ Make sure you uncomment your unicorn.rb code that's checking for .oldbin. You ca
 * Refresh again: new. repeat.
 
 Once I deployed, I'd see something like this:
-```
+
+~~~
 $ pgrep -lf unicorn_rails
 5877 unicorn_rails master (old) -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
 30123 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
@@ -45,7 +46,7 @@ $ pgrep -lf unicorn_rails
 30432 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
 30435 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
 30438 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
-```
+~~~
 
 I kept expecting the master (old) to someday go away, but it wouldn't unless I manually killed it. Capistrano was spinning up my new instance, but not shutting it down.
 
@@ -53,7 +54,7 @@ I kept expecting the master (old) to someday go away, but it wouldn't unless I m
 
 When I got started with unicorn, I had grabbed a unicorn config from the github blogpost, and the following was commented out. Uncomment it so that it'll kill old processed where the PID does not match the current PID and BAM, you're golden.
 
-```
+~~~
   old_pid = "#{server.config[:pid]}.oldbin"
   if old_pid != server.pid
     begin
@@ -62,7 +63,8 @@ When I got started with unicorn, I had grabbed a unicorn config from the github 
     rescue Errno::ENOENT, Errno::ESRCH
     end
   end
-```
+~~~
+{:lang="ruby"}
 
 ## The Config Files
 

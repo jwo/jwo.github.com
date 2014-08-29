@@ -17,19 +17,21 @@ Keep the sweet Devise format validations, and customize devise validations by ro
 ----------------------------------------------------------------------------------------------
 First, remove the :validatable argument from the devise method
 
-```
+~~~
 devise :database_authenticatable, :token_authenticatable 
-```
+~~~
+{:lang="ruby"}
 
 Then, you'll need to implement your own validations. Depending on your intentions, either include or exclude `validates_presence_of   :email`
 
-```
+~~~
   validates_uniqueness_of	:email, 	:case_sensitive => false, :allow_blank => true, :if => :email_changed?
   validates_format_of	:email,	:with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
   validates_presence_of	:password, :on=>:create
   validates_confirmation_of	:password, :on=>:create
   validates_length_of	:password, :within => Devise.password_length, :allow_blank => true
-```
+~~~
+{:lang="ruby"}
 
 I know the above looks vaguely familiar... say: what you used to write all the time before Devise kicked in. But [look at the devise validatable source](https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb) -- this is all it's doing anyway.
 

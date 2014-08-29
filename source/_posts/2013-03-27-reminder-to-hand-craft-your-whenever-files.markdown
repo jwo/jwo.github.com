@@ -20,7 +20,7 @@ time. 9x Rails is just about 8x too many.
 
 My whenever schedule (names changed to reflect tex-mex dishes)
 
-```ruby
+~~~
 set :output, 'log/cron.log'
 
 job_type :rake, "cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
@@ -38,7 +38,8 @@ every 12.hours do
   rake 'guacamole:tortilla_soup'
   rake 'guacamole:grande_combo_de_tejas'
 end
-```
+~~~
+{:lang="ruby"}
 
 Seems pretty standard for how I organize and schedule tasks. But each of these
 would be (and were) running at midnight, since they all intersected that particular
@@ -55,7 +56,7 @@ doesn't matter that often either.
 
 An updated "Hand Crafted, Artisan Tex Mex Whenever File"
 
-```
+~~~
 set :output, 'log/cron.log'
 
 job_type :rake, "cd :path && RAILS_ENV=:environment bundle exec rake :task :output"
@@ -73,7 +74,8 @@ end
 every 1.day, :at => ['3am', '3pm'] do
   rake 'guacamole:tortilla_soup guacamole:grande_combo_de_tejas'
 end
-```
+~~~
+{:lang="ruby"}
 
 What did this gain us?
 
@@ -83,7 +85,7 @@ What did this gain us?
 
 Reminder: Hand craft your whenever cron jobs. And to test the output: `whenever`
 
-```
+~~~
 0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex && RAILS_ENV=production bundle exec rake margarita:enchiladas >> log/cron.log 2>&1'
 
 0 0 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex && RAILS_ENV=production bundle exec rake margarita:fajitas >> log/cron.log 2>&1'
@@ -91,7 +93,8 @@ Reminder: Hand craft your whenever cron jobs. And to test the output: `whenever`
 5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex && RAILS_ENV=production bundle exec rake guacamole:start_guacamole >> log/cron.log 2>&1'
 
 0 3,15 * * * /bin/bash -l -c 'cd /Users/jwo/Projects/texmex && RAILS_ENV=production bundle exec rake guacamole:tortilla_soup guacamole:grande_combo_de_tejas >> log/cron.log 2>&1'
-```
+~~~
+{:lang="ruby"}
 
 More on Cron and whenever:
 

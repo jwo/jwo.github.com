@@ -35,17 +35,19 @@ It's fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props
 
 In your gem file, do these things:
 
-```
+~~~
 gem "compass-rails", ">= 0.12"
 gem "bootstrap-sass", ">= 2.0"
-```
+~~~
+{:lang="ruby"}
 
 In your application.scss import bootstrap using sass, not sprockets. 
 
-```
+~~~
 @import "bootstrap";
 @import "bootstrap-responsive";
-```
+~~~
+{:lang=sass}
 
 I wish it were more interesting, but Chris Eppstein made compass drop dead simple to integrate.
 

@@ -27,8 +27,7 @@ Some Assumptions Before We Begin
 OK, so we would normally have a model for the Doctor like so:
 
 
-``` ruby
-
+~~~
 class Doctor
 	include Mongoid::Document
 	include Mongoid::Timestamps
@@ -44,11 +43,12 @@ class Doctor
 	validates_presence_of :last_name
 	validates_presence_of :first_name
 end
-```
+~~~
+{:lang="ruby"}
 
 ### Step 1: Write those tests first
 
-``` ruby 
+~~~
 require 'spec_helper'
 
 describe Doctor do
@@ -57,14 +57,14 @@ describe Doctor do
 	it { should validate_presence_of(:first_name) }
 	it { should validate_presence_of(:last_name) }
 end
-
-```
+~~~
+{:lang="ruby"}
 
 Note: If this doesn't pass, you may need to add  configuration.include Mongoid::Matchers in your rspec. See the [mongoid-rspec gem](https://github.com/evansagge/mongoid-rspec) for use.
 
 ### Step The Second: Extract the mongoid definitions
 
-``` ruby 
+~~~
 require 'spec_helper'
 
 module Contactable
@@ -90,22 +90,23 @@ class Doctor
   include Mongoid::Timestamps
   include Contactable
 end
-```
+~~~
+{:lang="ruby"}
 
 And run those tests!
 
-``` ruby
+~~~
 ....
 
 Finished in 0.11461 seconds
 4 examples, 0 failures
-```
+~~~
 
 ### Step 3: Extract the Tests!
 
 We'll extract the tests out into a shared_examples file in the support folder, and then tell the Doctor class that it should behave like a Contact. 
 
-``` ruby 
+~~~
 #spec/support/shared_examples.rb
 shared_examples_for Contactable do
 	it { should have_fields(:first_name, :last_name) }
@@ -120,19 +121,21 @@ require 'spec_helper'
 describe Doctor do
 	it_behaves_like Contactable
 end
-```
+~~~
+{:lang="ruby"}
 
-Run those tests!
-``` ruby tests. Could be faster
+Run those tests!  Could be faster
+
+~~~
 ....
 
 Finished in 0.13347 seconds
 4 examples, 0 failures
-```
+~~~
 
 All is going awesome! So we can now easily add contact information (and validations), to say users:
 
-``` ruby
+~~~
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -142,7 +145,8 @@ end
 describe User do
   it_behaves_like Contactable
 end
-```
+~~~
+{:lang="ruby"}
 
 Now your Users have first_name, last_name, address, and more!
 
@@ -150,7 +154,7 @@ Now your Users have first_name, last_name, address, and more!
 
 Now we can very, very easily isolate the Doctor out for very fast tests.
 
-``` ruby 
+~~~
 module Mongoid
 	module Document; end
   module Timestamps; end
@@ -169,7 +173,8 @@ describe Doctor do
 	end
 end
 
-```
+~~~
+{:lang="ruby"}
 
 The above would fail since #gimme! doesn't exist, but it would be:
 

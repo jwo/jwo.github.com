@@ -87,7 +87,7 @@ If there is, then we call the rake assets:precompile (like calling `super`)
 
 ## Output
 
-```
+~~~
     triggering after callbacks for `deploy:update_code'
   * executing `deploy:assets:precompile'
   * executing "cat /home/deployer/apps/yourapp/current/REVISION"
@@ -99,7 +99,8 @@ If there is, then we call the rake assets:precompile (like calling `super`)
     [yourapp.comalproductions.com] executing command
     command finished in 400ms
  ** Skipping asset pre-compilation because there were no asset changes
-```
+~~~
+{:lang="ruby"}
 
 PROOF: 400ms < 2.5 minutes
 

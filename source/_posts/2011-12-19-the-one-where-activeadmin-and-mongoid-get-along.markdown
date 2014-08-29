@@ -23,19 +23,21 @@ Add this code to your config/initializers/active_active_for_mongoid.rb
 
 It's easy to tell what's going on with the code -- ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example, 
 
-```
+~~~
 #ActiveRecord
 Product.order("published_at DESC").all
 #Mongoid
 Product.all(sort: [[ :published_at, :desc ]])
-```
+~~~
+{:lang="ruby"}
 
 The mongo queries that get executed look like:
 
-```
+~~~
 MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :desc]])
 MONGODB yourapp_development['users'].find({}).limit(30).sort([["email", :asc]])
-```
+~~~
+{:lang="ruby"}
 
 Props to [https://github.com/ebeigarts](https://github.com/ebeigarts) for the patch. It gets you to at least run with the ball for now.
 

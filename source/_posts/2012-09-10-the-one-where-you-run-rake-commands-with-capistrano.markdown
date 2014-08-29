@@ -41,9 +41,11 @@ load "config/recipes/assets"
 
 And that's it! Now, when you want to run that code, say to migrate a database:
 
-```ruby
+
+~~~
 cap sake:invoke task="db:migrate"
-```
+~~~
+{:lang="ruby"}
 
 This is not mind-blowing, but it's not very obvious for new deployers, so I wanted to add it here for the googlers.
 

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "Contact"
 date: 2011-12-07 21:30
 comments: false
