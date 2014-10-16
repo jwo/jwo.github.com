@@ -44,6 +44,57 @@
     <article class="post">
 	
 	<header class="post-header">
+		<span class="post-meta">16 Oct 2014</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/">
+			
+				Using Pg_dumpall to Move All Postgres Databases to a New Laptop</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>I recently upgraded laptops because it’s been 2 years and my business lease on
+it was up. Which: cool to have the new MacBook Air with the day-long-battery TM, but moving computers is a pain.  </p>
+
+<p>Except: I have <a href="https://github.com/jwo/dotfiles">dot files</a> and that makes it easier. After copying my home directory over, re-dotfiling, things
+seemed good.  </p>
+
+<p>Except: my postgres databases. How to get them all from Air A to Air B without copying every.single.one.  </p>
+
+<p>Enter: pg_dumpall. It’ll dump every database into a file, with which you import on new computer.</p>
+
+<p>When moving to a new computer</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pg_dumpall &gt; db.out
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>(Move file to to new computer)</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>psql -f dbout postgres
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<blockquote>
+  <p>if you have trouble with “database $username not found”, type in “createdb”</p>
+</blockquote>
+
+<p>To confirm, </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">psql
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>And then <code>\l</code> to list the databases</p>
+
+
+	</section>
+</article>
+
+
+    <article class="post">
+	
+	<header class="post-header">
 		<span class="post-meta">05 May 2014</span>
 		<h2 class="post-title">
 			
@@ -249,28 +300,6 @@ great talks to reject mine” and a sigh. Why did I like this rejection email?</
 	</header>
 	<section class="post-excerpt">
 		<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">03 Apr 2012</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2012/04/03/why-i-built-ruby-off-rails/">
-			
-				Why I Built Ruby Off Rails</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
-###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
-
-<p>That means, they pick up on concepts about instance variables, validations, how to create non-ActiveRecord classes, and most importantly: testing.</p>
 
 
 	</section>

@@ -105,16 +105,22 @@
         <lastmod>2014-08-28T10:02:27-05:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jessewolgamott.com/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/
+        </loc>
+        <lastmod>2014-10-16T10:37:44-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://jessewolgamott.com/archives/</loc>
-        <lastmod>2014-08-29T09:07:58-05:00</lastmod>
+        <lastmod>2014-10-16T10:37:44-05:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/blog/archives/</loc>
-        <lastmod>2014-08-29T09:07:58-05:00</lastmod>
+        <lastmod>2014-10-16T10:37:44-05:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/blog/</loc>
-        <lastmod>2014-08-29T09:07:58-05:00</lastmod>
+        <lastmod>2014-10-16T10:37:44-05:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/books/</loc>
@@ -126,7 +132,7 @@
     </url>
     <url>
         <loc>http://jessewolgamott.com/</loc>
-        <lastmod>2014-08-29T09:07:58-05:00</lastmod>
+        <lastmod>2014-10-16T10:37:44-05:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/robots.txt</loc>
