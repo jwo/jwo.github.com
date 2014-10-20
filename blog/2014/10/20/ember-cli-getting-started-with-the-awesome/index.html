@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8">
-	<title>Jesse Wolgamott |
+	<title>ember-cli: Getting Started with the Awesome | Jesse Wolgamott |
       JWo. TexMex Software Consulting</title>
 
 	<meta name="author" content="Jesse Wolgamott">
@@ -25,34 +25,16 @@
 </head>
 
 
-<body class="home-template">
-  <header id="site-head">
-  <div class="vertical">
-    <div id="site-head-content" class="inner">
-      <h1 class="blog-title"><a class="no-rollover" href="/">Jesse</br>Wolgamott</a></h1>
-      <h2 class="blog-description">TexMex Software Consulting</h2>
-      <p><a href="/contact">Contact</a> | <a href="/books">Books</a> <br/>  <a
-        href="/talks">Talks</a> | <a href="/start">Start Here</a></p>
-    </div>
-  </div>
-</header>
-
-  <main class="content" role="main">
-    
-
-
-    <article class="post">
-	
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
+  
 	<header class="post-header">
-		<span class="post-meta">20 Oct 2014</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/">
-			
-				Ember-cli: Getting Started With the Awesome</a>
-		</h2>
+		<a id="blog-logo" href="/">J.Wo</a>
 	</header>
-	<section class="post-excerpt">
+	<span class="post-meta">20 Oct 2014</span>
+	<h1 class="post-title">Ember-cli: Getting Started With the Awesome</h1>
+
+	<section class="post-content">
 		<p>ember-cli <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is a command line application that creates a separate project for your ember project.
 It is crafted by the Ember core team and extended by the Ember community <sup id="fnref:"><a href="#fn:" rel="footnote"></a></sup>.
 So: your backend API will be in 1 app/repo, and ember in a seperate one. This is
@@ -326,262 +308,44 @@ jump through to get your .scss working again. </p>
 
 
 	</section>
-</article>
 
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is an independent Consultant at <a
+      href="http://comal.io">Comal Productions</a>, <a href="/books">author</a>, <a
+      href="/talks">speaker</a>, and
+    instructor (at <a href="http://theironyard.com/locations/houston">The Iron
+      Yard</a>). He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=ember-cli: Getting Started with the Awesome&amp;url=http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
 
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">16 Oct 2014</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/">
-			
-				Using Pg_dumpall to Move All Postgres Databases to a New Laptop</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>I recently upgraded laptops because it’s been 2 years and my business lease on
-it was up. Which: cool to have the new MacBook Air with the day-long-battery TM, but moving computers is a pain.  </p>
+  <hr>
+  
+    <div class="share">
+</div>
 
-<p>Except: I have <a href="https://github.com/jwo/dotfiles">dot files</a> and that makes it easier. After copying my home directory over, re-dotfiling, things
-seemed good.  </p>
-
-<p>Except: my postgres databases. How to get them all from Air A to Air B without copying every.single.one.  </p>
-
-<p>Enter: pg_dumpall. It’ll dump every database into a file, with which you import on new computer.</p>
-
-<p>When moving to a new computer</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pg_dumpall &gt; db.out
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>(Move file to to new computer)</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>psql -f dbout postgres
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<blockquote>
-  <p>if you have trouble with “database $username not found”, type in “createdb”</p>
-</blockquote>
-
-<p>To confirm, </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">psql
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>And then <code>\l</code> to list the databases</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">05 May 2014</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/">
-			
-				Excitement! I&#8217;m Teaching Rails at the Iron Yard Houston</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>Teaching Ruby has been awesome. It’s been so awesome that I want more. I want to 
-meet the students face to face, and help change their lives for the better.  To
-make that happen, I’m going to teach Rails at Houston’s first open-source stack code school.
-The Iron Yard Houston. Classes start June 2nd.</p>
-
-<p>In March, I flew to Greenville, South Carolina, to experience a course first
-hand. The cohorts were 8 weeks into their JavaScript course, and amazed me with 
-their abilities. This was the real deal (discussing how to make
-Backbone models more maintainable). The Iron Yard came to Houston, and asked me
-to teach the Rails Engineering course. I kept looking for a reason to say no
-… </p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">27 Mar 2013</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">
-			
-				Reminder to Hand-craft Your Whenever Files</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
-Rackspace that the server had exceeded its memory allocation and was thrashing
-too hard; it rebooted our server for us.</p>
-
-<p>My initial reaction: Increase the memories!</p>
-
-<p>I looked deeper into the problem, and along with some colleagues, discovered
-that at midnight our server was kicking off 9 different processes at the same 
-time. 9x Rails is just about 8x too many.</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">04 Mar 2013</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/">
-			
-				RailsBerry Rejected My Talk and I Am Happy About It</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
-their 2013 conference. Normally: another “oh well, they must have found really
-great talks to reject mine” and a sigh. Why did I like this rejection email?</p>
-
-<h3 id="railsberry-gave-me-personalized-actionable-feedback-on-making-my-future-submissions-better">RailsBerry gave me personalized, actionable feedback on making my future submissions better.</h3>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">07 Feb 2013</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/">
-			
-				Easy, Light Weight, and Magical Parallel Processing in Ruby</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
-
-<p>We’ve all been there – you have code that needs to be run, and it’s taking forever. You wish there was a way to speed things along, but you can’t tweak the algorithm. You read about multi-threading but hear tales of dragons, pirates, and warnings of people who have ventured before you never to return.</p>
-
-<h2 id="worry-not-celluloid-is-here-and-celluloid-pmap-is-an-easy-way-to-get-started">Worry Not, Celluloid is here! (And celluloid-pmap is an easy way to get started)</h2>
-<p>But fear not! <a href="http://celluloid.io">Celluloid</a> exists, and is awesome. It’s an actor based implementation, but all you <em>need</em> to know is that it’s awesome. You can process an array of things in parallel, and continue when it’s complete.</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">05 Feb 2013</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/">
-			
-				The One Where I Have to Explain Why I Want Diversity in Our Field</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
-<a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
-
-<blockquote>
-  <p>If you are a guy and you want to help fight the good fight, tell people why you want diversity and not dickery, from your point of view.</p>
-</blockquote>
-
-<p>This comes after:</p>
-
-<ul>
-  <li>Ashe Dryden <a href="http://ashedryden.com/blog/we-deserve-better-than-this">was treated horribly</a>  </li>
-  <li>Sarah Parmenter (whom I’ve never spoken to) <a href="http://www.sazzy.co.uk/2013/02/speaking-up/">was treated horribly</a></li>
-</ul>
-
-<p>And this is in the last week. </p>
-
-<p>So. Why do I want diversity (and not dickery) in our field? a) it makes economic sense, b) we need to create better software and more of the same probably isn’t going to help, and c) it’s the human thing to do.</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">10 Sep 2012</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/">
-			
-				The One Where You Run Rake Commands With Capistrano</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>Simple Enough, right? Run some rake tasks on your servers. You think it’d be built in, but nope. Drink some sake and let capistrano do the work!</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">03 Sep 2012</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/">
-			
-				The One Where You Take Your Deploy to 11: Asset Pipeline</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">30 Jul 2012</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2012/07/30/rubyoffrails-scholarship-for-women/">
-			
-				RubyOffRails Scholarship for Women</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
-
-
-	</section>
-</article>
-
-<nav id="pagenavi">
-    
-    
-        <a href="/blog/page/2/" class="next">Next</a>
-    
-    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
-</nav>
-  </main>
+  
+  
+  <section id="comment">
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+  
+</article></main>
   <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
 
 
@@ -618,7 +382,10 @@ Follow me on
       var disqus_shortname = 'jwo';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

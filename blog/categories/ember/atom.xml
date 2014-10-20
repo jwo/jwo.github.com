@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ember | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/ember/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2014-10-20T15:52:15-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ember-cli: Getting Started with the Awesome]]></title>
+    <link href="http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/"/>
+    <updated>2014-10-20T13:40:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome</id>
+    <content type="html"><![CDATA[<p>ember-cli <sup id='fnref:1'><a href='#fn:1' rel='footnote'>1</a></sup> is a command line application that creates a separate project for your ember project.
+It is crafted by the Ember core team and extended by the Ember community <sup id='fnref:'><a href='#fn:' rel='footnote'></a></sup>.
+So: your backend API will be in 1 app/repo, and ember in a seperate one. This is
+a good thing for all sorts of reasons, but mostly: Your Front End App has grown
+up.</p>
+
+<blockquote class="twitter-tweet" lang="en"><p>So excited by how Ember CLI is
+shaping up. This is the story I&#39;ve been wanting to tell about developing web
+apps for the last 3 years.</p>&mdash; Tom Dale (@tomdale) <a href="https://twitter.com/tomdale/status/523265743610060800">October 18,
+2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>What does ember-cli give you over other-tool.js?</p>
+
+<ul>
+  <li>ember-cli includes the ability to build SCSS, Coffee-Script, include bower assets, and test your code.
+It will generate ember components for you in the same style as “rails generate model Customer”</li>
+  <li>ember-cli can run all of your front-end tests. Fastly. Without hair-pulling.</li>
+  <li>ember-cli can build the code for you (into a dist) folder, which can be deployed, or copied to a Rails public folder.</li>
+  <li>ember-cli can also be deployed directly to Heroku, or used to build Cordova applications on iOS and Android.</li>
+</ul>
+
+<p>** Tl;dr ember-cli is the awesome **</p>
+
+<p>However: There is a confusion generating getting-started period where you might be confused by some of
+the conventions. (confession: I had to fiddle around to figure stuff out.
+Hopefully, you dear reader won’t have to do so).</p>
+
+<h2 id="es6-modules">ES6 Modules</h2>
+<p>If you’ve used ember before in Rails or Lineman<sup id='fnref:3'><a href='#fn:3' rel='footnote'>3</a></sup>, moving to ember-cli could confuse you a bit — 
+ember-cli uses ES6 modules, which you may have never seen before.</p>
+
+<p>Prior to ember-cli, you may have declared your ember data models in this fashion:</p>
+
+<p>** app/js/models/user.js **</p>
+
+<p><code>javascript
+App.User = DS.Model.extend({
+  first_name: DS.attr('string'),
+  last_name: DS.attr('string'),
+  email: DS.attr('string'),
+  admin: DS.attr('boolean')
+});
+</code></p>
+
+<p>Things to notice: in this file, we assume that Ember and Ember Data have already been loaded, 
+and are in the global namespace ready for use. </p>
+
+<p>ES6, on the other hand, requires you to be explicit about what you want to use — you import namespaces, 
+name them what you want, and then use them.</p>
+
+<p>** app/models/recipe.js **</p>
+
+<p>```js
+import DS from ‘ember-data’;</p>
+
+<p>export default DS.Model.extend({
+  permalink: DS.attr(‘string’),
+  name: DS.attr(‘string’),
+  ingredients: DS.attr(‘string’),
+  instructions: DS.attr(‘string’),
+  description: DS.attr(‘string’)
+});
+```</p>
+
+<p>We import the “DS” from ember-data, and it exports the object we define. What we notice:</p>
+
+<ol>
+  <li>We never say this is a “Recipe”. Instead, the ember-cli “Resolver” knows that this is from recipe.js and 
+therefor is a “Recipe”.</li>
+  <li>The “export default” is important. Without it, nothing happens.</li>
+  <li>It’s extremely important to name files correctly. Extreme Extremeness.</li>
+</ol>
+
+<h2 id="getting-sass-working">Getting Sass Working</h2>
+<p>Coming from Rails, the first thing I want to do is work with Sass. I found a couple of loops you had to 
+jump through to get your .scss working again. </p>
+
+<h4 id="step-1-install-brocolli-sass-and-broccoli-merge-trees">Step 1: install brocolli-sass and broccoli-merge-trees</h4>
+
+<p><code>bash
+npm install --save-dev broccoli-sass
+npm install --save-dev broccoli-merge-trees
+</code></p>
+
+<p>If you’re new to npm, the “–save-dev” means “use only in this project”.</p>
+
+<h4 id="step-2-edit-brocfilejs">Step 2: edit Brocfile.js</h4>
+
+<p>Make it look like this:</p>
+
+<p>```js
+/* global require, module */</p>
+
+<p>var EmberApp = require(‘ember-cli/lib/broccoli/ember-app’);</p>
+
+<p>var app = new EmberApp();</p>
+
+<p>var compileSass = require(‘broccoli-sass’);
+var mergeTrees = require(‘broccoli-merge-trees’);</p>
+
+<p>var sassSources = [
+  ‘app/styles’,
+  ‘vendor/css’
+]</p>
+
+<p>var appCss = compileSass( sassSources , ‘app.scss’, ‘assets/app.css’);
+var appAndCustomDependencies = mergeTrees([app.toTree(),appCss], {
+  overwrite: true
+});
+// EXPORT ALL THE THINGS!
+module.exports = appAndCustomDependencies;
+```</p>
+
+<p>This will create an asset-pipeline of sorts for you. Broccoli will compile any sass files in app/styles and vendor/css, and compile app.scss into “assets/app.css”. </p>
+
+<p>Generally, this is what you want.</p>
+
+<h4 id="step-3-customize-your-sass">Step 3: Customize your sass</h4>
+
+<p>Move app/styles/app.css to app/styles/app.scss. You can now use scss all you like:</p>
+
+<p><code>scss
+body {
+  color: lighten(#222222, 20%);
+}
+</code></p>
+
+<p>(We’ll use Bourbon in a future article)</p>
+
+<h2 id="creating-routes">Creating Routes</h2>
+
+<p><code>
+ember generate route Index
+</code></p>
+
+<p>This will create app/routes/index.js (and create “routes” directory for you, cool). We’ll change the default to the standard ember starter:</p>
+
+<p>```
+import Ember from ‘ember’;</p>
+
+<p>export default Ember.Route.extend({
+  model: function() {
+    return [“red”, “yellow”, “green”];
+  }
+});
+```</p>
+
+<p>And we’ll create a template to show. </p>
+
+<p><code>bash
+ember generate template index
+</code></p>
+
+<p>This created app/templates/index.hbs. We’ll change its contents to:</p>
+
+<script src="https://gist.github.com/jwo/8fdfe5e630d37a07cdce.js"></script>
+
+<h3 id="running-locally">Running Locally</h3>
+
+<p><code>bash
+ember server
+</code></p>
+
+<p>If things are good to go, you’ll see the colors listed out on the screen. WOAH, the power.</p>
+
+<h3 id="building-for-deploying">Building for Deploying</h3>
+
+<p><code>bash
+ember build
+</code></p>
+
+<p>This creates a “dist” directory with “index.html” and other static assets. We can deploy this to S3, or anywhere else. TOTES AWESOME.</p>
+
+<h3 id="deploying-to-heroku">Deploying to Heroku</h3>
+
+<p>If we run into CORS problems, or generally want to use Heroku, there’s a build pack for maximum awesome.</p>
+
+<p><code>bash
+heroku create --buildpack https://github.com/tonycoco/heroku-buildpack-ember-cli.git
+git push heroku master
+</code></p>
+
+<p>At this point, you have an ember app, build with ember-cli, hosted on Heroku. </p>
+
+<p>We can set an API Proxy to get around CORS problems:</p>
+
+<p><code>heroku config:set API_URL=http://api.example.com/</code></p>
+
+<p>If you want to checkout a repo where this is hooked up <sup id='fnref:3'><a href='#fn:3' rel='footnote'>3</a></sup> </p>
+
+<h2 id="where-to-go-from-here">Where to go from here?</h2>
+
+<ul>
+  <li>Check out ember-cli-cordova https://github.com/poetic/ember-cli-cordova </li>
+  <li>Watch Jake from Poetic Systems’s Houston.JS talk on using this to build mobile apps</li>
+  <li>
+    <blockquote class="twitter-tweet" lang="en"><p>My talk on building hybrid apps with ember is up! <a href="http://t.co/iKOB75Dgex">http://t.co/iKOB75Dgex</a> Presented for <a href="https://twitter.com/HoustonJS">@HoustonJS</a> at <a href="https://twitter.com/PoeticSystems">@PoeticSystems</a></p>&mdash; Jake Craige (@jakecraige) <a href="https://twitter.com/jakecraige/status/518037818246189056">October 3, 2014</a></blockquote>
+    <script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </li>
+  <li>Add Ember-Data and use the ember-cli-buildpack’s API proxy <sup id='fnref:5'><a href='#fn:5' rel='footnote'>5</a></sup></li>
+  <li>Have serious FUN.</li>
+</ul>
+
+<h3 id="next-articles-in-this-series">Next Articles in this series</h3>
+<ol>
+  <li>How to Bourbon/Neat/Bitters your ember-cli</li>
+  <li>How to use environment variables in ember-cli and on heroku</li>
+  <li>How to customize the JSON you receive from someone’s API and play nicely with ember-data</li>
+</ol>
+
+<script src="https://app.convertkit.com/landing_pages/862.js?orient=horz"></script>
+
+<p><div class="footnotes">
+    <ol>
+        <li id='fn:1'><p><a href="http://www.ember-cli.com/">ember-cli</a>
+  <a href="#fnref:1" rev="footnote">↩</a></p>
+</li><li id='fn:2'><p>(seriously, check out <a href="http://www.emberaddons.com/">emberaddons.com</a>),
+  <a href="#fnref:2" rev="footnote">↩</a></p>
+</li><li id='fn:3'><p><a href="https://github.com/jwo/embereno-buildpack-test">jwo/embereno-buildpack-test</a>
+  <a href="#fnref:3" rev="footnote">↩</a></p>
+</li><li id='fn:4'><p><a href="http://www.linemanjs.com/">LinemanJS.com</a>
+  <a href="#fnref:4" rev="footnote">↩</a></p>
+</li><li id='fn:5'><p><a href="https://github.com/jwo/weeatt-ember-cli">GitHub/Jwo/weeatt-ember-cli</a>
+<a href="#fnref:5" rev="footnote">↩</a></p>
+</li>
+    </ol>
+</div>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
