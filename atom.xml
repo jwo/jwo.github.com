@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-10-20T15:52:15-05:00</updated>
+  <updated>2014-12-05T13:18:07-06:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails and the next 5 years]]></title>
+    <link href="http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years/"/>
+    <updated>2014-12-05T09:54:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years</id>
+    <content type="html"><![CDATA[<p>After a few flirtatious encounters with Ruby, I left .NET in 2009.
+I was looking for something better, something where I
+didn’t use an IDE, something where I didn’t feel like I was fighting the
+entire culture, and a place I could be happy being a devloper again.</p>
+
+<p>I found Rails. I found open source. I found Ruby. And I found myself.</p>
+
+<p>Ruby/Rails to me: a community where people help each other learn, full of
+interesting and fun challenges, and a desire to learn the entire stack from UNIX
+to CSS. </p>
+
+<p>Fast forward 5 years; I’ve been thinking about what the next 5 years will look
+like, for both me specifically and for web/mobile application in general.</p>
+
+<p>It’s fairly clear to me that most medium to large’ish apps won’t be a single
+Rails app with 100 controllers. That dog has tried to hunt, and well… that
+dog won’t hunt. OneLargeRailsApp is not the future. </p>
+
+<p>Rails isn’t going away. I will still use it for prototyping and for
+applications where expressiveness is key (billing code and administration of
+data are two examples). Rails will become part of the puzzle, not the whole
+thing. I don’t envision anything being the entire puzzle anymore. Too much
+awesome tech which each do one thing super awesomely.</p>
+
+<h3 id="prediction-apps-in-this-half-decade-will-be-split-up">Prediction: apps in this half-decade will be split up</h3>
+
+<ul>
+  <li>Many Apps (iOS/android, some rails, some Ember, some R, some Go)</li>
+  <li>Depending on your worldview, <code>gsub/Go/Node|Elixir/</code></li>
+</ul>
+
+<p>I don’t anticipate quote-unquote leaving Rails. There’s no need to leave like
+there was a need for me to flee .NET. Instead, the communities will merge
+together under an open-source umbrella. I doubt there will be one big huge
+community in which you do ALL of your development. </p>
+
+<p>The future, in my opinion, is many languages. Many communities. Many meetups. </p>
+
+<p>Bring on the future!</p>
+
+<p>(and my hoverboards. and jetpacks. and flying cars)  </p>
+
+<iframe src="http://giphy.com/embed/3jmLczk5BbfZC?html5=true" width="480" height="261" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ember-cli: Getting Started with the Awesome]]></title>
@@ -1809,75 +1860,6 @@ end</code></pre></noscript></div>
 <p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
 
 <h6 id="version-disclosure-this-post-was-valid-with-devise-146-and-rails-233031">Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The One with HTML5 Videos Using Zencoder for VideoJS.com]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com/"/>
-    <updated>2011-12-07T20:31:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/07/html5-videos-using-zencoder-for-videojs-dot-com</id>
-    <content type="html"><![CDATA[<p>Things that are true:</p>
-
-<ul>
-  <li>HTML5 is cool</li>
-  <li>HTML5 Videos are Cool</li>
-  <li>Getting HTML5 Video formats OMG all of them created … <em>NOT</em> cool</li>
-</ul>
-
-<p><a href="http://videojs.com">VideoJS.com</a> will create an HTML5 embed for you that will render in iOS devices, all the modern browsers, and will fallback to flash for IE 6/7/8 types. However, to get all this goodness, you have to create your video file in 3 different formats:</p>
-
-<ul>
-  <li>h.264</li>
-  <li>web-m</li>
-  <li>Theora</li>
-</ul>
-
-<p>The <a href="https://github.com/devthenet/voyeur">Voyeur gem</a> looks cool (in that you can use it to create all three formats at once), but it seems to only work for ubuntu. What’s a mac fanboy to do?
-<!--more--></p>
-
-<p><a href="https://app.zencoder.com">ZenCoder</a> is pretty dern cool as well – pay as you go, no monthly fees, and it’s who VideoJS.com recommends. Trouble is, you have to remember each of the formats and configure them and ZOMG it takes forever to build this API request.</p>
-
-<p>So that you will not have to suffer as I have done, I created a shell GIST. Simply paste in your publicly accessible video URL (using S3 with an authenticated URL works spendidly here), paste in your API KEY, and configure the sizes you want. POST to https://app.zencoder.com/api/v2/jobs using HTTPClient and Bam. </p>
-
-<div><script src="https://gist.github.com/1440139.js"></script>
-<noscript><pre><code>POST https://app.zencoder.com/api/v2/jobs HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-
-{
-  &quot;api_key&quot;: &quot;API_KEY_HERE&quot;,
-  &quot;input&quot;: &quot;PUBLIC_FILE_URL_HERE&quot;,
-  &quot;private&quot;: true,
-  &quot;output&quot;: [
-    {
-      &quot;video_codec&quot;: &quot;theora&quot;,
-      &quot;width&quot;: 450,
-      &quot;height&quot;: 320,
-      &quot;upscale&quot;: true,
-      &quot;quality&quot;: 3,
-      &quot;audio_quality&quot;: 4
-    },
-    {
-      &quot;video_codec&quot;: &quot;h264&quot;,
-      &quot;width&quot;: 450,
-      &quot;height&quot;: 320,
-      &quot;upscale&quot;: true,
-      &quot;quality&quot;: 3,
-      &quot;audio_quality&quot;: 4
-    },
-    {
-      &quot;video_codec&quot;: &quot;vp8&quot;,
-      &quot;width&quot;: 450,
-      &quot;height&quot;: 320,
-      &quot;upscale&quot;: true,
-      &quot;quality&quot;: 3,
-      &quot;audio_quality&quot;: 4
-    }
-  ]
-}	</code></pre></noscript></div>
-
-<p>I have had good luck with the <a href="http://videojs.com/embed-builder/">VideoJS.com embed builder on VideoJS.com</a>. I’ve had bad luck converting to HAML for an as-yet undiscovered reason.</p>
 ]]></content>
   </entry>
   
