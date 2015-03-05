@@ -4,7 +4,7 @@
   <title><![CDATA[Category: activeadmin | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/activeadmin/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-12-05T13:18:07-06:00</updated>
+  <updated>2015-03-05T11:45:22-08:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
     <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
-    <updated>2011-12-19T09:18:00-06:00</updated>
+    <updated>2011-12-19T09:18:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
     <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
 <!-- more --></p>

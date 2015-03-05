@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-12-05T13:18:07-06:00</updated>
+  <updated>2015-03-05T11:45:22-08:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
     <link href="http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/"/>
-    <updated>2013-03-27T14:39:00-05:00</updated>
+    <updated>2013-03-27T14:39:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files</id>
     <content type="html"><![CDATA[<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
 Rackspace that the server had exceeded its memory allocation and was thrashing
@@ -129,7 +129,7 @@ every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; 
   <entry>
     <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
-    <updated>2013-02-07T11:18:00-06:00</updated>
+    <updated>2013-02-07T11:18:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
     <content type="html"><![CDATA[<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
@@ -243,7 +243,7 @@ every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; 
   <entry>
     <title type="html"><![CDATA[The One Where I Have to Explain Why I Want Diversity in our Field]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
-    <updated>2013-02-05T09:09:00-06:00</updated>
+    <updated>2013-02-05T09:09:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
@@ -334,7 +334,7 @@ or better yet, write a blog post in response and/or in agreement.</p>
   <entry>
     <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
     <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
-    <updated>2012-07-30T10:35:00-05:00</updated>
+    <updated>2012-07-30T10:35:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
     <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
@@ -383,7 +383,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
-    <updated>2012-04-03T12:23:00-05:00</updated>
+    <updated>2012-04-03T12:23:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
     <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
 ###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>

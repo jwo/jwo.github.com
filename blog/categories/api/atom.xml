@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-12-05T13:18:07-06:00</updated>
+  <updated>2015-03-05T11:45:22-08:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The One With a JSON API Login Using Devise]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
-    <updated>2012-01-19T07:28:00-06:00</updated>
+    <updated>2012-01-19T07:28:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
     <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
 

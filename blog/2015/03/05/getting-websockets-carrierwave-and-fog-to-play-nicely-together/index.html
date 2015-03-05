@@ -1,0 +1,314 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>Getting Websockets, CarrierWave, and Fog to play nicely together | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
+
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
+  
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">05 Mar 2015</span>
+	<h1 class="post-title">Getting Websockets, CarrierWave, and Fog to Play Nicely Together</h1>
+
+	<section class="post-content">
+		<p>Getting Websockets, CarrierWave, and Fog to play nicely together</p>
+
+<p>Alternate title: “Dancing with Dragons, or, how I got screwed by ActiveRecord Callbacks yet again.”</p>
+
+<p>I’ve been working on the following scenario:</p>
+
+<ul>
+  <li>2 different people have an ember app open</li>
+  <li>One of them adds a new record to the Rails app</li>
+  <li>I want other-person’s ember to refresh with that new record instantaniously-ish</li>
+</ul>
+
+<h3 id="the-setup">The setup</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Fairly simple, but here’s what’s going on:  </p>
+
+<ul>
+  <li>When our photo is created, carrier wave will resize the image, upload it to S3</li>
+  <li>We will send the JSON through Pusher to any clients subscribed to the <code>new_photo</code> channel. The JSON we’re sending is the same JSON that ActiveModelSerializer will use in the API. WIN.</li>
+</ul>
+
+<h2 id="but-then-melancholy">But then, melancholy.</h2>
+
+<p>The JSON that comes through has something rather odd for <code>large_image_url</code> - it’s a local path to the /tmp/upload directory, which absolutely does not work. :/</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Basically, when Pusher is sending PhotoSerializer.new(self).attributes, the image has not been stored up to S3. We want to do Pusher later, after fog does it’s thing.</p>
+
+<p>Callbacks are run in this order:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">before_validation</span>
+</span><span class="line"><span class="n">after_validation</span>
+</span><span class="line"><span class="n">before_save</span>
+</span><span class="line"><span class="n">around_save</span>
+</span><span class="line"><span class="n">before_create</span>
+</span><span class="line"><span class="n">around_create</span>
+</span><span class="line"><span class="n">after_create</span>
+</span><span class="line"><span class="n">after_save</span>
+</span><span class="line"><span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So, <code>after_create</code> is occurring before <code>after_save</code>. Let’s switch that up and our problems should be solved:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Result: Same thing. huh?</p>
+
+<p>To see the order in which callbacks are run, we can do this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That will show the name of the callbacks being called, and will look something like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That 70220584822820 is our block callback. And it’s first. Why is it first? Can we get it to go last?  Callbacks are run in a last-first order. Further, changing it to something like the following also doesn’t work.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="so-then-what-the-hell-works">So then what the hell works?</h3>
+
+<p>We need to store the image before we get the attributes. So, let’s add that <code>store_image!</code> callback we saw in the list of callbacks. This will result in <code>store_image!</code> being called twice, but it won’t actually store the image twice — the second call is basically a no-op.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="it-works-rejoice-then-anger">IT WORKS. REJOICE. Then: Anger.</h3>
+
+<p>CALLBACKS!!! </p>
+
+<p><img src="/images/khallbacks.jpg" alt="khallbacks" /></p>
+
+<p>It reminds me of a <a href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">story about a younger Rails developer warning other Rails devs about the dangers of Callbacks, and how they tend to screw you over</a>.</p>
+
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is an independent Consultant at <a
+      href="http://comal.io">Comal Productions</a>, <a href="/books">author</a>, <a
+      href="/talks">speaker</a>, and
+    instructor (at <a href="http://theironyard.com/locations/houston">The Iron
+      Yard</a>). He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=Getting Websockets, CarrierWave, and Fog to play nicely together&amp;url=http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
+</div>
+
+  
+  
+  <section id="comment">
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2015 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
+
+</div>
+</footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jwo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</body>
+</html>

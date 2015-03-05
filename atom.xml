@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2014-12-05T13:18:07-06:00</updated>
+  <updated>2015-03-05T11:45:22-08:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -14,9 +14,189 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Getting Websockets, CarrierWave, and Fog to play nicely together]]></title>
+    <link href="http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/"/>
+    <updated>2015-03-05T11:30:00-08:00</updated>
+    <id>http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together</id>
+    <content type="html"><![CDATA[<p>Getting Websockets, CarrierWave, and Fog to play nicely together</p>
+
+<p>Alternate title: “Dancing with Dragons, or, how I got screwed by ActiveRecord Callbacks yet again.”</p>
+
+<p>I’ve been working on the following scenario:</p>
+
+<ul>
+  <li>2 different people have an ember app open</li>
+  <li>One of them adds a new record to the Rails app</li>
+  <li>I want other-person’s ember to refresh with that new record instantaniously-ish</li>
+</ul>
+
+<h3 id="the-setup">The setup</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Fairly simple, but here’s what’s going on:  </p>
+
+<ul>
+  <li>When our photo is created, carrier wave will resize the image, upload it to S3</li>
+  <li>We will send the JSON through Pusher to any clients subscribed to the <code>new_photo</code> channel. The JSON we’re sending is the same JSON that ActiveModelSerializer will use in the API. WIN.</li>
+</ul>
+
+<h2 id="but-then-melancholy">But then, melancholy.</h2>
+
+<p>The JSON that comes through has something rather odd for <code>large_image_url</code> - it’s a local path to the /tmp/upload directory, which absolutely does not work. :/</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Basically, when Pusher is sending PhotoSerializer.new(self).attributes, the image has not been stored up to S3. We want to do Pusher later, after fog does it’s thing.</p>
+
+<p>Callbacks are run in this order:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">before_validation</span>
+</span><span class="line"><span class="n">after_validation</span>
+</span><span class="line"><span class="n">before_save</span>
+</span><span class="line"><span class="n">around_save</span>
+</span><span class="line"><span class="n">before_create</span>
+</span><span class="line"><span class="n">around_create</span>
+</span><span class="line"><span class="n">after_create</span>
+</span><span class="line"><span class="n">after_save</span>
+</span><span class="line"><span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So, <code>after_create</code> is occurring before <code>after_save</code>. Let’s switch that up and our problems should be solved:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Result: Same thing. huh?</p>
+
+<p>To see the order in which callbacks are run, we can do this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That will show the name of the callbacks being called, and will look something like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That 70220584822820 is our block callback. And it’s first. Why is it first? Can we get it to go last?  Callbacks are run in a last-first order. Further, changing it to something like the following also doesn’t work.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="so-then-what-the-hell-works">So then what the hell works?</h3>
+
+<p>We need to store the image before we get the attributes. So, let’s add that <code>store_image!</code> callback we saw in the list of callbacks. This will result in <code>store_image!</code> being called twice, but it won’t actually store the image twice — the second call is basically a no-op.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+</span><span class="line">    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
+</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="it-works-rejoice-then-anger">IT WORKS. REJOICE. Then: Anger.</h3>
+
+<p>CALLBACKS!!! </p>
+
+<p><img src="http://jessewolgamott.com/images/khallbacks.jpg" alt="khallbacks" /></p>
+
+<p>It reminds me of a <a href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/">story about a younger Rails developer warning other Rails devs about the dangers of Callbacks, and how they tend to screw you over</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Rails and the next 5 years]]></title>
     <link href="http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years/"/>
-    <updated>2014-12-05T09:54:00-06:00</updated>
+    <updated>2014-12-05T09:54:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years</id>
     <content type="html"><![CDATA[<p>After a few flirtatious encounters with Ruby, I left .NET in 2009.
 I was looking for something better, something where I
@@ -67,7 +247,7 @@ community in which you do ALL of your development. </p>
   <entry>
     <title type="html"><![CDATA[ember-cli: Getting Started with the Awesome]]></title>
     <link href="http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/"/>
-    <updated>2014-10-20T13:40:00-05:00</updated>
+    <updated>2014-10-20T13:40:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome</id>
     <content type="html"><![CDATA[<p>ember-cli <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is a command line application that creates a separate project for your ember project.
 It is crafted by the Ember core team and extended by the Ember community <sup id="fnref:"><a href="#fn:" rel="footnote"></a></sup>.
@@ -346,7 +526,7 @@ jump through to get your .scss working again. </p>
   <entry>
     <title type="html"><![CDATA[Using pg_dumpall to move all postgres databases to a new laptop]]></title>
     <link href="http://jessewolgamott.com/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/"/>
-    <updated>2014-10-16T10:35:00-05:00</updated>
+    <updated>2014-10-16T10:35:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop</id>
     <content type="html"><![CDATA[<p>I recently upgraded laptops because it’s been 2 years and my business lease on
 it was up. Which: cool to have the new MacBook Air with the day-long-battery TM, but moving computers is a pain.  </p>
@@ -388,7 +568,7 @@ seemed good.  </p>
   <entry>
     <title type="html"><![CDATA[Excitement! I'm teaching Rails at The Iron Yard Houston]]></title>
     <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/"/>
-    <updated>2014-05-05T10:28:00-05:00</updated>
+    <updated>2014-05-05T10:28:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston</id>
     <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It’s been so awesome that I want more. I want to 
 meet the students face to face, and help change their lives for the better.  To
@@ -450,7 +630,7 @@ blew their minds wide open. Especially Robots –  So much excitement, very pote
   <entry>
     <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
     <link href="http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/"/>
-    <updated>2013-03-27T14:39:00-05:00</updated>
+    <updated>2013-03-27T14:39:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files</id>
     <content type="html"><![CDATA[<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
 Rackspace that the server had exceeded its memory allocation and was thrashing
@@ -563,7 +743,7 @@ every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; 
   <entry>
     <title type="html"><![CDATA[RailsBerry rejected my talk and I am happy about it]]></title>
     <link href="http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/"/>
-    <updated>2013-03-04T13:12:00-06:00</updated>
+    <updated>2013-03-04T13:12:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it</id>
     <content type="html"><![CDATA[<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
 their 2013 conference. Normally: another “oh well, they must have found really
@@ -665,7 +845,7 @@ won’t know what to change to get better.</p>
   <entry>
     <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
-    <updated>2013-02-07T11:18:00-06:00</updated>
+    <updated>2013-02-07T11:18:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
     <content type="html"><![CDATA[<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
@@ -779,7 +959,7 @@ won’t know what to change to get better.</p>
   <entry>
     <title type="html"><![CDATA[The One Where I Have to Explain Why I Want Diversity in our Field]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
-    <updated>2013-02-05T09:09:00-06:00</updated>
+    <updated>2013-02-05T09:09:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
@@ -870,7 +1050,7 @@ or better yet, write a blog post in response and/or in agreement.</p>
   <entry>
     <title type="html"><![CDATA[The One Where You Run Rake Commands with Capistrano]]></title>
     <link href="http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
-    <updated>2012-09-10T13:38:00-05:00</updated>
+    <updated>2012-09-10T13:38:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
     <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it’d be built in, but nope. Drink some sake and let capistrano do the work!</p>
 
@@ -937,7 +1117,7 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   <entry>
     <title type="html"><![CDATA[The One Where You Take Your Deploy to 11: Asset Pipeline]]></title>
     <link href="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/"/>
-    <updated>2012-09-03T14:56:00-05:00</updated>
+    <updated>2012-09-03T14:56:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline</id>
     <content type="html"><![CDATA[<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
 
@@ -1082,7 +1262,7 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   <entry>
     <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
     <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
-    <updated>2012-07-30T10:35:00-05:00</updated>
+    <updated>2012-07-30T10:35:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
     <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
@@ -1131,7 +1311,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
     <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
-    <updated>2012-06-06T09:46:00-05:00</updated>
+    <updated>2012-06-06T09:46:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
     <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
 
@@ -1149,7 +1329,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
-    <updated>2012-04-03T12:23:00-05:00</updated>
+    <updated>2012-04-03T12:23:00-07:00</updated>
     <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
     <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
 ###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
@@ -1196,7 +1376,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[The one where we DRY up Mongoid and Rspec using Shared Examples and Modules]]></title>
     <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
-    <updated>2012-02-29T10:19:00-06:00</updated>
+    <updated>2012-02-29T10:19:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
     <content type="html"><![CDATA[<p>The Situation: You’re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man – everybody has a contact.</p>
 
@@ -1390,7 +1570,7 @@ describe <span class="constant">Doctor</span> <span class="keyword">do</span>
   <entry>
     <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
-    <updated>2012-02-03T11:11:00-06:00</updated>
+    <updated>2012-02-03T11:11:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
     <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 
@@ -1444,7 +1624,7 @@ gem <span class="string"><span class="delimiter">&quot;</span><span class="conte
   <entry>
     <title type="html"><![CDATA[The One With a JSON API Login Using Devise]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
-    <updated>2012-01-19T07:28:00-06:00</updated>
+    <updated>2012-01-19T07:28:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
     <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
 
@@ -1604,7 +1784,7 @@ end
   <entry>
     <title type="html"><![CDATA[The One Where I Deliver Ruby to a Non Programmer]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/"/>
-    <updated>2012-01-04T13:09:00-06:00</updated>
+    <updated>2012-01-04T13:09:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer</id>
     <content type="html"><![CDATA[<p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
 
@@ -1643,7 +1823,7 @@ end
   <entry>
     <title type="html"><![CDATA[The One Where Unicorn Doesn't Update on Deploy]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
-    <updated>2012-01-02T13:27:00-06:00</updated>
+    <updated>2012-01-02T13:27:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
@@ -1732,7 +1912,7 @@ end
   <entry>
     <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
     <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
-    <updated>2011-12-19T09:18:00-06:00</updated>
+    <updated>2011-12-19T09:18:00-08:00</updated>
     <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
     <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
 <!-- more --></p>
@@ -1817,49 +1997,6 @@ end</code></pre></noscript></div>
 </ul>
 
 <h6 id="version-disclosure-this-post-was-valid-with-activeadmin-034-mongoid-234-and-rails-3031">Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The One Where Devise Validations are Customized]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized/"/>
-    <updated>2011-12-08T20:41:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/08/the-one-where-devise-validations-are-customized</id>
-    <content type="html"><![CDATA[<p>The situation: You use Devise, and want to make emails optional because you login via username and why bother with emails? </p>
-
-<p>Or maybe you want to be able to re-use email addresses as logins, say across subdomains. Or even multiple email addresses?</p>
-
-<p>Your problem: Devise validatable hates on this and laughs are your attempts.
-<!-- more --></p>
-
-<h2 id="keep-the-sweet-devise-format-validations-and-customize-devise-validations-by-rolling-your-own">Keep the sweet Devise format validations, and customize devise validations by rolling your own</h2>
-<p>First, remove the :validatable argument from the devise method</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>devise <span class="symbol">:database_authenticatable</span>, <span class="symbol">:token_authenticatable</span> 
-</pre></div>
-</div>
-</div>
-
-<p>Then, you’ll need to implement your own validations. Depending on your intentions, either include or exclude <code>validates_presence_of   :email</code></p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>  validates_uniqueness_of    <span class="symbol">:email</span>,     <span class="symbol">:case_sensitive</span> =&gt; <span class="predefined-constant">false</span>, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>, <span class="symbol">:if</span> =&gt; <span class="symbol">:email_changed?</span>
-  validates_format_of    <span class="symbol">:email</span>,    <span class="symbol">:with</span>  =&gt; <span class="constant">Devise</span>.email_regexp, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>, <span class="symbol">:if</span> =&gt; <span class="symbol">:email_changed?</span>
-  validates_presence_of    <span class="symbol">:password</span>, <span class="symbol">:on</span>=&gt;<span class="symbol">:create</span>
-  validates_confirmation_of    <span class="symbol">:password</span>, <span class="symbol">:on</span>=&gt;<span class="symbol">:create</span>
-  validates_length_of    <span class="symbol">:password</span>, <span class="symbol">:within</span> =&gt; <span class="constant">Devise</span>.password_length, <span class="symbol">:allow_blank</span> =&gt; <span class="predefined-constant">true</span>
-</pre></div>
-</div>
-</div>
-
-<p>I know the above looks vaguely familiar… say: what you used to write all the time before Devise kicked in. But <a href="https://github.com/plataformatec/devise/blob/master/lib/devise/models/validatable.rb">look at the devise validatable source</a> – this is all it’s doing anyway.</p>
-
-<p>To allow email re-use across accounts, add <code>:scope=&gt;:accont_id</code> on the uniqueness validation.</p>
-
-<p>Also cool: use the <code>Devise.email_regexp</code> and <code>Devise.password_length</code> to get good email validations.</p>
-
-<h6 id="version-disclosure-this-post-was-valid-with-devise-146-and-rails-233031">Version Disclosure: This post was valid with Devise 1.4.6 and Rails 2.3/3.0/3.1.</h6>
 ]]></content>
   </entry>
   
