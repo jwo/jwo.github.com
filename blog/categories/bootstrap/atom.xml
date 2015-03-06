@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bootstrap | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/bootstrap/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-03-05T11:45:22-08:00</updated>
+  <updated>2015-03-06T09:46:43-06:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
-    <updated>2012-02-03T11:11:00-08:00</updated>
+    <updated>2012-02-03T11:11:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
     <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 

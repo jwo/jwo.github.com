@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ember | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/ember/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-03-05T11:45:22-08:00</updated>
+  <updated>2015-03-06T09:46:43-06:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[ember-cli: Getting Started with the Awesome]]></title>
     <link href="http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/"/>
-    <updated>2014-10-20T13:40:00-07:00</updated>
+    <updated>2014-10-20T13:40:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome</id>
     <content type="html"><![CDATA[<p>ember-cli <sup id='fnref:1'><a href='#fn:1' rel='footnote'>1</a></sup> is a command line application that creates a separate project for your ember project.
 It is crafted by the Ember core team and extended by the Ember community <sup id='fnref:'><a href='#fn:' rel='footnote'></a></sup>.

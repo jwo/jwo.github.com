@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-03-05T11:45:22-08:00</updated>
+  <updated>2015-03-06T09:46:43-06:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -14,9 +14,96 @@
 
   
   <entry>
+    <title type="html"><![CDATA[1000 Day Love Story with Ember]]></title>
+    <link href="http://jessewolgamott.com/blog/2015/03/06/1000-day-love-story-with-ember/"/>
+    <updated>2015-03-06T09:10:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2015/03/06/1000-day-love-story-with-ember</id>
+    <content type="html"><![CDATA[<p>Like most love stories, my love affair with Ember took time to blossom. I first saw Ember in 2011, had some fun, and planned to look at it once the API solidified.</p>
+
+<p>In that time, pre-1.0, Ember’s API would change constantly. Most people saw this as a flaw, after all, it meant that documentation, blogs, and stack overflow searches would frequently reference older versions. The router saw the biggest changes, frequently.</p>
+
+<p>The benefit of this – Ember got the API right. Once it hit 1.0, the API was on point; and with the correct API in place, Ember keeps getting better. Ember is able to make changes under the hood, applying React style rendering, performance enhancements, and generally get better and better over time.</p>
+
+<p>My experience with ember is generally along the lines of Deleting more code than I add; Ember tends to add what I need overtime and I use that instead of my code.</p>
+
+<p>Told over a series of many (perhaps too many) tweets, here is the story of my transition from Ember to Angular Ember.</p>
+
+<h3 id="section">2011</h3>
+
+<blockquote class="twitter-tweet"><p>It&#39;s not quite &quot;the first time you saw rails&quot; tingly, but I have the tingles about emberjs. Well played <a href="https://twitter.com/wycats">@wycats</a> , well played.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/147056588740505601">December 14, 2011</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h3 id="section-1">2012</h3>
+
+<p>I live-coded some ember at Houston Code Camp and it didn’t go very well. Too many rough edges, mostly with ember-data.</p>
+
+<blockquote class="twitter-tweet"><p>Speaking of <a href="https://twitter.com/houstoncodecamp">@houstoncodecamp</a>, I&#39;ll be live coding an <a href="https://twitter.com/emberjs">@emberjs</a> app with rails as the API. Come experience the magic! cc: <a href="https://twitter.com/HoustonJS">@HoustonJS</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/231040665767792641">August 2, 2012</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h3 id="section-2">2013</h3>
+
+<blockquote class="twitter-tweet"><p><a href="https://twitter.com/tehviking">@tehviking</a> I like that viewpoint. (I like both angular and ember)</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/322376953564901377">April 11, 2013</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p>Love both angular and ember. excited to see which ages better.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/372472103984848896">August 27, 2013</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p><a href="https://twitter.com/garrettdimon">@garrettdimon</a> angular fits into your rails app. Your rails all fits into ember.&#10;Both great. Ember takes more thought, may be better long run</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/371643939960279040">August 25, 2013</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>During 2013, JB and I wrote and published <a href="http://www.angularails.com/">AngularJS + Rails</a>. Angular was very pragmatic and got some things done. Others, like directives and services, seemed half-baked.</p>
+
+<h3 id="section-3">2014</h3>
+
+<blockquote class="twitter-tweet"><p><a href="https://twitter.com/hashtag/Realtalk?src=hash">#Realtalk</a> Sooo jb and I bet on angular, with good success; my timeline is full of ember-love and I&#39;m planning to revisit embah.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/449647197249101826">March 28, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I read about the community love at EmberConf 2014 and was insta-jealous. I remember what I love about Rails and Ruby was the community; decide to revist Ember in earnest and see how things are rolling along.</p>
+
+<blockquote class="twitter-tweet"><p>.<a href="https://twitter.com/iwarshak">@iwarshak</a> to be honest, I’m amazed at ember now vs nov 2012. I’m using on a project and have lots of love toward <a href="https://twitter.com/emberjs">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/461179402638733313">April 29, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p>. <a href="https://twitter.com/hkarthik">@hkarthik</a> yep, I use both now. Angular to enhance an existing app. Ember for greenfield.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/498928611714281472">August 11, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p>Preview of <a href="https://twitter.com/emberjs">@emberjs</a> app I built for my college fantasy football draft. So simple. So fast. So easy. Blogpost soon. <a href="http://t.co/gkBef9W9un">pic.twitter.com/gkBef9W9un</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/504641335261806592">August 27, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p>Also had super awesome fun times with ember and cordova. This is such a stack of win.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/549700891201110016">December 29, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p>Quick look of what I did to filter by company and/or first/last name. joins arel together / to_sql (rails and ember) <a href="https://t.co/AsoZqJpdXx">https://t.co/AsoZqJpdXx</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/540261729599381505">December 3, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I dive into ember-cli; it’s the final piece of the ember puzzle. Followed by ember-addons and quite simply amazing.</p>
+
+<blockquote class="twitter-tweet"><p>ember-cli: Getting Started With the Awesome <a href="http://t.co/M0XVHVm8YO">http://t.co/M0XVHVm8YO</a> | more reasons to love <a href="https://twitter.com/emberjs">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/524302483674243072">October 20, 2014</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h3 id="section-4">2015</h3>
+
+<p>Angular announced their 2.0 backward compatibility breakathon apocalypse. I finalize what’s been happening for a year, and break up with Angular for Ember. #sorrynotsorry</p>
+
+<blockquote class="twitter-tweet"><p>Watching Portlandia, getting moar excitet about <a href="https://twitter.com/EmberConf">@EmberConf</a> which OH BTW is is Portland. :boom:</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/566047213143343104">February 13, 2015</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>EmberConf 2015. Such amazing awesomeness.</p>
+
+<blockquote class="twitter-tweet"><p>A collection of links that cover what happened during EmberConf 2015. <a href="https://t.co/IYZvxBwlWN">https://t.co/IYZvxBwlWN</a> <a href="https://twitter.com/hashtag/emberconf?src=hash">#emberconf</a>  :: amaze. thanks <a href="https://twitter.com/sugarpirate_">@sugarpirate_</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/573504125637279744">March 5, 2015</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Can’t wait to see what happens in 2015 and beyond.</p>
+
+<p>PS. The actual 1000 days is Tue, 09 Sep 2014; I had built my 3rd app by this time. I doubt it’ll take you 1000 days to fall in love. Want to try? Check out the <a href="http://ember.codeschool.com">CodeSchool Course</a>, <a href="http://www.ember-cli.com/">ember-cli</a>, and the <a href="http://emberjs.com/guides/getting-started/">ember guides</a>.</p>
+
+<p>PPS: I created this using a combination of <a href="https://github.com/sferik/t">t</a> and the <a href="https://blog.twitter.com/2012/your-twitter-archive">twitter archive</a>. (t only returned 3200 tweets in a search).</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Getting Websockets, CarrierWave, and Fog to play nicely together]]></title>
     <link href="http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together/"/>
-    <updated>2015-03-05T11:30:00-08:00</updated>
+    <updated>2015-03-05T11:30:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2015/03/05/getting-websockets-carrierwave-and-fog-to-play-nicely-together</id>
     <content type="html"><![CDATA[<p>Getting Websockets, CarrierWave, and Fog to play nicely together</p>
 
@@ -196,7 +283,7 @@
   <entry>
     <title type="html"><![CDATA[Rails and the next 5 years]]></title>
     <link href="http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years/"/>
-    <updated>2014-12-05T09:54:00-08:00</updated>
+    <updated>2014-12-05T09:54:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2014/12/05/rails-and-the-next-5-years</id>
     <content type="html"><![CDATA[<p>After a few flirtatious encounters with Ruby, I left .NET in 2009.
 I was looking for something better, something where I
@@ -247,7 +334,7 @@ community in which you do ALL of your development. </p>
   <entry>
     <title type="html"><![CDATA[ember-cli: Getting Started with the Awesome]]></title>
     <link href="http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome/"/>
-    <updated>2014-10-20T13:40:00-07:00</updated>
+    <updated>2014-10-20T13:40:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2014/10/20/ember-cli-getting-started-with-the-awesome</id>
     <content type="html"><![CDATA[<p>ember-cli <sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> is a command line application that creates a separate project for your ember project.
 It is crafted by the Ember core team and extended by the Ember community <sup id="fnref:"><a href="#fn:" rel="footnote"></a></sup>.
@@ -526,7 +613,7 @@ jump through to get your .scss working again. </p>
   <entry>
     <title type="html"><![CDATA[Using pg_dumpall to move all postgres databases to a new laptop]]></title>
     <link href="http://jessewolgamott.com/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/"/>
-    <updated>2014-10-16T10:35:00-07:00</updated>
+    <updated>2014-10-16T10:35:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop</id>
     <content type="html"><![CDATA[<p>I recently upgraded laptops because it’s been 2 years and my business lease on
 it was up. Which: cool to have the new MacBook Air with the day-long-battery TM, but moving computers is a pain.  </p>
@@ -568,7 +655,7 @@ seemed good.  </p>
   <entry>
     <title type="html"><![CDATA[Excitement! I'm teaching Rails at The Iron Yard Houston]]></title>
     <link href="http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston/"/>
-    <updated>2014-05-05T10:28:00-07:00</updated>
+    <updated>2014-05-05T10:28:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2014/05/05/excitement-im-teaching-rails-at-the-iron-yard-houston</id>
     <content type="html"><![CDATA[<p>Teaching Ruby has been awesome. It’s been so awesome that I want more. I want to 
 meet the students face to face, and help change their lives for the better.  To
@@ -630,7 +717,7 @@ blew their minds wide open. Especially Robots –  So much excitement, very pote
   <entry>
     <title type="html"><![CDATA[Reminder to hand-craft your whenever files]]></title>
     <link href="http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/"/>
-    <updated>2013-03-27T14:39:00-07:00</updated>
+    <updated>2013-03-27T14:39:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files</id>
     <content type="html"><![CDATA[<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
 Rackspace that the server had exceeded its memory allocation and was thrashing
@@ -743,7 +830,7 @@ every <span class="integer">1</span>.day, <span class="symbol">:at</span> =&gt; 
   <entry>
     <title type="html"><![CDATA[RailsBerry rejected my talk and I am happy about it]]></title>
     <link href="http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it/"/>
-    <updated>2013-03-04T13:12:00-08:00</updated>
+    <updated>2013-03-04T13:12:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/03/04/railsberry-rejected-my-talk-and-i-am-happy-about-it</id>
     <content type="html"><![CDATA[<p>I received the greatest email this weekend: RailsBerry had rejected my talk for
 their 2013 conference. Normally: another “oh well, they must have found really
@@ -845,7 +932,7 @@ won’t know what to change to get better.</p>
   <entry>
     <title type="html"><![CDATA[Easy, Light Weight, and Magical Parallel Processing in Ruby]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap/"/>
-    <updated>2013-02-07T11:18:00-08:00</updated>
+    <updated>2013-02-07T11:18:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/07/the-one-where-i-introduce-celluloid-pmap</id>
     <content type="html"><![CDATA[<h2 id="ever-had-a-set-of-tasks-in-ruby-take-too-long">Ever had a set of tasks in Ruby take too long?</h2>
 
@@ -959,7 +1046,7 @@ won’t know what to change to get better.</p>
   <entry>
     <title type="html"><![CDATA[The One Where I Have to Explain Why I Want Diversity in our Field]]></title>
     <link href="http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field/"/>
-    <updated>2013-02-05T09:09:00-08:00</updated>
+    <updated>2013-02-05T09:09:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2013/02/05/the-one-where-i-have-to-explain-why-i-want-diversity-in-our-field</id>
     <content type="html"><![CDATA[<p><a href="https://twitter.com/RellyAB">@RellyAB</a>
 <a href="https://twitter.com/RellyAB/status/298467323419967489">tweeted</a>:</p>
@@ -1050,7 +1137,7 @@ or better yet, write a blog post in response and/or in agreement.</p>
   <entry>
     <title type="html"><![CDATA[The One Where You Run Rake Commands with Capistrano]]></title>
     <link href="http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano/"/>
-    <updated>2012-09-10T13:38:00-07:00</updated>
+    <updated>2012-09-10T13:38:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/09/10/the-one-where-you-run-rake-commands-with-capistrano</id>
     <content type="html"><![CDATA[<p>Simple Enough, right? Run some rake tasks on your servers. You think it’d be built in, but nope. Drink some sake and let capistrano do the work!</p>
 
@@ -1117,7 +1204,7 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   <entry>
     <title type="html"><![CDATA[The One Where You Take Your Deploy to 11: Asset Pipeline]]></title>
     <link href="http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline/"/>
-    <updated>2012-09-03T14:56:00-07:00</updated>
+    <updated>2012-09-03T14:56:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/09/03/the-one-where-you-take-your-deploy-to-11-asset-pipeline</id>
     <content type="html"><![CDATA[<p>Things I love: the asset pipeline in Rails. Things I detest: Long deploys caused by recompiling the asset-pipeline when <em>I KNOW NOTHING HAS CHANGED</em>. It makes it hard to deploy constantly if each takes 2 minutes.</p>
 
@@ -1262,7 +1349,7 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
   <entry>
     <title type="html"><![CDATA[RubyOffRails Scholarship for Women]]></title>
     <link href="http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women/"/>
-    <updated>2012-07-30T10:35:00-07:00</updated>
+    <updated>2012-07-30T10:35:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/07/30/rubyoffrails-scholarship-for-women</id>
     <content type="html"><![CDATA[<p>I have an opportunity to do something, and I want to do it. Ruby is awesome, and I’ve been inspired by <a href="http://railsgirls.com/">RailsGirls</a> and <a href="http://kidscodecamp.com/">Kids Code Camp</a>. I want to bridge the gender gap in software development, and this is an initial step for me to do something.</p>
 
@@ -1311,7 +1398,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
     <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
-    <updated>2012-06-06T09:46:00-07:00</updated>
+    <updated>2012-06-06T09:46:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
     <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
 
@@ -1329,7 +1416,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
-    <updated>2012-04-03T12:23:00-07:00</updated>
+    <updated>2012-04-03T12:23:00-05:00</updated>
     <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
     <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
 ###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
@@ -1376,7 +1463,7 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <entry>
     <title type="html"><![CDATA[The one where we DRY up Mongoid and Rspec using Shared Examples and Modules]]></title>
     <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
-    <updated>2012-02-29T10:19:00-08:00</updated>
+    <updated>2012-02-29T10:19:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
     <content type="html"><![CDATA[<p>The Situation: You’re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man – everybody has a contact.</p>
 
@@ -1570,7 +1657,7 @@ describe <span class="constant">Doctor</span> <span class="keyword">do</span>
   <entry>
     <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
     <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
-    <updated>2012-02-03T11:11:00-08:00</updated>
+    <updated>2012-02-03T11:11:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
     <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
 
@@ -1624,7 +1711,7 @@ gem <span class="string"><span class="delimiter">&quot;</span><span class="conte
   <entry>
     <title type="html"><![CDATA[The One With a JSON API Login Using Devise]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/"/>
-    <updated>2012-01-19T07:28:00-08:00</updated>
+    <updated>2012-01-19T07:28:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise</id>
     <content type="html"><![CDATA[<p>The situation: You need to add an iOS app to your Rails application. Users can login to both locations, and you’re using Devise for authentication.</p>
 
@@ -1784,7 +1871,7 @@ end
   <entry>
     <title type="html"><![CDATA[The One Where I Deliver Ruby to a Non Programmer]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer/"/>
-    <updated>2012-01-04T13:09:00-08:00</updated>
+    <updated>2012-01-04T13:09:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/04/the-one-where-i-deliver-ruby-to-a-non-programmer</id>
     <content type="html"><![CDATA[<p>The Situation: Write a program that parses XML files into a custom CSV format. So I do this, and write the app using TDD with no user interface.</p>
 
@@ -1823,7 +1910,7 @@ end
   <entry>
     <title type="html"><![CDATA[The One Where Unicorn Doesn't Update on Deploy]]></title>
     <link href="http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
-    <updated>2012-01-02T13:27:00-08:00</updated>
+    <updated>2012-01-02T13:27:00-06:00</updated>
     <id>http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
     <content type="html"><![CDATA[<p>Things that are true:</p>
 
@@ -1906,97 +1993,6 @@ end
 <h3 id="copyright-on-the-gists">Copyright on the Gists</h3>
 
 <p>The three config files are not copyrighted in any way (as I mostly copied them and edited them anyway). Use and be happy.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The One Where ActiveAdmin and Mongoid Get Along]]></title>
-    <link href="http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along/"/>
-    <updated>2011-12-19T09:18:00-08:00</updated>
-    <id>http://jessewolgamott.com/blog/2011/12/19/the-one-where-activeadmin-and-mongoid-get-along</id>
-    <content type="html"><![CDATA[<p>So you like ActiveAdmin, but are using Mongoid. And so far, ActiveAdmin hates on Mongoid because it uses ActiveRecord instead of ActiveModel. What’s a Mongoid to do? Develop your own admin system? As If!
-<!-- more --></p>
-
-<h2 id="first-watch-this-issue">First, Watch this Issue</h2>
-
-<p>There’s already a <a href="https://github.com/gregbell/active_admin/issues/26">github issue</a> about adding support for other ORMs. Maybe voice your support there.</p>
-
-<h2 id="then-monkey-patch">Then, Monkey Patch!</h2>
-
-<p>Add this code to your config/initializers/active_active_for_mongoid.rb</p>
-
-<div><script src="https://gist.github.com/1497688.js"></script>
-<noscript><pre><code>require &quot;active_admin&quot;
-require &quot;active_admin/resource_controller&quot;
-
-module ActiveAdmin
-  class Namespace
-    # Disable comments
-    def comments?
-      false
-    end
-  end
-
-  class Resource
-    def resource_table_name
-      resource.collection_name
-    end
-
-    # Disable filters
-    def add_default_sidebar_sections
-    end
-  end
-
-  class ResourceController &lt; ::InheritedResources::Base
-    # Use #desc and #asc for sorting.
-    def sort_order(chain)
-      params[:order] ||= active_admin_config.sort_order
-      table_name = active_admin_config.resource_table_name
-      if params[:order] &amp;&amp; params[:order] =~ /^([\w\_\.]+)_(desc|asc)$/
-        chain.send($2, $1)
-      else
-        chain # just return the chain
-      end
-    end
-
-    # Disable filters
-    def search(chain)
-      chain
-    end
-  end
-end</code></pre></noscript></div>
-
-<p>It’s easy to tell what’s going on with the code – ActiveAdmin needs a way to tell what the name of the collection is (otherwise you get the quoted_table_name problem). Mongoid also has some custom ways of sorting. For example, </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="comment">#ActiveRecord</span>
-<span class="constant">Product</span>.order(<span class="string"><span class="delimiter">&quot;</span><span class="content">published_at DESC</span><span class="delimiter">&quot;</span></span>).all
-<span class="comment">#Mongoid</span>
-<span class="constant">Product</span>.all(<span class="key">sort</span>: [[ <span class="symbol">:published_at</span>, <span class="symbol">:desc</span> ]])
-</pre></div>
-</div>
-</div>
-
-<p>The mongo queries that get executed look like:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:desc</span>]])
-<span class="constant">MONGODB</span> yourapp_development[<span class="string"><span class="delimiter">'</span><span class="content">users</span><span class="delimiter">'</span></span>].find({}).limit(<span class="integer">30</span>).sort([[<span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:asc</span>]])
-</pre></div>
-</div>
-</div>
-
-<p>Props to <a href="https://github.com/ebeigarts">https://github.com/ebeigarts</a> for the patch. It gets you to at least run with the ball for now.</p>
-
-<h2 id="downsides">Downsides</h2>
-
-<ul>
-  <li>Filters are disabled</li>
-  <li>Comments are disabled (I have never used this with ActiveAdmin though)</li>
-  <li>You’ll probably need to disable this once ActiveAdmin closes issue <a href="https://github.com/gregbell/active_admin/issues/26">#26</a> (which you are now watching, right?)</li>
-</ul>
-
-<h6 id="version-disclosure-this-post-was-valid-with-activeadmin-034-mongoid-234-and-rails-3031">Version Disclosure: This post was valid with ActiveAdmin 0.3.4, Mongoid 2.3.4 and Rails 3.0/3.1</h6>
 ]]></content>
   </entry>
   
