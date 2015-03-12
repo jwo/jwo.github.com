@@ -251,7 +251,7 @@ pre {
 
 pre code, tt {
     font-size: inherit;
-    white-space: pre;
+    white-space: pre-wrap;
     background: transparent;
     border: none;
     padding: 0;
@@ -334,7 +334,7 @@ table.plain {
 .inner {
     position: relative;
     width: 80%;
-    max-width: 700px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
@@ -410,7 +410,7 @@ table.plain {
 .post {
     position: relative;
     width:80%;
-    max-width: 700px;
+    max-width: 850px;
     margin: 4rem auto;
     padding-bottom: 4rem;
     border-bottom: #EBF2F6 1px solid;
@@ -611,7 +611,7 @@ table.plain {
 .pagination {
     position: relative;
     width: 80%;
-    max-width: 700px;
+    max-width: 850px;
     margin: 4rem auto;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.3rem;
