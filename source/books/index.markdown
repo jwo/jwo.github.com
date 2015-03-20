@@ -7,6 +7,19 @@ sharing: true
 footer: true
 ---
 
+##### [Tex Mex Consulting](http://texmexconulting.com)
+
+<a href="http://texmexconsulting.com" ><img
+src="http://texmexconsulting.com/img/book_cover.jpg" alt="Tex Mex Consulting" style="width: 200px; float: left; padding-right: 2rem"> </a>
+
+###### Your proven path to develop into a High End Software Consultant.
+
+
+"How can I get my clients to respect me?"  
+"How can I make more money as a freelancer?"  
+"How can I become a badass consultant like you?"  
+
+Freelancing was supposed to be fun.  You can have freedom, money, respect. You can run the show, and say no.  Consultants fix problems. Freelancers are hired. You should be a consultant.  
 
 ##### [Angular+Rails](http://www.angularails.com)
 
