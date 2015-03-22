@@ -13,9 +13,9 @@ Most software developers can learn a hellaton from freelancing and consulting;
 at the very least you can learn what you're worth. And it's not $75,000 a year
 with free soda and 1% equity.
 
-I'm being asked on a fairly frequent basis a,b,c. I've spent 6 years and many
-thousands of dollars in mistakes, masterclasses, and good old sweat equity in
-created a workflow system for expert software consulting.
+I've spent 6 years and many thousands of dollars in mistakes, masterclasses,
+and good old sweat equity in created a workflow system for expert software
+consulting.
 
 I want to give you a path to consulting; a path to go from Employee to
 Freelancer to Consultant. A path to freedom, more money, and more respect.
