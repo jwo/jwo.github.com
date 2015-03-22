@@ -7,6 +7,13 @@ sharing: true
 footer: true
 ---
 
+### Things
+
+* [Open Source](/opensource)
+* [Tex Mex Consulting](http://texmexconsulting.com)
+* [Comal Productions](http://comal.io)
+* [AngularJS+Rails](http://angularails.com)
+
 ### Popular Articles
 
 * [The One With a JSON API Login Using Devise](http://jessewolgamott.com/blog/2012/01/19/the-one-with-a-json-api-login-using-devise/)
@@ -16,6 +23,7 @@ footer: true
 
 ### Involved in
 
+* EmberJS - Houston (Meetup)
 * Houston Ruby Brigrade (Meetup)
 * Ruby Off Rails (Ruby Online Course -- Free)
 * Comal Productions (Consulting)

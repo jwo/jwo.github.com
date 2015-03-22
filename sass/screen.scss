@@ -15,7 +15,7 @@
 
 
 #site-head {
-  background-image: url(/images/cover.jpg);
+  background-image: url(/images/cooking-cover.jpg);
 }
 
 .footnotes {
@@ -32,7 +32,7 @@
 }
 
 #site-head-content {
-  h1.blog-title, h2.blog-description, p{
+  h1.blog-title, h2.blog-description, nav{
     @include letterpress(0.5);
     a {
       color: #ffffff;
@@ -43,12 +43,26 @@
     @media only screen and (min-width: 768px) {
     }
     @media only screen and (min-width: 992px) {
-      text-align: right;
-      margin-right: 5rem; 
-      color: #222;
-      a {
-        color: #222;
-      }
+    }
+    margin: 2rem 0;
+  }
+
+  h1.blog-title{
+    @media only screen and (min-width: 768px) {
+      font-size: 9rem;
+    }
+  }
+  h2.blog-description{
+    @media only screen and (min-width: 768px) {
+      font-size: 4rem;
+    }
+  }
+  nav{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 1rem;
+    @media only screen and (min-width: 768px) {
+      font-size: 2rem;
     }
   }
 }
