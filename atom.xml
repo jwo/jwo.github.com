@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-03-20T10:42:45-05:00</updated>
+  <updated>2015-03-22T16:27:33-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Why I Created Tex Mex Consulting]]></title>
+    <link href="http://jessewolgamott.com/blog/2015/03/22/why-i-created-tex-mex-consulting/"/>
+    <updated>2015-03-22T15:29:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2015/03/22/why-i-created-tex-mex-consulting</id>
+    <content type="html"><![CDATA[<p>Employees don’t make enough money. You’re not treated fairly, are not respected,
+and have to put up with a lot of crap. </p>
+
+<p>Most software developers can learn a hellaton from freelancing and consulting;
+at the very least you can learn what you’re worth. And it’s not $75,000 a year
+with free soda and 1% equity.</p>
+
+<p>I’m being asked on a fairly frequent basis a,b,c. I’ve spent 6 years and many
+thousands of dollars in mistakes, masterclasses, and good old sweat equity in
+created a workflow system for expert software consulting.</p>
+
+<p>I want to give you a path to consulting; a path to go from Employee to
+Freelancer to Consultant. A path to freedom, more money, and more respect.</p>
+
+<p>The basic ethos of the book:</p>
+
+<blockquote>
+  <p>Freelancers are hired by companies. Consultants choose their clients
+carefully.</p>
+</blockquote>
+
+<p>Want to try out some the techniques in my system? I’ve created a 30 day free
+email course on Professional Freelancing – try it out below.</p>
+
+<script src="https://app.convertkit.com/landing_pages/376.js"></script>
+
+<p>Check out the system for Professional Freelancing at <a href="http://texmexconsulting.com/">Tex Mex
+Consulting</a>. </p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[1000 Day Love Story with Ember]]></title>
@@ -1906,95 +1943,6 @@ end
 <h6 id="version-disclosure-this-stuff-was-accurate-with-osx-lion-as-of-january-4-2012-it-installs-ruby-192-homebrew-08-nokogiri-150-and-gli-140">Version Disclosure: This stuff was accurate with OSX Lion, as of January 4, 2012. It installs ruby 1.9.2, homebrew 0.8, nokogiri 1.5.0, and GLI 1.4.0</h6>
 
 <h6 id="update-this-post-originally-mentioned-dave-copelands-handle-as-dave3000-and-corrected-it-to-davetron5000httpstwittercomdavetron5000-i-regret-the-missing-tron-and-2000">Update: This post originally mentioned Dave Copeland’s handle as dave3000, and corrected it to <a href="https://twitter.com/#!/davetron5000">Davetron5000</a>. I regret the missing Tron and 2000.</h6>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The One Where Unicorn Doesn't Update on Deploy]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update/"/>
-    <updated>2012-01-02T13:27:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/01/02/the-one-where-unicorn-does-not-update</id>
-    <content type="html"><![CDATA[<p>Things that are true:</p>
-
-<ul>
-  <li>We love Github</li>
-  <li>Github uses Unicorns</li>
-  <li>Github deploys all.the.time</li>
-</ul>
-
-<p>Therefor: We should be using Unicorn instead of Passenger.</p>
-
-<p>However, my recent switch to unicorn wasn’t all Unicorns and Rainbows! (pun definitely intended). For me, here’s what I saw:</p>
-
-<!-- more -->
-
-<h2 id="tldr">tl;dr</h2>
-
-<p>Make sure you uncomment your unicorn.rb code that’s checking for .oldbin. You can use these three configs to get a working capistrano with nginx and unicorn.</p>
-
-<ul>
-  <li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
-  <li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
-  <li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
-</ul>
-
-<h2 id="symptoms">Symptoms</h2>
-
-<ul>
-  <li>Once I’d deploy, I’d refresh the page and see my new app version</li>
-  <li>I’d refresh and see my old version</li>
-  <li>Refresh again: new. repeat.</li>
-</ul>
-
-<p>Once I deployed, I’d see something like this:</p>
-
-<pre><code>$ pgrep -lf unicorn_rails
-5877 unicorn_rails master (old) -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30123 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30126 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30129 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30132 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
-30410 unicorn_rails master -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30429 unicorn_rails worker[0] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30432 unicorn_rails worker[1] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30435 unicorn_rails worker[2] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D
-30438 unicorn_rails worker[3] -c /u/apps/recruiter-blast/current/config/unicorn/production.rb -E production -D 
-</code></pre>
-
-<p>I kept expecting the master (old) to someday go away, but it wouldn’t unless I manually killed it. Capistrano was spinning up my new instance, but not shutting it down.</p>
-
-<h2 id="solution">Solution</h2>
-
-<p>When I got started with unicorn, I had grabbed a unicorn config from the github blogpost, and the following was commented out. Uncomment it so that it’ll kill old processed where the PID does not match the current PID and BAM, you’re golden.</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>  old_pid = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>server.config[<span class="symbol">:pid</span>]<span class="inline-delimiter">}</span></span><span class="content">.oldbin</span><span class="delimiter">&quot;</span></span>
-  <span class="keyword">if</span> old_pid != server.pid
-    <span class="keyword">begin</span>
-      sig = (worker.nr + <span class="integer">1</span>) &gt;= server.worker_processes ? <span class="symbol">:QUIT</span> : <span class="symbol">:TTOU</span>
-      <span class="constant">Process</span>.kill(sig, <span class="constant">File</span>.read(old_pid).to_i)
-    <span class="keyword">rescue</span> <span class="constant">Errno</span>::<span class="constant">ENOENT</span>, <span class="constant">Errno</span>::<span class="constant">ESRCH</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<h2 id="the-config-files">The Config Files</h2>
-
-<ul>
-  <li><a href="https://gist.github.com/1551895">nginx.conf</a></li>
-  <li><a href="https://gist.github.com/1551909">config/unicorn/production.rb (Unicorn config)</a></li>
-  <li><a href="https://gist.github.com/1551881">config/deploy (Capistrano deploy file)</a></li>
-</ul>
-
-<h3 id="stupidity-disclosure">Stupidity Disclosure</h3>
-
-<p>After re-examining the <a href="https://github.com/blog/517-unicorn">github unicorn</a> blogpost, I see the .oldbin check was definitely NOT commented out. So don’t blame the github, but if you’re seeing unicorn not refresh your app, this is probably why.</p>
-
-<h3 id="copyright-on-the-gists">Copyright on the Gists</h3>
-
-<p>The three config files are not copyrighted in any way (as I mostly copied them and edited them anyway). Use and be happy.</p>
 ]]></content>
   </entry>
   
