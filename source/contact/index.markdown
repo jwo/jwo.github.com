@@ -10,12 +10,13 @@ footer: true
 #### Sweet! Come at me Bro.
 
 * email: jesse @ comalproductions dotcom
-* twitter: @jwo
+* twitter: [@jwo](http://twitter.com/jwo)
+* ask questions on [Feedback](http://github.com/jwo/feedback)
 * phone: 713-234-0361
 
 #### Consulting
 
-[Comal Production](http://comal.io)
+[Comal Productions](http://comal.io)
 
 #### Instructor'ing
 
@@ -24,6 +25,10 @@ footer: true
 #### GitHub
 
 [GitHub/JWo](https://github.com/jwo)
+
+#### Open Source
+
+[Open Source Projects](/opensource)
 
 
 #### Ask Me Anything
