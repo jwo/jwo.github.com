@@ -7,6 +7,9 @@ sharing: true
 footer: true
 ---
 
+We likely all feel we wish we published more open source software. Here's what
+I've published -- it's not much, but it's shipped and supported.
+
 ### Ruby Off Rails
 
 Video course, with 21 videos, approx 20 hours of content.
