@@ -1,5 +1,5 @@
 ---
-layout:
+layout: post
 post title: "Writing, like actually getting words onto paper"
 date: 2015-04-06 09:13
 comments: true
