@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
-##### [Tex Mex Consulting](http://texmexconulting.com)
+##### [Tex Mex Consulting](http://texmexconsulting.com)
 
 <a href="http://texmexconsulting.com" ><img
 src="http://texmexconsulting.com/img/book_cover.jpg" alt="Tex Mex Consulting" style="width: 200px; float: left; padding-right: 2rem"> </a>
