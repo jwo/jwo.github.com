@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
-In addition to the talks below, slides may be viewed at [SpeakerDeck/JWo](https://speakerdeck.com/jwo)
+In addition to the talks below, you should explore my many user group talks at [SpeakerDeck/JWo](https://speakerdeck.com/jwo)
 
 [The Long Ball - Upgrading long lived Rails apps from 1.x-4.0 at RailsConf 2013](http://www.confreaks.com/videos/2490-railsconf2013-the-long-ball-upgrading-long-lived-rails-apps-from-1-x-4-0)
 
@@ -31,6 +31,6 @@ In addition to the talks below, slides may be viewed at [SpeakerDeck/JWo](https:
 
 [Battle of NoSQL stars: Amazon's SDB vs Mongoid vs CouchDB vs RavenDB, at Lone Star Ruby Conference 2010](http://www.confreaks.com/videos/291-lsrc2010-battle-of-nosql-stars-amazon-s-sdb-vs-mongoid-vs-couchdb-vs-ravendb)
 
-  <a href=http://www.confreaks.com/videos/291-lsrc2010-battle-of-nosql-stars-amazon-s-sdb-vs-mongoid-vs-couchdb-vs-ravendb"><img src="http://www.confreaks.com/system/videos/images/291/preview/vlcsnap-2010-09-11-00h40m12s85.png"></a>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/NTJ8H9lrbzs" frameborder="0" allowfullscreen></iframe>
 
 
