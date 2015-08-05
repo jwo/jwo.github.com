@@ -4,7 +4,7 @@
   <title><![CDATA[Category: texmex | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/texmex/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-07-13T07:55:34-05:00</updated>
+  <updated>2015-08-04T19:40:46-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -42,7 +42,20 @@ carefully.</p>
 <p>Want to try out some the techniques in my system? I’ve created a 30 day free
 email course on Professional Freelancing – try it out below.</p>
 
-<script src="https://app.convertkit.com/landing_pages/376.js"></script>
+<form action="https://www.getdrip.com/forms/9399974/submissions" method="post" target="_blank" data-drip-embedded-form="9399974">
+
+    <div>
+      <label for="fields[first_name]">First Name</label><br />
+      <input type="text" name="fields[first_name]" value="" />
+    </div>
+    <div>
+      <label for="fields[email]">Email Address</label><br />
+      <input type="text" name="fields[email]" value="" />
+    </div>
+  <div>
+    <input type="submit" name="submit" value="Send me the chapters, start my course!" data-drip-attribute="sign-up-button" />
+  </div>
+</form>
 
 <p>Check out the system for Professional Freelancing at <a href="http://texmexconsulting.com/">Tex Mex
 Consulting</a>. </p>

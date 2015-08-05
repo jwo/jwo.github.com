@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ember | J.Wo]]></title>
   <link href="http://jessewolgamott.com/blog/categories/ember/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-07-13T07:55:34-05:00</updated>
+  <updated>2015-08-04T19:40:46-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -228,8 +228,6 @@ git push heroku master
   <li>How to use environment variables in ember-cli and on heroku</li>
   <li>How to customize the JSON you receive from someone’s API and play nicely with ember-data</li>
 </ol>
-
-<script src="https://app.convertkit.com/landing_pages/862.js?orient=horz"></script>
 
 <p><div class="footnotes">
     <ol>
