@@ -141,16 +141,22 @@
         <lastmod>2015-04-06T09:43:30-05:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jessewolgamott.com/blog/2015/11/17/when-fake-googlebots-attack-your-rails-app/
+        </loc>
+        <lastmod>2015-11-17T15:58:54-06:00</lastmod>
+    </url>
+    <url>
         <loc>http://jessewolgamott.com/archives/</loc>
-        <lastmod>2015-08-04T19:40:11-05:00</lastmod>
+        <lastmod>2015-11-17T15:58:54-06:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/blog/archives/</loc>
-        <lastmod>2015-08-04T19:40:11-05:00</lastmod>
+        <lastmod>2015-11-17T15:58:54-06:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/blog/</loc>
-        <lastmod>2015-08-04T19:40:11-05:00</lastmod>
+        <lastmod>2015-11-17T15:58:54-06:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/books/</loc>
@@ -162,7 +168,7 @@
     </url>
     <url>
         <loc>http://jessewolgamott.com/</loc>
-        <lastmod>2015-08-04T19:40:11-05:00</lastmod>
+        <lastmod>2015-11-17T15:58:54-06:00</lastmod>
     </url>
     <url>
         <loc>http://jessewolgamott.com/opensource/</loc>
