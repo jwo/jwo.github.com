@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2015-11-17T15:59:02-06:00</updated>
+  <updated>2015-11-20T09:34:19-06:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Explaining Elixir Pipes through the Magic of Turduckens]]></title>
+    <link href="http://jessewolgamott.com/blog/2015/11/20/explaining-elixir-pipes-through-the-magic-of-turduckens/"/>
+    <updated>2015-11-20T08:24:00-06:00</updated>
+    <id>http://jessewolgamott.com/blog/2015/11/20/explaining-elixir-pipes-through-the-magic-of-turduckens</id>
+    <content type="html"><![CDATA[<p>One of the cooler features of Elixir (and other functional languages) is the
+Pipe operator <code>|&gt;</code>. It certainly makes code easier to read, but it’s a bit
+difficult to grep for the first time.</p>
+
+<p>Let’s use the <a href="https://en.wikipedia.org/wiki/Turducken">Turducken</a> to explain
+it. For the uninitiated, A Turducken is a turkey stuffed with a duck which is
+itself stuffed in a chicken.</p>
+
+<!-- more -->
+
+<p><img src="http://jessewolgamott.com/images/turducken.jpg" alt="turducken" /></p>
+
+<p>Code written sans pipe might look like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="s2">&quot;chicken&quot;</span><span class="p">),</span> <span class="s2">&quot;duck&quot;</span><span class="p">),</span> <span class="s2">&quot;turkey&quot;</span><span class="p">)</span>
+</code></pre></figure></notextile></div>
+
+<p>You have to read this from the inside out. You:</p>
+
+<ol>
+  <li>start at the output of <code>Turducken.stuff("chicken")</code></li>
+  <li>figure out that goes into the <code>Turducken.stuff(_, "duck")</code></li>
+  <li>and then THAT could into <code>Turducken.stuff(_, "turkey")</code></li>
+</ol>
+
+<p>Better code might be to follow the transformation from inside to out (left to
+right):</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="s2">&quot;chicken&quot;</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="s2">&quot;duck&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="s2">&quot;turkey&quot;</span><span class="p">)</span>
+</code></pre></figure></notextile></div>
+
+<p>Full code*</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="k">defmodule</span> <span class="no">Turducken</span> <span class="k">do</span>
+
+<span class="k">  def</span> <span class="n">stuff</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span> <span class="k">do</span>
+<span class="k">    </span><span class="n">animal</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">stuff</span><span class="p">(</span><span class="n">animal</span><span class="p">,</span> <span class="n">into</span><span class="p">)</span> <span class="k">do</span>
+<span class="k">    </span><span class="no">IO</span><span class="o">.</span><span class="n">inspect</span> <span class="s2">&quot;You put the </span><span class="si">#{</span><span class="n">animal</span><span class="si">}</span><span class="s2"> into the </span><span class="si">#{</span><span class="n">into</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">into</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+
+
+<span class="c1">#Turducken.stuff(Turducken.stuff(Turducken.stuff(&quot;chicken&quot;), &quot;duck&quot;), &quot;turkey&quot;)</span>
+
+<span class="s2">&quot;chicken&quot;</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="s2">&quot;duck&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="no">Turducken</span><span class="o">.</span><span class="n">stuff</span><span class="p">(</span><span class="s2">&quot;turkey&quot;</span><span class="p">)</span>
+</code></pre></figure></notextile></div>
+
+<p>You can run this on the <a href="http://elixirplayground.com?gist=8bb0c58f4a27d4f5af20">elixir playground</a></p>
+
+<h2 id="a-more-unixy-example">A more unixy example</h2>
+
+<p>In UNIX, we use pipe to take output from one operation into the other.
+Example: We’ll copy the contents of a file to the Mac clipboard.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="n">cat</span> <span class="n">yolo</span><span class="o">.</span><span class="n">md</span> <span class="o">|</span> <span class="n">pbcopy</span>
+</code></pre></figure></notextile></div>
+
+<p>The output of yolo goes into pbcopy. If this was a program (ruby), it could be:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="n">pbcopy</span><span class="p">(</span><span class="n">cat</span><span class="p">(</span><span class="s2">&quot;yolo.md&quot;</span><span class="p">))</span>
+</code></pre></figure></notextile></div>
+
+<p>In Elixir, you could write it as:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code elixir"><figcaption><span></span></figcaption><pre><code class="elixir"><span class="n">cat</span><span class="p">(</span><span class="s2">&quot;yolo.md&quot;</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">pbcopy</span>
+
+<span class="c1"># Or even</span>
+
+<span class="s2">&quot;yolo.md&quot;</span> <span class="o">|&gt;</span> <span class="n">cat</span> <span class="o">|&gt;</span> <span class="n">pbcopy</span>
+</code></pre></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[When (fake) Googlebots attack your rails app]]></title>
@@ -374,21 +458,14 @@ Consulting</a>. </p>
 
 <h3 id="the-setup">The setup</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Fairly simple, but here’s what’s going on:  </p>
 
@@ -401,129 +478,84 @@ Consulting</a>. </p>
 
 <p>The JSON that comes through has something rather odd for <code>large_image_url</code> - it’s a local path to the /tmp/upload directory, which absolutely does not work. :/</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code json"><figcaption><span></span></figcaption><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <p>Basically, when Pusher is sending PhotoSerializer.new(self).attributes, the image has not been stored up to S3. We want to do Pusher later, after fog does it’s thing.</p>
 
 <p>Callbacks are run in this order:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">before_validation</span>
-</span><span class="line"><span class="n">after_validation</span>
-</span><span class="line"><span class="n">before_save</span>
-</span><span class="line"><span class="n">around_save</span>
-</span><span class="line"><span class="n">before_create</span>
-</span><span class="line"><span class="n">around_create</span>
-</span><span class="line"><span class="n">after_create</span>
-</span><span class="line"><span class="n">after_save</span>
-</span><span class="line"><span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="n">before_validation</span>
+<span class="n">after_validation</span>
+<span class="n">before_save</span>
+<span class="n">around_save</span>
+<span class="n">before_create</span>
+<span class="n">around_create</span>
+<span class="n">after_create</span>
+<span class="n">after_save</span>
+<span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
+</code></pre></figure></notextile></div>
 
 <p>So, <code>after_create</code> is occurring before <code>after_save</code>. Let’s switch that up and our problems should be solved:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Result: Same thing. huh?</p>
 
 <p>To see the order in which callbacks are run, we can do this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
+</code></pre></figure></notextile></div>
 
 <p>That will show the name of the callbacks being called, and will look something like:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
+</code></pre></figure></notextile></div>
 
 <p>That 70220584822820 is our block callback. And it’s first. Why is it first? Can we get it to go last?  Callbacks are run in a last-first order. Further, changing it to something like the following also doesn’t work.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <h3 id="so-then-what-the-hell-works">So then what the hell works?</h3>
 
 <p>We need to store the image before we get the attributes. So, let’s add that <code>store_image!</code> callback we saw in the list of callbacks. This will result in <code>store_image!</code> being called twice, but it won’t actually store the image twice — the second call is basically a no-op.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code json"><figcaption><span></span></figcaption><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <h3 id="it-works-rejoice-then-anger">IT WORKS. REJOICE. Then: Anger.</h3>
 
@@ -627,19 +659,13 @@ ember-cli uses ES6 modules, which you may have never seen before.</p>
 
 <p>** app/js/models/user.js **</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-</span><span class="line">  <span class="nx">first_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">last_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">email</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">admin</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code javascript"><figcaption><span></span></figcaption><pre><code class="javascript"><span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">first_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">last_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">email</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">admin</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></figure></notextile></div>
 
 <p>Things to notice: in this file, we assume that Ember and Ember Data have already been loaded, 
 and are in the global namespace ready for use. </p>
@@ -649,25 +675,16 @@ name them what you want, and then use them.</p>
 
 <p>** app/models/recipe.js **</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kr">import</span> <span class="nx">DS</span> <span class="nx">from</span> <span class="s1">&#39;ember-data&#39;</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kr">export</span> <span class="k">default</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-</span><span class="line">  <span class="nx">permalink</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">ingredients</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">instructions</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">description</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code js"><figcaption><span></span></figcaption><pre><code class="js"><span class="kr">import</span> <span class="nx">DS</span> <span class="nx">from</span> <span class="s1">&#39;ember-data&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">permalink</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">ingredients</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">instructions</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">description</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></figure></notextile></div>
 
 <p>We import the “DS” from ember-data, and it exports the object we define. What we notice:</p>
 
@@ -684,11 +701,9 @@ jump through to get your .scss working again. </p>
 
 <h4 id="step-1-install-brocolli-sass-and-broccoli-merge-trees">Step 1: install brocolli-sass and broccoli-merge-trees</h4>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">npm install --save-dev broccoli-sass
-</span><span class="line">npm install --save-dev broccoli-merge-trees
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">npm install --save-dev broccoli-sass
+npm install --save-dev broccoli-merge-trees
+</code></pre></figure></notextile></div>
 
 <p>If you’re new to npm, the “–save-dev” means “use only in this project”.</p>
 
@@ -696,47 +711,27 @@ jump through to get your .scss working again. </p>
 
 <p>Make it look like this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="cm">/* global require, module */</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">EmberApp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ember-cli/lib/broccoli/ember-app&#39;</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmberApp</span><span class="p">();</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">compileSass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-sass&#39;</span><span class="p">);</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">mergeTrees</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-merge-trees&#39;</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">sassSources</span> <span class="o">=</span> <span class="p">[</span>
-</span><span class="line">  <span class="s1">&#39;app/styles&#39;</span><span class="p">,</span>
-</span><span class="line">  <span class="s1">&#39;vendor/css&#39;</span>
-</span><span class="line"><span class="p">]</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">appCss</span> <span class="o">=</span> <span class="nx">compileSass</span><span class="p">(</span> <span class="nx">sassSources</span> <span class="p">,</span> <span class="s1">&#39;app.scss&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/app.css&#39;</span><span class="p">);</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">appAndCustomDependencies</span> <span class="o">=</span> <span class="nx">mergeTrees</span><span class="p">([</span><span class="nx">app</span><span class="p">.</span><span class="nx">toTree</span><span class="p">(),</span><span class="nx">appCss</span><span class="p">],</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">overwrite</span><span class="o">:</span> <span class="kc">true</span>
-</span><span class="line"><span class="p">});</span>
-</span><span class="line"><span class="c1">// EXPORT ALL THE THINGS!</span>
-</span><span class="line"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">appAndCustomDependencies</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code js"><figcaption><span></span></figcaption><pre><code class="js"><span class="cm">/* global require, module */</span>
+
+<span class="kd">var</span> <span class="nx">EmberApp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ember-cli/lib/broccoli/ember-app&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmberApp</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">compileSass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-sass&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">mergeTrees</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-merge-trees&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">sassSources</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;app/styles&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;vendor/css&#39;</span>
+<span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">appCss</span> <span class="o">=</span> <span class="nx">compileSass</span><span class="p">(</span> <span class="nx">sassSources</span> <span class="p">,</span> <span class="s1">&#39;app.scss&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/app.css&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">appAndCustomDependencies</span> <span class="o">=</span> <span class="nx">mergeTrees</span><span class="p">([</span><span class="nx">app</span><span class="p">.</span><span class="nx">toTree</span><span class="p">(),</span><span class="nx">appCss</span><span class="p">],</span> <span class="p">{</span>
+  <span class="nx">overwrite</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+<span class="c1">// EXPORT ALL THE THINGS!</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">appAndCustomDependencies</span><span class="p">;</span>
+</code></pre></figure></notextile></div>
 
 <p>This will create an asset-pipeline of sorts for you. Broccoli will compile any sass files in app/styles and vendor/css, and compile app.scss into “assets/app.css”. </p>
 
@@ -746,45 +741,33 @@ jump through to get your .scss working again. </p>
 
 <p>Move app/styles/app.css to app/styles/app.scss. You can now use scss all you like:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">body</span> <span class="p">{</span>
-</span><span class="line">  <span class="na">color</span><span class="o">:</span> <span class="nf">lighten</span><span class="p">(</span><span class="mh">#222222</span><span class="o">,</span> <span class="mi">20</span><span class="kt">%</span><span class="p">);</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">body</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nf">lighten</span><span class="p">(</span><span class="mh">#222222</span><span class="o">,</span> <span class="mi">20</span><span class="kt">%</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <p>(We’ll use Bourbon in a future article)</p>
 
 <h2 id="creating-routes">Creating Routes</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">ember</span> <span class="nt">generate</span> <span class="nt">route</span> <span class="nt">Index</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">ember</span> <span class="nt">generate</span> <span class="nt">route</span> <span class="nt">Index</span>
+</code></pre></figure></notextile></div>
 
 <p>This will create app/routes/index.js (and create “routes” directory for you, cool). We’ll change the default to the standard ember starter:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">import</span> <span class="nt">Ember</span> <span class="nt">from</span> <span class="s1">&#39;</span><span class="s2">ember&#39;</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">export</span> <span class="nt">default</span> <span class="nt">Ember</span><span class="nc">.Route.extend</span><span class="o">(</span><span class="p">{</span>
-</span><span class="line">  <span class="na">model</span><span class="o">:</span> <span class="nf">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="nt">return</span> <span class="o">[</span><span class="s2">&quot;red&quot;</span><span class="o">,</span> <span class="s2">&quot;yellow&quot;</span><span class="o">,</span> <span class="s2">&quot;green&quot;</span><span class="o">];</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span><span class="na">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">import</span> <span class="nt">Ember</span> <span class="nt">from</span> <span class="s1">&#39;</span><span class="s2">ember&#39;</span><span class="o">;</span>
+
+<span class="nt">export</span> <span class="nt">default</span> <span class="nt">Ember</span><span class="nc">.Route.extend</span><span class="o">(</span><span class="p">{</span>
+  <span class="na">model</span><span class="o">:</span> <span class="nf">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nt">return</span> <span class="o">[</span><span class="s2">&quot;red&quot;</span><span class="o">,</span> <span class="s2">&quot;yellow&quot;</span><span class="o">,</span> <span class="s2">&quot;green&quot;</span><span class="o">];</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="na">);</span>
+</code></pre></figure></notextile></div>
 
 <p>And we’ll create a template to show. </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember generate template index
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember generate template index
+</code></pre></figure></notextile></div>
 
 <p>This created app/templates/index.hbs. We’ll change its contents to:</p>
 
@@ -792,17 +775,15 @@ jump through to get your .scss working again. </p>
 
 <h3 id="running-locally">Running Locally</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember server
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember server
+</code></pre></figure></notextile></div>
 
 <p>If things are good to go, you’ll see the colors listed out on the screen. WOAH, the power.</p>
 
 <h3 id="building-for-deploying">Building for Deploying</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember build
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember build
+</code></pre></figure></notextile></div>
 
 <p>This creates a “dist” directory with “index.html” and other static assets. We can deploy this to S3, or anywhere else. TOTES AWESOME.</p>
 
@@ -810,11 +791,9 @@ jump through to get your .scss working again. </p>
 
 <p>If we run into CORS problems, or generally want to use Heroku, there’s a build pack for maximum awesome.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">heroku create --buildpack https://github.com/tonycoco/heroku-buildpack-ember-cli.git
-</span><span class="line">git push heroku master
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">heroku create --buildpack https://github.com/tonycoco/heroku-buildpack-ember-cli.git
+git push heroku master
+</code></pre></figure></notextile></div>
 
 <p>At this point, you have an ember app, build with ember-cli, hosted on Heroku. </p>
 
@@ -880,15 +859,13 @@ seemed good.  </p>
 
 <p>When moving to a new computer</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pg_dumpall &gt; db.out
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash"><span class="nv">$ </span>pg_dumpall &gt; db.out
+</code></pre></figure></notextile></div>
 
 <p>(Move file to to new computer)</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>psql -f dbout postgres
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash"><span class="nv">$ </span>psql -f dbout postgres
+</code></pre></figure></notextile></div>
 
 <blockquote>
   <p>if you have trouble with “database $username not found”, type in “createdb”</p>
@@ -896,9 +873,8 @@ seemed good.  </p>
 
 <p>To confirm, </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">psql
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">psql
+</code></pre></figure></notextile></div>
 
 <p>And then <code>\l</code> to list the databases</p>
 
@@ -1410,28 +1386,20 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
 <p>But it’s not all that awesome to actually run those things in production when you need to. Here’s a way!</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/sake.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
-</span><span class="line">  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
-</span><span class="line">  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
-</span><span class="line">  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
-</span><span class="line">    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
+  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
+  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
+    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Then, make sure you require it</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</code></pre></figure></notextile></div>
 
 <p>And that’s it! Now, when you want to run that code, say to migrate a database:</p>
 
@@ -1490,75 +1458,44 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
 <p>Make sure you’re loading deploy/assets</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Capfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
+</code></pre></figure></notextile></div>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/assets.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
-</span><span class="line">
-</span><span class="line"><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
-</span><span class="line">
-</span><span class="line"><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
-</span><span class="line">  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
-</span><span class="line"><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
-</span><span class="line"><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
-</span><span class="line"><span class="sh">      specify additional environment variables to pass to rake via the \</span>
-</span><span class="line"><span class="sh">      asset_env variable. The defaults are:</span>
-</span><span class="line">
-</span><span class="line"><span class="sh">        set :rake,      &quot;rake&quot;</span>
-</span><span class="line"><span class="sh">        set :rails_env, &quot;production&quot;</span>
-</span><span class="line"><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
-</span><span class="line"><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
-</span><span class="line"><span class="no">    DESC</span>
-</span><span class="line">    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
-</span><span class="line">      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
-</span><span class="line">      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span><span class="line">        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
-</span><span class="line">      <span class="k">else</span>
-</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
-</span><span class="line">      <span class="k">end</span>
-</span><span class="line">    <span class="k">end</span>
-</span><span class="line">
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
+
+<span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
+
+<span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+
+    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
+<span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
+<span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
+<span class="sh">      specify additional environment variables to pass to rake via the \</span>
+<span class="sh">      asset_env variable. The defaults are:</span>
+
+<span class="sh">        set :rake,      &quot;rake&quot;</span>
+<span class="sh">        set :rails_env, &quot;production&quot;</span>
+<span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
+<span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
+<span class="no">    DESC</span>
+    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
+      <span class="k">else</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</code></pre></figure></notextile></div>
 
 <h2 id="how-does-it-know">How does it know?</h2>
 
@@ -1903,60 +1840,6 @@ describe <span class="constant">Doctor</span> <span class="keyword">do</span>
 
 <h6 id="version-disclosure-written-against-mongoid-rspec-14-mongoid-24-rspec-28">Version Disclosure: written against mongoid-rspec 1.4, mongoid 2.4, rspec 2.8.</h6>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/"/>
-    <updated>2012-02-03T11:11:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails</id>
-    <content type="html"><![CDATA[<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
-
-<!-- more -->
-
-<div class="tldr">
-	<span class="heading">tl;dr</span> 
-	<ul>
-		<li>Demo Site: <a href="http://compass-bootstrap2-rails.heroku.com/">http://compass-bootstrap2-rails.heroku.com/</a></li>
-		<li>Githubs: <a href="https://github.com/jwo/compass-bootstrap2.0-rails">jwo/compass-bootstrap2.0-rails</a></li>
-	</ul>
-</div>
-
-<p>Here’s what the site looks like:
-###### Full Resolution
-<img src="https://img.skitch.com/20120203-8745c3xwt1y7d7ccb761rw5xh8.png" alt="Full Resolution" /></p>
-
-<h6 id="smaller-screen-size-tabletish">Smaller Screen Size (tablet’ish)</h6>
-<p><img src="https://img.skitch.com/20120203-rjfh38jhj2u582ai32gmxnnp7g.png" alt="Tablet Size" /></p>
-
-<h6 id="iphone--mobile-size">iPhone / Mobile size</h6>
-<p><img src="https://img.skitch.com/20120203-kagxp99s948wc4fphbbypdgrer.png" alt="iPhone Size" /></p>
-
-<h2 id="how-to-do-these-things">How to do these things?</h2>
-
-<p>It’s fairly simple to do thanks to the awesomeness that is Chris Eppstein. Props also to Thomas McDonald for bootstrap-sass.</p>
-
-<p>In your gem file, do these things:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>gem <span class="string"><span class="delimiter">&quot;</span><span class="content">compass-rails</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 0.12</span><span class="delimiter">&quot;</span></span>
-gem <span class="string"><span class="delimiter">&quot;</span><span class="content">bootstrap-sass</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">&gt;= 2.0</span><span class="delimiter">&quot;</span></span>
-</pre></div>
-</div>
-</div>
-
-<p>In your application.scss import bootstrap using sass, not sprockets. </p>
-
-<pre><code>@import "bootstrap";
-@import "bootstrap-responsive";
-</code></pre>
-
-<p>I wish it were more interesting, but Chris Eppstein made compass drop dead simple to integrate.</p>
-
-<h6 id="version-disclosure-this-post-worked-with-compass-rails-012-bootstrap-css-20-rails-32-and-bootstrap-sass">Version Disclosure: This post worked with compass-rails 0.12, bootstrap css 2.0, rails 3.2, and bootstrap-sass.</h6>
-
-<h4 id="update-updated-the-command-to-include-bootstrap-responsive-thanks-rubysolohttptwittercomrubysolo">UPDATE: updated the command to include bootstrap-responsive. Thanks <a href="http://twitter.com/rubysolo">@rubysolo</a></h4>
 ]]></content>
   </entry>
   

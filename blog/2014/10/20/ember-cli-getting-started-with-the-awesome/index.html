@@ -20,6 +20,7 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -72,19 +73,13 @@ ember-cli uses ES6 modules, which you may have never seen before.</p>
 
 <p>** app/js/models/user.js **</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-</span><span class="line">  <span class="nx">first_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">last_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">email</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">admin</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code javascript"><figcaption><span></span></figcaption><pre><code class="javascript"><span class="nx">App</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">first_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">last_name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">email</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">admin</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;boolean&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></figure></notextile></div>
 
 <p>Things to notice: in this file, we assume that Ember and Ember Data have already been loaded, 
 and are in the global namespace ready for use. </p>
@@ -94,25 +89,16 @@ name them what you want, and then use them.</p>
 
 <p>** app/models/recipe.js **</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kr">import</span> <span class="nx">DS</span> <span class="nx">from</span> <span class="s1">&#39;ember-data&#39;</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kr">export</span> <span class="k">default</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-</span><span class="line">  <span class="nx">permalink</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">ingredients</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">instructions</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class="line">  <span class="nx">description</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code js"><figcaption><span></span></figcaption><pre><code class="js"><span class="kr">import</span> <span class="nx">DS</span> <span class="nx">from</span> <span class="s1">&#39;ember-data&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">permalink</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">ingredients</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">instructions</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+  <span class="nx">description</span><span class="o">:</span> <span class="nx">DS</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+</code></pre></figure></notextile></div>
 
 <p>We import the “DS” from ember-data, and it exports the object we define. What we notice:</p>
 
@@ -129,11 +115,9 @@ jump through to get your .scss working again. </p>
 
 <h4 id="step-1-install-brocolli-sass-and-broccoli-merge-trees">Step 1: install brocolli-sass and broccoli-merge-trees</h4>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">npm install --save-dev broccoli-sass
-</span><span class="line">npm install --save-dev broccoli-merge-trees
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">npm install --save-dev broccoli-sass
+npm install --save-dev broccoli-merge-trees
+</code></pre></figure></notextile></div>
 
 <p>If you’re new to npm, the “–save-dev” means “use only in this project”.</p>
 
@@ -141,47 +125,27 @@ jump through to get your .scss working again. </p>
 
 <p>Make it look like this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="cm">/* global require, module */</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">EmberApp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ember-cli/lib/broccoli/ember-app&#39;</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmberApp</span><span class="p">();</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">compileSass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-sass&#39;</span><span class="p">);</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">mergeTrees</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-merge-trees&#39;</span><span class="p">);</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">sassSources</span> <span class="o">=</span> <span class="p">[</span>
-</span><span class="line">  <span class="s1">&#39;app/styles&#39;</span><span class="p">,</span>
-</span><span class="line">  <span class="s1">&#39;vendor/css&#39;</span>
-</span><span class="line"><span class="p">]</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="nx">appCss</span> <span class="o">=</span> <span class="nx">compileSass</span><span class="p">(</span> <span class="nx">sassSources</span> <span class="p">,</span> <span class="s1">&#39;app.scss&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/app.css&#39;</span><span class="p">);</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">appAndCustomDependencies</span> <span class="o">=</span> <span class="nx">mergeTrees</span><span class="p">([</span><span class="nx">app</span><span class="p">.</span><span class="nx">toTree</span><span class="p">(),</span><span class="nx">appCss</span><span class="p">],</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">overwrite</span><span class="o">:</span> <span class="kc">true</span>
-</span><span class="line"><span class="p">});</span>
-</span><span class="line"><span class="c1">// EXPORT ALL THE THINGS!</span>
-</span><span class="line"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">appAndCustomDependencies</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code js"><figcaption><span></span></figcaption><pre><code class="js"><span class="cm">/* global require, module */</span>
+
+<span class="kd">var</span> <span class="nx">EmberApp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ember-cli/lib/broccoli/ember-app&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmberApp</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">compileSass</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-sass&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">mergeTrees</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;broccoli-merge-trees&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">sassSources</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;app/styles&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;vendor/css&#39;</span>
+<span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">appCss</span> <span class="o">=</span> <span class="nx">compileSass</span><span class="p">(</span> <span class="nx">sassSources</span> <span class="p">,</span> <span class="s1">&#39;app.scss&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/app.css&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">appAndCustomDependencies</span> <span class="o">=</span> <span class="nx">mergeTrees</span><span class="p">([</span><span class="nx">app</span><span class="p">.</span><span class="nx">toTree</span><span class="p">(),</span><span class="nx">appCss</span><span class="p">],</span> <span class="p">{</span>
+  <span class="nx">overwrite</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+<span class="c1">// EXPORT ALL THE THINGS!</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">appAndCustomDependencies</span><span class="p">;</span>
+</code></pre></figure></notextile></div>
 
 <p>This will create an asset-pipeline of sorts for you. Broccoli will compile any sass files in app/styles and vendor/css, and compile app.scss into “assets/app.css”. </p>
 
@@ -191,45 +155,33 @@ jump through to get your .scss working again. </p>
 
 <p>Move app/styles/app.css to app/styles/app.scss. You can now use scss all you like:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">body</span> <span class="p">{</span>
-</span><span class="line">  <span class="na">color</span><span class="o">:</span> <span class="nf">lighten</span><span class="p">(</span><span class="mh">#222222</span><span class="o">,</span> <span class="mi">20</span><span class="kt">%</span><span class="p">);</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">body</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nf">lighten</span><span class="p">(</span><span class="mh">#222222</span><span class="o">,</span> <span class="mi">20</span><span class="kt">%</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <p>(We’ll use Bourbon in a future article)</p>
 
 <h2 id="creating-routes">Creating Routes</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">ember</span> <span class="nt">generate</span> <span class="nt">route</span> <span class="nt">Index</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">ember</span> <span class="nt">generate</span> <span class="nt">route</span> <span class="nt">Index</span>
+</code></pre></figure></notextile></div>
 
 <p>This will create app/routes/index.js (and create “routes” directory for you, cool). We’ll change the default to the standard ember starter:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="nt">import</span> <span class="nt">Ember</span> <span class="nt">from</span> <span class="s1">&#39;</span><span class="s2">ember&#39;</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">export</span> <span class="nt">default</span> <span class="nt">Ember</span><span class="nc">.Route.extend</span><span class="o">(</span><span class="p">{</span>
-</span><span class="line">  <span class="na">model</span><span class="o">:</span> <span class="nf">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="nt">return</span> <span class="o">[</span><span class="s2">&quot;red&quot;</span><span class="o">,</span> <span class="s2">&quot;yellow&quot;</span><span class="o">,</span> <span class="s2">&quot;green&quot;</span><span class="o">];</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span><span class="na">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code scss"><figcaption><span></span></figcaption><pre><code class="scss"><span class="nt">import</span> <span class="nt">Ember</span> <span class="nt">from</span> <span class="s1">&#39;</span><span class="s2">ember&#39;</span><span class="o">;</span>
+
+<span class="nt">export</span> <span class="nt">default</span> <span class="nt">Ember</span><span class="nc">.Route.extend</span><span class="o">(</span><span class="p">{</span>
+  <span class="na">model</span><span class="o">:</span> <span class="nf">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nt">return</span> <span class="o">[</span><span class="s2">&quot;red&quot;</span><span class="o">,</span> <span class="s2">&quot;yellow&quot;</span><span class="o">,</span> <span class="s2">&quot;green&quot;</span><span class="o">];</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="na">);</span>
+</code></pre></figure></notextile></div>
 
 <p>And we’ll create a template to show. </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember generate template index
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember generate template index
+</code></pre></figure></notextile></div>
 
 <p>This created app/templates/index.hbs. We’ll change its contents to:</p>
 
@@ -237,17 +189,15 @@ jump through to get your .scss working again. </p>
 
 <h3 id="running-locally">Running Locally</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember server
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember server
+</code></pre></figure></notextile></div>
 
 <p>If things are good to go, you’ll see the colors listed out on the screen. WOAH, the power.</p>
 
 <h3 id="building-for-deploying">Building for Deploying</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">ember build
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">ember build
+</code></pre></figure></notextile></div>
 
 <p>This creates a “dist” directory with “index.html” and other static assets. We can deploy this to S3, or anywhere else. TOTES AWESOME.</p>
 
@@ -255,11 +205,9 @@ jump through to get your .scss working again. </p>
 
 <p>If we run into CORS problems, or generally want to use Heroku, there’s a build pack for maximum awesome.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">heroku create --buildpack https://github.com/tonycoco/heroku-buildpack-ember-cli.git
-</span><span class="line">git push heroku master
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">heroku create --buildpack https://github.com/tonycoco/heroku-buildpack-ember-cli.git
+git push heroku master
+</code></pre></figure></notextile></div>
 
 <p>At this point, you have an ember app, build with ember-cli, hosted on Heroku. </p>
 
@@ -373,8 +321,9 @@ Follow me on
 </div>
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script src="/javascripts/highlight.pack.js"></script>  
 <script>hljs.initHighlightingOnLoad()</script>
+
 
 
 <script type="text/javascript">

@@ -20,6 +20,7 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -52,6 +53,33 @@
     <article class="post">
 	
 		
+	
+	<header class="post-header">
+		<span class="post-meta">27 Mar 2013</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2013/03/27/reminder-to-hand-craft-your-whenever-files/">
+			
+				Reminder to Hand-craft Your Whenever Files</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>Day 5: crash. Day 6: crash. Each day, we were receiving notifications from
+Rackspace that the server had exceeded its memory allocation and was thrashing
+too hard; it rebooted our server for us.</p>
+
+<p>My initial reaction: Increase the memories!</p>
+
+<p>I looked deeper into the problem, and along with some colleagues, discovered
+that at midnight our server was kicking off 9 different processes at the same 
+time. 9x Rails is just about 8x too many.</p>
+
+
+	</section>
+</article>
+
+
+    <article class="post">
 	
 	<header class="post-header">
 		<span class="post-meta">04 Mar 2013</span>
@@ -253,25 +281,6 @@ great talks to reject mine” and a sigh. Why did I like this rejection email?</
 	</section>
 </article>
 
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">03 Feb 2012</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2012/02/03/the-one-where-you-too-can-have-bootstrap-2-dot-0-and-compass-in-rails/">
-			
-				The One Where You Too Can Have Bootstrap 2.0 and Compass in Rails</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>The situation: You’ve used compass in the past (even when it was hard to setup with rails), and love Bootstrap. You love bootstrap 2.0 and &lt;3 Responsive design but don’t use LESS (because obvs). What do you do? Let’s make this happen</p>
-
-
-	</section>
-</article>
-
 <nav class="pagination" role="pagination">
     
         <a class="newer-posts" href="/">← Newer Posts</a>
@@ -310,8 +319,9 @@ Follow me on
 </div>
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script src="/javascripts/highlight.pack.js"></script>  
 <script>hljs.initHighlightingOnLoad()</script>
+
 
 
 <script type="text/javascript">

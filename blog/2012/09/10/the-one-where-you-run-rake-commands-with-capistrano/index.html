@@ -20,6 +20,7 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -55,28 +56,20 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
 <p>But it’s not all that awesome to actually run those things in production when you need to. Here’s a way!</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/sake.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
-</span><span class="line">  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
-</span><span class="line">  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
-</span><span class="line">  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
-</span><span class="line">    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="n">namespace</span> <span class="ss">:sake</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s2">&quot;Run a task on a remote server.&quot;</span>
+  <span class="c1"># run like: cap staging rake:invoke task=a_certain_task  </span>
+  <span class="n">task</span> <span class="ss">:invoke</span> <span class="k">do</span>
+    <span class="n">run</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">deploy_to</span><span class="si">}</span><span class="s2">/current &amp;&amp; bundle exec rake </span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;task&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Then, make sure you require it</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</code></pre></figure></notextile></div>
 
 <p>And that’s it! Now, when you want to run that code, say to migrate a database:</p>
 
@@ -163,8 +156,9 @@ Follow me on
 </div>
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script src="/javascripts/highlight.pack.js"></script>  
 <script>hljs.initHighlightingOnLoad()</script>
+
 
 
 <script type="text/javascript">

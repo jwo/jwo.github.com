@@ -20,6 +20,7 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -68,75 +69,44 @@ Use my codes to only precompile assets on cap:deploy when there is a change to a
 <p>Make sure you’re loading deploy/assets</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Capfile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s1">&#39;deploy/assets&#39;</span>
+</code></pre></figure></notextile></div>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/recipes/assets.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
-</span><span class="line">
-</span><span class="line"><span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
-</span><span class="line">
-</span><span class="line"><span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
-</span><span class="line">  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
-</span><span class="line"><span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
-</span><span class="line"><span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
-</span><span class="line"><span class="sh">      specify additional environment variables to pass to rake via the \</span>
-</span><span class="line"><span class="sh">      asset_env variable. The defaults are:</span>
-</span><span class="line">
-</span><span class="line"><span class="sh">        set :rake,      &quot;rake&quot;</span>
-</span><span class="line"><span class="sh">        set :rails_env, &quot;production&quot;</span>
-</span><span class="line"><span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
-</span><span class="line"><span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
-</span><span class="line"><span class="no">    DESC</span>
-</span><span class="line">    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
-</span><span class="line">      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
-</span><span class="line">      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span><span class="line">        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
-</span><span class="line">      <span class="k">else</span>
-</span><span class="line">        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
-</span><span class="line">      <span class="k">end</span>
-</span><span class="line">    <span class="k">end</span>
-</span><span class="line">
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="c1"># -*- encoding : utf-8 -*-                                                                                                    </span>
+
+<span class="n">set</span> <span class="ss">:assets_dependencies</span><span class="p">,</span> <span class="sx">%w(app/assets lib/assets vendor/assets Gemfile.lock config/routes.rb)</span>
+
+<span class="n">namespace</span> <span class="ss">:deploy</span> <span class="k">do</span>
+  <span class="n">namespace</span> <span class="ss">:assets</span> <span class="k">do</span>
+
+    <span class="n">desc</span> <span class="o">&lt;&lt;-</span><span class="no">DESC</span>
+<span class="sh">      Run the asset precompilation rake task. You can specify the full path \</span>
+<span class="sh">      to the rake executable by setting the rake variable. You can also \</span>
+<span class="sh">      specify additional environment variables to pass to rake via the \</span>
+<span class="sh">      asset_env variable. The defaults are:</span>
+
+<span class="sh">        set :rake,      &quot;rake&quot;</span>
+<span class="sh">        set :rails_env, &quot;production&quot;</span>
+<span class="sh">        set :asset_env, &quot;RAILS_GROUPS=assets&quot;</span>
+<span class="sh">        set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)</span>
+<span class="no">    DESC</span>
+    <span class="n">task</span> <span class="ss">:precompile</span><span class="p">,</span> <span class="ss">:roles</span> <span class="o">=&gt;</span> <span class="ss">:web</span><span class="p">,</span> <span class="ss">:except</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:no_release</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span> <span class="k">do</span>
+      <span class="n">from</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">next_revision</span><span class="p">(</span><span class="n">current_revision</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">capture</span><span class="p">(</span><span class="s2">&quot;cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="s2"> &amp;&amp; </span><span class="si">#{</span><span class="n">source</span><span class="o">.</span><span class="n">local</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">from</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">assets_dependencies</span><span class="o">.</span><span class="n">join</span> <span class="s1">&#39; &#39;</span><span class="si">}</span><span class="s2"> | wc -l&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">run</span> <span class="sx">%Q{cd </span><span class="si">#{</span><span class="n">latest_release</span><span class="si">}</span><span class="sx"> &amp;&amp; </span><span class="si">#{</span><span class="n">rake</span><span class="si">}</span><span class="sx"> RAILS_ENV=</span><span class="si">#{</span><span class="n">rails_env</span><span class="si">}</span><span class="sx"> </span><span class="si">#{</span><span class="n">asset_env</span><span class="si">}</span><span class="sx"> assets:precompile}</span>
+      <span class="k">else</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s2">&quot;Skipping asset pre-compilation because there were no asset changes&quot;</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/deploy.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+ <pre><code class="ruby"><span class="nb">load</span> <span class="s2">&quot;config/recipes/assets&quot;</span>
+</code></pre></figure></notextile></div>
 
 <h2 id="how-does-it-know">How does it know?</h2>
 
@@ -241,8 +211,9 @@ Follow me on
 </div>
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script src="/javascripts/highlight.pack.js"></script>  
 <script>hljs.initHighlightingOnLoad()</script>
+
 
 
 <script type="text/javascript">

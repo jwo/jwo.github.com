@@ -20,6 +20,7 @@
 	<link rel="canonical" href="">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -50,21 +51,14 @@
 
 <h3 id="the-setup">The setup</h3>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Fairly simple, but here’s what’s going on:  </p>
 
@@ -77,129 +71,84 @@
 
 <p>The JSON that comes through has something rather odd for <code>large_image_url</code> - it’s a local path to the /tmp/upload directory, which absolutely does not work. :/</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code json"><figcaption><span></span></figcaption><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;/uploads/tmp/1425583084-37430-8620/thumb_thumbnail.jpg&quot;</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <p>Basically, when Pusher is sending PhotoSerializer.new(self).attributes, the image has not been stored up to S3. We want to do Pusher later, after fog does it’s thing.</p>
 
 <p>Callbacks are run in this order:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">before_validation</span>
-</span><span class="line"><span class="n">after_validation</span>
-</span><span class="line"><span class="n">before_save</span>
-</span><span class="line"><span class="n">around_save</span>
-</span><span class="line"><span class="n">before_create</span>
-</span><span class="line"><span class="n">around_create</span>
-</span><span class="line"><span class="n">after_create</span>
-</span><span class="line"><span class="n">after_save</span>
-</span><span class="line"><span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="n">before_validation</span>
+<span class="n">after_validation</span>
+<span class="n">before_save</span>
+<span class="n">around_save</span>
+<span class="n">before_create</span>
+<span class="n">around_create</span>
+<span class="n">after_create</span>
+<span class="n">after_save</span>
+<span class="n">after_commit</span><span class="o">/</span><span class="n">after_rollback</span>
+</code></pre></figure></notextile></div>
 
 <p>So, <code>after_create</code> is occurring before <code>after_save</code>. Let’s switch that up and our problems should be solved:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <p>Result: Same thing. huh?</p>
 
 <p>To see the order in which callbacks are run, we can do this:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="no">Photo</span><span class="o">.</span><span class="n">_save_callbacks</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:filter</span><span class="p">)</span>
+</code></pre></figure></notextile></div>
 
 <p>That will show the name of the callbacks being called, and will look something like:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="o">[</span><span class="mi">70220584822820</span><span class="p">,</span> <span class="ss">:remove_previously_stored_photo</span><span class="p">,</span> <span class="ss">:store_photo!</span><span class="p">,</span> <span class="ss">:write_photo_identifier</span><span class="o">]</span>
+</code></pre></figure></notextile></div>
 
 <p>That 70220584822820 is our block callback. And it’s first. Why is it first? Can we get it to go last?  Callbacks are run in a last-first order. Further, changing it to something like the following also doesn’t work.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
+
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
 
 <h3 id="so-then-what-the-hell-works">So then what the hell works?</h3>
 
 <p>We need to store the image before we get the attributes. So, let’s add that <code>store_image!</code> callback we saw in the list of callbacks. This will result in <code>store_image!</code> being called twice, but it won’t actually store the image twice — the second call is basically a no-op.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
-</span><span class="line">
-</span><span class="line">  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
-</span><span class="line">    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
-</span><span class="line">    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code ruby"><figcaption><span></span></figcaption><pre><code class="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="n">mount_uploader</span> <span class="ss">:image</span><span class="p">,</span> <span class="no">ImageUploader</span>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  <span class="n">after_save</span> <span class="ss">on</span><span class="p">:</span> <span class="ss">:create</span> <span class="k">do</span>
+    <span class="n">store_image!</span> <span class="c1">## It’s this. this is carrierwave saving the image.</span>
+    <span class="no">Pusher</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="s2">&quot;new_photo&quot;</span><span class="p">,</span> <span class="no">PhotoSerializer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code json"><figcaption><span></span></figcaption><pre><code class="json"><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;399ca80efb2bd65e7254f299adfe278a&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;thumbythumbythumby&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;large_image_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/large_thumbnail.jpg&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;thumb_photo_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://sevensevenseven-dev.s3.amazonaws.com/uploads/photo/photo/32/thumb_thumbnail.jpg&quot;</span>
+<span class="p">}</span>
+</code></pre></figure></notextile></div>
 
 <h3 id="it-works-rejoice-then-anger">IT WORKS. REJOICE. Then: Anger.</h3>
 
@@ -276,8 +225,9 @@ Follow me on
 </div>
 </footer>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="//yandex.st/highlightjs/7.3/highlight.min.js"></script>  
+<script src="/javascripts/highlight.pack.js"></script>  
 <script>hljs.initHighlightingOnLoad()</script>
+
 
 
 <script type="text/javascript">
