@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2016-07-20T09:12:53-05:00</updated>
+  <updated>2016-08-12T10:16:05-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Scenes from Seven Cohorts]]></title>
+    <link href="http://jessewolgamott.com/blog/2016/08/12/scenes-from-seven-cohorts/"/>
+    <updated>2016-08-12T09:21:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2016/08/12/scenes-from-seven-cohorts</id>
+    <content type="html"><![CDATA[<p>Two years ago, my first cohort graduated at The Iron Yard in Houston, Texas. 12
+students received their diplomas and started their journey, their career, and
+their new life.</p>
+
+<p>Five cohorts followed; today my seventh, and final, immersive cohort will
+present their final projects and begin the next phase of their live. I look back
+and remember:</p>
+
+<!-- more -->
+
+<ul>
+  <li>A young student and his mother and grandmother, all dressed up, crying because
+of the job offer he received, and never thought he’d have access to this type
+of career.</li>
+  <li>The mom, who used to develop software, took 6 years off to raise kids, and
+received their job offer to rejoin the workforce and support her family.</li>
+  <li>The lawyer, who, while crying, thanked me for helping her to realize the dream
+she’s had for years.</li>
+  <li>The anthropologist who has gone on to multiple jobs, press interviews, and
+generally kicks all sorts of ass.</li>
+  <li>The musician who graduated, brought his friends to The Iron Yard, and all
+started a company together.</li>
+  <li>The waiter, who felt stuck in a dead end career, giving meetup talks and
+negotiating better jobs.</li>
+  <li>The veteran, coming back to the US after Afghanistan, and starting a career.</li>
+  <li>The scientist, always pushing herself to do more, learn more, and be more.
+Watching her build up the nerve to negotiate her salary/benefits, not for
+herself, but because more women should.</li>
+  <li>The star of the course, developing open source software and sharing
+interesting things he finds on the internet with me. (I’m learning from him)</li>
+  <li>My TA, coming back and sharing her time with students, one-on-one, and helping
+run RailsGirls and helping even more people.</li>
+  <li>And so many others…</li>
+</ul>
+
+<p>I want to thank you all; I was a smart part of your journey, and you were a big
+part of mine.</p>
+
+<p><img src="http://jessewolgamott.com/images/jwo-tiy.jpg" alt="jwo-tiy" /></p>
+
+<h2 id="something-that-actually-matters">Something that actually matters</h2>
+<p>Overall, I’ve graduated nearly 100 students over 7 cohorts. I started at
+the Iron Yard in 2014 with a healthy skepticism on code-schools – I thought,
+‘hey JWo, you’ll be able to help with things you care deeply about.’ Namely: </p>
+
+<ul>
+  <li>Helping to solve the diversity problem in Tech.</li>
+  <li>Teaching kids how to code.</li>
+</ul>
+
+<p>Being a part of something that actually matters to you is an experience I highly
+recommend. I spent the first 18 years of my career trading my time and ability
+to tell computers what to do in exchange for money. You know, as you do.</p>
+
+<p>But being able to do so AND help people AND align with your core desires – it’s
+an emotional experience I cannot fully describe. </p>
+
+<p>I’m proud of what I’ve done at The Iron Yard in Houston, believe whole-heartily
+in TIY’s ability to affect real and lasting change for people, and want to
+expand the scope of the people I can help.</p>
+
+<h2 id="add-some-zeroes-to-that-number">Add some zeroes to that number</h2>
+
+<p>On Monday, I’ll start a new position at The Iron Yard as the Director of
+Back-End Engineering. I’ll lead the effort to wrangle the curriculum for the
+back-end stacks we teach at TIY nationally: Rails, .NET, Java, and Python, as
+well as help develop curriculum for non-immersive courses.</p>
+
+<p>I hope to be able to expand the people we can help, including those who cannot
+take a 12 week immersive code school. Additionally, I’m excited to experiment
+with other formats and show off the technology TIY’s internal tech team has
+built. So Excite. Such potential. Very future.</p>
+
+<p>My goal: as bittersweet as it is to finish leading 15 students on a twelve week
+journey, I hope to add some zeroes to that number. At 20 campuses (currently),
+The Iron Yard is the largest codeschool in the country; helping instructors help
+students has the potential to change even more lives.</p>
+
+<h2 id="excite">Excite</h2>
+
+<p>I’m like this:</p>
+
+<p><img src="http://jessewolgamott.com/images/ron.gif" alt="images" /></p>
+
+<p>No really, see:</p>
+
+<p><img src="http://jessewolgamott.com/images/jwo-dance.gif" alt="images" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Explaining Elixir Pipes through the Magic of Turduckens]]></title>
@@ -1646,200 +1741,6 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
   <li>Read through and sign up</li>
   <li>We’ll being the Thursday after RailsConf (April 26, 2012)</li>
 </ol>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The one where we DRY up Mongoid and Rspec using Shared Examples and Modules]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules/"/>
-    <updated>2012-02-29T10:19:00-06:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/02/29/the-one-where-we-dry-up-mongoid-and-rspec-using-shared-examples-and-modules</id>
-    <content type="html"><![CDATA[<p>The Situation: You’re adding Addresses to seemingly every document you have. Doctors, Patients, Insurance Agents. Even the Delivery Man – everybody has a contact.</p>
-
-<p>The Problem: You’re tempted to copy/paste the field and validations, but your spidy-senses tell you not to.</p>
-
-<p>Let’s DRY this up using modules and rspec shared examples. We’ll end up with a way you <em>could</em> enable fast rails tests on your Mongoid models.</p>
-
-<!-- more -->
-
-<div class="tldr">
-	<span class="heading">tl;dr</span> Shared examples describing a module. Include module in a mongoid class: <a href="https://gist.github.com/1942427">The Gist</a>.
-</div>
-
-<h2 id="some-assumptions-before-we-begin">Some Assumptions Before We Begin</h2>
-
-<ol>
-  <li>You have a project setup with Mongoid (2.2+, Rspec 2.8+, and rspec-mongoid)</li>
-  <li>You are awesome</li>
-</ol>
-
-<p>OK, so we would normally have a model for the Doctor like so:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="keyword">class</span> <span class="class">Doctor</span>
-    include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
-    include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
-
-    field <span class="symbol">:first_name</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:last_name</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:phone_number</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:address_line_1</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:city</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:state</span>, <span class="key">type</span>: <span class="constant">String</span>
-    field <span class="symbol">:postal_code</span>, <span class="key">type</span>: string
-    field <span class="symbol">:email</span>, type <span class="symbol">:String</span>
-    validates_presence_of <span class="symbol">:last_name</span>
-    validates_presence_of <span class="symbol">:first_name</span>
-<span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<h3 id="step-1-write-those-tests-first">Step 1: Write those tests first</h3>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
-
-describe <span class="constant">Doctor</span> <span class="keyword">do</span>
-    it { should have_fields(<span class="symbol">:first_name</span>, <span class="symbol">:last_name</span>) }
-    it { should have_fields(<span class="symbol">:phone_number</span>, <span class="symbol">:email</span>, <span class="symbol">:address_line_1</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:postal_code</span>) }
-    it { should validate_presence_of(<span class="symbol">:first_name</span>) }
-    it { should validate_presence_of(<span class="symbol">:last_name</span>) }
-<span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<p>Note: If this doesn’t pass, you may need to add  configuration.include Mongoid::Matchers in your rspec. See the <a href="https://github.com/evansagge/mongoid-rspec">mongoid-rspec gem</a> for use.</p>
-
-<h3 id="step-the-second-extract-the-mongoid-definitions">Step The Second: Extract the mongoid definitions</h3>
-
-<div><div class="CodeRay">
-  <div class="code"><pre>require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
-
-<span class="keyword">module</span> <span class="class">Contactable</span>
-
-  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">included</span>(receiver) 
-    receiver.class_eval <span class="keyword">do</span>
-      field <span class="symbol">:first_name</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:last_name</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:phone_number</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:address_line_1</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:city</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:state</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:postal_code</span>, <span class="key">type</span>: <span class="constant">String</span>
-      field <span class="symbol">:email</span>, <span class="key">type</span>: <span class="constant">String</span>
-      validates_presence_of <span class="symbol">:first_name</span>
-      validates_presence_of <span class="symbol">:last_name</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-<span class="keyword">class</span> <span class="class">Doctor</span>
-  include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
-  include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
-  include <span class="constant">Contactable</span>
-<span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<p>And run those tests!</p>
-
-<pre><code>....
-
-Finished in 0.11461 seconds
-4 examples, 0 failures
-</code></pre>
-
-<h3 id="step-3-extract-the-tests">Step 3: Extract the Tests!</h3>
-
-<p>We’ll extract the tests out into a shared_examples file in the support folder, and then tell the Doctor class that it should behave like a Contact. </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="comment">#spec/support/shared_examples.rb</span>
-shared_examples_for <span class="constant">Contactable</span> <span class="keyword">do</span>
-    it { should have_fields(<span class="symbol">:first_name</span>, <span class="symbol">:last_name</span>) }
-    it { should have_fields(<span class="symbol">:phone_number</span>, <span class="symbol">:email</span>, <span class="symbol">:address_line_1</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:postal_code</span>) }
-    it { should validate_presence_of(<span class="symbol">:first_name</span>) }
-    it { should validate_presence_of(<span class="symbol">:last_name</span>) }
-<span class="keyword">end</span>
-
-<span class="comment">#spec/models/doctor_spec.rb</span>
-
-require <span class="string"><span class="delimiter">'</span><span class="content">spec_helper</span><span class="delimiter">'</span></span>
-describe <span class="constant">Doctor</span> <span class="keyword">do</span>
-    it_behaves_like <span class="constant">Contactable</span>
-<span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<p>Run those tests!  Could be faster</p>
-
-<pre><code>....
-
-Finished in 0.13347 seconds
-4 examples, 0 failures
-</code></pre>
-
-<p>All is going awesome! So we can now easily add contact information (and validations), to say users:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="keyword">class</span> <span class="class">User</span>
-  include <span class="constant">Mongoid</span>::<span class="constant">Document</span>
-  include <span class="constant">Mongoid</span>::<span class="constant">Timestamps</span>
-  include <span class="constant">Contactable</span>
-<span class="keyword">end</span>
-
-describe <span class="constant">User</span> <span class="keyword">do</span>
-  it_behaves_like <span class="constant">Contactable</span>
-<span class="keyword">end</span>
-</pre></div>
-</div>
-</div>
-
-<p>Now your Users have first_name, last_name, address, and more!</p>
-
-<h3 id="lets-take-this-to-11">Let’s Take this to 11</h3>
-
-<p>Now we can very, very easily isolate the Doctor out for very fast tests.</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="keyword">module</span> <span class="class">Mongoid</span>
-    <span class="keyword">module</span> <span class="class">Document</span>; <span class="keyword">end</span>
-  <span class="keyword">module</span> <span class="class">Timestamps</span>; <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="keyword">class</span> <span class="class">Pharmacy</span>; <span class="keyword">end</span>
-
-require_relative <span class="string"><span class="delimiter">&quot;</span><span class="content">../../app/models/doctor</span><span class="delimiter">&quot;</span></span>
-require_relative <span class="string"><span class="delimiter">&quot;</span><span class="content">support/shared_examples</span><span class="delimiter">&quot;</span></span>
-
-describe <span class="constant">Doctor</span> <span class="keyword">do</span>
-  it_behaves_like <span class="constant">Contactable</span>
-
-    it <span class="string"><span class="delimiter">&quot;</span><span class="content">will tell the pharmacy to release the rx's</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
-        <span class="constant">Pharmacy</span>.should_receive(<span class="symbol">:release_the_rx!</span>)
-        subject.gimme!
-    <span class="keyword">end</span>
-<span class="keyword">end</span>
-
-</pre></div>
-</div>
-</div>
-
-<p>The above would fail since #gimme! doesn’t exist, but it would be:</p>
-
-<ul>
-  <li>In total isolation from Rails</li>
-  <li>Total isolation from Mongo DB</li>
-  <li>fast!</li>
-</ul>
-
-<p>I created the following to easily add re-usable data-bags to documents in Mongoid, rather than copying and pasting. The same shared-example technique works well in ActiveRecord.</p>
-
-<h6 id="version-disclosure-written-against-mongoid-rspec-14-mongoid-24-rspec-28">Version Disclosure: written against mongoid-rspec 1.4, mongoid 2.4, rspec 2.8.</h6>
-
 ]]></content>
   </entry>
   
