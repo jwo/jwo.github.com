@@ -1,0 +1,243 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>So much to learn, so little time | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
+
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
+  
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">16 Aug 2016</span>
+	<h1 class="post-title">So Much to Learn, So Little Time</h1>
+
+	<section class="post-content">
+		<p>My birthday is coming up; looking back on what I learned about looking forward on what I want to learn, I noticed a pattern. Each year I spend revolving around the sun tends to have a pattern of what I learn. Maybe it was distributed systems and how easy it is to screw up in 2007-2008. Or APIs from 2012-2013.</p>
+
+<p>There is too much to learn with far too few years to learn. The only way I’ve been able to be ok with this fact is to schedule my learning, learn by doing, and then reading the books on the subject. Note: read the books, not the blogs, is a technique by <a href="http://chrisoakman.com/">Chris Oakman</a> and it’s helped me dive into the theory behind the tech. The tech changes, but the theory stays the same.</p>
+
+<p>That said, this is probably a very hip-javascript heavy post. If you’re suffering from JavaScript fatigue, this may or may not help.</p>
+
+<!-- more -->
+
+<h2 id="what-i-learned">What I learned</h2>
+
+<p>With learningyear 2015-2016, I’ve devoted most of my learning to two separate sets of technology:</p>
+
+<ul>
+  <li>
+    <p>Upgrading my JavaScript to 2016 era JavaScript Front-End</p>
+  </li>
+  <li>
+    <p>Exploring Elixir/Phoenix and other functional languages</p>
+  </li>
+</ul>
+
+<h3 id="era-javascript">2016 era JavaScript</h3>
+
+<p>Front-end is fun, sticking to 2010 era jQuery is a mess, and functional components, surrounded by imperative containers, is the past and the future.</p>
+
+<p>I started with learning React so that I could explore React-Native. This was a bit like learning how to cook by starting with a Cajun Roux (and filling the house with smoke) when you’re 15. Which: yeah, I totally did. Small steps, I’m not a fan of.</p>
+
+<p>I had been pretty heavy with Ember, running Houston-Ember, and building apps with it. After the ember team declared they would focus on the web-experience (instead of mobile), I started looking for something to help solve the cross-platform development experience. React-Native appeared to do so, and I built a couple of apps with it, not really knowing what I was doing.</p>
+
+<p>You know: change something and see what happens development.</p>
+
+<p>I saw react-rails, and began to see the potential for a mixture of Rails as the API and React components managing their view and their state at the same time. Presentation: <a href="https://speakerdeck.com/jwo/react-rails-an-isomorphic-match-made-in-heaven">Given</a>. Apps: built.</p>
+
+<p>But I missed the ease in which you could import modules and dependencies in front-end apps versus the flips you had to do to get Sprockets to work in Rails.</p>
+
+<p>Recently, I explored getting webpack or browserify working in a Rails project. The progression at which I tried to get Rails’ to behave with the node ecosystem:</p>
+
+<ul>
+  <li>
+    <p>shakacode’s <a href="https://github.com/shakacode/react_on_rails">react_on_rails</a>: complex, thorough, and was difficult for me to understand what’s going on.</p>
+  </li>
+  <li>
+    <p><a href="https://www.reax.io/blog/2016/06/23/using-npm-to-manage-front-end-assets-in-rails/">Browserify with Rails</a>: excellent tutorial by Reax. It was good, but I wanted to learn webpack.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/jdmorlan/rails-webpack-integration">Jay Morlan</a>: simple webpack integration with Rails.</p>
+  </li>
+</ul>
+
+<p>I haven’t replaced the Asset Pipeline, I’ve enhanced it with a webpack process that builds out <code>app/frontend</code> into a bundle, which Rails slurps up and uses with jquery-ujs, action-cable, and other Railsy front-end things. Jay is going to give a talk at Houston-Ruby about this soon, which I’m excited about.</p>
+
+<h3 id="functional">Functional</h3>
+
+<p>Both elm and elixir are functional languages, and I had a blast writing with both of them. I have friends who have jumped all in on the elixir train, with its millisecond response times, coherent coding style, and Rails like Phoenix framework.</p>
+
+<p>I built out an API for a React-Native mobile app and thoroughly enjoyed the experience. It was a hop-skip-and-a-jump to learn Elm, a front-end functional language that compiles down to JavaScript.</p>
+
+<p>I wrote <a href="http://hipstack.me">Hipstack.me</a> in elm; a fun project that allows me to rewrite the entire application every six months in whatever language is hippest at the time. Sort of a TodoMVC, but TodoMVC is a little too popular these days.</p>
+
+<h3 id="where-to-learn-these-techs">Where to learn these techs</h3>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/facebookincubator/create-react-app">Create-React-App</a> Your starting point when creating a React app.</p>
+  </li>
+  <li>
+    <p>Redux: This <a href="http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html">full-stack redux tutorial</a>, which should have been a book, and I should have paid for it, finally got redux to stick. (Note: you don’t need redux/react-router to learn react, but it’s nice when you get 3+ components that aren’t parent child).</p>
+  </li>
+  <li>
+    <p>elm: After hearing that Redux was inspired by elm, I dove in with the (shockingly free, excellent) <a href="http://courses.knowthen.com/courses/elm-for-beginners">elm for beginners course</a>. Highly recommended.</p>
+  </li>
+  <li>
+    <p>Elixir: <a href="http://learningwithjb.com/guides/essential-elixir">Essential Elixir</a></p>
+  </li>
+  <li>
+    <p>Phoenix: <a href="http://learningwithjb.com/guides/building-an-app-with-phoenix">Build an app with Phoenix</a> and <a href="http://learningwithjb.com/guides/ecto-for-beginners">Ecto for Beginners</a>.</p>
+  </li>
+</ul>
+
+<h2 id="what-im-diving-into-next">What I’m diving into next</h2>
+
+<p>I’m exploring data-science, both the correlation/statistics/machine-learning aspect as well as the big-data side of the house. I’m not sure I believe in “AI” as traditionally taught, but I absolutely believe in data and our ability to make guesses based upon said data.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">PSA to my fellow devs: AI skills are bleeding edge right now, but they’ll be *table stakes* in a few short years. Invest in yourself now.</p>&mdash; Jerod Santo (@jerodsanto) <a href="https://twitter.com/jerodsanto/status/747409638681808897">June 27, 2016</a></blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I’m also going to give Go another chance. Working through <a href="http://exercism.io">exercism</a>’s examples in Go is super cool. The static code analysis helps you learn the “go” way to do things.</p>
+
+<ul>
+  <li>
+    <p><a href="http://shop.oreilly.com/product/mobile/0636920033400.do">Data Science from Scratch</a></p>
+  </li>
+  <li>
+    <p><a href="https://thewhitetulip.gitbooks.io/webapp-with-golang-anti-textbook/content/">webapp-with-golang-anti-textbook </a></p>
+  </li>
+</ul>
+
+
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott crafts back-end curriculum at <a href="http://theironyard.com">The Iron Yard</a>, 
+    <a href="/books">writes books</a>,
+    <a href="/talks">speaks</a>,
+    and
+    <a href="http://comal.io">consults</a>.
+    He lives in Sugar Land outside of Houston, and likes that you
+    can end sentences with emoji :)</p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=So much to learn, so little time&amp;url=http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
+</div>
+
+  
+  
+  <section id="comment">
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2016 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
+
+</div>
+</footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/javascripts/highlight.pack.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jwo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</body>
+</html>

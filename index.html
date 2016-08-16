@@ -55,6 +55,29 @@
 		
 	
 	<header class="post-header">
+		<span class="post-meta">16 Aug 2016</span>
+		<h2 class="post-title">
+			
+			<a href="/blog/2016/08/16/so-much-to-learn-so-little-time/">
+			
+				So Much to Learn, So Little Time</a>
+		</h2>
+	</header>
+	<section class="post-excerpt">
+		<p>My birthday is coming up; looking back on what I learned about looking forward on what I want to learn, I noticed a pattern. Each year I spend revolving around the sun tends to have a pattern of what I learn. Maybe it was distributed systems and how easy it is to screw up in 2007-2008. Or APIs from 2012-2013.</p>
+
+<p>There is too much to learn with far too few years to learn. The only way I’ve been able to be ok with this fact is to schedule my learning, learn by doing, and then reading the books on the subject. Note: read the books, not the blogs, is a technique by <a href="http://chrisoakman.com/">Chris Oakman</a> and it’s helped me dive into the theory behind the tech. The tech changes, but the theory stays the same.</p>
+
+<p>That said, this is probably a very hip-javascript heavy post. If you’re suffering from JavaScript fatigue, this may or may not help.</p>
+
+
+	</section>
+</article>
+
+
+    <article class="post">
+	
+	<header class="post-header">
 		<span class="post-meta">12 Aug 2016</span>
 		<h2 class="post-title">
 			
@@ -686,54 +709,6 @@ git push heroku master
 </li>
     </ol>
 </div>
-
-
-	</section>
-</article>
-
-
-    <article class="post">
-	
-	<header class="post-header">
-		<span class="post-meta">16 Oct 2014</span>
-		<h2 class="post-title">
-			
-			<a href="/blog/2014/10/16/using-pg-dumpall-to-move-all-postgres-databases-to-a-new-laptop/">
-			
-				Using Pg_dumpall to Move All Postgres Databases to a New Laptop</a>
-		</h2>
-	</header>
-	<section class="post-excerpt">
-		<p>I recently upgraded laptops because it’s been 2 years and my business lease on
-it was up. Which: cool to have the new MacBook Air with the day-long-battery TM, but moving computers is a pain.  </p>
-
-<p>Except: I have <a href="https://github.com/jwo/dotfiles">dot files</a> and that makes it easier. After copying my home directory over, re-dotfiling, things
-seemed good.  </p>
-
-<p>Except: my postgres databases. How to get them all from Air A to Air B without copying every.single.one.  </p>
-
-<p>Enter: pg_dumpall. It’ll dump every database into a file, with which you import on new computer.</p>
-
-<p>When moving to a new computer</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash"><span class="nv">$ </span>pg_dumpall &gt; db.out
-</code></pre></figure></notextile></div>
-
-<p>(Move file to to new computer)</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash"><span class="nv">$ </span>psql -f dbout postgres
-</code></pre></figure></notextile></div>
-
-<blockquote>
-  <p>if you have trouble with “database $username not found”, type in “createdb”</p>
-</blockquote>
-
-<p>To confirm, </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code bash"><figcaption><span></span></figcaption><pre><code class="bash">psql
-</code></pre></figure></notextile></div>
-
-<p>And then <code>\l</code> to list the databases</p>
 
 
 	</section>

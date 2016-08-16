@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2016-08-12T10:16:05-05:00</updated>
+  <updated>2016-08-16T10:58:30-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,111 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[So much to learn, so little time]]></title>
+    <link href="http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time/"/>
+    <updated>2016-08-16T00:00:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2016/08/16/so-much-to-learn-so-little-time</id>
+    <content type="html"><![CDATA[<p>My birthday is coming up; looking back on what I learned about looking forward on what I want to learn, I noticed a pattern. Each year I spend revolving around the sun tends to have a pattern of what I learn. Maybe it was distributed systems and how easy it is to screw up in 2007-2008. Or APIs from 2012-2013.</p>
+
+<p>There is too much to learn with far too few years to learn. The only way I’ve been able to be ok with this fact is to schedule my learning, learn by doing, and then reading the books on the subject. Note: read the books, not the blogs, is a technique by <a href="http://chrisoakman.com/">Chris Oakman</a> and it’s helped me dive into the theory behind the tech. The tech changes, but the theory stays the same.</p>
+
+<p>That said, this is probably a very hip-javascript heavy post. If you’re suffering from JavaScript fatigue, this may or may not help.</p>
+
+<!-- more -->
+
+<h2 id="what-i-learned">What I learned</h2>
+
+<p>With learningyear 2015-2016, I’ve devoted most of my learning to two separate sets of technology:</p>
+
+<ul>
+  <li>
+    <p>Upgrading my JavaScript to 2016 era JavaScript Front-End</p>
+  </li>
+  <li>
+    <p>Exploring Elixir/Phoenix and other functional languages</p>
+  </li>
+</ul>
+
+<h3 id="era-javascript">2016 era JavaScript</h3>
+
+<p>Front-end is fun, sticking to 2010 era jQuery is a mess, and functional components, surrounded by imperative containers, is the past and the future.</p>
+
+<p>I started with learning React so that I could explore React-Native. This was a bit like learning how to cook by starting with a Cajun Roux (and filling the house with smoke) when you’re 15. Which: yeah, I totally did. Small steps, I’m not a fan of.</p>
+
+<p>I had been pretty heavy with Ember, running Houston-Ember, and building apps with it. After the ember team declared they would focus on the web-experience (instead of mobile), I started looking for something to help solve the cross-platform development experience. React-Native appeared to do so, and I built a couple of apps with it, not really knowing what I was doing.</p>
+
+<p>You know: change something and see what happens development.</p>
+
+<p>I saw react-rails, and began to see the potential for a mixture of Rails as the API and React components managing their view and their state at the same time. Presentation: <a href="https://speakerdeck.com/jwo/react-rails-an-isomorphic-match-made-in-heaven">Given</a>. Apps: built.</p>
+
+<p>But I missed the ease in which you could import modules and dependencies in front-end apps versus the flips you had to do to get Sprockets to work in Rails.</p>
+
+<p>Recently, I explored getting webpack or browserify working in a Rails project. The progression at which I tried to get Rails’ to behave with the node ecosystem:</p>
+
+<ul>
+  <li>
+    <p>shakacode’s <a href="https://github.com/shakacode/react_on_rails">react_on_rails</a>: complex, thorough, and was difficult for me to understand what’s going on.</p>
+  </li>
+  <li>
+    <p><a href="https://www.reax.io/blog/2016/06/23/using-npm-to-manage-front-end-assets-in-rails/">Browserify with Rails</a>: excellent tutorial by Reax. It was good, but I wanted to learn webpack.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/jdmorlan/rails-webpack-integration">Jay Morlan</a>: simple webpack integration with Rails.</p>
+  </li>
+</ul>
+
+<p>I haven’t replaced the Asset Pipeline, I’ve enhanced it with a webpack process that builds out <code>app/frontend</code> into a bundle, which Rails slurps up and uses with jquery-ujs, action-cable, and other Railsy front-end things. Jay is going to give a talk at Houston-Ruby about this soon, which I’m excited about.</p>
+
+<h3 id="functional">Functional</h3>
+
+<p>Both elm and elixir are functional languages, and I had a blast writing with both of them. I have friends who have jumped all in on the elixir train, with its millisecond response times, coherent coding style, and Rails like Phoenix framework.</p>
+
+<p>I built out an API for a React-Native mobile app and thoroughly enjoyed the experience. It was a hop-skip-and-a-jump to learn Elm, a front-end functional language that compiles down to JavaScript.</p>
+
+<p>I wrote <a href="http://hipstack.me">Hipstack.me</a> in elm; a fun project that allows me to rewrite the entire application every six months in whatever language is hippest at the time. Sort of a TodoMVC, but TodoMVC is a little too popular these days.</p>
+
+<h3 id="where-to-learn-these-techs">Where to learn these techs</h3>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/facebookincubator/create-react-app">Create-React-App</a> Your starting point when creating a React app.</p>
+  </li>
+  <li>
+    <p>Redux: This <a href="http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html">full-stack redux tutorial</a>, which should have been a book, and I should have paid for it, finally got redux to stick. (Note: you don’t need redux/react-router to learn react, but it’s nice when you get 3+ components that aren’t parent child).</p>
+  </li>
+  <li>
+    <p>elm: After hearing that Redux was inspired by elm, I dove in with the (shockingly free, excellent) <a href="http://courses.knowthen.com/courses/elm-for-beginners">elm for beginners course</a>. Highly recommended.</p>
+  </li>
+  <li>
+    <p>Elixir: <a href="http://learningwithjb.com/guides/essential-elixir">Essential Elixir</a></p>
+  </li>
+  <li>
+    <p>Phoenix: <a href="http://learningwithjb.com/guides/building-an-app-with-phoenix">Build an app with Phoenix</a> and <a href="http://learningwithjb.com/guides/ecto-for-beginners">Ecto for Beginners</a>.</p>
+  </li>
+</ul>
+
+<h2 id="what-im-diving-into-next">What I’m diving into next</h2>
+
+<p>I’m exploring data-science, both the correlation/statistics/machine-learning aspect as well as the big-data side of the house. I’m not sure I believe in “AI” as traditionally taught, but I absolutely believe in data and our ability to make guesses based upon said data.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">PSA to my fellow devs: AI skills are bleeding edge right now, but they’ll be *table stakes* in a few short years. Invest in yourself now.</p>&mdash; Jerod Santo (@jerodsanto) <a href="https://twitter.com/jerodsanto/status/747409638681808897">June 27, 2016</a></blockquote>
+<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>I’m also going to give Go another chance. Working through <a href="http://exercism.io">exercism</a>’s examples in Go is super cool. The static code analysis helps you learn the “go” way to do things.</p>
+
+<ul>
+  <li>
+    <p><a href="http://shop.oreilly.com/product/mobile/0636920033400.do">Data Science from Scratch</a></p>
+  </li>
+  <li>
+    <p><a href="https://thewhitetulip.gitbooks.io/webapp-with-golang-anti-textbook/content/">webapp-with-golang-anti-textbook </a></p>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Scenes from Seven Cohorts]]></title>
@@ -1694,53 +1799,6 @@ I was asked what my relationship is to RubyOffRails: I created RubyOffRails in A
 <iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen=""></iframe>
 
 <p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why I Built Ruby Off Rails]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails/"/>
-    <updated>2012-04-03T12:23:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/04/03/why-i-built-ruby-off-rails</id>
-    <content type="html"><![CDATA[<p>I built Ruby off Rails because ruby is awesome, and there are too many developers who don’t realize it. And the more I trained people, the more I found that: <em>Developers who learn ruby first learn Rails Best</em>.
-###Announcing: <a href="http://rubyoffrails.com">Ruby Off Rails</a></p>
-
-<p>That means, they pick up on concepts about instance variables, validations, how to create non-ActiveRecord classes, and most importantly: testing.</p>
-
-<!-- more -->
-<div class="tldr">
-	<span class="heading">tl;dr</span> Ruby off Rails is a thing! <a href="http://rubyoffrails.com">Sign up</a>.
-</div>
-<p>So I floated an idea, should we learn Ruby before we learn Rails? The answer from nearly everyone I spoke to was YES.</p>
-
-<p>Enter: <a href="http://rubyoffrails.com">Ruby Off Rails</a> – a collaborative learning environment where we master Ruby through Applied Learning. What does that mean?</p>
-
-<ul>
-  <li>It means there’s not going to be a class on “Arrays” followed by one on “Syntax”. – We’ll build stuff together and learn by doing. </li>
-  <li>It means that each class much have actionable code that someone could actually use in their life</li>
-  <li>It means that you can watch the class live, or watch later. Much later.</li>
-  <li>It means that students talk to each other, learn from each other, and see each other’s code through pull-requests on assignments</li>
-</ul>
-
-<p>And most importantly, it means that we all code.</p>
-
-<p>It’s a six week course designed for people who have programmed before. If you haven’t developed software, it’ll be ambitious, but watch the episodes a couple of times and you’ll get the hang of it. And you’ll learn TDD first! (you won’t be able to imagine a different way).</p>
-
-<p>My true hope is this brings more people into the software development community and fosters coders teaching coders in a constructive and generally nice way.</p>
-
-<ol>
-  <li>Watch someone code</li>
-  <li>Code</li>
-  <li>Teach someone how to code</li>
-</ol>
-
-<h3 id="to-get-started">To Get Started</h3>
-
-<ol>
-  <li>Visit <a href="http://rubyoffrails.com">RubyOffRails.com</a></li>
-  <li>Read through and sign up</li>
-  <li>We’ll being the Thursday after RailsConf (April 26, 2012)</li>
-</ol>
 ]]></content>
   </entry>
   
