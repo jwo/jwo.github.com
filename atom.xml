@@ -4,7 +4,7 @@
   <title><![CDATA[J.Wo]]></title>
   <link href="http://jessewolgamott.com/atom.xml" rel="self"/>
   <link href="http://jessewolgamott.com/"/>
-  <updated>2016-08-16T10:58:30-05:00</updated>
+  <updated>2017-10-26T16:18:09-05:00</updated>
   <id>http://jessewolgamott.com/</id>
   <author>
     <name><![CDATA[Jesse Wolgamott]]></name>
@@ -12,6 +12,226 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Half Baked Idea: README Linter using the GitHub API]]></title>
+    <link href="http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/"/>
+    <updated>2017-10-26T15:05:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api</id>
+    <content type="html"><![CDATA[<p>It started as a simple idea: let’s explore the awesomeness of the new GraphQL API by building a tiny app. Think Travis-CI but for writing. Maybe it could check spelling, grade level, and possibly help with adverbs the way <a href="http://hemingwayapp.com">hemingwayapp.com</a> does.</p>
+
+<p>Maybe that app could help people use pull-requests during editorial reviews, much like how tests help developers with code reviews.</p>
+
+<p>It lead to a rather simple question:</p>
+
+<p><strong>What do I have to do to get the following to work?</strong></p>
+
+<!-- MORE -->
+
+<p><img src="http://jessewolgamott.com/images/jwo_react-hover-image.png" alt="readme-good" /></p>
+
+<p>OK so that’s what I want to do, I researched and built the pieces but when it came time to actually building the entire node app, I stopped short.</p>
+
+<p>That makes this is a half-baked idea: I’ve verified the individual pieces of tech work, but am stopping because I don’t want to actually build an entire product.</p>
+
+<p>What tech would I need to build in order to do is? Here are the broad strokes:</p>
+
+<h3 id="write-good-the-npm-module-to-test-our-readmes">0. Write-Good: the npm module to test our READMEs</h3>
+
+<p>There’s a rather clever npm module <a href="https://github.com/btford/write-good">write-good</a> which you can run as a CLI. Example from their docs:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ write-good README.md
+</span><span class="line">
+</span><span class="line">In README.md
+</span><span class="line">=============
+</span><span class="line"> = writeGood('So the cat was stolen.');
+</span><span class="line">                         ^^^^^^^^^^
+</span><span class="line">"was stolen" is passive voice on line 20 at column 40</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I figure we can use this to test a repo’s README.</p>
+
+<h3 id="github-api-accesstoken-with-repostatus-access">1. GitHub API: AccessToken with repo:status access</h3>
+
+<p>We’ll need to get an AccessToken since each of our GitHub API calls will require it. We can either:</p>
+
+<ol>
+  <li>Create a personal access token</li>
+  <li>Use oAuth to sign in. If you were building out an application, this is what you’d need to do.</li>
+</ol>
+
+<p>For personal access tokens, you can follow instructions <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">here</a>.</p>
+
+<p>For oAuth signin, you can duck-duck-go for “Sign in With GitHub”. In Rails, omniauth is the dominant way forward. In Node/Express land, I found the options less hospitable, but the npm package <code>passport-github2</code> is very well done.</p>
+
+<div><script src="https://gist.github.com/ea79620b5229e7821e4ae61055899cf9.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-graphql-list-of-repos-to-activate">2. GitHub GraphQL: list of repos to activate</h3>
+
+<p>You’ll want your app to get notified when a pull-request is created or updated so you can run your “test suite”.</p>
+
+<p>I imagine that after your user signs in, you’ll present them with a list of their repos. How do you get their repository list? I used the GraphQL endpoint.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST https://api.github.com/graphql
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div><script src="https://gist.github.com/99fa81c67fd9562da78c5949a3599cc6.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-api-webhook-know-when-a-pull-request-happens">3. GitHub API: WebHook: know when a pull-request happens</h3>
+
+<p>They’d switch a repo on, at which point you would post to GitHub’s WebHook API and register a webhook.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/hooks
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "name": "readme-good",
+</span><span class="line">  "active": true,
+</span><span class="line">  "events": [
+</span><span class="line">    "pull_request"
+</span><span class="line">  ],
+</span><span class="line">  "config": {
+</span><span class="line">    "url": "http://example.com/webhook",
+</span><span class="line">    "content_type": "json"
+</span><span class="line">  }
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>A fun hack here is to actually post to <a href="viasocket.com">viasocket.com</a>. It stores and lets you inspect, change, and replay webhooks, when you’re trying to diagnose how to handle a webhook, there’s not much more frustrating than having to recreate entire scenarios to test the typo you just fixed.</p>
+
+<p>Second fun hack is to use https://webhookrelay.com/ or https://ngrok.com to get webhooks to hit your local development system. You’d <strong>definitely</strong> want to do that here.</p>
+
+<h3 id="github-api-status-update-a-build-has-started">4. GitHub API: Status Update: a build has started</h3>
+
+<p>OK, so there’s a new pull-request on a repo which your app is watching, and GitHub has told you about it.</p>
+
+<p>We’ll want to notify GitHub that you’re starting a build using the GitHub API (REST v3). That’s what will add our app to the list of builds. GitHub isn’t waiting for us, we tell it when we start a build – this changes the status to “pending”.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/statuses/:commitsha
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "state": "pending",
+</span><span class="line">  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+</span><span class="line">  "description": "Building...",
+</span><span class="line">  "context": "readme-good/status"
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="github-api-graphql-git-commit">5. GitHub API: GraphQL: git commit</h3>
+
+<p>We’re going to need to clone the repository at the pull-request level to run tests. Which SHA should we use after we clone? We’ll ask GraphQL for what we need.</p>
+
+<p>Note: we’ll know from the webhook which pull request number is in question.</p>
+
+<div><script src="https://gist.github.com/e49d06f7f76428fa17fb901e7f418cca.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="docker-start-build">4. Docker: start build</h3>
+
+<p>This is a little hand-wavey… But imagine we have a server with docker installed. We can build an image that has our write-good npm package installed. We can then run a docker container and:</p>
+
+<ol>
+  <li>clone our repo</li>
+  <li>checkout to the correct SHA or ref</li>
+  <li>run our tests</li>
+</ol>
+
+<p>We then capture our build status and store it against our BuildID.</p>
+
+<div><script src="https://gist.github.com/c12b96fa5c3bcf7a2a4a43df3e79bbd2.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-api-status-update-build-is-complete">5. GitHub API: Status Update: build is complete</h3>
+
+<p>Notify GitHub that the build is over and either passed or failed.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/statuses/:commitsha
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "state": "success",
+</span><span class="line">  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+</span><span class="line">  "description": "All is good...",
+</span><span class="line">  "context": "readme-good/status"
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="what-didnt-i-think-of">What didn’t I think of?</h3>
+
+<p>I’m sure a ton. After all, I just built the pieces of tech, and didn’t tie them together <em>at all</em>. But it sure was fun!</p>
+
+<p>All of the code I used ended up being stored in Gists, and generally as a Git Repo.</p>
+
+<h3 id="documentation-for-endpoints">Documentation for endpoints</h3>
+
+<p>The GitHub API Endpoints we end up using:</p>
+
+<ul>
+  <li><a href="https://developer.github.com/v3/#authentication">REST v3: Authorization</a></li>
+  <li><a href="https://developer.github.com/v3/repos/statuses/">REST v3: Status Creation</a></li>
+  <li><a href="https://developer.github.com/v4/guides/forming-calls/#the-graphql-endpoint">GraphQL v4</a></li>
+</ul>
+
+<p>PS: you should absolutely use the <a href="https://developer.github.com/v4/explorer/">GitHub GraphQL API Explorer</a> to explore the GraphQL. It’s awesome once you get one specific thing to work and then you can edit and try other things.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[So much to learn, so little time]]></title>
@@ -569,67 +789,67 @@ Consulting</a>. </p>
 
 <h3 id="section">2011</h3>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s not quite &quot;the first time you saw rails&quot; tingly, but I have the tingles about emberjs. Well played <a href="https://twitter.com/wycats">@wycats</a> , well played.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/147056588740505601">December 14, 2011</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">It&#39;s not quite &quot;the first time you saw rails&quot; tingly, but I have the tingles about emberjs. Well played <a href="https://twitter.com/wycats?ref_src=twsrc%5Etfw">@wycats</a> , well played.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/147056588740505601?ref_src=twsrc%5Etfw">December 14, 2011</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h3 id="section-1">2012</h3>
 
 <p>I live-coded some ember at Houston Code Camp and it didn’t go very well. Too many rough edges, mostly with ember-data.</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Speaking of <a href="https://twitter.com/houstoncodecamp">@houstoncodecamp</a>, I&#39;ll be live coding an <a href="https://twitter.com/emberjs">@emberjs</a> app with rails as the API. Come experience the magic! cc: <a href="https://twitter.com/HoustonJS">@HoustonJS</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/231040665767792641">August 2, 2012</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Speaking of <a href="https://twitter.com/houstoncodecamp?ref_src=twsrc%5Etfw">@houstoncodecamp</a>, I&#39;ll be live coding an <a href="https://twitter.com/emberjs?ref_src=twsrc%5Etfw">@emberjs</a> app with rails as the API. Come experience the magic! cc: <a href="https://twitter.com/HoustonJS?ref_src=twsrc%5Etfw">@HoustonJS</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/231040665767792641?ref_src=twsrc%5Etfw">August 2, 2012</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h3 id="section-2">2013</h3>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/tehviking">@tehviking</a> I like that viewpoint. (I like both angular and ember)</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/322376953564901377">April 11, 2013</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/tehviking?ref_src=twsrc%5Etfw">@tehviking</a> I like that viewpoint. (I like both angular and ember)</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/322376953564901377?ref_src=twsrc%5Etfw">April 11, 2013</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Love both angular and ember. excited to see which ages better.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/372472103984848896">August 27, 2013</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Love both angular and ember. excited to see which ages better.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/372472103984848896?ref_src=twsrc%5Etfw">August 27, 2013</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/garrettdimon">@garrettdimon</a> angular fits into your rails app. Your rails all fits into ember.<br />Both great. Ember takes more thought, may be better long run</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/371643939960279040">August 25, 2013</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/garrettdimon?ref_src=twsrc%5Etfw">@garrettdimon</a> angular fits into your rails app. Your rails all fits into ember.<br />Both great. Ember takes more thought, may be better long run</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/371643939960279040?ref_src=twsrc%5Etfw">August 25, 2013</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>During 2013, JB and I wrote and published <a href="http://www.angularails.com/">AngularJS + Rails</a>. Angular was very pragmatic and got some things done. Others, like directives and services, seemed half-baked.</p>
 
 <h3 id="section-3">2014</h3>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Realtalk?src=hash">#Realtalk</a> Sooo jb and I bet on angular, with good success; my timeline is full of ember-love and I&#39;m planning to revisit embah.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/449647197249101826">March 28, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Realtalk?src=hash&amp;ref_src=twsrc%5Etfw">#Realtalk</a> Sooo jb and I bet on angular, with good success; my timeline is full of ember-love and I&#39;m planning to revisit embah.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/449647197249101826?ref_src=twsrc%5Etfw">March 28, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>I read about the community love at EmberConf 2014 and was insta-jealous. I remember what I love about Rails and Ruby was the community; decide to revist Ember in earnest and see how things are rolling along.</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/iwarshak">@iwarshak</a> to be honest, I’m amazed at ember now vs nov 2012. I’m using on a project and have lots of love toward <a href="https://twitter.com/emberjs">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/461179402638733313">April 29, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/iwarshak?ref_src=twsrc%5Etfw">@iwarshak</a> to be honest, I’m amazed at ember now vs nov 2012. I’m using on a project and have lots of love toward <a href="https://twitter.com/emberjs?ref_src=twsrc%5Etfw">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/461179402638733313?ref_src=twsrc%5Etfw">April 29, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">. <a href="https://twitter.com/hkarthik">@hkarthik</a> yep, I use both now. Angular to enhance an existing app. Ember for greenfield.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/498928611714281472">August 11, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">. <a href="https://twitter.com/hkarthik?ref_src=twsrc%5Etfw">@hkarthik</a> yep, I use both now. Angular to enhance an existing app. Ember for greenfield.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/498928611714281472?ref_src=twsrc%5Etfw">August 11, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Preview of <a href="https://twitter.com/emberjs">@emberjs</a> app I built for my college fantasy football draft. So simple. So fast. So easy. Blogpost soon. <a href="http://t.co/gkBef9W9un">pic.twitter.com/gkBef9W9un</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/504641335261806592">August 27, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Preview of <a href="https://twitter.com/emberjs?ref_src=twsrc%5Etfw">@emberjs</a> app I built for my college fantasy football draft. So simple. So fast. So easy. Blogpost soon. <a href="http://t.co/gkBef9W9un">pic.twitter.com/gkBef9W9un</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/504641335261806592?ref_src=twsrc%5Etfw">August 27, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Also had super awesome fun times with ember and cordova. This is such a stack of win.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/549700891201110016">December 29, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Also had super awesome fun times with ember and cordova. This is such a stack of win.</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/549700891201110016?ref_src=twsrc%5Etfw">December 29, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Quick look of what I did to filter by company and/or first/last name. joins arel together / to_sql (rails and ember) <a href="https://t.co/AsoZqJpdXx">https://t.co/AsoZqJpdXx</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/540261729599381505">December 3, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Quick look of what I did to filter by company and/or first/last name. joins arel together / to_sql (rails and ember) <a href="https://t.co/AsoZqJpdXx">https://t.co/AsoZqJpdXx</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/540261729599381505?ref_src=twsrc%5Etfw">December 3, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>I dive into ember-cli; it’s the final piece of the ember puzzle. Followed by ember-addons and quite simply amazing.</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">ember-cli: Getting Started With the Awesome <a href="http://t.co/M0XVHVm8YO">http://t.co/M0XVHVm8YO</a> | more reasons to love <a href="https://twitter.com/emberjs">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/524302483674243072">October 20, 2014</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">ember-cli: Getting Started With the Awesome <a href="http://t.co/M0XVHVm8YO">http://t.co/M0XVHVm8YO</a> | more reasons to love <a href="https://twitter.com/emberjs?ref_src=twsrc%5Etfw">@emberjs</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/524302483674243072?ref_src=twsrc%5Etfw">October 20, 2014</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <h3 id="section-4">2015</h3>
 
 <p>Angular announced their 2.0 backward compatibility breakathon apocalypse. I finalize what’s been happening for a year, and break up with Angular for Ember. #sorrynotsorry</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watching Portlandia, getting moar excitet about <a href="https://twitter.com/EmberConf">@EmberConf</a> which OH BTW is is Portland. :boom:</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/566047213143343104">February 13, 2015</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Watching Portlandia, getting moar excitet about <a href="https://twitter.com/EmberConf?ref_src=twsrc%5Etfw">@EmberConf</a> which OH BTW is is Portland. :boom:</p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/566047213143343104?ref_src=twsrc%5Etfw">February 13, 2015</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>EmberConf 2015. Such amazing awesomeness.</p>
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A collection of links that cover what happened during EmberConf 2015. <a href="https://t.co/IYZvxBwlWN">https://t.co/IYZvxBwlWN</a> <a href="https://twitter.com/hashtag/emberconf?src=hash">#emberconf</a>  :: amaze. thanks <a href="https://twitter.com/sugarpirate_">@sugarpirate_</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/573504125637279744">March 5, 2015</a></blockquote>
-<script async="" src="http://jessewolgamott.com//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A collection of links that cover what happened during EmberConf 2015. <a href="https://t.co/IYZvxBwlWN">https://t.co/IYZvxBwlWN</a> <a href="https://twitter.com/hashtag/emberconf?src=hash&amp;ref_src=twsrc%5Etfw">#emberconf</a>  :: amaze. thanks <a href="https://twitter.com/sugarpirate_?ref_src=twsrc%5Etfw">@sugarpirate_</a></p>&mdash; Jesse Wolgamott (@jwo) <a href="https://twitter.com/jwo/status/573504125637279744?ref_src=twsrc%5Etfw">March 5, 2015</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <p>Can’t wait to see what happens in 2015 and beyond.</p>
 
@@ -1781,24 +2001,6 @@ I am offering a 100% scholarship to the 6 week RubyOffRails class for up to 5 wo
 
 <p>UPDATE:<br />
 I was asked what my relationship is to RubyOffRails: I created RubyOffRails in April 2012 and run the course: the video codecasts, discussions, and code reviews are all me.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RailsConf 2012 Ignite Talk: ActiveRecord and Velveeta]]></title>
-    <link href="http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta/"/>
-    <updated>2012-06-06T09:46:00-05:00</updated>
-    <id>http://jessewolgamott.com/blog/2012/06/06/railsconf-2012-ignite-talk-activerecord-and-velveeta</id>
-    <content type="html"><![CDATA[<p>My ignite talk (5 minutes, auto-advancing slides) talk from RailsConf 2012 is online. </p>
-
-<!-- more -->
-<div class="tldr">
-	<span class="heading">tl;dr</span> ActiveRecord is like Velveeta; you shouldn&#8217;t know you&#8217;re consuming it when you consume it.
-</div>
-
-<iframe width="560" height="315" src="http://www.youtube.com/embed/Ucma74yqH6w" frameborder="0" allowfullscreen=""></iframe>
-
-<p>On Youtube: <a href="http://www.youtube.com/watch?v=Ucma74yqH6w">ActiveRecord and Velveeta</a></p>
 ]]></content>
   </entry>
   

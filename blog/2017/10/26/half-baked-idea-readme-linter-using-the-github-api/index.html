@@ -1,0 +1,358 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<title>Half Baked Idea: README Linter using the GitHub API | Jesse Wolgamott |
+      JWo. TexMex Software Consulting</title>
+
+	<meta name="author" content="Jesse Wolgamott">
+	
+	<meta name="description" content="Hand Crafted Tex Mex Software bloggings">
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="/atom.xml" rel="alternate" title="J.Wo" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA+P8AAPh/AAD4PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP4/AAD+PwAA/j8AAP//AAD//wAA" rel="icon" type="image/x-icon" />
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body class="post-template">
+  <main class="content" role="main"><article class="post">
+  
+	<header class="post-header">
+		<a id="blog-logo" href="/">J.Wo</a>
+	</header>
+	<span class="post-meta">26 Oct 2017</span>
+	<h1 class="post-title">Half Baked Idea: README Linter Using the GitHub API</h1>
+
+	<section class="post-content">
+		<p>It started as a simple idea: let’s explore the awesomeness of the new GraphQL API by building a tiny app. Think Travis-CI but for writing. Maybe it could check spelling, grade level, and possibly help with adverbs the way <a href="http://hemingwayapp.com">hemingwayapp.com</a> does.</p>
+
+<p>Maybe that app could help people use pull-requests during editorial reviews, much like how tests help developers with code reviews.</p>
+
+<p>It lead to a rather simple question:</p>
+
+<p><strong>What do I have to do to get the following to work?</strong></p>
+
+<!-- MORE -->
+
+<p><img src="/images/jwo_react-hover-image.png" alt="readme-good" /></p>
+
+<p>OK so that’s what I want to do, I researched and built the pieces but when it came time to actually building the entire node app, I stopped short.</p>
+
+<p>That makes this is a half-baked idea: I’ve verified the individual pieces of tech work, but am stopping because I don’t want to actually build an entire product.</p>
+
+<p>What tech would I need to build in order to do is? Here are the broad strokes:</p>
+
+<h3 id="write-good-the-npm-module-to-test-our-readmes">0. Write-Good: the npm module to test our READMEs</h3>
+
+<p>There’s a rather clever npm module <a href="https://github.com/btford/write-good">write-good</a> which you can run as a CLI. Example from their docs:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ write-good README.md
+</span><span class="line">
+</span><span class="line">In README.md
+</span><span class="line">=============
+</span><span class="line"> = writeGood('So the cat was stolen.');
+</span><span class="line">                         ^^^^^^^^^^
+</span><span class="line">"was stolen" is passive voice on line 20 at column 40</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I figure we can use this to test a repo’s README.</p>
+
+<h3 id="github-api-accesstoken-with-repostatus-access">1. GitHub API: AccessToken with repo:status access</h3>
+
+<p>We’ll need to get an AccessToken since each of our GitHub API calls will require it. We can either:</p>
+
+<ol>
+  <li>Create a personal access token</li>
+  <li>Use oAuth to sign in. If you were building out an application, this is what you’d need to do.</li>
+</ol>
+
+<p>For personal access tokens, you can follow instructions <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">here</a>.</p>
+
+<p>For oAuth signin, you can duck-duck-go for “Sign in With GitHub”. In Rails, omniauth is the dominant way forward. In Node/Express land, I found the options less hospitable, but the npm package <code>passport-github2</code> is very well done.</p>
+
+<div><script src="https://gist.github.com/ea79620b5229e7821e4ae61055899cf9.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-graphql-list-of-repos-to-activate">2. GitHub GraphQL: list of repos to activate</h3>
+
+<p>You’ll want your app to get notified when a pull-request is created or updated so you can run your “test suite”.</p>
+
+<p>I imagine that after your user signs in, you’ll present them with a list of their repos. How do you get their repository list? I used the GraphQL endpoint.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST https://api.github.com/graphql
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div><script src="https://gist.github.com/99fa81c67fd9562da78c5949a3599cc6.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-api-webhook-know-when-a-pull-request-happens">3. GitHub API: WebHook: know when a pull-request happens</h3>
+
+<p>They’d switch a repo on, at which point you would post to GitHub’s WebHook API and register a webhook.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/hooks
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "name": "readme-good",
+</span><span class="line">  "active": true,
+</span><span class="line">  "events": [
+</span><span class="line">    "pull_request"
+</span><span class="line">  ],
+</span><span class="line">  "config": {
+</span><span class="line">    "url": "http://example.com/webhook",
+</span><span class="line">    "content_type": "json"
+</span><span class="line">  }
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>A fun hack here is to actually post to <a href="viasocket.com">viasocket.com</a>. It stores and lets you inspect, change, and replay webhooks, when you’re trying to diagnose how to handle a webhook, there’s not much more frustrating than having to recreate entire scenarios to test the typo you just fixed.</p>
+
+<p>Second fun hack is to use https://webhookrelay.com/ or https://ngrok.com to get webhooks to hit your local development system. You’d <strong>definitely</strong> want to do that here.</p>
+
+<h3 id="github-api-status-update-a-build-has-started">4. GitHub API: Status Update: a build has started</h3>
+
+<p>OK, so there’s a new pull-request on a repo which your app is watching, and GitHub has told you about it.</p>
+
+<p>We’ll want to notify GitHub that you’re starting a build using the GitHub API (REST v3). That’s what will add our app to the list of builds. GitHub isn’t waiting for us, we tell it when we start a build – this changes the status to “pending”.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/statuses/:commitsha
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "state": "pending",
+</span><span class="line">  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+</span><span class="line">  "description": "Building...",
+</span><span class="line">  "context": "readme-good/status"
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="github-api-graphql-git-commit">5. GitHub API: GraphQL: git commit</h3>
+
+<p>We’re going to need to clone the repository at the pull-request level to run tests. Which SHA should we use after we clone? We’ll ask GraphQL for what we need.</p>
+
+<p>Note: we’ll know from the webhook which pull request number is in question.</p>
+
+<div><script src="https://gist.github.com/e49d06f7f76428fa17fb901e7f418cca.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="docker-start-build">4. Docker: start build</h3>
+
+<p>This is a little hand-wavey… But imagine we have a server with docker installed. We can build an image that has our write-good npm package installed. We can then run a docker container and:</p>
+
+<ol>
+  <li>clone our repo</li>
+  <li>checkout to the correct SHA or ref</li>
+  <li>run our tests</li>
+</ol>
+
+<p>We then capture our build status and store it against our BuildID.</p>
+
+<div><script src="https://gist.github.com/c12b96fa5c3bcf7a2a4a43df3e79bbd2.js"></script>
+<noscript><pre><code /></pre></noscript></div>
+
+<h3 id="github-api-status-update-build-is-complete">5. GitHub API: Status Update: build is complete</h3>
+
+<p>Notify GitHub that the build is over and either passed or failed.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">POST /repos/:owner/:repo/statuses/:commitsha
+</span><span class="line">HEADERS
+</span><span class="line">  ContentType: application/json
+</span><span class="line">  Authorization: Bearer $TOKENGOESHERE
+</span><span class="line">BODY
+</span><span class="line">{
+</span><span class="line">  "state": "success",
+</span><span class="line">  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+</span><span class="line">  "description": "All is good...",
+</span><span class="line">  "context": "readme-good/status"
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="what-didnt-i-think-of">What didn’t I think of?</h3>
+
+<p>I’m sure a ton. After all, I just built the pieces of tech, and didn’t tie them together <em>at all</em>. But it sure was fun!</p>
+
+<p>All of the code I used ended up being stored in Gists, and generally as a Git Repo.</p>
+
+<h3 id="documentation-for-endpoints">Documentation for endpoints</h3>
+
+<p>The GitHub API Endpoints we end up using:</p>
+
+<ul>
+  <li><a href="https://developer.github.com/v3/#authentication">REST v3: Authorization</a></li>
+  <li><a href="https://developer.github.com/v3/repos/statuses/">REST v3: Status Creation</a></li>
+  <li><a href="https://developer.github.com/v4/guides/forming-calls/#the-graphql-endpoint">GraphQL v4</a></li>
+</ul>
+
+<p>PS: you should absolutely use the <a href="https://developer.github.com/v4/explorer/">GitHub GraphQL API Explorer</a> to explore the GraphQL. It’s awesome once you get one specific thing to work and then you can edit and try other things.</p>
+
+	</section>
+
+  <footer class="post-footer">
+  <section class="author">
+    <h4>Jesse Wolgamott</h4>
+    <p>Jesse Wolgamott is a Master Instructor at <a href="http://theironyard.com">The Iron Yard</a>, 
+    <a href="/books">writes books</a>,
+    <a href="/talks">speaks</a>,
+    and
+    <a href="http://comal.io">consults</a>.
+    He has LinkedIn credit for both Professional Modeling and Woodworking. 
+    He lives in Sugar Land outside of Houston in Texas.<p>
+  </section>
+  <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=Half Baked Idea: README Linter using the GitHub API&amp;url=http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+    </a>
+  </section>
+</footer>
+
+  <hr>
+  
+    <div class="share">
+</div>
+
+  
+  
+  <section id="comment">
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+  
+</article></main>
+  <footer class="site-footer"><a class="subscribe icon-feed" href="http://jessewolgamott.com/atom.xml"><span class="tooltip">Subscribe!</span></a>
+
+
+<div class="inner">
+
+
+Follow me on
+
+
+
+<a class="social twitter" href="http://twitter.com/jwo" title="Twitter">Twitter</a>
+
+
+
+<a class="social github" href="http://github.com/jwo" title="GitHub">GitHub</a>
+
+
+
+<a class="social google_plus" href="http://plus.google.com/jesse.wolgamott" title="Google+">Google+</a>
+
+
+<section class="copyright">All content copyright <a href="/">Jesse Wolgamott</a> © 2017 • All rights reserved.</section>
+
+<section class="poweredby">Casper theme by <a class="icon-ghost" href="http://tryghost.org">Ghost</a> &amp; Published with <a href="http://octopress.org">Octopress</a></section>
+
+</div>
+</footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/javascripts/highlight.pack.js"></script>  
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jwo';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/';
+        var disqus_url = 'http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2397417-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</body>
+</html>

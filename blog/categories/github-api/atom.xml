@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github-api | J.Wo]]></title>
+  <link href="http://jessewolgamott.com/blog/categories/github-api/atom.xml" rel="self"/>
+  <link href="http://jessewolgamott.com/"/>
+  <updated>2017-10-26T16:18:09-05:00</updated>
+  <id>http://jessewolgamott.com/</id>
+  <author>
+    <name><![CDATA[Jesse Wolgamott]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Half Baked Idea: README Linter using the GitHub API]]></title>
+    <link href="http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api/"/>
+    <updated>2017-10-26T15:05:00-05:00</updated>
+    <id>http://jessewolgamott.com/blog/2017/10/26/half-baked-idea-readme-linter-using-the-github-api</id>
+    <content type="html"><![CDATA[<p>It started as a simple idea: let’s explore the awesomeness of the new GraphQL API by building a tiny app. Think Travis-CI but for writing. Maybe it could check spelling, grade level, and possibly help with adverbs the way <a href="http://hemingwayapp.com">hemingwayapp.com</a> does.</p>
+
+<p>Maybe that app could help people use pull-requests during editorial reviews, much like how tests help developers with code reviews.</p>
+
+<p>It lead to a rather simple question:</p>
+
+<p><strong>What do I have to do to get the following to work?</strong></p>
+
+<!-- MORE -->
+
+<p><img src="/images/jwo_react-hover-image.png" alt="readme-good" /></p>
+
+<p>OK so that’s what I want to do, I researched and built the pieces but when it came time to actually building the entire node app, I stopped short.</p>
+
+<p>That makes this is a half-baked idea: I’ve verified the individual pieces of tech work, but am stopping because I don’t want to actually build an entire product.</p>
+
+<p>What tech would I need to build in order to do is? Here are the broad strokes:</p>
+
+<h3 id="write-good-the-npm-module-to-test-our-readmes">0. Write-Good: the npm module to test our READMEs</h3>
+
+<p>There’s a rather clever npm module <a href="https://github.com/btford/write-good">write-good</a> which you can run as a CLI. Example from their docs:</p>
+
+<p>```
+$ write-good README.md</p>
+
+<h1 id="in-readmemd">In README.md</h1>
+<p>= writeGood(‘So the cat was stolen.’);
+                         ^^^^^^^^^^
+“was stolen” is passive voice on line 20 at column 40
+```</p>
+
+<p>I figure we can use this to test a repo’s README.</p>
+
+<h3 id="github-api-accesstoken-with-repostatus-access">1. GitHub API: AccessToken with repo:status access</h3>
+
+<p>We’ll need to get an AccessToken since each of our GitHub API calls will require it. We can either:</p>
+
+<ol>
+  <li>Create a personal access token</li>
+  <li>Use oAuth to sign in. If you were building out an application, this is what you’d need to do.</li>
+</ol>
+
+<p>For personal access tokens, you can follow instructions <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">here</a>.</p>
+
+<p>For oAuth signin, you can duck-duck-go for “Sign in With GitHub”. In Rails, omniauth is the dominant way forward. In Node/Express land, I found the options less hospitable, but the npm package <code>passport-github2</code> is very well done.</p>
+
+<p><div><script src='https://gist.github.com/ea79620b5229e7821e4ae61055899cf9.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<h3 id="github-graphql-list-of-repos-to-activate">2. GitHub GraphQL: list of repos to activate</h3>
+
+<p>You’ll want your app to get notified when a pull-request is created or updated so you can run your “test suite”.</p>
+
+<p>I imagine that after your user signs in, you’ll present them with a list of their repos. How do you get their repository list? I used the GraphQL endpoint.</p>
+
+<p><code>
+POST https://api.github.com/graphql
+HEADERS
+  ContentType: application/json
+  Authorization: Bearer $TOKENGOESHERE
+</code></p>
+
+<p><div><script src='https://gist.github.com/99fa81c67fd9562da78c5949a3599cc6.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<h3 id="github-api-webhook-know-when-a-pull-request-happens">3. GitHub API: WebHook: know when a pull-request happens</h3>
+
+<p>They’d switch a repo on, at which point you would post to GitHub’s WebHook API and register a webhook.</p>
+
+<p>```
+POST /repos/:owner/:repo/hooks
+HEADERS
+  ContentType: application/json
+  Authorization: Bearer $TOKENGOESHERE
+BODY
+{
+  “name”: “readme-good”,
+  “active”: true,
+  “events”: [
+    “pull_request”
+  ],
+  “config”: {
+    “url”: “http://example.com/webhook”,
+    “content_type”: “json”
+  }
+}</p>
+
+<p>```</p>
+
+<p>A fun hack here is to actually post to <a href="viasocket.com">viasocket.com</a>. It stores and lets you inspect, change, and replay webhooks, when you’re trying to diagnose how to handle a webhook, there’s not much more frustrating than having to recreate entire scenarios to test the typo you just fixed.</p>
+
+<p>Second fun hack is to use https://webhookrelay.com/ or https://ngrok.com to get webhooks to hit your local development system. You’d <strong>definitely</strong> want to do that here.</p>
+
+<h3 id="github-api-status-update-a-build-has-started">4. GitHub API: Status Update: a build has started</h3>
+
+<p>OK, so there’s a new pull-request on a repo which your app is watching, and GitHub has told you about it.</p>
+
+<p>We’ll want to notify GitHub that you’re starting a build using the GitHub API (REST v3). That’s what will add our app to the list of builds. GitHub isn’t waiting for us, we tell it when we start a build – this changes the status to “pending”.</p>
+
+<p><code>
+POST /repos/:owner/:repo/statuses/:commitsha
+HEADERS
+  ContentType: application/json
+  Authorization: Bearer $TOKENGOESHERE
+BODY
+{
+  "state": "pending",
+  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+  "description": "Building...",
+  "context": "readme-good/status"
+}
+</code></p>
+
+<h3 id="github-api-graphql-git-commit">5. GitHub API: GraphQL: git commit</h3>
+
+<p>We’re going to need to clone the repository at the pull-request level to run tests. Which SHA should we use after we clone? We’ll ask GraphQL for what we need.</p>
+
+<p>Note: we’ll know from the webhook which pull request number is in question.</p>
+
+<p><div><script src='https://gist.github.com/e49d06f7f76428fa17fb901e7f418cca.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<h3 id="docker-start-build">4. Docker: start build</h3>
+
+<p>This is a little hand-wavey… But imagine we have a server with docker installed. We can build an image that has our write-good npm package installed. We can then run a docker container and:</p>
+
+<ol>
+  <li>clone our repo</li>
+  <li>checkout to the correct SHA or ref</li>
+  <li>run our tests</li>
+</ol>
+
+<p>We then capture our build status and store it against our BuildID.</p>
+
+<p><div><script src='https://gist.github.com/c12b96fa5c3bcf7a2a4a43df3e79bbd2.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<h3 id="github-api-status-update-build-is-complete">5. GitHub API: Status Update: build is complete</h3>
+
+<p>Notify GitHub that the build is over and either passed or failed.</p>
+
+<p><code>
+POST /repos/:owner/:repo/statuses/:commitsha
+HEADERS
+  ContentType: application/json
+  Authorization: Bearer $TOKENGOESHERE
+BODY
+{
+  "state": "success",
+  "target_url": "https://example.com/builds/BUILD_ID_HERE",
+  "description": "All is good...",
+  "context": "readme-good/status"
+}
+</code></p>
+
+<h3 id="what-didnt-i-think-of">What didn’t I think of?</h3>
+
+<p>I’m sure a ton. After all, I just built the pieces of tech, and didn’t tie them together <em>at all</em>. But it sure was fun!</p>
+
+<p>All of the code I used ended up being stored in Gists, and generally as a Git Repo.</p>
+
+<h3 id="documentation-for-endpoints">Documentation for endpoints</h3>
+
+<p>The GitHub API Endpoints we end up using:</p>
+
+<ul>
+  <li><a href="https://developer.github.com/v3/#authentication">REST v3: Authorization</a></li>
+  <li><a href="https://developer.github.com/v3/repos/statuses/">REST v3: Status Creation</a></li>
+  <li><a href="https://developer.github.com/v4/guides/forming-calls/#the-graphql-endpoint">GraphQL v4</a></li>
+</ul>
+
+<p>PS: you should absolutely use the <a href="https://developer.github.com/v4/explorer/">GitHub GraphQL API Explorer</a> to explore the GraphQL. It’s awesome once you get one specific thing to work and then you can edit and try other things.</p>
+]]></content>
+  </entry>
+  
+</feed>
